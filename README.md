@@ -2,10 +2,10 @@
 
 ### Git Config Values
 We will primarily be using the folling prefixes for our branches:
-dev - development branch
-feat - feature branch
-bugfix - self-evident
-refactor - self-evident
+* dev - development branch
+* feat - feature branch
+* bugfix - self-evident
+* refactor - self-evident
 
 ###### React Router
 https://www.npmjs.com/package/react-router
