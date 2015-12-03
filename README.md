@@ -1,5 +1,38 @@
 # radiar
 
+### Git Workflow
+```
+git checkout [branch-name]
+```
+```
+git checkout -b [new-branch-name]
+```
+```
+git remote add upstream [url-to-upstream]
+```
+
+### the daily workflow
+```
+git add . 
+```
+```
+git commit -m 'Commit message goes here...'
+```
+```
+git fetch upstream [branch-name]
+```
+```
+git rebase upstream/[branch-name]
+```
+```
+git push origin [branch-name]
+```
+Submit the Pull Request
+
+```
+git fetch upstream
+```
+
 ### Git Config Values
 We will primarily be using the folling prefixes for our branches:
 * `dev/` - development branch
