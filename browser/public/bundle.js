@@ -51,18 +51,22 @@
 	var data = {
 		membersData: [{
 			name: "William Carroll",
+			photo: "./app/img/wpcarroll.jpg",
 			github: "https://github.com/wpcarro",
 			linkedin: "https://www.linkedin.com/in/williampatrickcarroll"
 		}, {
 			name: "Vidiu Chiu",
+			photo: "./app/img/vchiu.jpg",
 			github: "https://github.com/VDUCHEW",
 			linkedin: "https://www.linkedin.com/in/vidiuchiu"
 		}, {
 			name: "Tina Lai",
+			photo: "./app/img/tlai.jpg",
 			github: "https://github.com/tinalai",
 			linkedin: "https://www.linkedin.com/in/thisistinalai"
 		}, {
-			name: "Casandra Silva Zenteno",
+			name: "Casandra Silva",
+			photo: "./app/img/csilva.jpg",
 			github: "https://github.com/casandrawith1s",
 			linkedin: "https://www.linkedin.com/in/casandrasilva"
 		}]
@@ -19674,6 +19678,8 @@
 /* 159 */
 /***/ function(module, exports, __webpack_require__) {
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var React = __webpack_require__(1);
 
 	var Member = React.createClass({
@@ -19682,21 +19688,34 @@
 	  render: function () {
 	    return React.createElement(
 	      "div",
-	      null,
+	      { className: "col-sm-4 col-md-2" },
 	      React.createElement(
-	        "p",
-	        null,
-	        this.props.name
-	      ),
-	      React.createElement(
-	        "a",
-	        { href: this.props.github },
-	        React.createElement("img", { src: "./app/img/GitHub-Mark-32px.png" })
-	      ),
-	      React.createElement(
-	        "a",
-	        { href: this.props.linkedin },
-	        React.createElement("img", { src: "./app/img/In-Black-34px-R.png" })
+	        "div",
+	        { className: "thumbnail" },
+	        React.createElement(
+	          "div",
+	          { className: "caption" },
+	          React.createElement(
+	            "h4",
+	            null,
+	            this.props.name
+	          ),
+	          React.createElement("img", { src: this.props.photo }),
+	          React.createElement(
+	            "p",
+	            null,
+	            React.createElement(
+	              "a",
+	              { href: this.props.github, className: "btn btn-default", role: "button" },
+	              React.createElement("img", { src: "./app/img/GitHub-Mark-32px.png" })
+	            ),
+	            React.createElement(
+	              "a",
+	              { href: this.props.linkedin, className: "btn btn-default", role: "button" },
+	              React.createElement("img", { src: "./app/img/In-Black-34px-R.png" })
+	            )
+	          )
+	        )
 	      )
 	    );
 	  }
@@ -19706,14 +19725,14 @@
 	  displayName: "Team",
 
 	  render: function () {
-	    var list = this.props.membersData.map(function (membersProps) {
-	      return React.createElement(Member, membersProps);
+	    var list = this.props.membersData.map(function (membersProps, index) {
+	      return React.createElement(Member, _extends({ key: index }, membersProps));
 	    });
 	    return React.createElement(
 	      "div",
 	      null,
 	      React.createElement(
-	        "p",
+	        "h3",
 	        null,
 	        "Radiar Tech Team Members"
 	      ),
