@@ -9,6 +9,22 @@ We will primarily be using the folling prefixes for our branches:
 
 ### Git Workflow
 At the beginning of the day, head over to your https://github.com/<your-username-here>/pico, and check to see if your repository is ahead/behind the project's (read `upstream`)repository.
+
+Feature branches! Before branching off, make sure that the branch you are on prior to creating a new branch is `dev/`. For example:
+
+```
+$ # ensure you are on the dev branch...
+$ git branch -a
+$ # if you are not, run this command
+$ git checkout dev
+```
+Now that you are on the dev branch, create a new branch for your feature/bugfix/refactor, etc.
+```
+$ git checkout -b <new-branch-name>
+```
+This will ensure that all of the directories and files from the dev branch will transfer over to the new branch; this is desirable to reduce merge conflicts. Please be careful to do this every time you create a new branch.
+After this new branch has been created, if you need to fetch / rebase from the organization's repository, the follow commands will work.
+
 Stage any work before rebasing...
 ```
 $ git add . 
