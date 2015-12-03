@@ -46,6 +46,27 @@
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
+	var Team = __webpack_require__(159);
+
+	var data = {
+		membersData: [{
+			name: "William Carroll",
+			github: "https://github.com/wpcarro",
+			linkedin: "https://www.linkedin.com/in/williampatrickcarroll"
+		}, {
+			name: "Vidiu Chiu",
+			github: "https://github.com/VDUCHEW",
+			linkedin: "https://www.linkedin.com/in/vidiuchiu"
+		}, {
+			name: "Tina Lai",
+			github: "https://github.com/tinalai",
+			linkedin: "https://www.linkedin.com/in/thisistinalai"
+		}, {
+			name: "Casandra Silva Zenteno",
+			github: "https://github.com/casandrawith1s",
+			linkedin: "https://www.linkedin.com/in/casandrasilva"
+		}]
+	};
 
 	var Main = React.createClass({
 		displayName: 'Main',
@@ -54,7 +75,8 @@
 			return React.createElement(
 				'div',
 				null,
-				'Hello, world'
+				'Hello, world',
+				React.createElement(Team, data)
 			);
 		}
 	});
@@ -19647,6 +19669,60 @@
 
 	module.exports = __webpack_require__(3);
 
+
+/***/ },
+/* 159 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+
+	var Member = React.createClass({
+	  displayName: "Member",
+
+	  render: function () {
+	    return React.createElement(
+	      "div",
+	      null,
+	      React.createElement(
+	        "p",
+	        null,
+	        this.props.name
+	      ),
+	      React.createElement(
+	        "a",
+	        { href: this.props.github },
+	        React.createElement("img", { src: "./app/img/GitHub-Mark-32px.png" })
+	      ),
+	      React.createElement(
+	        "a",
+	        { href: this.props.linkedin },
+	        React.createElement("img", { src: "./app/img/In-Black-34px-R.png" })
+	      )
+	    );
+	  }
+	});
+
+	var Team = React.createClass({
+	  displayName: "Team",
+
+	  render: function () {
+	    var list = this.props.membersData.map(function (membersProps) {
+	      return React.createElement(Member, membersProps);
+	    });
+	    return React.createElement(
+	      "div",
+	      null,
+	      React.createElement(
+	        "p",
+	        null,
+	        "Radiar Tech Team Members"
+	      ),
+	      list
+	    );
+	  }
+	});
+
+	module.exports = Team;
 
 /***/ }
 /******/ ]);
