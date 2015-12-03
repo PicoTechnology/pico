@@ -1,4 +1,4 @@
-# radiar
+# pico
 
 Interested in contributing? Check out our `dev/` branch's CONTRIBUTING.md
 
