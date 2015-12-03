@@ -13,7 +13,7 @@ git remote add upstream [url-to-upstream]
 
 ### the daily workflow
 ```
-git add . 
+git add .
 ```
 ```
 git commit -m 'Commit message goes here...'
@@ -29,9 +29,6 @@ git push origin [branch-name]
 ```
 Submit the Pull Request
 
-```
-git fetch upstream
-```
 
 ### Git Config Values
 We will primarily be using the folling prefixes for our branches:
