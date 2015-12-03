@@ -1,7 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Navbar = require('./Navbar.js');
-var About = require('./About.js');
 var Home = require('./Home.js');
 var Team = require('./Team.js');
 
@@ -40,12 +39,10 @@ var Main = React.createClass({
 			<div>
 
 				<Navbar></Navbar>
-				<About></About>
 				<Home></Home>
 				<Team {...data}/>
 
 			</div>
-
 		);
 	}
 });

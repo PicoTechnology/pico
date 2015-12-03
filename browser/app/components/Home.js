@@ -3,9 +3,9 @@ var React = require('react');
 var Home = React.createClass({
   render: function() {
     return (
-			<div className="Home">
+			<div id="home">
 	      <h1>Welcome </h1>
-				  <h4>VIDEO HERE</h4>
+				  <h4>VIDEO PLACEHOLDER</h4>
     				<p>
             Trust fund tousled sustainable four dollar toast. 3 wolf moon kombucha affogato tattooed, truffaut bushwick food truck pitchfork street art brooklyn chartreuse bitters 90s yuccie. Tote bag blue bottle mumblecore celiac slow-carb four loko, YOLO fanny pack banh mi. Narwhal schlitz everyday carry, brooklyn bitters poutine viral microdosing you probably havent heard of them kale chips hammock sartorial food truck kombucha. Umami polaroid slow-carb humblebrag, disrupt hammock microdosing tote bag shabby chic. IPhone keytar tattooed raw denim. Cornhole polaroid ethical, heirloom mlkshk mixtape direct trade vinyl 90s butcher pop-up.
 

@@ -46,10 +46,9 @@
 
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
-	var Navbar = __webpack_require__(162);
-	var About = __webpack_require__(159);
+	var Navbar = __webpack_require__(159);
 	var Home = __webpack_require__(161);
-	var Team = __webpack_require__(160);
+	var Team = __webpack_require__(162);
 
 	var data = {
 		membersData: [{
@@ -83,7 +82,6 @@
 				'div',
 				null,
 				React.createElement(Navbar, null),
-				React.createElement(About, null),
 				React.createElement(Home, null),
 				React.createElement(Team, data)
 			);
@@ -19683,70 +19681,66 @@
 /* 159 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
 	var React = __webpack_require__(1);
 
-	var About = React.createClass({
-	  displayName: "About",
+	var Navbar = React.createClass({
+	  displayName: "Navbar",
 
 	  render: function () {
 	    return React.createElement(
 	      "div",
-	      { className: "About" },
+	      { className: "container-fluid" },
 	      React.createElement(
-	        "h2",
-	        null,
-	        "ABOUT PAGE"
-	      ),
-	      React.createElement(
-	        "p",
-	        null,
-	        "The awesome developers are Will, Casandra, Vidiu, & Tina! Trust fund tousled sustainable four dollar toast. 3 wolf moon kombucha affogato tattooed, truffaut bushwick food truck pitchfork street art brooklyn chartreuse bitters 90s yuccie. Tote bag blue bottle mumblecore celiac slow-carb four loko, YOLO fanny pack banh mi. Narwhal schlitz everyday carry, brooklyn bitters poutine viral microdosing you probably havent heard of them kale chips hammock sartorial food truck kombucha. Umami polaroid slow-carb humblebrag, disrupt hammock microdosing tote bag shabby chic. IPhone keytar tattooed raw denim. Cornhole polaroid ethical, heirloom mlkshk mixtape direct trade vinyl 90s butcher pop-up. Celiac microdosing distillery venmo. Mlkshk tote bag master cleanse crucifix twee locavore iPhone, kogi food truck heirloom retro PBR&B yr helvetica. Typewriter butcher you probably havent heard of them selvage. Tattooed try-hard pinterest hashtag beard. Shabby chic stumptown artisan heirloom. Umami tofu mustache, DIY quinoa beard farm-to-table literally sartorial bitters bespoke etsy. Typewriter chicharrones ramps affogato banh mi, celiac readymade 8-bit synth banjo. Leggings chia jean shorts bushwick, pug locavore forage aesthetic viral kitsch knausgaard authentic sustainable mixtape four loko. Authentic flannel bespoke, heirloom viral wolf green juice. Direct trade health goth banh mi crucifix, 3 wolf moon selvage post-ironic. Portland dreamcatcher pabst kitsch flexitarian. Neutra chambray brooklyn, four loko twee salvia small batch iPhone meditation you probably havent heard of them. 3 wolf moon offal slow-carb neutra lomo cred. Crucifix authentic VHS wayfarers iPhone 90s. Crucifix next level photo booth church-key put a bird on it tumblr, affogato kitsch readymade truffaut mlkshk thundercats viral +1 raw denim. Pop-up viral poutine, 90s swag mumblecore VHS four dollar toast craft beer migas normcore kombucha. Hashtag austin chia ugh four dollar toast typewriter. Franzen mlkshk thundercats heirloom you probably havent heard of them, vegan squid fashion axe. Microdosing blue bottle authentic ramps heirloom meditation tattooed humblebrag, readymade franzen lo-fi bicycle rights fanny pack truffaut. 8-bit roof party etsy, mlkshk photo booth selfies drinking vinegar marfa you probably havent heard of them quinoa squid. Four dollar toast yuccie lomo tacos ennui bushwick VHS tilde, plaid crucifix banh mi. Trust fund tousled sustainable four dollar toast. 3 wolf moon kombucha affogato tattooed, truffaut bushwick food truck pitchfork street art brooklyn chartreuse bitters 90s yuccie. Tote bag blue bottle mumblecore celiac slow-carb four loko, YOLO fanny pack banh mi. Narwhal schlitz everyday carry, brooklyn bitters poutine viral microdosing you probably havent heard of them kale chips hammock sartorial food truck kombucha. Umami polaroid slow-carb humblebrag, disrupt hammock microdosing tote bag shabby chic. IPhone keytar tattooed raw denim. Cornhole polaroid ethical, heirloom mlkshk mixtape direct trade vinyl 90s butcher pop-up. Celiac microdosing distillery venmo. Mlkshk tote bag master cleanse crucifix twee locavore iPhone, kogi food truck heirloom retro PBR&B yr helvetica. Typewriter butcher you probably havent heard of them selvage. Tattooed try-hard pinterest hashtag beard. Shabby chic stumptown artisan heirloom. Umami tofu mustache, DIY quinoa beard farm-to-table literally sartorial bitters bespoke etsy. Typewriter chicharrones ramps affogato banh mi, celiac readymade 8-bit synth banjo. Leggings chia jean shorts bushwick, pug locavore forage aesthetic viral kitsch knausgaard authentic sustainable mixtape four loko. Authentic flannel bespoke, heirloom viral wolf green juice. Direct trade health goth banh mi crucifix, 3 wolf moon selvage post-ironic. Portland dreamcatcher pabst kitsch flexitarian. Neutra chambray brooklyn, four loko twee salvia small batch iPhone meditation you probably havent heard of them. 3 wolf moon offal slow-carb neutra lomo cred. Crucifix authentic VHS wayfarers iPhone 90s. Crucifix next level photo booth church-key put a bird on it tumblr, affogato kitsch readymade truffaut mlkshk thundercats viral +1 raw denim. Pop-up viral poutine, 90s swag mumblecore VHS four dollar toast craft beer migas normcore kombucha. Hashtag austin chia ugh four dollar toast typewriter. Franzen mlkshk thundercats heirloom you probably havent heard of them, vegan squid fashion axe. Microdosing blue bottle authentic ramps heirloom meditation tattooed humblebrag, readymade franzen lo-fi bicycle rights fanny pack truffaut. 8-bit roof party etsy, mlkshk photo booth selfies drinking vinegar marfa you probably havent heard of them quinoa squid. Four dollar toast yuccie lomo tacos ennui bushwick VHS tilde, plaid crucifix banh mi."
-	      )
-	    );
-	  }
-	});
-
-	module.exports = About;
-
-/***/ },
-/* 160 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-
-	var Member = React.createClass({
-	  displayName: "Member",
-
-	  render: function () {
-	    return React.createElement(
-	      "div",
-	      { className: "col-sm-4 col-md-2" },
-	      React.createElement(
-	        "div",
-	        { className: "thumbnail" },
+	        "nav",
+	        { className: "navbar navbar-inverse navbar-fixed-top" },
 	        React.createElement(
 	          "div",
-	          { className: "caption" },
+	          { className: "container-fluid" },
 	          React.createElement(
-	            "h4",
-	            null,
-	            this.props.name
-	          ),
-	          React.createElement("img", { src: this.props.photo }),
-	          React.createElement(
-	            "p",
-	            null,
+	            "div",
+	            { className: "navbar-header" },
 	            React.createElement(
-	              "a",
-	              { href: this.props.github, className: "btn btn-default", role: "button" },
-	              React.createElement("img", { src: "./app/img/GitHub-Mark-32px.png" })
+	              "button",
+	              { type: "button", className: "navbar-toggle collapsed", "data-toggle": "collapse", "data-target": "#bs-example-navbar-collapse-1", "aria-expanded": "false" },
+	              React.createElement(
+	                "span",
+	                { className: "sr-only" },
+	                "Toggle navigation"
+	              ),
+	              React.createElement("span", { className: "icon-bar" }),
+	              React.createElement("span", { className: "icon-bar" }),
+	              React.createElement("span", { className: "icon-bar" })
 	            ),
 	            React.createElement(
 	              "a",
-	              { href: this.props.linkedin, className: "btn btn-default", role: "button" },
-	              React.createElement("img", { src: "./app/img/In-Black-34px-R.png" })
+	              { className: "navbar-brand", href: "#" },
+	              "PICO TECHNOLOGY(LOGO)"
+	            )
+	          ),
+	          React.createElement(
+	            "div",
+	            { className: "collapse navbar-collapse", id: "bs-example-navbar-collapse-1" },
+	            React.createElement(
+	              "ul",
+	              { className: "nav navbar-nav navbar-right" },
+	              React.createElement(
+	                "li",
+	                null,
+	                React.createElement(
+	                  "a",
+	                  { href: "#home" },
+	                  "What's PICO?"
+	                )
+	              ),
+	              React.createElement(
+	                "li",
+	                null,
+	                React.createElement(
+	                  "a",
+	                  { href: "#team" },
+	                  "Team"
+	                )
+	              )
 	            )
 	          )
 	        )
@@ -19755,29 +19749,10 @@
 	  }
 	});
 
-	var Team = React.createClass({
-	  displayName: "Team",
-
-	  render: function () {
-	    var list = this.props.membersData.map(function (membersProps, index) {
-	      return React.createElement(Member, _extends({ key: index }, membersProps));
-	    });
-	    return React.createElement(
-	      "div",
-	      null,
-	      React.createElement(
-	        "h3",
-	        null,
-	        "Radiar Tech Team Members"
-	      ),
-	      list
-	    );
-	  }
-	});
-
-	module.exports = Team;
+	module.exports = Navbar;
 
 /***/ },
+/* 160 */,
 /* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -19789,7 +19764,7 @@
 	  render: function () {
 	    return React.createElement(
 	      "div",
-	      { className: "Home" },
+	      { id: "home" },
 	      React.createElement(
 	        "h1",
 	        null,
@@ -19798,7 +19773,7 @@
 	      React.createElement(
 	        "h4",
 	        null,
-	        "VIDEO HERE"
+	        "VIDEO PLACEHOLDER"
 	      ),
 	      React.createElement(
 	        "p",
@@ -19815,21 +19790,70 @@
 /* 162 */
 /***/ function(module, exports, __webpack_require__) {
 
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 	var React = __webpack_require__(1);
 
-	var Navbar = React.createClass({
-	  displayName: 'Navbar',
+	var Member = React.createClass({
+	  displayName: 'Member',
 
 	  render: function () {
 	    return React.createElement(
 	      'div',
-	      null,
-	      'NAV HERE'
+	      { className: 'col-sm-4 col-md-2', id: 'team' },
+	      React.createElement(
+	        'div',
+	        { className: 'thumbnail' },
+	        React.createElement(
+	          'div',
+	          { className: 'caption' },
+	          React.createElement(
+	            'h4',
+	            null,
+	            this.props.name
+	          ),
+	          React.createElement('img', { src: this.props.photo }),
+	          React.createElement(
+	            'p',
+	            null,
+	            React.createElement(
+	              'a',
+	              { href: this.props.github, className: 'btn btn-default', role: 'button' },
+	              React.createElement('img', { src: './app/img/GitHub-Mark-32px.png' })
+	            ),
+	            React.createElement(
+	              'a',
+	              { href: this.props.linkedin, className: 'btn btn-default', role: 'button' },
+	              React.createElement('img', { src: './app/img/In-Black-34px-R.png' })
+	            )
+	          )
+	        )
+	      )
 	    );
 	  }
 	});
 
-	module.exports = Navbar;
+	var Team = React.createClass({
+	  displayName: 'Team',
+
+	  render: function () {
+	    var list = this.props.membersData.map(function (membersProps, index) {
+	      return React.createElement(Member, _extends({ key: index }, membersProps));
+	    });
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'h3',
+	        null,
+	        'Radiar Tech Team Members'
+	      ),
+	      list
+	    );
+	  }
+	});
+
+	module.exports = Team;
 
 /***/ }
 /******/ ]);
