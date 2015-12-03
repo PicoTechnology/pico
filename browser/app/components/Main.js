@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Team = require('./team_profile.js');
+var Team = require('./Team.js');
 
 var data = {
 	membersData: [{
