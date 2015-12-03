@@ -4,9 +4,14 @@ var Team = require('./team_profile.js');
 
 var data = {
 	membersData: [{
-		name: "Tina Lai",
-		github: "https://github.com/tinalai",
-		linkedin: "https://www.linkedin.com/in/thisistinalai"
+		name: "William Carroll",
+		github: "https://github.com/wpcarro",
+		linkedin: "https://www.linkedin.com/in/williampatrickcarroll"
+	},
+	{
+		name: "Vidiu Chiu",
+		github: "https://github.com/VDUCHEW",
+		linkedin: "https://www.linkedin.com/in/vidiuchiu"
 	},
 	{
 		name: "Tina Lai",
@@ -14,14 +19,9 @@ var data = {
 		linkedin: "https://www.linkedin.com/in/thisistinalai"
 	},
 	{
-		name: "Tina Lai",
-		github: "https://github.com/tinalai",
-		linkedin: "https://www.linkedin.com/in/thisistinalai"
-	},
-	{
-		name: "Tina Lai",
-		github: "https://github.com/tinalai",
-		linkedin: "https://www.linkedin.com/in/thisistinalai"
+		name: "Casandra Silva Zenteno",
+		github: "https://github.com/casandrawith1s",
+		linkedin: "https://www.linkedin.com/in/casandrasilva"
 	}]
 };
 

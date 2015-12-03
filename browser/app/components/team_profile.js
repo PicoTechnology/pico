@@ -16,11 +16,12 @@ var Team = React.createClass({
   render: function() {
     var list = this.props.membersData.map(function(membersProps) {
       return (
-        <Member {...membersProps} />
+          <Member {...membersProps} />
       )
     });
     return (
       <div>
+        <p>Radiar Tech Team Members</p>
         {list}
       </div>
     )
