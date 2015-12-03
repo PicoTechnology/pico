@@ -1,0 +1,21 @@
+{
+  "name": "songqueue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "QueueTests.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wpcarro/radiar/"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-core": "^6.2.1",
+    "babel-loader": "^6.2.0",
+    "expect": "^1.13.0",
+    "webpack": "^1.12.9"
+  }
+}
