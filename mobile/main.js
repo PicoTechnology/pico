@@ -12,11 +12,17 @@ const Main = require('./App/Components/Main.js');
 class App extends React.Component {
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Main />
       </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  }
+});
 
 AppRegistry.registerComponent('main', () => App);
