@@ -2,11 +2,17 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var Navbar = require('./Navbar.js');
 var Home = require('./Home.js');
+var Description = require('./Description.js');
 var Team = require('./Team.js');
 var Company = require('./Company.js');
 
 
 var data = {
+	productInfo: {
+		btnCommand: "View Demo",
+		btnLink: "http://www.google.com" // CHANGE route to video component
+
+	},
 	membersData: [{
 		name: "William Carroll",
 		photo: "./app/img/wpcarroll.jpg",
@@ -45,6 +51,7 @@ var Main = React.createClass({
 			<div className="container-fluid">
 				<Navbar></Navbar>
 				<Home></Home>
+				<Description {...data}/>
 				<Team {...data}/>
 				<Company {...data}/>
 			</div>
