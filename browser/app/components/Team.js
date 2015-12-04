@@ -3,7 +3,7 @@ var React = require('react');
 var Member = React.createClass({
   render: function() {
     return (
-        <div className="col-sm-4 col-md-2">
+        <div className="col-sm-4 col-md-2" id='team'>
           <div className="thumbnail">
             <div className="caption">
               <h4>{this.props.name}</h4>

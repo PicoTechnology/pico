@@ -1,6 +1,9 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
+var Navbar = require('./Navbar.js');
+var Home = require('./Home.js');
 var Team = require('./Team.js');
+
 
 var data = {
 	membersData: [{
@@ -34,11 +37,12 @@ var Main = React.createClass({
 	render: function() {
 		return (
 			<div>
-			Hello, world
-			<Team {...data}/>
+
+				<Navbar></Navbar>
+				<Home></Home>
+				<Team {...data}/>
 
 			</div>
-
 		);
 	}
 });
