@@ -3,6 +3,7 @@ var ReactDOM = require('react-dom');
 var Navbar = require('./Navbar.js');
 var Home = require('./Home.js');
 var Team = require('./Team.js');
+var Company = require('./Company.js');
 
 
 var data = {
@@ -20,7 +21,7 @@ var data = {
 	},
 	{
 		name: "Tina Lai",
-		photo:"./app/img/tlai.jpg",
+		photo:"./app/img/tclai.jpg",
 		github: "https://github.com/tinalai",
 		linkedin: "https://www.linkedin.com/in/thisistinalai"
 	},
@@ -29,7 +30,12 @@ var data = {
 		photo:"./app/img/csilva.jpg",
 		github: "https://github.com/casandrawith1s",
 		linkedin: "https://www.linkedin.com/in/casandrasilva"
-	}]
+	}],
+	companyData: {
+		email: "picotech@gmail.com",
+		location: "Los Angeles, CA",
+		logo: "./app/img/kolibry.jpg"
+	}
 };
 
 
@@ -37,11 +43,10 @@ var Main = React.createClass({
 	render: function() {
 		return (
 			<div>
-
 				<Navbar></Navbar>
 				<Home></Home>
 				<Team {...data}/>
-
+				<Company {...data}/>
 			</div>
 		);
 	}
