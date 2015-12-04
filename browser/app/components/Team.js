@@ -10,7 +10,10 @@ var Button = React.createClass({
 
 var Member = React.createClass({
   handleClick: function() {
-    
+    this.setState({flip: !this.state.flip});
+  },
+  getInitialState: function() {
+    return {flip: false};
   },
   render: function() {
     return (
@@ -43,6 +46,7 @@ var Member = React.createClass({
 });
 
 var Team = React.createClass({
+
   render: function() {
     var list = this.props.membersData.map(function(membersProps, index) {
       return (
