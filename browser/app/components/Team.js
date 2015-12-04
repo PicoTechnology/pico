@@ -1,6 +1,17 @@
 var React = require('react');
 
+var Button = React.createClass({
+  render: function() {
+    return (
+      <button onClick={this.props.whenClicked}><span className={"glyphicon glyphicon-chevron-right"}></span></button>
+    );
+  }
+});
+
 var Member = React.createClass({
+  handleClick: function() {
+    
+  },
   render: function() {
     return (
       <div className="col-md-3" id='team'>
@@ -37,7 +48,7 @@ var Team = React.createClass({
       return (
         <Member key={index} {...membersProps} />
       );
-    });
+    }.bind(this));
     return (
       <div className="col-md-12" style={styles.container}>
         <h3 
