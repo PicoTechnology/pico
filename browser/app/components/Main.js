@@ -48,14 +48,35 @@ var data = {
 	},
 };
 
+var retrieveDemoHtml = function() {
+	return (
+		<div id="demoLightbox" className="lightbox hide fade"  tabindex="-1" role="dialog" aria-hidden="true">
+			<div className='lightbox-content'>
+				<p>Here is the video</p>
+			</div>
+		</div>
+	);
+};
 
 var Main = React.createClass({
+	getInitialState: function() {
+		return {
+			viewDemo: false
+		};
+	},
+	toggleState: function() {
+		this.setState({
+			viewDemo: !this.state.viewDemo
+		});
+	},
 	render: function() {
+		var demo = (this.state.viewDemo) ? retrieveDemoHtml() : <div></div>;
 		return (
 			<div>
-				<Navbar></Navbar>
-				<Home></Home>
-				<Description {...data}/>
+				<Navbar />
+				<Home />
+				{demo}
+				<Description {...data} callback={this.toggleState} />
 				<Team {...data}/>
 				<Company {...data}/>
 			</div>

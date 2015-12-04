@@ -1,14 +1,15 @@
 var React = require('react');
 
 var Button = React.createClass({
+  handleClick: function() {
+    this.props.callback();
+  },
   render: function() {
     return (
-      <a href={this.props.btnLink}>
-        <button>
+      <button onClick={this.handleClick}>
         {this.props.btnCommand}
-        </button>
-      </a>
-    )
+      </button>
+    );
   }
 });
 
@@ -23,7 +24,7 @@ var Description = React.createClass({
         experience with one simple app.
         Capable of building personal and group
         curated playlists, multi-room sound streaming.</p>
-        <Button {...this.props.productInfo}/>
+        <Button {...this.props.productInfo} callback={this.props.callback}/>
       </div>
         );
     }
