@@ -15,7 +15,7 @@ class Main extends React.Component {
 		return (
 			<View style={styles.container}>
 				<View style={styles.bgImageWrapper}>
-					<Image 
+					<Image
 						style={styles.bgImage}
 						source={require('../Assets/splash-screen.jpg')}/>
 				</View>

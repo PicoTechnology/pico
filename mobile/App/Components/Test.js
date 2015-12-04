@@ -5,10 +5,17 @@ const {
 	Dimensions,
 	Image,
 	Text,
-	StyleSheet
+	StyleSheet,
+	TouchableHighlight
 } = React;
 
 const {width, height} = Dimensions.get('window');
+
+
+
+
+
+
 
 class Test extends React.Component {
 	render() {
@@ -20,7 +27,7 @@ class Test extends React.Component {
 						source={require('../Assets/splash-screen.jpg')}/>
 				</View>
 				<Text>
-					This is some test with React-Native
+					This is some test with React-Native AHHH
 				</Text>
 			</View>
 		);
