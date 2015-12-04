@@ -17,25 +17,29 @@ var data = {
 		name: "William Carroll",
 		photo: "./app/img/wpcarroll.jpg",
 		github: "https://github.com/wpcarro",
-		linkedin: "https://www.linkedin.com/in/williampatrickcarroll"
+		linkedin: "https://www.linkedin.com/in/williampatrickcarroll",
+		info:"I love Rasp Pi."
 	},
 	{
 		name: "Vidiu Chiu",
 		photo:"./app/img/vchiu.jpg",
 		github: "https://github.com/VDUCHEW",
-		linkedin: "https://www.linkedin.com/in/vidiuchiu"
+		linkedin: "https://www.linkedin.com/in/vidiuchiu",
+		info: "Style guru"
 	},
 	{
 		name: "Tina Lai",
 		photo:"./app/img/tclai.jpg",
 		github: "https://github.com/tinalai",
-		linkedin: "https://www.linkedin.com/in/thisistinalai"
+		linkedin: "https://www.linkedin.com/in/thisistinalai",
+		info: "Mac & cheese please!"
 	},
 	{
 		name: "Casandra Silva",
 		photo:"./app/img/csilva.jpg",
 		github: "https://github.com/casandrawith1s",
-		linkedin: "https://www.linkedin.com/in/casandrasilva"
+		linkedin: "https://www.linkedin.com/in/casandrasilva",
+		info: "Yoga master"
 	}],
 	companyData: {
 		email: "picotech@gmail.com",
