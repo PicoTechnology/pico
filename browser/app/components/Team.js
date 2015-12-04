@@ -3,7 +3,7 @@ var React = require('react');
 var Button = React.createClass({
   render: function() {
     return (
-      <button onClick={this.props.whenClicked}><span className={"glyphicon glyphicon-chevron-right"}></span></button>
+      <button onClick={this.props.whenClicked}><span className="glyphicon glyphicon-chevron-right"/></button>
     );
   }
 });
@@ -20,7 +20,9 @@ var Member = React.createClass({
       <div className="col-sm-4 col-md-2" id='team'>
         <div className="thumbnail">
           <div className="caption">
-            <h4>{this.props.name + " "}<Button whenClicked={this.handleClick}/></h4>
+            <h4>{this.props.name + " "}
+            <Button whenClicked={this.handleClick}/>
+            </h4>
               <div className={this.state.flip ? "hidden": "show"}>
                 <img src={this.props.photo} className="img-circle"/>
                   <p>

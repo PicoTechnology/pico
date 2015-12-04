@@ -45,7 +45,7 @@ var data = {
 		email: "picotech@gmail.com",
 		location: "Los Angeles, CA",
 		logo: "./app/img/kolibry.jpg"
-	}
+	},
 };
 
 
