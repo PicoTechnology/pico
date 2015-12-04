@@ -28,7 +28,7 @@ var Team = React.createClass({
     });
     return (
       <div>
-      <h3>Radiar Tech Team Members</h3>
+      <h3>Pico Tech Team Members</h3>
       {list}
       </div>
     );
