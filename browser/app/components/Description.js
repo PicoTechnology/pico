@@ -30,10 +30,6 @@ const styles = {
   }
 };
 
-const buttonStyle = {
-  float: 'right'
-};
-
 var Button = React.createClass({
   handleClick: function() {
     this.props.callback();
