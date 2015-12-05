@@ -8,26 +8,28 @@ var CompanyStyle = {
   MainStyle: {
     backgroundColor: BLACK,
     borderTopWidth: 1,
-    borderTopColor: GRAPHITE_HIGHLIGHT
+    borderTopStyle: "solid",
+    borderTopColor: GRAPHITE_HIGHLIGHT,
+    borderBottomWidth: 1,
+    borderBottomStyle: "groove",
+    borderTopColor: GRAPHITE_LOWLIGHT
   },
   ContactsStyle: {
     marginTop: 30
   },
   TaglineStyle: {
       background: "browser/assets/pico-linebar.png",
-      marginTop: 20,
-      marginBottom: 30
+      marginTop: 3,
+      marginBottom: 10
   },
   CopyrightStyle: {
-    marginBottom: 40,
-    borderBottomWidth: 5,
-    borderBottomColor: GRAPHITE_LOWLIGHT
+    marginBottom: 20,
   }
 };
 module.exports = Company = React.createClass({
   render: function() {
     return (
-      <div style={CompanyStyle.MainStyle} className="col-md-12">
+      <div style={CompanyStyle.MainStyle} className="col-md-12 container-fluid">
         <Contacts {...this.props.companyData}/>
         <Tagline {...this.props.companyData}/>
         <Copyright />
@@ -40,8 +42,8 @@ Contacts = React.createClass({
   render: function() {
     return (
       <div style={CompanyStyle.ContactsStyle}>
-        <span className="col-md-2"><span className="glyphicon glyphicon-envelope"></span>{" " + this.props.email + "  "}</span>
-        <span className="col-md-2 col-md-offset-8"><span className="glyphicon glyphicon-flag"></span> {" "+this.props.location}</span>
+        <span className="col-md-4 col-xs-6"><span className="glyphicon glyphicon-envelope"></span>{" " + this.props.email + "  "}</span>
+        <span className="col-md-2 col-xs-4 col-md-offset-6"><span className="glyphicon glyphicon-flag"></span> {" "+this.props.location}</span>
       </div>
     );
   }
@@ -50,8 +52,8 @@ Contacts = React.createClass({
 Tagline = React.createClass({
   render: function() {
     return (
-      <div style={CompanyStyle.TaglineStyle} className="col-md-12">
-          <span className="col-md-4 col-md-offset-4 text-center"><span>{"TO BE ONE "}<img src={this.props.logo} /> {" WITH THE SOUND"}</span></span>
+      <div style={CompanyStyle.TaglineStyle} className="col-md-12 col-xs-12">
+          <span className="col-md-4 col-md-offset-4 text-center"><span>{"BE ONE WITH "}<img src={this.props.logo} />{" THE SOUND"}</span></span>
         </div>
     );
   }
@@ -60,7 +62,7 @@ Tagline = React.createClass({
 Copyright = React.createClass({
     render: function() {
       return (
-        <h5 style={CompanyStyle.CopyrightStyle} className="col-md-4 col-md-offset-4 text-center">
+        <h5 style={CompanyStyle.CopyrightStyle} className="col xs-6 col-md-4 col-md-offset-4 text-center">
         <span className="glyphicon glyphicon-copyright-mark" aria-hidden="true"></span>
          <span>{" Copyright Pico Technology 2015"}</span>
         </h5>
