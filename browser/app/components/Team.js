@@ -3,19 +3,56 @@ var React = require('react');
 var Button = React.createClass({
   render: function() {
     return (
-      <button onClick={this.props.whenClicked}><span className="glyphicon glyphicon-chevron-right"/></button>
+      <button onClick={this.props.whenClicked}>
+        <span className="glyphicon glyphicon-chevron-right"/>
+      </button>
     );
   }
 });
 
 var Member = React.createClass({
   handleClick: function() {
-    this.setState({flip: !this.state.flip});
+    this.setState({
+      flipped: !this.state.flipped
+    });
   },
   getInitialState: function() {
-    return {flip: false};
+    return {
+      flipped: false
+    };
+  },
+  retrieveFront: function() {
+    return (
+      <div>
+        <Button whenClicked={this.handleClick}/>
+        <img className="img-circle center-block thumbnail" src={this.props.photo} />
+        <p className="text-center">
+          <a href={this.props.github} 
+            style={styles.btnContainer}
+            role="button">
+            <img style={styles.btnMedia} src="./app/img/GitHub-Mark-32px.png"/>
+          </a>
+          <a href={this.props.linkedin} 
+            style={styles.btnContainer}
+            role="button">
+            <img style={styles.btnMedia} src="./app/img/In-Black-34px-R.png" />
+          </a>
+        </p>
+      </div>
+    );
+  },
+  retrieveBack: function() {
+    return (
+      <div>
+        <Button whenClicked={this.handleClick}/>
+        <p className="text-center">
+          {this.props.info}
+        </p>
+      </div>
+    );
   },
   render: function() {
+    var visibleSide = (!this.state.flipped) ? this.retrieveFront() : this.retrieveBack();
     return (
       <div className="col-md-3" id='team'>
         <div 
@@ -26,19 +63,7 @@ var Member = React.createClass({
             className="text-center">
             {this.props.name}
           </h4>
-          <img className="center-block thumbnail" src={this.props.photo} />
-          <p className="text-center">
-            <a href={this.props.github} 
-              style={styles.btnContainer}
-              role="button">
-              <img style={styles.btnMedia} src="./app/img/GitHub-Mark-32px.png"/>
-            </a>
-            <a href={this.props.linkedin} 
-              style={styles.btnContainer}
-              role="button">
-              <img style={styles.btnMedia} src="./app/img/In-Black-34px-R.png" />
-            </a>
-          </p>
+          {visibleSide}
         </div>
       </div>
     );
@@ -46,7 +71,6 @@ var Member = React.createClass({
 });
 
 var Team = React.createClass({
-
   render: function() {
     var list = this.props.membersData.map(function(membersProps, index) {
       return (
