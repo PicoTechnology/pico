@@ -11,8 +11,8 @@ var CompanyStyle = {
     borderTopStyle: "solid",
     borderTopColor: GRAPHITE_HIGHLIGHT,
     borderBottomWidth: 1,
-    borderBottomStyle: "groove",
-    borderTopColor: GRAPHITE_LOWLIGHT
+    borderBottomStyle: "solid",
+    borderBottomColor: GRAPHITE_HIGHLIGHT
   },
   ContactsStyle: {
     marginTop: 30
