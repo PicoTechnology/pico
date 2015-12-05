@@ -1,23 +1,36 @@
 var React = require('react');
 
+var descriptionStyle = {
+  backgroundColor: '#373A40',
+  color: 'white'
+};
+
+var buttonStyle = {
+  position: 'fixed',
+  bottom:
+
+};
+
 var Button = React.createClass({
   handleClick: function() {
     this.props.callback();
   },
   render: function() {
     return (
-      <button onClick={this.handleClick}>
-        {this.props.btnCommand}
-      </button>
+      <div>
+        <button type="button" className = "btn btn-default" onClick={this.handleClick}>
+          {this.props.btnCommand}
+          <span className="glyphicon glyphicon-chevron-right"></span>
+        </button>
+      </div>
     );
   }
 });
 
-
 var Description = React.createClass({
   render: function() {
     return (
-      <div>
+      <div style = {descriptionStyle} >
         <h1>What is Pico?</h1>
         <p>Pico is a smart sound system that allows you
         and your friends to create an immersive music
