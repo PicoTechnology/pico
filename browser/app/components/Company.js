@@ -1,9 +1,33 @@
 var React = require('react');
-
+const BLACK = "#000000";
+const GRAPHITE = "#4D4D4D";
+const GRAPHITE_HIGHLIGHT = "#6F6F6F";
+const GRAPHITE_LOWLIGHT = "#3B3B3B";
+const WHITE = "#FFFFFF";
+var CompanyStyle = {
+  MainStyle: {
+    backgroundColor: BLACK,
+    borderTopWidth: 1,
+    borderTopColor: GRAPHITE_HIGHLIGHT
+  },
+  ContactsStyle: {
+    marginTop: 30
+  },
+  TaglineStyle: {
+      background: "browser/assets/pico-linebar.png",
+      marginTop: 20,
+      marginBottom: 30
+  },
+  CopyrightStyle: {
+    marginBottom: 40,
+    borderBottomWidth: 5,
+    borderBottomColor: GRAPHITE_LOWLIGHT
+  }
+};
 module.exports = Company = React.createClass({
   render: function() {
     return (
-      <div className="container col-sm-6 col-md-4">
+      <div style={CompanyStyle.MainStyle} className="col-md-12">
         <Contacts {...this.props.companyData}/>
         <Tagline {...this.props.companyData}/>
         <Copyright />
@@ -15,8 +39,9 @@ module.exports = Company = React.createClass({
 Contacts = React.createClass({
   render: function() {
     return (
-      <div className="contacts row">
-        {this.props.email + " " + this.props.location}
+      <div style={CompanyStyle.ContactsStyle}>
+        <span className="col-md-2"><span className="glyphicon glyphicon-envelope"></span>{" " + this.props.email + "  "}</span>
+        <span className="col-md-2 col-md-offset-8"><span className="glyphicon glyphicon-flag"></span> {" "+this.props.location}</span>
       </div>
     );
   }
@@ -25,9 +50,9 @@ Contacts = React.createClass({
 Tagline = React.createClass({
   render: function() {
     return (
-      <div className="tagline row">
-        <p>ONE APP</p><img src={this.props.logo} /> <p>All THE SOUND</p>
-      </div>
+      <div style={CompanyStyle.TaglineStyle} className="col-md-12">
+          <span className="col-md-4 col-md-offset-4 text-center"><span>{"TO BE ONE "}<img src={this.props.logo} /> {" WITH THE SOUND"}</span></span>
+        </div>
     );
   }
 });
@@ -35,10 +60,10 @@ Tagline = React.createClass({
 Copyright = React.createClass({
     render: function() {
       return (
-        <div className="copyright row">
+        <h5 style={CompanyStyle.CopyrightStyle} className="col-md-4 col-md-offset-4 text-center">
         <span className="glyphicon glyphicon-copyright-mark" aria-hidden="true"></span>
-         <p>Copyright Pico Technology 2015</p>
-        </div>
+         <span>{" Copyright Pico Technology 2015"}</span>
+        </h5>
       );
     }
 });

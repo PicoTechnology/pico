@@ -1,10 +1,16 @@
 var React = require('react');
+var $ = require('jquery');
 
 var Navbar = React.createClass({
   render: function() {
+    console.log('scrollTop: ' + $(document).scrollTop());
+    var navStyle = styles.mainNav;
+    if ($(document).scrollTop() > 0) {
+      navStyle = Object.assign({}, styles.mainNav, styles.dropShadow);
+    }
     return (
         <div className="container-fluid">
-        <nav className="navbar navbar-inverse navbar-fixed-top" style={styles.mainNav}>
+        <nav className="navbar navbar-inverse navbar-fixed-top" style={navStyle}>
           <div className="container-fluid">
             <div className="navbar-header">
               <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
@@ -39,11 +45,14 @@ const styles = {
   aboutAndteam:{
     fontSize: 'large',
     marginTop: '5px',
-    marginRight: '5px'
+    marginRight: '5px',
+    color: '#FFFFFF'
   },
   mainNav:{
-    boxShadow:'0px 20px 40px 0px rgba(0,0,0,0.75)',
     borderBottom: '1px solid #525252'
+  },
+  dropShadow:{
+    boxShadow:'0px 2px 10px 0px rgba(0,0,0,0.70)',
   }
 };
 

@@ -5,6 +5,7 @@ var Home = require('./Home.js');
 var Description = require('./Description.js');
 var Team = require('./Team.js');
 var Company = require('./Company.js');
+var $ = require('jquery');
 
 
 var data = {
@@ -15,36 +16,36 @@ var data = {
 	},
 	membersData: [{
 		name: "William Carroll",
-		photo: "./app/img/wpcarroll.jpg",
+		photo: "./app/img/william-carroll.jpg",
 		github: "https://github.com/wpcarro",
 		linkedin: "https://www.linkedin.com/in/williampatrickcarroll",
-		info:"I love Rasp Pi."
+		info:"William is a full stack web developer currently residing in Los Angeles. He is open to relocating elsewhere if the opportunity is right. He specializes in JavaScript development."
 	},
 	{
 		name: "Vidiu Chiu",
 		photo:"./app/img/vchiu.jpg",
 		github: "https://github.com/VDUCHEW",
 		linkedin: "https://www.linkedin.com/in/vidiuchiu",
-		info: "Style guru"
+		info: "Vidiu is a full stack web developer currently residing in Los Angeles. He is open to relocating elsewhere if the opportunity is right. He specializes in JavaScript development."
 	},
 	{
 		name: "Tina Lai",
 		photo:"./app/img/tclai.jpg",
 		github: "https://github.com/tinalai",
 		linkedin: "https://www.linkedin.com/in/thisistinalai",
-		info: "Mac & cheese please!"
+		info: "Tina is a full stack web developer currently residing in Los Angeles. She is open to relocating elsewhere if the opportunity is right. She specializes in JavaScript development."
 	},
 	{
 		name: "Casandra Silva",
 		photo:"./app/img/csilva.jpg",
 		github: "https://github.com/casandrawith1s",
 		linkedin: "https://www.linkedin.com/in/casandrasilva",
-		info: "Yoga master"
+		info: "Casandra is a full stack web developer currently residing in Los Angeles. She is open to relocating elsewhere if the opportunity is right. She specializes in JavaScript development."
 	}],
 	companyData: {
 		email: "picotech@gmail.com",
 		location: "Los Angeles, CA",
-		logo: "./app/img/kolibry.jpg"
+		logo: "./assets/pico-logo-sml.png"
 	},
 };
 
@@ -61,8 +62,17 @@ var retrieveDemoHtml = function() {
 var Main = React.createClass({
 	getInitialState: function() {
 		return {
-			viewDemo: false
+			viewDemo: false,
+			isScrolling: false
 		};
+	},
+	componentDidMount: function() {
+		$(document).scroll(() => {
+			console.log('I am scrolling...');
+			this.setState({
+				isScrolling: true
+			});
+		});
 	},
 	toggleState: function() {
 		this.setState({
