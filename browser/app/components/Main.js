@@ -5,6 +5,7 @@ var Home = require('./Home.js');
 var Description = require('./Description.js');
 var Team = require('./Team.js');
 var Company = require('./Company.js');
+var $ = require('jquery');
 
 
 var data = {
@@ -61,8 +62,17 @@ var retrieveDemoHtml = function() {
 var Main = React.createClass({
 	getInitialState: function() {
 		return {
-			viewDemo: false
+			viewDemo: false,
+			isScrolling: false
 		};
+	},
+	componentDidMount: function() {
+		$(document).scroll(() => {
+			console.log('I am scrolling...');
+			this.setState({
+				isScrolling: true
+			});
+		});
 	},
 	toggleState: function() {
 		this.setState({
