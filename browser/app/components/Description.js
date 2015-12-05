@@ -1,14 +1,13 @@
 var React = require('react');
 
 var descriptionStyle = {
+  marginTop: 60,
   backgroundColor: '#373A40',
   color: 'white'
 };
 
 var buttonStyle = {
-  position: 'fixed',
-  bottom:
-
+  float: 'right'
 };
 
 var Button = React.createClass({
@@ -17,7 +16,7 @@ var Button = React.createClass({
   },
   render: function() {
     return (
-      <div>
+      <div style = {buttonStyle} >
         <button type="button" className = "btn btn-default" onClick={this.handleClick}>
           {this.props.btnCommand}
           <span className="glyphicon glyphicon-chevron-right"></span>
