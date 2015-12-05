@@ -17,10 +17,11 @@ const app = require('express')();
 
 const serverHelpers = require('./server-helpers.js');
 
-
 // middleware
 app.use(cookieParser());
 app.use(serverHelpers.printRequestInfo);
+app.use(serverHelpers.printUserIP);
+app.use(serverHelpers.printRequestHeaders);
 
 const generateRandomString = function(length) {
   let text = '';
@@ -115,7 +116,7 @@ app.post('/authenticate/consent', (req, res, next) => {
 app.post('/authenticate/consent/refresh', (req, res, next) => {
 	fetch(`${SPOTIFY_API}`)
 		.then(res => {
-			console.log(JSON.stringify(res, null, 2);
+			console.log(JSON.stringify(res, null, 2));
 			console.log('Time to refresh the access token!');
 			res.send('Refreshing access token...');
 		});
