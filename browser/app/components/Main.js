@@ -44,7 +44,7 @@ var data = {
 	companyData: {
 		email: "picotech@gmail.com",
 		location: "Los Angeles, CA",
-		logo: "./app/img/kolibry.jpg"
+		logo: "./assets/pico-logo-sml.png"
 	},
 };
 
