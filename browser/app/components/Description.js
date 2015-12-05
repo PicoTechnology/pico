@@ -1,12 +1,36 @@
 var React = require('react');
 
-var descriptionStyle = {
-  marginTop: 60,
-  backgroundColor: '#373A40',
-  color: 'white'
+const styles = {
+  container: {
+    backgroundColor: '#373A40',
+    color: 'white',
+    borderBottomStyle: 'solid',
+    borderBottomColor: '#6F6F6F',
+    borderBottomWidth: 1,
+    boxShadow: '0 1 0 red'
+
+  },
+  demoBtn: {
+    position: 'relative'
+  },
+  heading: {
+    position: 'relative',
+    marginLeft: 25
+  },
+  content: {
+
+  },
+  blurb: {
+    position: 'relative',
+    maxWidth: 300,
+    paddingTop: 10,
+    paddingRight: 10,
+    paddingBottom: 10,
+    paddingLeft: 5,
+  }
 };
 
-var buttonStyle = {
+const buttonStyle = {
   float: 'right'
 };
 
@@ -16,7 +40,7 @@ var Button = React.createClass({
   },
   render: function() {
     return (
-      <div style = {buttonStyle} >
+      <div style = {styles.demoBtn} >
         <button type="button" className = "btn btn-default" onClick={this.handleClick}>
           {this.props.btnCommand}
           <span className="glyphicon glyphicon-chevron-right"></span>
@@ -29,9 +53,9 @@ var Button = React.createClass({
 var Description = React.createClass({
   render: function() {
     return (
-      <div style = {descriptionStyle} >
-        <h1>What is Pico?</h1>
-        <p>Pico is a smart sound system that allows you
+      <div style = {styles.container} >
+        <h1 style = {styles.heading} >What is Pico?</h1>
+        <p style = {styles.blurb}>Pico is a smart sound system that allows you
         and your friends to create an immersive music
         experience with one simple app.
         Capable of building personal and group
