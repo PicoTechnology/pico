@@ -160,6 +160,9 @@ const styles = {
     borderBottomColor: BLACK,
     borderLeftColor: GRAPHITE_HIGHLIGHT,
     borderWidth: 1,
+    borderRadius: 5,
+    borderTopWidth: 1,
+    borderBottomWidth: 1,
     paddingTop: 10,
     paddingRight: 5,
     paddingBottom: 10, 
@@ -168,6 +171,11 @@ const styles = {
     boxShadow: GRAPHITE_LOWEST_LIGHT + ' 0px 0px 5px'
   },
   teamMemberName: {
+    maxWidth: 250
+  },
+  teamMemberName: {
+    color: BLACK,
+    textShadow: GRAPHITE_HIGHLIGHT + ' 0px 1px 0px'
   }
 };
 
