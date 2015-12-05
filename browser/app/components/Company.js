@@ -26,7 +26,7 @@ Tagline = React.createClass({
   render: function() {
     return (
       <div className="tagline row">
-        <p>ONE APP</p><img src={this.props.logo} /> <p>All THE SOUND</p>
+        <span>{"BE ONE " + <img src={this.props.logo} /> + " All THE SOUND"}</span>
       </div>
     );
   }
