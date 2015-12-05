@@ -5,7 +5,7 @@ var Home = require('./Home.js');
 var Description = require('./Description.js');
 var Team = require('./Team.js');
 var Company = require('./Company.js');
-
+var HowItWorks = require('./HowItWorks.js');
 
 var data = {
 	productInfo: {
@@ -77,6 +77,7 @@ var Main = React.createClass({
 				<Home />
 				{demo}
 				<Description {...data} callback={this.toggleState} />
+				<HowItWorks />
 				<Team {...data}/>
 				<Company {...data}/>
 			</div>
