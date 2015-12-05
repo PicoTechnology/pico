@@ -1,20 +1,26 @@
 'use strict';
 
 const React = require('react-native');
+
 const {
   AppRegistry,
   View,
-  StyleSheet
+  StyleSheet,
+  NavigatorIOS,
+  Text
 } = React;
 
-const Main = require('./App/Components/Main.js');
+const Test = require('./App/Components/Test.js');
 
 class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Main />
-      </View>
+      <NavigatorIOS
+        style={styles.container}
+        initialRoute={{
+          title: 'Pico Technology',
+          component: Test
+      }} />
     );
   }
 }
