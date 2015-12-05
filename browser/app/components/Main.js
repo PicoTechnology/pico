@@ -42,7 +42,7 @@ var data = {
 var Main = React.createClass({
 	render: function() {
 		return (
-			<div>
+			<div className="container-fluid">
 				<Navbar></Navbar>
 				<Home></Home>
 				<Team {...data}/>
