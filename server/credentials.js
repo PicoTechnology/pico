@@ -1,6 +1,6 @@
-// herein lies information pertaining to the Spotify API
+// herein lies information pertaining to the SoundCloud API
 
-const client_id = '4a9dd390455f4271b2addb5f798bda94';
-const client_secret = '2948fc30f5574060bc13c24b0d052dcd'; // do not publish
+const client_id = 'b9fba3cdaf34c8f5e16d1b12cbb046d6';
+const client_secret = '946eb9837a63a545175026d8195914fa'; // do not publish
 
 module.exports = Object.assign({}, {client_id, client_secret});
