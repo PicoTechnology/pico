@@ -12,7 +12,8 @@ var CompanyStyle = {
     borderTopColor: GRAPHITE_HIGHLIGHT,
     borderBottomWidth: 1,
     borderBottomStyle: "groove",
-    borderTopColor: GRAPHITE_LOWLIGHT
+    borderBottomColor: GRAPHITE_LOWLIGHT,
+    color: GRAPHITE_HIGHLIGHT
   },
   ContactsStyle: {
     marginTop: 30
@@ -24,7 +25,7 @@ var CompanyStyle = {
   },
   CopyrightStyle: {
     marginBottom: 20,
-  }
+  },
 };
 module.exports = Company = React.createClass({
   render: function() {
@@ -62,10 +63,10 @@ Tagline = React.createClass({
 Copyright = React.createClass({
     render: function() {
       return (
-        <h5 style={CompanyStyle.CopyrightStyle} className="col xs-6 col-md-4 col-md-offset-4 text-center">
+        <h6 style={CompanyStyle.CopyrightStyle} className="col xs-6 col-md-4 col-md-offset-4 text-center">
         <span className="glyphicon glyphicon-copyright-mark" aria-hidden="true"></span>
          <span>{" Copyright Pico Technology 2015"}</span>
-        </h5>
+        </h6>
       );
     }
 });
