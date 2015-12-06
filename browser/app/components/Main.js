@@ -6,7 +6,7 @@ var Description = require('./Description.js');
 var Team = require('./Team.js');
 var Company = require('./Company.js');
 var $ = require('jquery');
-
+var Carousel = require('./carousel')
 
 var data = {
 	productInfo: {
@@ -68,7 +68,6 @@ var Main = React.createClass({
 	},
 	componentDidMount: function() {
 		$(document).scroll(() => {
-			console.log('I am scrolling...');
 			this.setState({
 				isScrolling: true
 			});
@@ -82,13 +81,16 @@ var Main = React.createClass({
 	render: function() {
 		var demo = (this.state.viewDemo) ? retrieveDemoHtml() : <div></div>;
 		return (
-			<div className="container-fluid">
+			<div>
 				<Navbar />
-				<Home />
-				{demo}
-				<Description {...data} callback={this.toggleState} />
-				<Team {...data}/>
-				<Company {...data}/>
+				<Carousel/>
+				<div className="container-fluid">
+					<Home />
+					{demo}
+					<Description {...data} callback={this.toggleState} />
+					<Team {...data}/>
+					<Company {...data}/>
+				</div>
 			</div>
 		);
 	}
