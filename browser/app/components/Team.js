@@ -3,10 +3,10 @@ var React = require('react');
 var Button = React.createClass({
   render: function() {
     return (
-      <div 
+      <div
         style={styles.infoBtn}
         onClick={this.props.whenClicked}>
-        <span 
+        <span
           style={styles.glyphicon}
           className={'glyphicon ' + this.props.glyphicon}/>
       </div>
@@ -29,16 +29,16 @@ var Member = React.createClass({
     return (
       <div>
         <Button whenClicked={this.handleClick} glyphicon={'glyphicon-circle-arrow-right'} />
-        <img 
+        <img
           style={styles.headShot}
           className="img-circle center-block thumbnail" src={this.props.photo} />
         <p className="text-center">
-          <a href={this.props.github} 
+          <a href={this.props.github}
             style={styles.btnContainer}
             role="button">
             <img style={styles.btnMedia} src="./app/img/GitHub-Mark-32px.png"/>
           </a>
-          <a href={this.props.linkedin} 
+          <a href={this.props.linkedin}
             style={styles.btnContainer}
             role="button">
             <img style={styles.btnMedia} src="./app/img/In-Black-34px-R.png" />
@@ -61,10 +61,10 @@ var Member = React.createClass({
     var visibleSide = (!this.state.flipped) ? this.retrieveFront() : this.retrieveBack();
     return (
       <div className="col-md-3" id='team'>
-        <div 
+        <div
           style={styles.teamMember}
           className="center-block">
-          <h4 
+          <h4
             style={styles.teamMemberName}
             className="text-center">
             {this.props.name}
@@ -85,12 +85,12 @@ var Team = React.createClass({
     }.bind(this));
     return (
       <div className="col-md-12" style={styles.container}>
-        <h3 
-          styles={styles.sectionHeading} 
+        <h3
+          styles={styles.sectionHeading}
           className="text-center">
           Pico Tech Team Members
         </h3>
-        <div 
+        <div
           style={styles.teamMemberContainer}
           className="row center-block">
           {list}
@@ -165,15 +165,13 @@ const styles = {
     borderBottomWidth: 1,
     paddingTop: 10,
     paddingRight: 5,
-    paddingBottom: 10, 
+    paddingBottom: 10,
     paddingLeft: 5,
     maxWidth: 250,
     boxShadow: GRAPHITE_LOWEST_LIGHT + ' 0px 0px 5px'
   },
   teamMemberName: {
-    maxWidth: 250
-  },
-  teamMemberName: {
+    maxWidth: 250,
     color: BLACK,
     textShadow: GRAPHITE_HIGHLIGHT + ' 0px 1px 0px'
   }
