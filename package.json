@@ -15,9 +15,11 @@
     "fingerprintjs2": "^1.0.0-rc3",
     "jquery": "^2.1.4",
     "node-fetch": "^1.3.3",
+    "node-soundcloud": "0.0.4",
     "querystring": "^0.2.0",
     "react": "^0.14.3",
-    "react-dom": "^0.14.3"
+    "react-dom": "^0.14.3",
+    "soundcloud": "^3.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.2.1",
