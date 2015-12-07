@@ -6,12 +6,12 @@ const querystring = require('querystring');
 
 const credentials = require('./credentials.js');
 
-const PORT = 8888;
+const PORT = 8000;
 
 const SPOTIFY_ACCOUNTS = 'https://accounts.spotify.com';
 const SPOTIFY_API = 'https://api.spotify.com/v1/me';
 const STATE_KEY = 'spotify_auth_state';
-const REDIRECT_URI = 'http://localhost:8888/callback';
+const REDIRECT_URI = 'http://localhost:8000/callback';
 
 const app = require('express')();
 
@@ -40,7 +40,7 @@ app.get('/login', (req, res, next) => {
 
 	// your application requests authorization
 	let scope = 'user-read-private user-read-email';
-	fetch(`${SPOTIFY_ACCOUNTS}/authorize?` + 
+	fetch(`${SPOTIFY_ACCOUNTS}/authorize?` +
 		querystring.stringify({
 			response_type: 'code',
 			client_id: credentials.client_id,
