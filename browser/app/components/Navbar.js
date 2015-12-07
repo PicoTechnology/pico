@@ -3,7 +3,7 @@ var $ = require('jquery');
 
 var Navbar = React.createClass({
   render: function() {
-    console.log('scrollTop: ' + $(document).scrollTop());
+    //console.log('scrollTop: ' + $(document).scrollTop());
     var navStyle = styles.mainNav;
     if ($(document).scrollTop() > 0) {
       navStyle = Object.assign({}, styles.mainNav, styles.dropShadow);
