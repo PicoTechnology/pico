@@ -58,14 +58,6 @@ var styles = StyleSheet.create({
 const {width, height} = Dimensions.get('window');
 
 class Login extends React.Component {
-    // getInitialState() {
-    //     return {
-    //         inputValue: {
-    //             username: 'username',
-    //             password: 'password'
-    //         }
-    //     }
-    // }
     render() {
         return (
             <View style={styles.mainContainer}>

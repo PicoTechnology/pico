@@ -1,13 +1,13 @@
 const React = require('react-native');
 
 const {
-    View,
-    Text,
-    TextInput,
-    TouchableHighlight,
-    NavigatorIOS,
-    Dimensions,
-    StyleSheet
+  View,
+  Text,
+  TextInput,
+  TouchableHighlight,
+  NavigatorIOS,
+  Dimensions,
+  StyleSheet
 } = React;
 
 var styles = StyleSheet.create({
@@ -19,7 +19,7 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'black'
   },
-title: {
+	title: {
     marginBottom: 20,
     fontSize: 25,
     textAlign: 'center',
@@ -45,3 +45,36 @@ title: {
 });
 
 const {width, height} = Dimensions.get('window');
+
+class SearchBar extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			searchquery = ''
+		};
+	}
+	render() {
+		return (
+			<View>
+				<TextInput
+					onChange={this.setState()}
+					placeholder="Search SoundCloud.com" />
+				<TouchableHighlight>
+					<View>
+						<Text>
+							Search
+						</Text>
+					</View>
+				</TouchableHighlight>
+			</View>
+		);
+	}
+}
+
+const styles = StyleSheet.create({
+	container: {
+
+	}
+});
+
+module.exports = SearchBar;
