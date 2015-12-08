@@ -1,4 +1,5 @@
 const React = require('react-native');
+const SearchSoundCloud = require('./SearchSoundCloud.js');
 
 const {
     View,
@@ -58,6 +59,12 @@ var styles = StyleSheet.create({
 const {width, height} = Dimensions.get('window');
 
 class Login extends React.Component {
+    handleSubmit() {
+      this.props.navigator.push({
+        component: SearchSoundCloud,
+        title: 'Search'
+      });
+    }
     render() {
         return (
             <View style={styles.mainContainer}>
@@ -72,7 +79,7 @@ class Login extends React.Component {
                     placeholderTextColor="#FFF"/>
                 <TouchableHighlight
                     style={styles.button}
-                    // onPress={this.handleSubmit.bind(this)}
+                    onPress={this.handleSubmit.bind(this)}
                     underlayColor="white">
                     <Text style={styles.buttonText}> LOGIN </Text>
                 </TouchableHighlight>

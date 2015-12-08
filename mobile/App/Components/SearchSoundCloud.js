@@ -1,6 +1,7 @@
 const React = require('react-native');
 
 const {
+	AlertIOS,
   View,
   Text,
   TextInput,
@@ -10,7 +11,7 @@ const {
   StyleSheet
 } = React;
 
-var styles = StyleSheet.create({
+const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     padding: 30,
@@ -18,6 +19,17 @@ var styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     backgroundColor: 'black'
+  },
+  searchInput: {
+  	height: 50,
+    padding: 4,
+    marginRight: 5,
+    marginBottom: 10,
+    fontSize: 23,
+    borderWidth: 1,
+    borderColor: 'white',
+    borderRadius: 8,
+    color: 'white'
   },
 	title: {
     marginBottom: 20,
@@ -50,31 +62,44 @@ class SearchBar extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			searchquery = ''
+			query: ''
 		};
+	}
+	handleSubmit() {
+		AlertIOS.alert('Alert!', 'Button pressed!');
+		fetch('http://localhost:8000/tracks', {
+			method: 'post',
+			body: JSON.stringify(this.state)
+		})
+			.then(res => res.json())
+			.then(json => AlertIOS.alert('Alert', 'json!'))
+			.catch(err => AlertIOS.alert('Error', 'There has been a fetch error...'));
+
+	}
+	handleChange(event) {
+		this.setState({
+			query: event.nativeEvent.text
+		});
 	}
 	render() {
 		return (
-			<View>
+			<View
+				style={styles.mainContainer}>
 				<TextInput
-					onChange={this.setState()}
-					placeholder="Search SoundCloud.com" />
-				<TouchableHighlight>
-					<View>
-						<Text>
-							Search
-						</Text>
-					</View>
+					style={styles.searchInput}
+					onChange={this.handleChange.bind(this)}
+					placeholder="Search SoundCloud.com..." />
+				<TouchableHighlight
+					style={styles.button}
+					onPress={this.handleSubmit.bind(this)}>
+					<Text
+						style={styles.buttonText}>
+						Search
+					</Text>
 				</TouchableHighlight>
 			</View>
 		);
 	}
 }
-
-const styles = StyleSheet.create({
-	container: {
-
-	}
-});
 
 module.exports = SearchBar;

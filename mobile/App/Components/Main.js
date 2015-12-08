@@ -18,9 +18,9 @@ const {width, height} = Dimensions.get('window');
 class Main extends React.Component {
   entranceButton(){
     this.props.navigator.push({
-    component: Login,
-    title: 'Login'
-});
+      component: Login,
+      title: 'Login'
+  });
     }
     render() {
         return (
