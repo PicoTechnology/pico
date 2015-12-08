@@ -59,26 +59,10 @@ var styles = StyleSheet.create({
 const {width, height} = Dimensions.get('window');
 
 class Login extends React.Component {
-<<<<<<< 686bfc56e801be377564f04daa8a86a921eafb1d
     handleSubmit() {
       this.props.navigator.push({
         component: SearchSoundCloud,
         title: 'Search'
-=======
-    // getInitialState() {
-    //     return {
-    //         inputValue: {
-    //             username: 'username',
-    //             password: 'password'
-    //         }
-    //     }
-    // }
-
-    entranceButton(){
-      this.props.navigator.push({
-        component: SearchBar,
-        title: 'Find your Track'
->>>>>>> [refactor]add route from login to SearchBar
       });
     }
     render() {
@@ -95,11 +79,7 @@ class Login extends React.Component {
                     placeholderTextColor="#FFF"/>
                 <TouchableHighlight
                     style={styles.button}
-<<<<<<< 686bfc56e801be377564f04daa8a86a921eafb1d
                     onPress={this.handleSubmit.bind(this)}
-=======
-                    onPress={this.entranceButton.bind(this)}
->>>>>>> [refactor]add route from login to SearchBar
                     underlayColor="white">
                     <Text style={styles.buttonText}> LOGIN </Text>
                 </TouchableHighlight>
