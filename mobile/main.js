@@ -10,7 +10,7 @@ const {
   Text
 } = React;
 
-const Test = require('./App/Components/Test.js');
+const Main = require('./App/Components/Main.js');
 
 class App extends React.Component {
   render() {
@@ -19,7 +19,7 @@ class App extends React.Component {
         style={styles.container}
         initialRoute={{
           title: 'Pico Technology',
-          component: Test
+          component: Main
       }} />
     );
   }

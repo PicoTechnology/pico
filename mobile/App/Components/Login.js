@@ -72,10 +72,12 @@ class Login extends React.Component {
                 <Text style={styles.title}>Access Your Account</Text>
                 <TextInput
                     style={styles.searchInput}
-                    defaultValue={'username'}/>
+                    placeholder="Username"
+                    placeholderTextColor="#FFF"/>
                 <TextInput
                     style={styles.searchInput}
-                    defaultValue={'password'}/>
+                    placeholder="Password"
+                    placeholderTextColor="#FFF"/>
                 <TouchableHighlight
                     style={styles.button}
                     // onPress={this.handleSubmit.bind(this)}
