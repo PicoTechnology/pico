@@ -29,6 +29,7 @@ var styles = StyleSheet.create({
     height: 50,
     padding: 4,
     marginRight: 5,
+    marginBottom: 10,
     fontSize: 23,
     borderWidth: 1,
     borderColor: 'white',
@@ -57,16 +58,30 @@ var styles = StyleSheet.create({
 const {width, height} = Dimensions.get('window');
 
 class Login extends React.Component {
+    // getInitialState() {
+    //     return {
+    //         inputValue: {
+    //             username: 'username',
+    //             password: 'password'
+    //         }
+    //     }
+    // }
     render() {
         return (
             <View style={styles.mainContainer}>
-                <Text style={styles.title}>Login to Your Account</Text>
+                <Text style={styles.title}>Access Your Account</Text>
                 <TextInput
                     style={styles.searchInput}
                     defaultValue={'username'}/>
                 <TextInput
                     style={styles.searchInput}
                     defaultValue={'password'}/>
+                <TouchableHighlight
+                    style={styles.button}
+                    // onPress={this.handleSubmit.bind(this)}
+                    underlayColor="white">
+                    <Text style={styles.buttonText}> SUBMIT </Text>
+                </TouchableHighlight>
             </View>
         );
     }
