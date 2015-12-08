@@ -1,30 +1,64 @@
 'use strict';
 const SC = require('node-soundcloud');
 const SoundCloudCred = require('./credentials.js');
-const SOUNDCLOUD_API = 'https://soundcloud.com';
 const serverHelpers = require('./server-helpers.js');
 const qs = require('querystring');
 const app = require('express')();
 const fetch = require('node-fetch');
+const bodyparser = require('body-parser');
+const x = require('x-ray')();
 
+const SOUNDCLOUD = 'https://soundcloud.com';
+const SOUNDCLOUD_API = 'https://api.soundcloud.com';
 const PORT = 8000;
+
+app.use(bodyparser());
 app.use(serverHelpers.printRequestInfo);
 
-SC.init({
-  id: SoundCloudCred.client_id,
-  secret: SoundCloudCred.client_secret,
-  uri: `http://localhost:${PORT}/callback`
-});
+const client_id = SoundCloudCred.client_id;
 
-app.get('/connex', (req, res, next) => {
+const credentials = {
+  client_id,
+  redirect_uri: `localhost:${PORT}/callback`,
+  scope: '*',
+  response_type: 'code'
+};
+
+app.get('/connect', (req, res, next) => {
+  SC.init({
+    id: client_id,
+    secret: SoundCloudCred.client_secret,
+    uri: `http://localhost:${PORT}/callback`
+  });
   const url = SC.getConnectUrl();
   console.log(url);
   fetch(url)
     .then(response => response.text())
-    .then(body => console.log(body)
-  );
-  // res.writeHead(301, {Location: "http://google.com"});
-  // res.end();
+    .then(body => res.send(body))
+    .catch(err => res.send('error connecting to SoundCloud API.'))
+});
+
+app.post('/tracks', (req, res, next) => {
+  // req.body = {
+  //   query: 'string value here'
+  // };
+  let data = {};
+  data.q = req.body.query;
+  
+  fetch(`${SOUNDCLOUD_API}/tracks?${qs.stringify(Object.assign({}, data, {client_id}))}`)
+    .then(res => res.json())
+    .then(json => res.send(json))
+    .catch(err => res.send('Error, please enter a valid search query...'));
+});
+
+app.get('/authorize', (req, res, next) => {
+  console.log(`user: ${JSON.stringify(user, null, 2)}`);
+  let data = Object.assign({}, user);
+  fetch(`${SOUNDCLOUD}/connect/login`, data)
+    .then(res => res.json())
+    .then(json => {
+      console.log(json);
+    });
 });
 
 app.listen(PORT);
