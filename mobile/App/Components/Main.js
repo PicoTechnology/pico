@@ -24,19 +24,17 @@ class Main extends React.Component {
     }
     render() {
         return (
-            <View style={styles.container}>
-                <View style={styles.bgImageWrapper}>
-                    <Image
-                        style={styles.bgImage}
-                        source={require('../Assets/splash-screen.jpg')}/>
-                </View>
-                <TouchableHighlight
-                  style={styles.button}
-                  onPress={this.entranceButton.bind(this)}
-                  underlayColor="white">
-                  <Text style={styles.buttonText}> Entrance Button </Text>
-                </TouchableHighlight>
-          </View>
+          <View style={styles.container}>
+            <View style={styles.bgImageWrapper}>
+                <Image style={styles.bgImage} source={require('../Assets/splash-screen.jpg')}/>
+            </View>
+            <TouchableHighlight
+              style={styles.button}
+              onPress={this.entranceButton.bind(this)}
+              underlayColor="white">
+              <Text style={styles.buttonText}> Entrance Button </Text>
+            </TouchableHighlight>
+        </View>
         );
     }
 }
