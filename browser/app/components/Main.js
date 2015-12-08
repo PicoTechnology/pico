@@ -83,7 +83,7 @@ var Main = React.createClass({
 		var demo = (this.state.viewDemo) ? retrieveDemoHtml() : <div></div>;
 		return (
 			<div>
-				<Navbar />
+				<Navbar/>
 				<Carousel/>
 				<div className="container-fluid">
 					<Home />
