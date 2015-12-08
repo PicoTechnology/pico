@@ -70,5 +70,4 @@ const styles = StyleSheet.create({
   }
 });
 
-
 module.exports = Test;
