@@ -2,17 +2,18 @@
 const SC = require('node-soundcloud');
 const SoundCloudCred = require('./credentials.js');
 const serverHelpers = require('./server-helpers.js');
+const dbHelpers = require('./database-helpers.js');
 const qs = require('querystring');
 const app = require('express')();
 const fetch = require('node-fetch');
 const bodyparser = require('body-parser');
-const x = require('x-ray')();
 
 const SOUNDCLOUD = 'https://soundcloud.com';
 const SOUNDCLOUD_API = 'https://api.soundcloud.com';
-const PORT = 8000;
+const PORT = process.env.PORT || 8000;
 
-app.use(bodyparser());
+
+app.use(bodyparser.json());
 app.use(serverHelpers.printRequestInfo);
 
 const client_id = SoundCloudCred.client_id;
@@ -23,6 +24,14 @@ const credentials = {
   scope: '*',
   response_type: 'code'
 };
+
+app.post('/users', dbHelpers.addUser, (req, res, next) => {
+  console.log(`req.body: ${JSON.stringify(req.body, null, 2)}`);
+  if (res.result === -1) {
+    return res.send(`Error adding user to database...`);
+  }
+  return res.send(`Successfully added: ${res.result}`);
+});
 
 app.get('/connect', (req, res, next) => {
   SC.init({
@@ -63,3 +72,4 @@ app.get('/authorize', (req, res, next) => {
 
 app.listen(PORT);
 console.log(`Now listening on localhost:${PORT}...`);
+dbHelpers.connectToDB();
