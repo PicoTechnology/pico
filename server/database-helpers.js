@@ -28,7 +28,7 @@ const checkExistingUser = (userObj, userExistsCb) => {
 	var username = userObj.username;
 	UsersRef
 		.child(username)
-		.once('value' snapshot => {
+		.once('value', snapshot => {
 			var exists = (snapshot.val() !== null);
 			userExistsCb(username);
 		});
