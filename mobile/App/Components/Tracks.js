@@ -42,12 +42,11 @@ class Single extends React.Component {
 
 class Tracks extends React.Component{
   render() {
-    /* grab the data and set it to a variable so we can spread it*/
-    /* use let or const ?? and is the global data results name correct? */
     let list = this.props.results.map((tracksProps, index) =>
       <Single key={index} {...tracksProps} />
     );
     return (
+
       <ScrollView
         onScroll={() => console.log('OnScroll activated!')}
         showVerticalScrollIndicator={true}>
@@ -56,5 +55,19 @@ class Tracks extends React.Component{
     );
   }
 }
+
+const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    padding: 5,
+    marginTop: 5,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    backgroundColor: 'orange'
+  },
+  single: {
+    color: 'white'
+  }
+});
 
 module.exports = Tracks;
