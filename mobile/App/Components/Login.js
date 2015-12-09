@@ -29,11 +29,12 @@ class Login extends React.Component {
 			body: JSON.stringify(this.state)}
 		)
 			.then(res => {
-				this.props.navigator({
+				this.props.navigator.push({
 					title: 'Search SC',
 					component: SearchSoundCloud
 				});
-			});
+			})
+			.catch(err => AlertIOS.alert('Error', err));
 		}
 		handleUsername(event) {
 			this.setState({
