@@ -11,64 +11,34 @@ const {
   StyleSheet
 } = React;
 
+const SearchBar = require('./SearchBar.js');
+const Tracks = require('./Tracks.js');
+
 const {width, height} = Dimensions.get('window');
 
 class SearchSoundCloud extends React.Component {
-	render() {
-		return (
-			<View>
-				<SearchBar />
-				<Results />
-			</View>
-		);
-	}
-}
-
-class SearchBar extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			query: ''
+			results: []
 		};
 	}
-	handleSubmit() {
-		AlertIOS.alert('Alert!', 'Button pressed!');
-		fetch('http://localhost:8000/tracks', {
-			method: 'post',
-			body: JSON.stringify(this.state)
-		})
-			.then(res => res.json())
-			.then(json => {
-				this.props.updateParentState(json);
-			})
-			.catch(err => AlertIOS.alert('Error', 'There has been a fetch error...'));
-
-	}
-	handleChange(event) {
+	updateState(scResults) {
 		this.setState({
-			query: event.nativeEvent.text
+			results: this.state.results.concat(scResults)
 		});
 	}
 	render() {
 		return (
-			<View
-				style={styles.mainContainer}>
-				<TextInput
-					style={styles.searchInput}
-					onChange={this.handleChange.bind(this)}
-					placeholder="Search SoundCloud.com..." />
-				<TouchableHighlight
-					style={styles.button}
-					onPress={this.handleSubmit.bind(this)}>
-					<Text
-						style={styles.buttonText}>
-						Search
-					</Text>
-				</TouchableHighlight>
+			<View>
+				<SearchBar updateParentState={this.updateState.bind(this)} />
+				<Tracks results={this.state.results} />
 			</View>
 		);
 	}
 }
+
+module.exports = SearchSoundCloud;
 
 const styles = StyleSheet.create({
   mainContainer: {

@@ -21,7 +21,7 @@ class Button extends React.Component {
   }
 }
 
-/* set up single track component*/
+/* set up single tracks component*/
 class Single extends React.Component {
   /*handleClick() {
     this.setState({
@@ -39,15 +39,15 @@ class Single extends React.Component {
   }
 }
 
-class Track extends React.Component{
+class Tracks extends React.Component{
   render() {
     /* grab the data and set it to a variable so we can spread it*/
-    /* use let or const ?? and is the global data storage name correct? */
-    let list = this.props.storage.map((trackProps, index) =>
-      <Track key={index} {...trackProps} />
+    /* use let or const ?? and is the global data results name correct? */
+    let list = this.props.results.map((tracksProps, index) =>
+      <Tracks key={index} {...tracksProps} />
   );
     return (
-      /* create Scrollview, make sure to set page size, map over data and put it in track component*/
+      /* create Scrollview, make sure to set page size, map over data and put it in tracks component*/
       <Scrollview
         onScroll={() => { console.log('OnScroll activated!')
         showVerticalScrollIndicator={true}
@@ -58,4 +58,4 @@ class Track extends React.Component{
   }
 }
 
-module.exports = Track;
+module.exports = Tracks;
