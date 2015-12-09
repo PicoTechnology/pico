@@ -1,7 +1,7 @@
 const React = require('react-native');
 const Login = require('./Login.js');
-const Search = require('./SearchSoundCloud.js');
 const Track = require('./Track.js');
+
 
 const {
   Text,

@@ -53,7 +53,7 @@ app.post('/tracks', (req, res, next) => {
   // };
   let data = {};
   data.q = req.body.query;
-  
+
   fetch(`${SOUNDCLOUD_API}/tracks?${qs.stringify(Object.assign({}, data, {client_id}))}`)
     .then(res => res.json())
     .then(json => res.send(json))

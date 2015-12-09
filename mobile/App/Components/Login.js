@@ -1,4 +1,5 @@
 const React = require('react-native');
+const SearchSoundCloud = require('./SearchSoundCloud.js');
 
 const {
 	View,
@@ -10,6 +11,66 @@ const {
 	StyleSheet,
 	AlertIOS
 } = React;
+
+const {width, height} = Dimensions.get('window');
+
+class Login extends React.Component {
+	constructor(props) {
+	super(props);
+		this.state = {
+			username: '',
+			password: ''
+		};
+	}
+	handlePress() {
+		AlertIOS.alert('Alert!', JSON.stringify(this.state, null, 2));
+		fetch('http://localhost:8000/users', {
+			method: "POST",
+			body: JSON.stringify(this.state)}
+		)
+			.then(res => {
+				this.props.navigator({
+					title: 'Search SC',
+					component: SearchSoundCloud
+				});
+			})
+			.catch(err => AlertIOS.alert('Error', ${err}));
+		}
+		handleUsername(event) {
+			this.setState({
+				username: event.nativeEvent.text
+			});
+		}
+		handlePw(event) {
+			this.setState({
+				password: event.nativeEvent.text
+			});
+		}
+	render() {
+		return (
+			<View style={styles.mainContainer}>
+				<Text style={styles.title}>Access Your Account</Text>
+				<TextInput
+					style={styles.loginInput}
+					placeholder="Username"
+					placeholderTextColor="#FFF"
+					onChange={this.handleUsername.bind(this)}/>
+	 			<TextInput
+					password={true}
+					style={styles.loginInput}
+					placeholder="Password"
+					placeholderTextColor="#FFF"
+					onChange={this.handlePw.bind(this)}/>
+				<TouchableHighlight
+					onPress={this.handlePress.bind(this)}
+					style={styles.button}
+					underlayColor="white">
+					<Text style={styles.buttonText}> LOGIN </Text>
+				</TouchableHighlight>
+			</View>
+		);
+	}
+};
 
 var styles = StyleSheet.create({
 	mainContainer: {
@@ -55,58 +116,5 @@ var styles = StyleSheet.create({
 		justifyContent: 'center'
 	},
 });
-
-const {width, height} = Dimensions.get('window');
-
-class Login extends React.Component {
-	constructor(props) {
-	super(props);
-		this.state = {
-			username: '',
-			password: ''
-		};
-	}
-	handlePress() {
-		AlertIOS.alert('Alert!', JSON.stringify(this.state, null, 2));
-		fetch('http://localhost:8000/users', {
-			method: "POST",
-			body: JSON.stringify(this.state)}
-		)
-	}
-	handleUsername(event) {
-		this.setState({
-			username: event.nativeEvent.text
-		});
-	}
-	handlePw(event) {
-		this.setState({
-			password: event.nativeEvent.text
-		});
-	}
-	render() {
-		return (
-			<View style={styles.mainContainer}>
-				<Text style={styles.title}>Access Your Account</Text>
-				<TextInput
-					style={styles.loginInput}
-					placeholder="Username"
-					placeholderTextColor="#FFF"
-					onChange={this.handleUsername.bind(this)}/>
-	 			<TextInput
-					password={true}
-					style={styles.loginInput}
-					placeholder="Password"
-					placeholderTextColor="#FFF"
-					onChange={this.handlePw.bind(this)}/>
-				<TouchableHighlight
-					onPress={this.handlePress.bind(this)}
-					style={styles.button}
-					underlayColor="white">
-					<Text style={styles.buttonText}> LOGIN </Text>
-				</TouchableHighlight>
-			</View>
-		);
-	}
-};
 
 module.exports = Login;
