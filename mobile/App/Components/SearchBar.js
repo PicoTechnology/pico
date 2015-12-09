@@ -32,17 +32,17 @@ class SearchBar extends React.Component {
 		};
 	}
 	handleSubmit() {
-		AlertIOS.alert('Alert!', 'Button pressed!');
 		fetch('http://localhost:8000/tracks', {
-			method: 'post',
+			headers: {
+				'Accept': 'application/json',
+      	'Content-Type': 'application/json'
+			},
+			method: 'POST',
 			body: JSON.stringify(this.state)
 		})
-			.then(res => res.json())
-			.then(json => {
-				this.props.updateParentState(json);
-			})
-			.catch(err => AlertIOS.alert('Error', 'There has been a fetch error...'));
-
+			.then(res => {
+				this.props.updateParentState(res);
+			});
 	}
 	handleChange(event) {
 		this.setState({

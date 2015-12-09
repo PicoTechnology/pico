@@ -25,6 +25,10 @@ class Login extends React.Component {
 	handlePress() {
 		AlertIOS.alert('Alert!', JSON.stringify(this.state, null, 2));
 		fetch('http://localhost:8000/users', {
+			headers: {
+				'Accept': 'application/json',
+      	'Content-Type': 'application/json'
+			},
 			method: "POST",
 			body: JSON.stringify(this.state)}
 		)

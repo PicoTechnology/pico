@@ -29,7 +29,8 @@ class SearchSoundCloud extends React.Component {
 		});
 	}
 	render() {
-		return (
+    AlertIOS.alert('Rendering...', 'now');
+    return (
 			<View>
 				<SearchBar updateParentState={this.updateState.bind(this)} />
 				<Tracks results={this.state.results} />
@@ -37,8 +38,6 @@ class SearchSoundCloud extends React.Component {
 		);
 	}
 }
-
-module.exports = SearchSoundCloud;
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -50,7 +49,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'black'
   },
   searchInput: {
-  	height: 50,
+    height: 50,
     padding: 4,
     marginRight: 5,
     marginBottom: 10,
@@ -60,7 +59,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     color: 'white'
   },
-	title: {
+  title: {
     marginBottom: 20,
     fontSize: 25,
     textAlign: 'center',
@@ -85,4 +84,4 @@ const styles = StyleSheet.create({
   },
 });
 
-module.exports = SearchBar;
+module.exports = SearchSoundCloud;

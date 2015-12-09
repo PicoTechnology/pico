@@ -4,7 +4,7 @@ const {
   Image,
   Text,
   View,
-  Scrollview,
+  ScrollView,
   StyleSheet,
   TouchableHighlight
 } = React;
@@ -17,7 +17,7 @@ class Button extends React.Component {
       <TouchableHighlight>
         <Image source={{uri: artwork}} style={{width: 50, height: 50}} onClick={this.props.whenClicked}/>
       </TouchableHighlight>
-    )
+    );
   }
 }
 
@@ -32,6 +32,7 @@ class Single extends React.Component {
     return (
       <View>/* add flexbox styling later*/
         <Button whenClicked={this.handleClick} />
+        <Text>id: {this.props.id}</Text>
         <Text>{this.props.title}</Text>
         <Text>{this.props.user.username}</Text>
       </View>
@@ -44,16 +45,14 @@ class Tracks extends React.Component{
     /* grab the data and set it to a variable so we can spread it*/
     /* use let or const ?? and is the global data results name correct? */
     let list = this.props.results.map((tracksProps, index) =>
-      <Tracks key={index} {...tracksProps} />
-  );
+      <Single key={index} {...tracksProps} />
+    );
     return (
-      /* create Scrollview, make sure to set page size, map over data and put it in tracks component*/
-      <Scrollview
-        onScroll={() => { console.log('OnScroll activated!')
-        showVerticalScrollIndicator={true}
-        }}>
+      <ScrollView
+        onScroll={() => console.log('OnScroll activated!')}
+        showVerticalScrollIndicator={true}>
         {list}
-      </Scrollview>
+      </ScrollView>
     );
   }
 }

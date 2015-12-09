@@ -12,15 +12,16 @@ const connectToDB = () => {
 
 const addUser = (req, res, next) => {
 	var userObj = req.body;
-	var result = checkExistingUser(userObj);
-	console.log(`result: ${result}`);
-	if (!result) {
-		UsersRef.set({ [userObj.username]: userObj});
-		res.result = 'Added new user.';
+	var result = checkExistingUser(userObj, username => {
+		console.log(`result: ${result}`);
+		if (!result) {
+			UsersRef.set({ [username]: userObj});
+			res.result = 'Added new user.';
+			return next();
+		}
+		res.result = result;
 		return next();
-	}
-	res.result = result;
-	return next();
+	});
 };
 
 const checkExistingUser = (userObj, userExistsCb) => {

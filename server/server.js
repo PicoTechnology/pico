@@ -50,12 +50,15 @@ app.post('/tracks', (req, res, next) => {
   // req.body = {
   //   query: 'string value here'
   // };
-  let data = {};
-  data.q = req.body.query;
-
-  fetch(`${SOUNDCLOUD_API}/tracks?${qs.stringify(Object.assign({}, data, {client_id}))}`)
-    .then(res => res.json())
-    .then(json => res.send(json))
+  req.body.query;
+  console.log(`req.body: ${JSON.stringify(req.body, null, 2)}`)
+  console.log(`${SOUNDCLOUD_API}/tracks?${qs.stringify(Object.assign({}, req.body, {client_id}))}`);
+  fetch(`${SOUNDCLOUD_API}/tracks?${qs.stringify(Object.assign({}, req.body, {client_id}))}`)
+    .then(response => response.json())
+    .then(json => {
+      console.log(json);
+      res.send(json);
+    })
     .catch(err => res.send('Error, please enter a valid search query...'));
 });
 
