@@ -33,7 +33,8 @@ class Login extends React.Component {
 					title: 'Search SC',
 					component: SearchSoundCloud
 				});
-			});
+			})
+			.catch(err => AlertIOS.alert('Error', err));
 		}
 		handleUsername(event) {
 			this.setState({
