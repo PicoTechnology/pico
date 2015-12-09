@@ -22,7 +22,7 @@ class Button extends React.Component {
 }
 
 /* set up single track component*/
-class Track extends React.Component {
+class Single extends React.Component {
   /*handleClick() {
     this.setState({
       played: !this.state.played
@@ -39,7 +39,7 @@ class Track extends React.Component {
   }
 }
 
-class Page extends React.Component{
+class Track extends React.Component{
   render() {
     /* grab the data and set it to a variable so we can spread it*/
     /* use let or const ?? and is the global data storage name correct? */
@@ -57,3 +57,5 @@ class Page extends React.Component{
     );
   }
 }
+
+module.exports = Track;
