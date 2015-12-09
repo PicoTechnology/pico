@@ -1,19 +1,21 @@
 const Firebase = require('firebase');
+const FIREBASE_LOCATION = 'https://picotechnology.firebaseio.com/';
+const USERS_LOCATION = 'https://picotechnology.firebaseio.com/users';
 var FirebaseRef;
 var UsersRef;
 
 
 const connectToDB = () => {
-	FirebaseRef = new Firebase('https://picotechnology.firebaseio.com/');
+	FirebaseRef = new Firebase(FIREBASE_LOCATION);
 	UsersRef = FirebaseRef.child('users');
 };
 
 const addUser = (req, res, next) => {
 	var userObj = req.body;
 	var result = checkExistingUser(userObj);
+	console.log(`result: ${result}`);
 	if (!result) {
-		var newUserRef = UsersRef.push(userObj);
-		newUserRef.setPriority(1000);
+		UsersRef.set({ [userObj.username]: userObj});
 		res.result = 'Added new user.';
 		return next();
 	}
@@ -21,16 +23,14 @@ const addUser = (req, res, next) => {
 	return next();
 };
 
-const checkExistingUser = (userObj) => {
-	// might need to call setPriority(..) when adding user
+const checkExistingUser = (userObj, userExistsCb) => {
+	var UsersRef = new Firebase(USERS_LOCATION);
+	var username = userObj.username;
 	UsersRef
-		.startAt(userObj.username)
-		.endAt(userObj.username)
-		.once('value', snapshot => {
-			if (snapshot) {
-				return snapshot.val();
-			}
-			return null;
+		.child(username)
+		.once('value' snapshot => {
+			var exists = (snapshot.val() !== null);
+			userExistsCb(username);
 		});
 };
 

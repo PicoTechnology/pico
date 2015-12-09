@@ -26,7 +26,6 @@ const credentials = {
 };
 
 app.post('/users', dbHelpers.addUser, (req, res, next) => {
-  console.log(`req.body: ${JSON.stringify(req.body, null, 2)}`);
   if (res.result === -1) {
     return res.send(`Error adding user to database...`);
   }
