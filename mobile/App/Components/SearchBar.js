@@ -32,150 +32,132 @@ class SearchBar extends React.Component {
 		};
 	}
 	handleSubmit() {
-<<<<<<< 2cb7a29b203c1adc8223e7fadd9538b512a73f46
+		AlertIOS.alert('Alert!', 'Button pressed!');
+		var testData = [{
+				"kind": "track",
+				"id": 236575699,
+				"created_at": "2015/12/08 03:33:19 +0000",
+				"user_id": 123476564,
+				"duration": 485791,
+				"commentable": true,
+				"state": "finished",
+				"original_content_size": 171344172,
+				"last_modified": "2015/12/08 03:33:19 +0000",
+				"sharing": "public",
+				"tag_list": "techno \"deep house\" atman",
+				"permalink": "aragon",
+				"streamable": true,
+				"embeddable_by": "all",
+				"downloadable": false,
+				"purchase_url": null,
+				"label_id": null,
+				"purchase_title": null,
+				"genre": "house",
+				"title": "Aragon",
+				"description": "Atman's 2nd EP, Aragon, features 2 new lush deep house cuts from the Miami based producer. The EP's first track, Patagonia is a hypnotic, 4 on the floor groove maker while Aragon is your classic four-four floor stomper that will be sure to get the dance floor pumping.\n\nPremiered exclusively by Over Easy Creative.",
+				"label_name": null,
+				"release": null,
+				"track_type": null,
+				"key_signature": null,
+				"isrc": null,
+				"video_url": null,
+				"bpm": null,
+				"release_year": null,
+				"release_month": null,
+				"release_day": null,
+				"original_format": "wav",
+				"license": "all-rights-reserved",
+				"uri": "https://api.soundcloud.com/tracks/236575699",
+				"user": {
+						"id": 123476564,
+						"kind": "user",
+						"permalink": "overeasycreative",
+						"username": "Over Easy Creative",
+						"last_modified": "2015/12/06 22:59:55 +0000",
+						"uri": "https://api.soundcloud.com/users/123476564",
+						"permalink_url": "http://soundcloud.com/overeasycreative",
+						"avatar_url": "https://i1.sndcdn.com/avatars-000126207841-6jez1s-large.jpg"
+				},
+				"permalink_url": "http://soundcloud.com/overeasycreative/aragon",
+				"artwork_url": null,
+				"waveform_url": "https://w1.sndcdn.com/SlFKl0g9UELs_m.png",
+				"stream_url": "https://api.soundcloud.com/tracks/236575699/stream",
+				"playback_count": 0,
+				"download_count": 0,
+				"favoritings_count": 0,
+				"comment_count": 0,
+				"attachments_uri": "https://api.soundcloud.com/tracks/236575699/attachments"
+		},
+		{
+				"kind": "track",
+				"id": 236575698,
+				"created_at": "2015/12/08 03:33:17 +0000",
+				"user_id": 112347983,
+				"duration": 185356,
+				"commentable": true,
+				"state": "finished",
+				"original_content_size": 2975266,
+				"last_modified": "2015/12/08 03:33:17 +0000",
+				"sharing": "public",
+				"tag_list": "comeup",
+				"permalink": "for-anne-swank",
+				"streamable": true,
+				"embeddable_by": "all",
+				"downloadable": false,
+				"purchase_url": null,
+				"label_id": null,
+				"purchase_title": null,
+				"genre": "Work",
+				"title": "For Anne Swank",
+				"description": "",
+				"label_name": null,
+				"release": null,
+				"track_type": null,
+				"key_signature": null,
+				"isrc": null,
+				"video_url": null,
+				"bpm": null,
+				"release_year": null,
+				"release_month": null,
+				"release_day": null,
+				"original_format": "mp3",
+				"license": "all-rights-reserved",
+				"uri": "https://api.soundcloud.com/tracks/236575698",
+				"user": {
+						"id": 112347983,
+						"kind": "user",
+						"permalink": "af1017",
+						"username": "Af1017",
+						"last_modified": "2015/12/04 23:56:58 +0000",
+						"uri": "https://api.soundcloud.com/users/112347983",
+						"permalink_url": "http://soundcloud.com/af1017",
+						"avatar_url": "https://a1.sndcdn.com/images/default_avatar_large.png"
+				},
+				"permalink_url": "http://soundcloud.com/af1017/for-anne-swank",
+				"artwork_url": null,
+				"waveform_url": "https://w1.sndcdn.com/OavvuqOIVYZE_m.png",
+				"stream_url": "https://api.soundcloud.com/tracks/236575698/stream",
+				"playback_count": 0,
+				"download_count": 0,
+				"favoritings_count": 0,
+				"comment_count": 0,
+				"attachments_uri": "https://api.soundcloud.com/tracks/236575698/attachments"
+		}];
+
 		fetch('http://localhost:8000/tracks', {
 			headers: {
 				'Accept': 'application/json',
       	'Content-Type': 'application/json'
 			},
-			method: 'POST',
-			body: JSON.stringify(this.state)
-		})
-			.then(res => {
-				this.props.updateParentState(res);
-			});
-=======
-		AlertIOS.alert('Alert!', 'Button pressed!');
-		/*fetch('http://localhost:8000/tracks', {
 			method: 'post',
 			body: JSON.stringify(this.state)
-		})*/
-
-				this.props.navigator.push({
-					title: 'Tracks SC',
-					component: Tracks,
-					passProps: {
-						results: [
-						    {
-						        "kind": "track",
-						        "id": 236575699,
-						        "created_at": "2015/12/08 03:33:19 +0000",
-						        "user_id": 123476564,
-						        "duration": 485791,
-						        "commentable": true,
-						        "state": "finished",
-						        "original_content_size": 171344172,
-						        "last_modified": "2015/12/08 03:33:19 +0000",
-						        "sharing": "public",
-						        "tag_list": "techno \"deep house\" atman",
-						        "permalink": "aragon",
-						        "streamable": true,
-						        "embeddable_by": "all",
-						        "downloadable": false,
-						        "purchase_url": null,
-						        "label_id": null,
-						        "purchase_title": null,
-						        "genre": "house",
-						        "title": "Aragon",
-						        "description": "Atman's 2nd EP, Aragon, features 2 new lush deep house cuts from the Miami based producer. The EP's first track, Patagonia is a hypnotic, 4 on the floor groove maker while Aragon is your classic four-four floor stomper that will be sure to get the dance floor pumping.\n\nPremiered exclusively by Over Easy Creative.",
-						        "label_name": null,
-						        "release": null,
-						        "track_type": null,
-						        "key_signature": null,
-						        "isrc": null,
-						        "video_url": null,
-						        "bpm": null,
-						        "release_year": null,
-						        "release_month": null,
-						        "release_day": null,
-						        "original_format": "wav",
-						        "license": "all-rights-reserved",
-						        "uri": "https://api.soundcloud.com/tracks/236575699",
-						        "user": {
-						            "id": 123476564,
-						            "kind": "user",
-						            "permalink": "overeasycreative",
-						            "username": "Over Easy Creative",
-						            "last_modified": "2015/12/06 22:59:55 +0000",
-						            "uri": "https://api.soundcloud.com/users/123476564",
-						            "permalink_url": "http://soundcloud.com/overeasycreative",
-						            "avatar_url": "https://i1.sndcdn.com/avatars-000126207841-6jez1s-large.jpg"
-						        },
-						        "permalink_url": "http://soundcloud.com/overeasycreative/aragon",
-						        "artwork_url": null,
-						        "waveform_url": "https://w1.sndcdn.com/SlFKl0g9UELs_m.png",
-						        "stream_url": "https://api.soundcloud.com/tracks/236575699/stream",
-						        "playback_count": 0,
-						        "download_count": 0,
-						        "favoritings_count": 0,
-						        "comment_count": 0,
-						        "attachments_uri": "https://api.soundcloud.com/tracks/236575699/attachments"
-						    },
-						    {
-						        "kind": "track",
-						        "id": 236575698,
-						        "created_at": "2015/12/08 03:33:17 +0000",
-						        "user_id": 112347983,
-						        "duration": 185356,
-						        "commentable": true,
-						        "state": "finished",
-						        "original_content_size": 2975266,
-						        "last_modified": "2015/12/08 03:33:17 +0000",
-						        "sharing": "public",
-						        "tag_list": "comeup",
-						        "permalink": "for-anne-swank",
-						        "streamable": true,
-						        "embeddable_by": "all",
-						        "downloadable": false,
-						        "purchase_url": null,
-						        "label_id": null,
-						        "purchase_title": null,
-						        "genre": "Work",
-						        "title": "For Anne Swank",
-						        "description": "",
-						        "label_name": null,
-						        "release": null,
-						        "track_type": null,
-						        "key_signature": null,
-						        "isrc": null,
-						        "video_url": null,
-						        "bpm": null,
-						        "release_year": null,
-						        "release_month": null,
-						        "release_day": null,
-						        "original_format": "mp3",
-						        "license": "all-rights-reserved",
-						        "uri": "https://api.soundcloud.com/tracks/236575698",
-						        "user": {
-						            "id": 112347983,
-						            "kind": "user",
-						            "permalink": "af1017",
-						            "username": "Af1017",
-						            "last_modified": "2015/12/04 23:56:58 +0000",
-						            "uri": "https://api.soundcloud.com/users/112347983",
-						            "permalink_url": "http://soundcloud.com/af1017",
-						            "avatar_url": "https://a1.sndcdn.com/images/default_avatar_large.png"
-						        },
-						        "permalink_url": "http://soundcloud.com/af1017/for-anne-swank",
-						        "artwork_url": null,
-						        "waveform_url": "https://w1.sndcdn.com/OavvuqOIVYZE_m.png",
-						        "stream_url": "https://api.soundcloud.com/tracks/236575698/stream",
-						        "playback_count": 0,
-						        "download_count": 0,
-						        "favoritings_count": 0,
-						        "comment_count": 0,
-						        "attachments_uri": "https://api.soundcloud.com/tracks/236575698/attachments"
-						    }]
-					},
-				})
-
-			/*.then(res => res.json())
+		})
+			.then(res => res.json())
 			.then(json => {
-				this.props.updateParentState(json);
-			})*/
+				this.props.updateParentState(testData);
+			})
 			.catch(err => AlertIOS.alert('Error', 'There has been a fetch error...'));
 
->>>>>>> changes searchbar redirect to tracks and passes temp data
 	}
 	handleChange(event) {
 		this.setState({
