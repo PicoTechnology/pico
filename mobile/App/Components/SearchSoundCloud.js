@@ -29,7 +29,6 @@ class SearchSoundCloud extends React.Component {
 		});
 	}
 	render() {
-    AlertIOS.alert('Rendering...', 'now');
     return (
 			<View>
 				<SearchBar updateParentState={this.updateState.bind(this)} />

@@ -1,6 +1,7 @@
 'use strict';
 const React = require('react-native');
 const {
+  AlertIOS,
   Image,
   Text,
   View,
@@ -11,8 +12,8 @@ const {
 
 /* set up album button for play and pause*/
 class Button extends React.Component {
-  renderButton() {
-    const artwork = this.props.artwork_url ? this.props.artwork_url : "http://i569.photobucket.com/albums/ss139/schizotypic/NoAlbumArt.jpg";
+  render() {
+    let artwork = this.props.artwork_url ? this.props.artwork_url : "http://i569.photobucket.com/albums/ss139/schizotypic/NoAlbumArt.jpg";
     return (
       <TouchableHighlight>
         <Image source={{uri: artwork}} style={{width: 50, height: 50}} onClick={this.props.whenClicked}/>
@@ -23,11 +24,12 @@ class Button extends React.Component {
 
 /* set up single tracks component*/
 class Single extends React.Component {
-  /*handleClick() {
-    this.setState({
-      played: !this.state.played
-    });
-  } */ /* on click play and pause*/
+  handleClick() {
+    AlertIOS.alert('Clicked!', '...');
+    // this.setState({
+    //   played: !this.state.played
+    // });
+  } /* on click play and pause*/
   render() {
     return (
       <View>/* add flexbox styling later*/
@@ -42,8 +44,9 @@ class Single extends React.Component {
 
 class Tracks extends React.Component{
   render() {
-    /* grab the data and set it to a variable so we can spread it*/
-    /* use let or const ?? and is the global data results name correct? */
+    if (this.props.results.length > 0) {
+      AlertIOS.alert('this.props.results', this.props.results);
+    }
     let list = this.props.results.map((tracksProps, index) =>
       <Single key={index} {...tracksProps} />
     );
@@ -56,5 +59,19 @@ class Tracks extends React.Component{
     );
   }
 }
+
+const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    padding: 5,
+    marginTop: 5,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    backgroundColor: 'orange'
+  },
+  single: {
+    color: 'white'
+  }
+});
 
 module.exports = Tracks;
