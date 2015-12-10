@@ -29,10 +29,10 @@ class Main extends React.Component {
                 <Image style={styles.bgImage} source={require('../Assets/yellowSpeaker.jpg')}/>
             </View>
             <TouchableHighlight
-              style={styles.button}
+
               onPress={this.entranceButton.bind(this)}
-              underlayColor="#75ACB5">
-              <Text style={styles.buttonText}> PICO </Text>
+              underlayColor="gba(0,0,0,0)">
+              <Image source={require('../Assets/Pico-Logo-Medium.png')}/>
             </TouchableHighlight>
         </View>
         );
