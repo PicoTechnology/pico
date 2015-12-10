@@ -26,13 +26,13 @@ class Main extends React.Component {
         return (
           <View style={styles.container}>
             <View style={styles.bgImageWrapper}>
-                <Image style={styles.bgImage} source={require('../Assets/splash-screen.jpg')}/>
+                <Image style={styles.bgImage} source={require('../Assets/yellowSpeaker.jpg')}/>
             </View>
             <TouchableHighlight
               style={styles.button}
               onPress={this.entranceButton.bind(this)}
-              underlayColor="white">
-              <Text style={styles.buttonText}> Entrance Button </Text>
+              underlayColor="#75ACB5">
+              <Text style={styles.buttonText}> PICO </Text>
             </TouchableHighlight>
         </View>
         );
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 30,
-        backgroundColor: '#96FFAB',
+        backgroundColor: 'black',
         flexDirection: 'column',
         height: 100,
         justifyContent: 'center',
@@ -59,15 +59,16 @@ const styles = StyleSheet.create({
     },
   buttonText: {
     fontSize: 18,
-    color: '#111',
-    alignSelf: 'center'
+    color: '#black',
+    alignSelf: 'center',
+    fontFamily: 'helvetica'
   },
   button: {
     height: 45,
     flexDirection: 'row',
-    backgroundColor: 'white',
-    borderColor: 'white',
-    borderWidth: 1,
+    backgroundColor: '#99FF00',
+    borderColor: 'black',
+    borderWidth: 2,
     borderRadius: 8,
     marginBottom: 10,
     marginTop: 10,

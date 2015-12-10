@@ -9,7 +9,8 @@ const {
 	NavigatorIOS,
 	Dimensions,
 	StyleSheet,
-	AlertIOS
+	AlertIOS,
+	Image
 } = React;
 
 const {width, height} = Dimensions.get('window');
@@ -53,7 +54,10 @@ class Login extends React.Component {
 	render() {
 		return (
 			<View style={styles.mainContainer}>
-				<Text style={styles.title}>Access Your Account</Text>
+			<View style={styles.bgImageWrapper}>
+					<Image style={styles.bgImage} source={require('../Assets/login.jpg')}/>
+			</View>
+				<Text style={styles.title}></Text>
 				<TextInput
 					style={styles.loginInput}
 					placeholder="Username"
@@ -68,7 +72,7 @@ class Login extends React.Component {
 				<TouchableHighlight
 					onPress={this.handlePress.bind(this)}
 					style={styles.button}
-					underlayColor="white">
+					underlayColor="#75ACB5">
 					<Text style={styles.buttonText}> LOGIN </Text>
 				</TouchableHighlight>
 			</View>
@@ -85,11 +89,20 @@ var styles = StyleSheet.create({
 		justifyContent: 'center',
 		backgroundColor: 'black'
 	},
+	bgImageWrapper: {
+			position: 'absolute',
+			bottom: 0, left: 0
+	},
+	bgImage: {
+			flex: 1,
+			width, height
+	},
 	title: {
 		marginBottom: 20,
 		fontSize: 25,
 		textAlign: 'center',
-		color: '#fff'
+		color: '#1693A5',
+		backgroundColor: 'gba(0,0,0,0)'
 	},
 	loginInput: {
 		height: 50,
@@ -98,20 +111,21 @@ var styles = StyleSheet.create({
 		marginBottom: 10,
 		fontSize: 23,
 		borderWidth: 1,
-		borderColor: 'white',
+		borderColor: '#99FF00',
 		borderRadius: 8,
 		color: 'white'
 	},
 	buttonText: {
 		fontSize: 18,
-		color: '#111',
-		alignSelf: 'center'
+		color: 'black',
+		alignSelf: 'center',
+		fontWeight: 'bold'
 	},
 	button: {
 		height: 45,
 		flexDirection: 'row',
-		backgroundColor: 'white',
-		borderColor: 'white',
+		backgroundColor: '#99FF00',
+		borderColor: 'black',
 		borderWidth: 1,
 		borderRadius: 8,
 		marginBottom: 10,
