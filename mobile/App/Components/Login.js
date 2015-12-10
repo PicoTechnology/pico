@@ -111,21 +111,21 @@ var styles = StyleSheet.create({
 		marginBottom: 10,
 		fontSize: 23,
 		borderWidth: 1,
-		borderColor: '#AAB3AB',
+		borderColor: '#99FF00',
 		borderRadius: 8,
 		color: 'white'
 	},
 	buttonText: {
 		fontSize: 18,
-		color: 'white',
+		color: 'black',
 		alignSelf: 'center',
 		fontWeight: 'bold'
 	},
 	button: {
 		height: 45,
 		flexDirection: 'row',
-		backgroundColor: '#61A598',
-		borderColor: '#1693A5',
+		backgroundColor: '#99FF00',
+		borderColor: 'black',
 		borderWidth: 1,
 		borderRadius: 8,
 		marginBottom: 10,

@@ -59,15 +59,15 @@ const styles = StyleSheet.create({
     },
   buttonText: {
     fontSize: 18,
-    color: '#E2E5EE',
+    color: '#black',
     alignSelf: 'center',
     fontFamily: 'helvetica'
   },
   button: {
     height: 45,
     flexDirection: 'row',
-    backgroundColor: '#61A598',
-    borderColor: '#1693A5',
+    backgroundColor: '#99FF00',
+    borderColor: 'black',
     borderWidth: 2,
     borderRadius: 8,
     marginBottom: 10,
