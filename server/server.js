@@ -65,13 +65,22 @@ app.post('/tracks', (req, res, next) => {
 });
 
 app.post('/playsong', (req, res, next) => {
-  var uri = req.body.songURI;
-  var creds = qs.stringify({client_id});
-  console.log(`${SOUNDCLOUD_API}/tracks/${uri}?${creds}`);
+  var uri = req.body.id;
+  var queryString = qs.stringify(Object.assign({}, {client_id}));
+  console.log(`${SOUNDCLOUD_API}/tracks/${uri}/stream?${queryString}`);
+
+  // intialize the stream
+  // fetch(`${SOUNDCLOUD_API}/tracks/${uri}/stream?${queryString}`)
+  //   .then(response => response.json())
+  //   .then(json => res.send(json));
+
   res.type('text/plain');
   res.send('Thank you');
-  // fetch(`${SOUNDCLOUD_API}/tracks/${uri}?${creds}`)
-  //   .then(response => response.json())
+  fetch(`${SOUNDCLOUD_API}/tracks/${uri}/stream?${queryString}`)
+    .then(response => console.log(response.headers._headers['content-type'])
+      /*console.log(`content-type: ${response.headers.Headers._headers['content-type']}`)*/);
+    // .then(body => console.log(body..toString('base64')));
+
   //   .then(json => {
   //     console.log(json);
   //   });

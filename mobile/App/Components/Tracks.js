@@ -43,8 +43,8 @@ class Single extends React.Component {
     // otherwise, if songs are playing, add the pressed song
     // to the global queue
     queue.enqueue(this.props.id);
+    let data = {id: this.props.id};
     this.togglePlaying();
-    let data = {a: 'pizza'};
     fetch(`${SERVER_ENDPOINT}/playsong`, {
       headers: {
         'Accept': 'application/json',

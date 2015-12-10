@@ -32,7 +32,7 @@ class SearchSoundCloud extends React.Component {
   handleSubmit() {
     this.clearInputFields();
     this.setState({isLoading: true});
-    let data = {query: this.state.query};
+    let data = {query: this.state.query, downloadable: true};
     fetch(`${SERVER_ENDPOINT}/tracks`, {
       headers: {
         'Accept': 'application/json',
