@@ -26,7 +26,7 @@ class Main extends React.Component {
         return (
           <View style={styles.container}>
             <View style={styles.bgImageWrapper}>
-                <Image style={styles.bgImage} source={require('../Assets/jazzPic.jpeg')}/>
+                <Image style={styles.bgImage} source={require('../Assets/yellowSpeaker.jpg')}/>
             </View>
             <TouchableHighlight
               style={styles.button}
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         padding: 30,
-        backgroundColor: '#96FFAB',
+        backgroundColor: 'black',
         flexDirection: 'column',
         height: 100,
         justifyContent: 'center',
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     height: 45,
     flexDirection: 'row',
     backgroundColor: '#61A598',
-    borderColor: '#D1CBCD',
+    borderColor: '#1693A5',
     borderWidth: 2,
     borderRadius: 8,
     marginBottom: 10,
