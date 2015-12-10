@@ -10,34 +10,45 @@ const {
   TouchableHighlight
 } = React;
 
-/* set up album button for play and pause*/
-class Button extends React.Component {
+/* set up single tracks component*/
+class Single extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: false,
+      isPlaying: false
+    };
+  }
+  togglePlaying() {
+    this.setState({
+      isPlaying: !this.state.isPlaying
+    });
+  }
+  renderPlayingStatus() {
+    if (this.state.isPlaying) {
+      return (
+        <Text>Playing</Text>
+      );
+    }
+    return <View />;
+  }
+  handlePress() {
+    AlertIOS.alert('Pressed!', '...');
+    this.togglePlaying();
+  }
   render() {
     let artwork = this.props.artwork_url ? this.props.artwork_url : "http://i569.photobucket.com/albums/ss139/schizotypic/NoAlbumArt.jpg";
     return (
-      <TouchableHighlight>
-        <Image source={{uri: artwork}} style={{width: 50, height: 50}} onClick={this.props.whenClicked}/>
+      <TouchableHighlight
+        onPress={this.handlePress.bind(this)}>
+        <View>
+          {this.renderPlayingStatus()}
+          <Image source={{uri: artwork}} style={{width: 50, height: 50}} onClick={this.props.whenClicked}/>
+          <Text>id: {this.props.id}</Text>
+          <Text>{this.props.title}</Text>
+          <Text>{this.props.user.username}</Text>
+        </View>
       </TouchableHighlight>
-    );
-  }
-}
-
-/* set up single tracks component*/
-class Single extends React.Component {
-  handleClick() {
-    AlertIOS.alert('Clicked!', '...');
-    // this.setState({
-    //   played: !this.state.played
-    // });
-  } /* on click play and pause*/
-  render() {
-    return (
-      <View>/* add flexbox styling later*/
-        <Button whenClicked={this.handleClick} />
-        <Text>id: {this.props.id}</Text>
-        <Text>{this.props.title}</Text>
-        <Text>{this.props.user.username}</Text>
-      </View>
     );
   }
 }
