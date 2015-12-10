@@ -58,14 +58,26 @@ class Single extends React.Component {
     return (
       <TouchableHighlight
         onPress={this.handlePress.bind(this)}>
-        <View>
+        <View style={{flexDirection: 'row'}}>
           {this.renderPlayingStatus()}
-          <Image source={{uri: artwork}} style={{width: 50, height: 50}} onClick={this.props.whenClicked}/>
-          <Text>id: {this.props.id}</Text>
-          <Text>{this.props.title}</Text>
-          <Text>{this.props.user.username}</Text>
+          <Image source={{uri: artwork}} style={styles.image} onClick={this.props.whenClicked}/>
+          <View style={styles.infoContainer}>
+            <Text>id: {this.props.id}</Text>
+            <Text style={styles.title}>{this.props.title}</Text>
+            <Text style={styles.info}>{this.props.user.username}</Text>
+          </View>
         </View>
       </TouchableHighlight>
+    );
+  }
+}
+
+class Separator extends React.Component {
+  render() {
+    return (
+      <View style={styles.separatorContainer}>
+        <View style={styles.separator} />
+      </View>
     );
   }
 }
@@ -83,9 +95,14 @@ class Tracks extends React.Component{
     });
   }
   render() {
-    let list = this.props.results.map((trackObj, index) =>
-      <Single key={index} {...trackObj} informParent={this.updatenowPlaying.bind(this)} />
-    );
+    let list = this.props.results.map((trackObj, index) => {
+      return (
+        <View>
+          <Single key={index} {...trackObj} informParent={this.updatenowPlaying.bind(this)} />
+          <Separator />
+        </View>
+      );
+    });
     return (
       <View
         style={styles.mainContainer}>
@@ -105,12 +122,8 @@ class Tracks extends React.Component{
 
 const styles = StyleSheet.create({
   mainContainer: {
-    flex: 1,
     padding: 5,
-    marginTop: 5,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    backgroundColor: 'orange'
+    backgroundColor: '#263138',
   },
   floatingMessage: {
     position: 'absolute',
@@ -125,7 +138,36 @@ const styles = StyleSheet.create({
     color: '#000'
   },
   single: {
-    color: 'white'
+    flexDirection: 'row',
+    margin: 2,
+    borderWidth: 2,
+    borderColor: '#4e6472',
+    justifyContent: 'center',
+  },
+  title: {
+    color: '#f1f3f5',
+    fontWeight: 'bold'
+  },
+  info: {
+    color: '#b7c4cd',
+  },
+    infoContainer: {
+    flexDirection: 'column'
+  },
+  image: {
+    height: 50,
+    width: 50,
+    marginRight: 5,
+  },
+  separator: {
+    height: 1,
+    width: 500,
+    color: '#465966'
+  },
+  separatorContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center'
   }
 });
 
