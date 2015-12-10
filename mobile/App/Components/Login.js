@@ -1,5 +1,6 @@
 const React = require('react-native');
 const SearchSoundCloud = require('./SearchSoundCloud.js');
+const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
 
 const {
 	View,
@@ -25,12 +26,12 @@ class Login extends React.Component {
 	}
 	handlePress() {
 		AlertIOS.alert('Alert!', JSON.stringify(this.state, null, 2));
-		fetch('http://localhost:8000/users', {
+		fetch(`${SERVER_ENDPOINT}/users`, {
 			headers: {
 				'Accept': 'application/json',
       	'Content-Type': 'application/json'
 			},
-			method: "POST",
+			method: 'POST',
 			body: JSON.stringify(this.state)}
 		)
 			.then(res => {

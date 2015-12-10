@@ -46,6 +46,7 @@ app.get('/connect', (req, res, next) => {
     .catch(err => res.send('error connecting to SoundCloud API.'))
 });
 
+
 app.post('/tracks', (req, res, next) => {
   // req.body = {
   //   query: 'string value here'
@@ -61,6 +62,19 @@ app.post('/tracks', (req, res, next) => {
       res.send(json);
     })
     .catch(err => res.send('Error, please enter a valid search query...'));
+});
+
+app.post('/playsong', (req, res, next) => {
+  var uri = req.body.songURI;
+  var creds = qs.stringify({client_id});
+  console.log(`${SOUNDCLOUD_API}/tracks/${uri}?${creds}`);
+  res.type('text/plain');
+  res.send('Thank you');
+  // fetch(`${SOUNDCLOUD_API}/tracks/${uri}?${creds}`)
+  //   .then(response => response.json())
+  //   .then(json => {
+  //     console.log(json);
+  //   });
 });
 
 app.get('/authorize', (req, res, next) => {

@@ -1,5 +1,7 @@
 'use strict';
 const React = require('react-native');
+const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
+
 const {
   AlertIOS,
   Image,
@@ -27,14 +29,29 @@ class Single extends React.Component {
   renderPlayingStatus() {
     if (this.state.isPlaying) {
       return (
-        <Text>Playing</Text>
+        <Text>Now playing: {this.props.id}</Text>
       );
     }
     return <View />;
   }
   handlePress() {
-    AlertIOS.alert('Pressed!', '...');
+    this.props.informParent(this.props.id);
+    // if no other songs are playing, play the current song
+    // otherwise, if songs are playing, add the pressed song
+    // to the global queue
     this.togglePlaying();
+    let data = {a: 'pizza'};
+    fetch(`${SERVER_ENDPOINT}/playsong`, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+      .then(res => res.text())
+      .then(text => true)
+      .catch(err => AlertIOS.alert('Error!', 'Track.js... oops'));
   }
   render() {
     let artwork = this.props.artwork_url ? this.props.artwork_url : "http://i569.photobucket.com/albums/ss139/schizotypic/NoAlbumArt.jpg";
@@ -54,9 +71,20 @@ class Single extends React.Component {
 }
 
 class Tracks extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      nowPlaying: null
+    };
+  }
+  updatenowPlaying(trackId) {
+    this.setState({
+      nowPlaying: trackId
+    });
+  }
   render() {
-    let list = this.props.results.map((tracksProps, index) =>
-      <Single key={index} {...tracksProps} />
+    let list = this.props.results.map((trackObj, index) =>
+      <Single key={index} {...trackObj} informParent={this.updatenowPlaying.bind(this)} />
     );
     return (
       <View
@@ -66,6 +94,10 @@ class Tracks extends React.Component{
           showVerticalScrollIndicator={true}>
           {list}
         </ScrollView>
+        {/* Keep the following component for debugging! */}
+        <View style={styles.floatingMessage}>
+          <Text style={styles.messageText}>{this.state.nowPlaying}</Text>
+        </View>
       </View>
     );
   }
@@ -79,6 +111,18 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     backgroundColor: 'orange'
+  },
+  floatingMessage: {
+    position: 'absolute',
+    width: 200,
+    height: 100,
+    top: 100,
+    left: 100,
+    backgroundColor: '#FFF'
+  },
+  messageText: {
+    fontSize: 16,
+    color: '#000'
   },
   single: {
     color: 'white'
