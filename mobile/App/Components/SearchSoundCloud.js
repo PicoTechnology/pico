@@ -1,7 +1,9 @@
 const React = require('react-native');
+const Tracks = require('./Tracks.js');
 
 const {
-	AlertIOS,
+  AlertIOS,
+  ActivityIndicatorIOS,
   View,
   Text,
   TextInput,
@@ -11,31 +13,103 @@ const {
   StyleSheet
 } = React;
 
-const SearchBar = require('./SearchBar.js');
-const Tracks = require('./Tracks.js');
-
 const {width, height} = Dimensions.get('window');
 
-class SearchSoundCloud extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			results: []
-		};
-	}
-	updateState(scResults) {
-		this.setState({
-			results: this.state.results.concat(scResults)
-		});
-	}
-	render() {
+class SearchBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      query: '',
+      isLoading: false,
+      error: '',
+      results: [
+        {
+          title: 'I am a title',
+          text: 'I am some text',
+          name: 'Bill Shwill'
+        }
+      ]
+    };
+  }
+  clearInputFields() {
+    this._searchInput.setNativeProps({text: ''});
+  }
+  handleSubmit() {
+    this.clearInputFields();
+    this.setState({isLoading: true});
+    fetch('http://localhost:8000/tracks', {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'post',
+      body: JSON.stringify(this.state)
+    })
+      .then(res => res.json())
+      .then(json => {
+        this.setState({
+          results: results.concat(json)
+        });
+      })
+      .catch(err => {
+        this.setState({isLoading: false, error: err})
+      });
+  }
+  handleChange(event) {
+    this.setState({
+      query: event.nativeEvent.text
+    });
+  }
+  renderError() {
+    if (this.state.error) {
+      return (
+        <Text
+          style={styles.error}>
+          {this.state.error}
+        </Text>
+      );
+    }
+    return <View></View>;
+  }
+  render() {
+    let list = this.state.results.map(result => <Text style={styles.content}>{JSON.stringify(result)}</Text>)
     return (
-			<View>
-				<SearchBar updateParentState={this.updateState.bind(this)} />
-				<Tracks results={this.state.results} />
-			</View>
-		);
-	}
+      <View
+        style={styles.mainContainer}>
+        <TextInput
+          ref={component => this._searchInput = component}
+          style={styles.searchInput}
+          onChange={this.handleChange.bind(this)}
+          placeholder="Search SoundCloud.com..." />
+        <View style={styles.spinnerContainer}>
+          <ActivityIndicatorIOS
+            animating={this.state.isLoading}
+            color="#FFF"
+            size="small" />
+        </View>
+        <TouchableHighlight
+          style={styles.button}
+          onPress={this.handleSubmit.bind(this)}>
+          <Text
+            style={styles.buttonText}>
+            Search
+          </Text>
+        </TouchableHighlight>
+        {this.renderError()}
+        {list}
+      </View>
+    );
+  }
+}
+
+class SearchSoundCloud extends React.Component {
+  render() {
+    return (
+      <View>
+        <SearchBar />
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -63,6 +137,19 @@ const styles = StyleSheet.create({
     fontSize: 25,
     textAlign: 'center',
     color: '#fff'
+  },
+  spinnerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  content: {
+    fontSize: 14,
+    color: '#FFF'
+  },
+  error: {
+    fontSize: 18,
+    color: '#D91D00'
   },
   buttonText: {
     fontSize: 18,
