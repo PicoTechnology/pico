@@ -29,7 +29,7 @@ class Single extends React.Component {
   renderPlayingStatus() {
     if (this.state.isPlaying) {
       return (
-        <Text>Now playing: {this.props.id}</Text>
+        <View style={styles.playing}></View>
       );
     }
     return <View />;
@@ -54,13 +54,13 @@ class Single extends React.Component {
       .catch(err => AlertIOS.alert('Error!', 'Track.js... oops'));
   }
   render() {
-    let artwork = this.props.artwork_url ? this.props.artwork_url : "http://i569.photobucket.com/albums/ss139/schizotypic/NoAlbumArt.jpg";
+    let artwork = this.props.artwork_url ? {uri:this.props.artwork_url} : require("../Assets/Pico-O-grey.png");
     return (
       <TouchableHighlight
         onPress={this.handlePress.bind(this)}>
         <View style={{flexDirection: 'row'}}>
           {this.renderPlayingStatus()}
-          <Image source={{uri: artwork}} style={styles.image} onClick={this.props.whenClicked}/>
+          <Image source={artwork} style={styles.image} onClick={this.props.whenClicked}/>
           <View style={styles.infoContainer}>
             <Text>id: {this.props.id}</Text>
             <Text style={styles.title}>{this.props.title}</Text>
@@ -123,7 +123,7 @@ class Tracks extends React.Component{
 const styles = StyleSheet.create({
   mainContainer: {
     padding: 5,
-    backgroundColor: '#263138',
+    backgroundColor: '#161c20',
   },
   floatingMessage: {
     position: 'absolute',
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   info: {
-    color: '#b7c4cd',
+    color: '#abbbc6',
   },
     infoContainer: {
     flexDirection: 'column'
@@ -162,12 +162,18 @@ const styles = StyleSheet.create({
   separator: {
     height: 1,
     width: 500,
-    color: '#465966'
+    backgroundColor: '#1e262c'
   },
   separatorContainer: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center'
+  },
+  playing: {
+    backgroundColor: '#99FF00',
+    width: 5,
+    height: 50,
+    marginRight: 1
   }
 });
 
