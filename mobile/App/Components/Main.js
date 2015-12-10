@@ -26,7 +26,7 @@ class Main extends React.Component {
         return (
           <View style={styles.container}>
             <View style={styles.bgImageWrapper}>
-                <Image style={styles.bgImage} source={require('../Assets/yellowSpeaker.jpg')}/>
+                <Image style={styles.bgImage} source={require('../Assets/tealSpeaker.jpg')}/>
             </View>
             <TouchableHighlight
 

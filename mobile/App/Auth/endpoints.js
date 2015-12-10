@@ -1,3 +1,3 @@
 module.exports = {
-	serverEndpoint: 'http://192.168.1.90:8000'
+	serverEndpoint: 'http://192.168.1.62:8000'
 };
