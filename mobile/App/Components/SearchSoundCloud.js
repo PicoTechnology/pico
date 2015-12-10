@@ -1,5 +1,6 @@
 const React = require('react-native');
 const Tracks = require('./Tracks.js');
+const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
 
 const {
   AlertIOS,
@@ -31,7 +32,7 @@ class SearchSoundCloud extends React.Component {
     this.clearInputFields();
     this.setState({isLoading: true});
     let data = {query: this.state.query};
-    fetch('http://localhost:8000/tracks', {
+    fetch(`${SERVER_ENDPOINT}/tracks`, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
