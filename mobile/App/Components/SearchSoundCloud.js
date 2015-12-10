@@ -89,7 +89,8 @@ class SearchSoundCloud extends React.Component {
         </View>
         <TouchableHighlight
           style={styles.button}
-          onPress={this.handleSubmit.bind(this)}>
+          onPress={this.handleSubmit.bind(this)}
+          underlayColor='#aeff00'>
           <Text
             style={styles.buttonText}>
             Search
