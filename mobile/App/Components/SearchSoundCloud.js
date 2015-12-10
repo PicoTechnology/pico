@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     fontSize: 23,
     borderWidth: 1,
-    borderColor: 'white',
+    borderColor: '#99FF00',
     borderRadius: 8,
     color: 'white'
   },
@@ -137,7 +137,7 @@ const styles = StyleSheet.create({
   },
   error: {
     fontSize: 18,
-    color: '#D91D00'
+    color: '#black'
   },
   buttonText: {
     fontSize: 18,
@@ -147,8 +147,8 @@ const styles = StyleSheet.create({
   button: {
     height: 45,
     flexDirection: 'row',
-    backgroundColor: 'white',
-    borderColor: 'white',
+    backgroundColor: '99FF00',
+    borderColor: 'black',
     borderWidth: 1,
     borderRadius: 8,
     marginBottom: 10,
