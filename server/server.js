@@ -57,7 +57,7 @@ app.post('/tracks', (req, res, next) => {
     .then(response => response.json())
     .then(json => {
       console.log(json);
-      res.send(json);
+      res.send(JSON.stringify(json));
     })
     .catch(err => res.send('Error, please enter a valid search query...'));
 });
