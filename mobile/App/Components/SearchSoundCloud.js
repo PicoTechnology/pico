@@ -15,20 +15,13 @@ const {
 
 const {width, height} = Dimensions.get('window');
 
-class SearchBar extends React.Component {
+class SearchSoundCloud extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       query: '',
       isLoading: false,
       error: '',
-      results: [
-        {
-          title: 'I am a title',
-          text: 'I am some text',
-          name: 'Bill Shwill'
-        }
-      ]
     };
   }
   clearInputFields() {
@@ -37,18 +30,25 @@ class SearchBar extends React.Component {
   handleSubmit() {
     this.clearInputFields();
     this.setState({isLoading: true});
+    let data = {query: this.state.query};
     fetch('http://localhost:8000/tracks', {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       method: 'post',
-      body: JSON.stringify(this.state)
+      body: JSON.stringify(data)
     })
       .then(res => res.json())
       .then(json => {
         this.setState({
-          results: results.concat(json)
+          isLoading: false,
+          error: ''
+        });
+        this.props.navigator.push({
+          title: 'Results',
+          passProps: {results: json},
+          component: Tracks
         });
       })
       .catch(err => {
@@ -72,7 +72,6 @@ class SearchBar extends React.Component {
     return <View></View>;
   }
   render() {
-    let list = this.state.results.map(result => <Text style={styles.content}>{JSON.stringify(result)}</Text>)
     return (
       <View
         style={styles.mainContainer}>
@@ -96,17 +95,6 @@ class SearchBar extends React.Component {
           </Text>
         </TouchableHighlight>
         {this.renderError()}
-        {list}
-      </View>
-    );
-  }
-}
-
-class SearchSoundCloud extends React.Component {
-  render() {
-    return (
-      <View>
-        <SearchBar />
       </View>
     );
   }

@@ -52,12 +52,13 @@ app.post('/tracks', (req, res, next) => {
   // };
   req.body.query;
   console.log(`req.body: ${JSON.stringify(req.body, null, 2)}`)
-  console.log(`${SOUNDCLOUD_API}/tracks?${qs.stringify(Object.assign({}, req.body, {client_id}))}`);
   fetch(`${SOUNDCLOUD_API}/tracks?${qs.stringify(Object.assign({}, req.body, {client_id}))}`)
     .then(response => response.json())
     .then(json => {
       console.log(json);
-      res.send(JSON.stringify(json));
+      console.log(`${SOUNDCLOUD_API}/tracks?${qs.stringify(Object.assign({}, req.body, {client_id}))}`);
+      res.type('application/json');
+      res.send(json);
     })
     .catch(err => res.send('Error, please enter a valid search query...'));
 });

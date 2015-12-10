@@ -44,18 +44,18 @@ class Single extends React.Component {
 
 class Tracks extends React.Component{
   render() {
-    if (this.props.results.length > 0) {
-      AlertIOS.alert('this.props.results', this.props.results);
-    }
     let list = this.props.results.map((tracksProps, index) =>
       <Single key={index} {...tracksProps} />
     );
     return (
-      <ScrollView
-        onScroll={() => console.log('OnScroll activated!')}
-        showVerticalScrollIndicator={true}>
-        {list}
-      </ScrollView>
+      <View
+        style={styles.mainContainer}>
+        <ScrollView
+          onScroll={() => console.log('OnScroll activated!')}
+          showVerticalScrollIndicator={true}>
+          {list}
+        </ScrollView>
+      </View>
     );
   }
 }
