@@ -32,7 +32,7 @@ class Main extends React.Component {
 
               onPress={this.entranceButton.bind(this)}
               underlayColor="rgba(0,0,0,0)">
-              <Image source={require('../Assets/PicoLogo-Medium1.png')}/>
+              <Image source={require('../Assets/PicoLogo-Medium.png')}/>
             </TouchableHighlight>
         </View>
         );
