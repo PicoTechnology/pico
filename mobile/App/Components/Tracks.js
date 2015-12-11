@@ -1,6 +1,7 @@
 'use strict';
 const React = require('react-native');
 const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
+const Queue = require('./Queue.js');
 
 const {
   AlertIOS,
@@ -11,6 +12,8 @@ const {
   StyleSheet,
   TouchableHighlight
 } = React;
+
+var queue = new Queue;
 
 /* set up single tracks component*/
 class Single extends React.Component {
@@ -39,6 +42,7 @@ class Single extends React.Component {
     // if no other songs are playing, play the current song
     // otherwise, if songs are playing, add the pressed song
     // to the global queue
+    queue.enqueue(this.props.id);
     this.togglePlaying();
     let data = {a: 'pizza'};
     fetch(`${SERVER_ENDPOINT}/playsong`, {
@@ -114,6 +118,7 @@ class Tracks extends React.Component{
         {/* Keep the following component for debugging! */}
         <View style={styles.floatingMessage}>
           <Text style={styles.messageText}>{this.state.nowPlaying}</Text>
+          <Text style={styles.messageText}>{queue.storage}</Text>
         </View>
       </View>
     );
