@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bluetooth-serial-port": "^1.2.6",
     "body-parser": "^1.14.1",
     "bootstrap": "^3.3.6",
     "cookie-parser": "^1.4.0",

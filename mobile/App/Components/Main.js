@@ -1,7 +1,7 @@
 const React = require('react-native');
 const Login = require('./Login.js');
 const Track = require('./Tracks.js');
-
+const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
 
 const {
   Text,
@@ -16,27 +16,31 @@ const {
 const {width, height} = Dimensions.get('window');
 
 class Main extends React.Component {
-  entranceButton(){
-    this.props.navigator.push({
-      component: Login,
-      title: 'Login'
-  });
-    }
-    render() {
-        return (
-          <View style={styles.container}>
-            <View style={styles.bgImageWrapper}>
-                <Image style={styles.bgImage} source={require('../Assets/tealSpeaker.jpg')}/>
-            </View>
-            <TouchableHighlight
-
-              onPress={this.entranceButton.bind(this)}
-              underlayColor="rgba(0,0,0,0)">
-              <Image source={require('../Assets/PicoLogo-Medium.png')}/>
-            </TouchableHighlight>
+  entranceButton() {
+    fetch(`${SERVER_ENDPOINT}/connect`)
+      .then(res => res.json())
+      .then(json => {
+        this.props.navigator.push({
+          component: Login,
+          title: 'Login'
+        });
+      })
+      .catch(err => AlertIOS.alert('Error', err));
+  }
+  render() {
+    return (
+      <View style={styles.container}>
+        <View style={styles.bgImageWrapper}>
+          <Image style={styles.bgImage} source={require('../Assets/tealSpeaker.jpg')}/>
         </View>
-        );
-    }
+        <TouchableHighlight
+          onPress={this.entranceButton.bind(this)}
+          underlayColor="rgba(0,0,0,0)">
+          <Image source={require('../Assets/PicoLogo-Medium.png')}/>
+        </TouchableHighlight>
+      </View>
+    );
+  }
 }
 
 const styles = StyleSheet.create({

@@ -2,7 +2,6 @@
 const SC = require('node-soundcloud');
 const SoundCloudCred = require('./credentials.js');
 const serverHelpers = require('./server-helpers.js');
-const dbHelpers = require('./database-helpers.js');
 const qs = require('querystring');
 const fs = require('fs');
 const app = require('express')();
@@ -15,26 +14,33 @@ const lame = require('lame');
 const wav = require('wav');
 const Player = require('player');
 
+const dbHelpers = require('./database-helpers.js');
+const bluetoothHelpers = require('./bluetooth.js');
+
+
 const SOUNDCLOUD = 'https://soundcloud.com';
 const SOUNDCLOUD_API = 'http://api.soundcloud.com';
 const PORT = process.env.PORT || 8000;
 
 app.use(serverHelpers.printRequestInfo);
 
-
 app.use(bodyparser.json());
 
 const client_id = SoundCloudCred.client_id;
 
-const credentials = {
-  client_id,
-  redirect_uri: `localhost:${PORT}/callback`,
-  scope: '*',
-  response_type: 'code'
-};
+app.get('/connect', (req, res, next) => {
+  console.log('Searching for bluetooth devices...');
+
+  bluetoothHelpers.beginSearch();
+
+  res.send({a: 'pizza'});
+});
+
+app.get('/disconnect', (req, res, next) => {
+  bluetoothHelpers.closeConnection();
+});
 
 app.get('/testplay', (req, res, next) => {
-
   var file = fs.createReadStream(`${__dirname}/assets/piano2.wav`);
   var reader = new wav.Reader();
 
@@ -43,29 +49,6 @@ app.get('/testplay', (req, res, next) => {
   });
 
   file.pipe(reader);
-
-  // var input = fs.createReadStream(`${__dirname}/assets/pick-up-the-pieces.mp3`);
-  // var output = fs.createWriteStream(`${__dirname}/assets/pick-up-the-pieces.pcm`);
-
-  // var decoder = new lame.Decoder();
-  // decoder.on('format', format => {
-  //   var writer = new wav.Writer(format);
-  //   decoder.pipe(writer).pipe(output);
-  // });
-
-  // input.pipe(decoder);
-
-  // var songname = 'pick-up-the-pieces';
-  // var extension = '.mp3';
-  // var player = new Player(`${__dirname}/assets/${songname + extension}`);
-  // player.play((err, player) => {
-  //   res.send(`now playing ${songname}...`);
-  // });
-  // fs.readFile(__dirname + '/assets/pick-up-the-pieces.mp3', (err, data) => {
-  //   if (err) return console.error(err);
-  //   console.log(data);
-  //   res.send('It is working');
-  // });
 });
 
 app.post('/playsong', (req, res, next) => {
@@ -117,26 +100,7 @@ app.post('/users', dbHelpers.addUser, (req, res, next) => {
   return res.send(`Successfully added: ${res.result}`);
 });
 
-app.get('/connect', (req, res, next) => {
-  SC.init({
-    id: client_id,
-    secret: SoundCloudCred.client_secret,
-    uri: `http://localhost:${PORT}/callback`
-  });
-  const url = SC.getConnectUrl();
-  console.log(url);
-  fetch(url)
-    .then(response => response.text())
-    .then(body => res.send(body))
-    .catch(err => res.send('error connecting to SoundCloud API.'))
-});
-
-
 app.post('/tracks', (req, res, next) => {
-  // req.body = {
-  //   query: 'string value here',
-  //   downloadable: true
-  // };
   console.log(`req.body: ${JSON.stringify(req.body, null, 2)}`)
   fetch(`${SOUNDCLOUD_API}/tracks?${qs.stringify(Object.assign({}, req.body, {client_id}))}`)
     .then(response => response.json())
@@ -166,3 +130,4 @@ app.get('/authorize', (req, res, next) => {
 app.listen(PORT);
 console.log(`Now listening on localhost:${PORT}...`);
 dbHelpers.connectToDB();
+bluetoothHelpers.startListening();

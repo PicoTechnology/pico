@@ -58,10 +58,13 @@ class Single extends React.Component {
       .catch(err => AlertIOS.alert('Error!', 'Track.js... oops'));
   }
   makeHumanReadable(ms) {
-    let seconds = ms / 1000;
-    let minutes = seconds / 60;
-
-    return `${minutes}:${seconds}`;
+    let minutesRaw = ms/1000/60;
+    let minutesPure = Math.floor(minutesRaw);
+    let secondsRaw = minutesRaw % minutesPure * 60;
+    let secondsPure = '0' + secondsRaw.toFixed(0);
+    var endOfString = secondsPure.length - 1;
+    secondsPure = secondsPure.charAt(endOfString) + secondsPure.charAt(endOfString - 1);
+    return `${minutesPure}:${secondsPure}`;
   }
   render() {
     let artwork = this.props.artwork_url ? {uri:this.props.artwork_url} : require("../Assets/Pico-O-grey.png");
@@ -74,7 +77,7 @@ class Single extends React.Component {
           <View style={styles.infoContainer}>
             <Text style={styles.title}>{this.props.title}</Text>
             <Text style={styles.info}>{this.props.user.username}</Text>
-            <Text style={styles.info}>{this.makeHumanReadable(this.props.duration)}></Text>
+            <Text style={styles.info}>{this.makeHumanReadable(this.props.duration)}</Text>
           </View>
         </View>
       </TouchableHighlight>

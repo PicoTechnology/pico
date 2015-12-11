@@ -89,7 +89,7 @@ class SearchSoundCloud extends React.Component {
           <ActivityIndicatorIOS
             animating={this.state.isLoading}
             color="#99FF00"
-            size="small" />
+            size="large" />
         </View>
         <TouchableHighlight
           style={styles.button}
