@@ -43,8 +43,8 @@ class Single extends React.Component {
     // otherwise, if songs are playing, add the pressed song
     // to the global queue
     queue.enqueue(this.props.id);
+    let data = {id: this.props.id};
     this.togglePlaying();
-    let data = {a: 'pizza'};
     fetch(`${SERVER_ENDPOINT}/playsong`, {
       headers: {
         'Accept': 'application/json',
@@ -57,18 +57,24 @@ class Single extends React.Component {
       .then(text => true)
       .catch(err => AlertIOS.alert('Error!', 'Track.js... oops'));
   }
+  makeHumanReadable(ms) {
+    let seconds = ms / 1000;
+    let minutes = seconds / 60;
+
+    return `${minutes}:${seconds}`;
+  }
   render() {
     let artwork = this.props.artwork_url ? {uri:this.props.artwork_url} : require("../Assets/Pico-O-grey.png");
     return (
       <TouchableHighlight
         onPress={this.handlePress.bind(this)}>
-        <View style={{flexDirection: 'row'}}>
+        <View style={styles.singleContainer}>
           {this.renderPlayingStatus()}
           <Image source={artwork} style={styles.image} onClick={this.props.whenClicked}/>
           <View style={styles.infoContainer}>
-            <Text>id: {this.props.id}</Text>
             <Text style={styles.title}>{this.props.title}</Text>
             <Text style={styles.info}>{this.props.user.username}</Text>
+            <Text style={styles.info}>{this.makeHumanReadable(this.props.duration)}></Text>
           </View>
         </View>
       </TouchableHighlight>
@@ -95,7 +101,7 @@ class Tracks extends React.Component{
   }
   updatenowPlaying(trackId) {
     this.setState({
-      nowPlaying: trackId
+      nowPlaying: trackId,
     });
   }
   render() {
@@ -129,6 +135,11 @@ const styles = StyleSheet.create({
   mainContainer: {
     padding: 5,
     backgroundColor: '#161c20',
+  },
+  singleContainer: {
+    flexDirection: 'row',
+    paddingTop: 3,
+    paddingBottom: 3
   },
   floatingMessage: {
     position: 'absolute',

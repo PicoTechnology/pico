@@ -25,15 +25,14 @@ class Login extends React.Component {
 		};
 	}
 	handlePress() {
-		AlertIOS.alert('Alert!', JSON.stringify(this.state, null, 2));
 		fetch(`${SERVER_ENDPOINT}/users`, {
 			headers: {
 				'Accept': 'application/json',
       	'Content-Type': 'application/json'
 			},
 			method: 'POST',
-			body: JSON.stringify(this.state)}
-		)
+			body: JSON.stringify(this.state)
+		})
 			.then(res => {
 				this.props.navigator.push({
 					title: 'Search SC',
@@ -55,9 +54,9 @@ class Login extends React.Component {
 	render() {
 		return (
 			<View style={styles.mainContainer}>
-			<View style={styles.bgImageWrapper}>
-					<Image style={styles.bgImage} source={require('../Assets/login.jpg')}/>
-			</View>
+				<View style={styles.bgImageWrapper}>
+						<Image style={styles.bgImage} source={require('../Assets/login.jpg')}/>
+				</View>
 				<Text style={styles.title}></Text>
 				<TextInput
 					style={styles.loginInput}
