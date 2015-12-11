@@ -90,7 +90,6 @@ app.post('/playsong', (req, res, next) => {
     .get(`${SOUNDCLOUD_API}/tracks/${uri}/download?${queryString}`)
     .on('error', err => console.error(err))
     .pipe(decoder)
-
 });
 
 app.post('/users', dbHelpers.addUser, (req, res, next) => {
@@ -98,6 +97,13 @@ app.post('/users', dbHelpers.addUser, (req, res, next) => {
     return res.send(`Error adding user to database...`);
   }
   return res.send(`Successfully added: ${res.result}`);
+});
+
+app.post('/playlists/:playlistname', (req, res, next) => {
+  var playlistname = req.params.playlistname;
+  var trackID = req.body.trackID;
+  dbHelpers.addToPlaylist(playlistname, trackID);
+  res.send('It may or may not have been added to the database!');
 });
 
 app.post('/tracks', (req, res, next) => {
