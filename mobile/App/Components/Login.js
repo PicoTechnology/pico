@@ -40,17 +40,17 @@ class Login extends React.Component {
 				});
 			})
 			.catch(err => AlertIOS.alert('Error', err));
-		}
-		handleUsername(event) {
-			this.setState({
-				username: event.nativeEvent.text
-			});
-		}
-		handlePw(event) {
-			this.setState({
-				password: event.nativeEvent.text
-			});
-		}
+	}
+	handleUsername(event) {
+		this.setState({
+			username: event.nativeEvent.text
+		});
+	}
+	handlePw(event) {
+		this.setState({
+			password: event.nativeEvent.text
+		});
+	}
 	render() {
 		return (
 			<View style={styles.mainContainer}>
@@ -78,7 +78,7 @@ class Login extends React.Component {
 			</View>
 		);
 	}
-};
+}
 
 var styles = StyleSheet.create({
 	mainContainer: {

@@ -134,9 +134,9 @@ app.get('/connect', (req, res, next) => {
 
 app.post('/tracks', (req, res, next) => {
   // req.body = {
-  //   query: 'string value here'
+  //   query: 'string value here',
+  //   downloadable: true
   // };
-  req.body.query;
   console.log(`req.body: ${JSON.stringify(req.body, null, 2)}`)
   fetch(`${SOUNDCLOUD_API}/tracks?${qs.stringify(Object.assign({}, req.body, {client_id}))}`)
     .then(response => response.json())
