@@ -103,7 +103,7 @@ var styles = StyleSheet.create({
 		fontSize: 25,
 		textAlign: 'center',
 		color: '#1693A5',
-		backgroundColor: 'gba(0,0,0,0)'
+		backgroundColor: 'rgba(0,0,0,0)'
 	},
 	loginInput: {
 		height: 50,
