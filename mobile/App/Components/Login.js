@@ -73,7 +73,7 @@ class Login extends React.Component {
 				<TouchableHighlight
 					onPress={this.handlePress.bind(this)}
 					style={styles.button}
-					underlayColor="#75ACB5">
+					underlayColor="#aeff00">
 					<Text style={styles.buttonText}> LOGIN </Text>
 				</TouchableHighlight>
 			</View>
@@ -103,7 +103,7 @@ var styles = StyleSheet.create({
 		fontSize: 25,
 		textAlign: 'center',
 		color: '#1693A5',
-		backgroundColor: 'gba(0,0,0,0)'
+		backgroundColor: 'rgba(0,0,0,0)'
 	},
 	loginInput: {
 		height: 50,

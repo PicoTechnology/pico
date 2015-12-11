@@ -11,7 +11,8 @@ const {
   TouchableHighlight,
   NavigatorIOS,
   Dimensions,
-  StyleSheet
+  StyleSheet,
+  Image
 } = React;
 
 const {width, height} = Dimensions.get('window');
@@ -76,20 +77,24 @@ class SearchSoundCloud extends React.Component {
     return (
       <View
         style={styles.mainContainer}>
+        <View style={styles.bgImageWrapper}>
+            <Image style={styles.bgImage} source={require('../Assets/searchBarBlackBG.png')}/>
+        </View>
         <TextInput
           ref={component => this._searchInput = component}
           style={styles.searchInput}
           onChange={this.handleChange.bind(this)}
-          placeholder="Search SoundCloud.com..." />
+          placeholder="search soundcloud.com" />
         <View style={styles.spinnerContainer}>
           <ActivityIndicatorIOS
             animating={this.state.isLoading}
-            color="#FFF"
+            color="#99FF00"
             size="small" />
         </View>
         <TouchableHighlight
           style={styles.button}
-          onPress={this.handleSubmit.bind(this)}>
+          onPress={this.handleSubmit.bind(this)}
+          underlayColor='#aeff00'>
           <Text
             style={styles.buttonText}>
             Search
@@ -110,12 +115,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'black'
   },
+  bgImageWrapper: {
+      position: 'absolute',
+      bottom: 0, left: 0
+  },
+  bgImage: {
+      flex: 1,
+      width, height
+  },
   searchInput: {
     height: 50,
     padding: 4,
     marginRight: 5,
     marginBottom: 10,
-    fontSize: 23,
+    fontSize: 20,
     borderWidth: 1,
     borderColor: '#99FF00',
     borderRadius: 8,
@@ -130,7 +143,8 @@ const styles = StyleSheet.create({
   spinnerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0,0,0,0)'
   },
   content: {
     fontSize: 14,
@@ -143,7 +157,8 @@ const styles = StyleSheet.create({
   buttonText: {
     fontSize: 18,
     color: '#111',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    fontWeight: 'bold'
   },
   button: {
     height: 45,
