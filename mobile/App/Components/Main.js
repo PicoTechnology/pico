@@ -3,6 +3,8 @@ const Login = require('./Login.js');
 const Track = require('./Tracks.js');
 const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
 
+const Glyphicon = require('./Glyphicon.js');
+
 const {
   Text,
   View,
@@ -44,23 +46,28 @@ class Main extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        padding: 30,
-        backgroundColor: 'black',
-        flexDirection: 'column',
-        height: 100,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    bgImageWrapper: {
-        position: 'absolute',
-        bottom: 0, left: 0
-    },
-    bgImage: {
-        flex: 1,
-        width, height
-    },
+  glyphicon: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  container: {
+      flex: 1,
+      padding: 30,
+      backgroundColor: 'black',
+      flexDirection: 'column',
+      height: 100,
+      justifyContent: 'center',
+      alignItems: 'center'
+  },
+  bgImageWrapper: {
+      position: 'absolute',
+      bottom: 0, left: 0
+  },
+  bgImage: {
+      flex: 1,
+      width, height
+  },
   buttonText: {
     fontSize: 18,
     color: '#black',

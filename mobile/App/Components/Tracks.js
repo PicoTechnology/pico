@@ -2,6 +2,7 @@
 const React = require('react-native');
 const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
 const Queue = require('./Queue.js');
+const CurrentlyPlaying = require('./CurrentlyPlaying.js');
 
 const {
   AlertIOS,
@@ -51,10 +52,11 @@ class Single extends React.Component {
     //   .then(res => res.json())
     //   .then(json => true)
     //   .catch(err => AlertIOS.alert('Error', 'Error adding song to playlist...apologies!'));
-    // this.props.informParent(this.props.id);
     // if no other songs are playing, play the current song
     // otherwise, if songs are playing, add the pressed song
     // to the global queue
+
+    this.props.informParent(this.props);
     if(queue.isQueued(this.props.id)){
       queue.removeItem(this.props.id);
     } else {
@@ -118,16 +120,16 @@ class Tracks extends React.Component{
       nowPlaying: null
     };
   }
-  updatenowPlaying(trackId) {
+  updateNowPlaying(trackObj) {
     this.setState({
-      nowPlaying: trackId,
+      nowPlaying: trackObj,
     });
   }
   render() {
     let list = this.props.results.map((trackObj, index) => {
       return (
         <View>
-          <Single key={index} {...trackObj} informParent={this.updatenowPlaying.bind(this)} />
+          <Single key={index} {...trackObj} informParent={this.updateNowPlaying.bind(this)} />
           <Separator />
         </View>
       );
@@ -145,6 +147,7 @@ class Tracks extends React.Component{
           <Text style={styles.messageText}>{this.state.nowPlaying}</Text>
           <Text style={styles.messageText}>{queue.storage}</Text>
         </View>
+        <CurrentlyPlaying {...this.state.nowPlaying} />
       </View>
     );
   }

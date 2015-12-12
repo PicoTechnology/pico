@@ -81,7 +81,7 @@ class SearchSoundCloud extends React.Component {
             <Image style={styles.bgImage} source={require('../Assets/searchBarBlackBG.png')}/>
         </View>
         <View>
-            <Image style={styles.loginIcon} source={require('../Assets/icon-search.png')}/>
+            <Image style={styles.loginIcon} source={require('../Assets/icons/search.png')}/>
         </View>
         <TextInput
           ref={component => this._searchInput = component}
