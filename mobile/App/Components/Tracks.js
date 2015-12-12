@@ -56,7 +56,7 @@ class Single extends React.Component {
     // otherwise, if songs are playing, add the pressed song
     // to the global queue
     if(queue.isQueued(this.props.id)){
-      queue.remove(this.props.id);
+      queue.removeItem(this.props.id);
     } else {
       queue.enqueue(this.props.id);
     }

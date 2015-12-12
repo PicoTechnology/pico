@@ -18,9 +18,9 @@ class Queue {
 		return null;
 	}
 	isQueued(songId) {
-		return this.storage.indexOf(songId) > -1
+		return this.storage.indexOf(songId) > -1;
 	}
-	remove(songId) {
+	removeItem(songId) {
 		var index = this.storage.indexOf(songId);
 		this.storage = [...this.storage.slice(0, index),
 										...this.storage.slice(index + 1)];
