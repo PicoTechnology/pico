@@ -80,6 +80,9 @@ class SearchSoundCloud extends React.Component {
         <View style={styles.bgImageWrapper}>
             <Image style={styles.bgImage} source={require('../Assets/searchBarBlackBG.png')}/>
         </View>
+        <View>
+            <Image style={styles.loginIcon} source={require('../Assets/icon-search.png')}/>
+        </View>
         <TextInput
           ref={component => this._searchInput = component}
           style={styles.searchInput}
@@ -114,6 +117,14 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     backgroundColor: 'black'
+  },
+  loginIcon: {
+    marginBottom: -40,
+    height: 50,
+    left: 90,
+    position: 'relative',
+    top: -21,
+    width: 16
   },
   bgImageWrapper: {
       position: 'absolute',
