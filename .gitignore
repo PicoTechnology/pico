@@ -31,11 +31,11 @@ results
 npm-debug.log
 node_modules
 
-
 ### Bower ###
 **/bower_components/
 
 /browser/public/bundle.js
+/server/assets
 
 ### PhPStorm ###
 .idea/

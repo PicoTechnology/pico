@@ -9,8 +9,8 @@ var PlaylistsRef;
 
 const connectToDB = () => {
 	FirebaseRef = new Firebase(FIREBASE_LOCATION);
-	UsersRef = FirebaseRef.child(USERS_LOCATION);
-	PlaylistsRef = FirebaseRef.child(PLAYLISTS_LOCATION);
+	UsersRef = FirebaseRef.child('users');
+	PlaylistsRef = FirebaseRef.child('playlists');
 };
 
 const addUser = (req, res, next) => {

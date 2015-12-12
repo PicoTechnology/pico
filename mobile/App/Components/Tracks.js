@@ -39,24 +39,24 @@ class Single extends React.Component {
   }
   handlePress() {
     let playlistname = 'test1';
-    let data = {trackID: this.props.id};
-    fetch(`${SERVER_ENDPOINT}/playlist/${playlistname}`, {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      method: 'POST',
-      body: JSON.stringify(data)
-    })
-      .then(res => res.json())
-      .then(json => true)
-      .catch(err => AlertIOS.alert('Error', 'Error adding song to playlist...apologies!'));
-    this.props.informParent(this.props.id);
+    // let data = {trackID: this.props.id};
+    // fetch(`${SERVER_ENDPOINT}/playlist/${playlistname}`, {
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json'
+    //   },
+    //   method: 'POST',
+    //   body: JSON.stringify(data)
+    // })
+    //   .then(res => res.json())
+    //   .then(json => true)
+    //   .catch(err => AlertIOS.alert('Error', 'Error adding song to playlist...apologies!'));
+    // this.props.informParent(this.props.id);
     // if no other songs are playing, play the current song
     // otherwise, if songs are playing, add the pressed song
     // to the global queue
     if(queue.isQueued(this.props.id)){
-      queue.remove(this.props.id);
+      queue.removeItem(this.props.id);
     } else {
       queue.enqueue(this.props.id);
     }
