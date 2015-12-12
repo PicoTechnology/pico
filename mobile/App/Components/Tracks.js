@@ -55,8 +55,11 @@ class Single extends React.Component {
     // if no other songs are playing, play the current song
     // otherwise, if songs are playing, add the pressed song
     // to the global queue
-    queue.enqueue(this.props.id);
-    let data = {id: this.props.id};
+    if(queue.isQueued(this.props.id)){
+      queue.remove(this.props.id);
+    } else {
+      queue.enqueue(this.props.id);
+    }
     this.togglePlaying();
     fetch(`${SERVER_ENDPOINT}/playsong`, {
       headers: {
