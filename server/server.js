@@ -106,6 +106,10 @@ app.post('/playlists/:playlistname', (req, res, next) => {
   res.send('It may or may not have been added to the database!');
 });
 
+app.get('/playlists', dbHelpers.getPlaylists,  (req, res, next) => {
+  
+});
+
 app.post('/tracks', (req, res, next) => {
   console.log(`req.body: ${JSON.stringify(req.body, null, 2)}`)
   fetch(`${SOUNDCLOUD_API}/tracks?${qs.stringify(Object.assign({}, req.body, {client_id}))}`)

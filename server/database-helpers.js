@@ -50,10 +50,37 @@ const addToPlaylist = (playlistname, trackID) => {
 		.push(trackID);
 };
 
+const deletePlaylist = (playlistName) => {
+	PlaylistsRef
+		.child(playlistname)
+		.remove();
+};
+
+const deleteSongFromPlaylist = (playlistname, trackID) => {
+	PlaylistsRef
+		.child(playlistname)
+		.child(trackID)
+		.remove();
+};
+
+const getPlaylists = () => {
+		PlaylistsRef
+			.orderByKey()
+			.once('value', dataSnapshot => {
+				dataSnapshot.forEach( snapshot => {
+					var playlistName = snapshot.key();
+					var playlistTracks = snapshot.child();
+				});
+			});
+};
+
 const API = {
 	connectToDB,
 	addUser,
-	checkExistingUser
+	checkExistingUser,
+	deletePlaylist,
+	deleteSongFromPlaylist,
+	getPlaylists
 };
 
 module.exports = API;
