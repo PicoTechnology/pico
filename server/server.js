@@ -106,26 +106,24 @@ app.post('/playlists/:playlistname', (req, res, next) => {
   res.send('It may or may not have been added to the database!');
 });
 
-app.get('/playlists', (req, res, next) => {
-  dbHelpers.getPlaylists();
+app.get('/playlists', dbHelpers.getPlaylists, (req, res, next) => {
+  res.send(res.data);
 });
 
-app.get('/playlists/:playlistname', (req, res, next) => {
+app.get('/playlists/:playlistname', dbHelpers.getTracksFromPlaylist, (req, res, next) => {
   var playlistname = req.params.playlistname;
-  dbHelpers.getTracksFromPlaylists(playlistname);
-})
-
-app.remove('playlists/:playlistname', (req,res, next) => {
-  var playlistname = req.params.playlistname;
-  dbHelpers.deletePlaylist(playlistname);
-  res.send('Playlist deleted?!');
+  console.log(playlistname);
+  res.send(res.data);
 });
 
-app.remove('playlists/:playlistname/:trackId', (req, res, next) => {
-  var playlistname = req.params.playlistname;
-  var trackID = req.body.trackID;
-  dbHelpers.deleteSongFromPlaylist(playlistname, trackID);
-  res.send('Song deleted from playlist?!');
+app.delete('/playlists/:playlistname', dbHelpers.deletePlaylist, (req,res, next) => {
+  if (res.err) return res.send (`ERROR Server.js: ${res.err}`);
+  res.send(`Successfully deleted playlist: ${req.params.playlistname}`);
+});
+
+app.delete('/playlists/:playlistname/:trackID', dbHelpers.deleteSongFromPlaylist, (req, res, next) => {
+  if (res.err) return res.send(`ERROR Server.js: ${res.err}`);
+  res.send(`Successfully deleted trackID: ${req.params.trackID} from playlist: ${req.params.playlistname}`);
 });
 
 app.post('/tracks', (req, res, next) => {
@@ -158,4 +156,5 @@ app.get('/authorize', (req, res, next) => {
 app.listen(PORT);
 console.log(`Now listening on localhost:${PORT}...`);
 dbHelpers.connectToDB();
+dbHelpers.addPlaylist({name: 'Casandra', trackIDs: [1230,1231,1232]});
 bluetoothHelpers.startListening();

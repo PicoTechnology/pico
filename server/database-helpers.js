@@ -41,7 +41,8 @@ const checkExistingUser = (userObj, userExistsCb) => {
 const addPlaylist = (playlistObj) => {
 	var playlistName = playlistObj.name;
 	PlaylistsRef
-		.push({[playlistName]: []});
+		.child(playlistObj.name)
+		.set(playlistObj.trackIDs);
 };
 
 const addToPlaylist = (playlistname, trackID) => {
@@ -50,48 +51,71 @@ const addToPlaylist = (playlistname, trackID) => {
 		.push(trackID);
 };
 
-const deletePlaylist = (playlistName) => {
+const deletePlaylist = (req, res, next) => {
+	var playlistname = req.params.playlistname;
 	PlaylistsRef
 		.child(playlistname)
-		.remove();
+		.remove(err => {
+			if (err) {
+				res.err = err;
+				return next();
+			}
+			next();
+		});
 };
 
-const deleteSongFromPlaylist = (playlistname, trackID) => {
+const deleteSongFromPlaylist = (req, res, next) => {
+	var playlistname = req.params.playlistname;
+	var trackID = req.params.trackID;
+	console.log(`playlistname: ${playlistname}`);
+	console.log(`trackID: ${trackID}`);
 	PlaylistsRef
 		.child(playlistname)
-		.child(trackID)
-		.remove();
+		.orderByValue()
+		.on('child_added', snapshot => {
+			console.log('inside of here!');
+			console.log(`snapshot.val(): ${snapshot.val()}`);
+			if (snapshot.val() == trackID) {
+				console.log('MATCHED!');
+				snapshot.ref().remove(err => {
+					if (err) res.err = err;
+					return next();
+				});
+			}
+		});
+		// no match found
+		res.err = 'No match found!';
+		next();
 };
 
-const getPlaylists = () => {
-		PlaylistsRef
-			.orderByKey()
-			.once('value', dataSnapshot => {
-				/*dataSnapshot.forEach( snapshot => {
-					var playlistName = snapshot.key();
-					var playlistTracks = snapshot.child();
-					return snapshot;
-				});*/
-				return dataSnapshot;
-			});
+const getPlaylists = (req, res, next) => {
+	PlaylistsRef
+		.orderByKey()
+		.once('value', dataSnapshot => {
+			res.data = dataSnapshot.val()
+			next();
+		});
 };
 
-const getTracksFromPlaylists = (playlistname) => {
-		PlaylistsRef
-			.child(playlistname)
-			.once('value', snapshot => {
-				var trackId = snapshot.child();
-			});
+const getTracksFromPlaylist = (req, res, next) => {
+	var playlistname = req.params.playlistname;
+	PlaylistsRef
+		.child(playlistname)
+		.once('value', snapshot => {
+			res.data = snapshot.val();
+			next();
+		});
 };
 
 const API = {
 	connectToDB,
+	addPlaylist,
 	addUser,
 	checkExistingUser,
 	deletePlaylist,
 	deleteSongFromPlaylist,
-	getPlaylists.
-	getTracksFromPlaylists
+	getPlaylists,
+	getTracksFromPlaylist
 };
 
 module.exports = API;
