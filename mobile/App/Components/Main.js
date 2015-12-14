@@ -35,11 +35,16 @@ class Main extends React.Component {
         <View style={styles.bgImageWrapper}>
           <Image style={styles.bgImage} source={require('../Assets/tealSpeaker.jpg')}/>
         </View>
-        <TouchableHighlight
+        <View style={styles.glyphicon}>
+          <Glyphicon
+            icon="user"
+            size="medium" />
+        </View>
+        {/*<TouchableHighlight
           onPress={this.entranceButton.bind(this)}
           underlayColor="rgba(0,0,0,0)">
           <Image source={require('../Assets/PicoLogo-Medium.png')}/>
-        </TouchableHighlight>
+        </TouchableHighlight>*/}
       </View>
     );
   }

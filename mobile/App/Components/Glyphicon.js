@@ -42,7 +42,8 @@ const {
 	icon="search" />
 
 let WithIcoMoon = WithCustomFont.createCustomFontComponent({
-	uri: 'https://fonts.gstatic.com/s/sourcecodepro/v6/mrl8jkM18OlOQN8JLgasD5bPFduIYtoLzwST68uhz_Y.woff2'
+	// uri: 'http://cdnjs.cloudflare.com/ajax/libs/bootcards/1.1.2/fonts/icomoon.ttf'
+	uri: 'http://ccheever.com/p/icomoon.ttf'
 });
 
 class Glyphicon extends React.Component {
@@ -51,8 +52,9 @@ class Glyphicon extends React.Component {
 	}
 	render() {
 		let filename = this.props.icon;
+		let size = this.props.size;
 		return (
-			<View style={styles[`${this.props.size}Container`]}>
+			<View style={styles[`${size}Container`]}>
 				<WithIcoMoon>
 					<Text style={styles.glyphicon}>{hash.user}</Text>
 				</WithIcoMoon>
