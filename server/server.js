@@ -106,8 +106,26 @@ app.post('/playlists/:playlistname', (req, res, next) => {
   res.send('It may or may not have been added to the database!');
 });
 
-app.get('/playlists', dbHelpers.getPlaylists,  (req, res, next) => {
-  
+app.get('/playlists', (req, res, next) => {
+  dbHelpers.getPlaylists();
+});
+
+app.get('/playlists/:playlistname', (req, res, next) => {
+  var playlistname = req.params.playlistname;
+  dbHelpers.getTracksFromPlaylists(playlistname);
+})
+
+app.remove('playlists/:playlistname', (req,res, next) => {
+  var playlistname = req.params.playlistname;
+  dbHelpers.deletePlaylist(playlistname);
+  res.send('Playlist deleted?!');
+});
+
+app.remove('playlists/:playlistname/:trackId', (req, res, next) => {
+  var playlistname = req.params.playlistname;
+  var trackID = req.body.trackID;
+  dbHelpers.deleteSongFromPlaylist(playlistname, trackID);
+  res.send('Song deleted from playlist?!');
 });
 
 app.post('/tracks', (req, res, next) => {

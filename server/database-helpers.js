@@ -67,10 +67,20 @@ const getPlaylists = () => {
 		PlaylistsRef
 			.orderByKey()
 			.once('value', dataSnapshot => {
-				dataSnapshot.forEach( snapshot => {
+				/*dataSnapshot.forEach( snapshot => {
 					var playlistName = snapshot.key();
 					var playlistTracks = snapshot.child();
-				});
+					return snapshot;
+				});*/
+				return dataSnapshot;
+			});
+};
+
+const getTracksFromPlaylists = (playlistname) => {
+		PlaylistsRef
+			.child(playlistname)
+			.once('value', snapshot => {
+				var trackId = snapshot.child();
 			});
 };
 
@@ -80,7 +90,8 @@ const API = {
 	checkExistingUser,
 	deletePlaylist,
 	deleteSongFromPlaylist,
-	getPlaylists
+	getPlaylists.
+	getTracksFromPlaylists
 };
 
 module.exports = API;
