@@ -28,6 +28,17 @@ From here you can scan and discover bluetooth-enabled devices by their UUIDs. Ru
 
 Lastly, to verify whether or not the pairing was successful run `paired-devices` to receive a list of all successfully paired bluetooth devices.
 
+Testing the connection
+
+```
+$ sudo l2ping XX:XX:XX:XX:XX:XX
+```
+
+If the connection is good (i.e. no packet loss), play a song like so:
+```
+$ sudo mpg321 file-name.mp3
+```
+
 ###### React Router
 https://www.npmjs.com/package/react-router
 
