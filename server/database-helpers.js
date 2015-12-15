@@ -92,7 +92,17 @@ const getPlaylists = (req, res, next) => {
 	PlaylistsRef
 		.orderByKey()
 		.once('value', dataSnapshot => {
-			res.data = dataSnapshot.val()
+			var exportArr = [];
+			dataSnapshot.forEach(snapshot => {
+				var obj = {};
+				var playlist = [];
+				for (var key in snapshot.exportVal()) {
+					playlist.push(snapshot.exportVal()[key]);
+				}
+				obj[snapshot.key()] = playlist;
+				exportArr.push(obj);
+			});
+			res.data = exportArr;
 			next();
 		});
 };

@@ -3,6 +3,8 @@ const React = require('react-native');
 const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
 const Queue = require('./Queue.js');
 const CurrentlyPlaying = require('./CurrentlyPlaying.js');
+const WhichPlaylist = require('./WhichPlaylist.js');
+const Separator = require('./Separator.js');
 
 const {
   AlertIOS,
@@ -22,12 +24,18 @@ class Single extends React.Component {
     super(props);
     this.state = {
       isLoading: false,
-      isPlaying: false
+      isPlaying: false,
+      isWpVisible: false
     };
   }
   togglePlaying() {
     this.setState({
       isPlaying: !this.state.isPlaying
+    });
+  }
+  toggleWpVisible() {
+    this.setState({
+      isWpVisible: !this.state.isWpVisible
     });
   }
   renderPlayingStatus() {
@@ -39,7 +47,8 @@ class Single extends React.Component {
     return <View />;
   }
   handlePress() {
-    let playlistname = 'test1';
+    this.toggleWpVisible();
+    // let playlistname = 'test1';
     // let data = {trackID: this.props.id};
     // fetch(`${SERVER_ENDPOINT}/playlist/${playlistname}`, {
     //   headers: {
@@ -56,24 +65,24 @@ class Single extends React.Component {
     // otherwise, if songs are playing, add the pressed song
     // to the global queue
 
-    this.props.informParent(this.props);
-    if(queue.isQueued(this.props.id)){
-      queue.removeItem(this.props.id);
-    } else {
-      queue.enqueue(this.props.id);
-    }
-    this.togglePlaying();
-    fetch(`${SERVER_ENDPOINT}/playsong`, {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      method: 'POST',
-      body: JSON.stringify(data)
-    })
-      .then(res => res.text())
-      .then(text => true)
-      .catch(err => AlertIOS.alert('Error!', 'Track.js... oops'));
+    // this.props.informParent(this.props);
+    // if(queue.isQueued(this.props.id)){
+    //   queue.removeItem(this.props.id);
+    // } else {
+    //   queue.enqueue(this.props.id);
+    // }
+    // this.togglePlaying();
+    // fetch(`${SERVER_ENDPOINT}/playsong`, {
+    //   headers: {
+    //     'Accept': 'application/json',
+    //     'Content-Type': 'application/json'
+    //   },
+    //   method: 'POST',
+    //   body: JSON.stringify(data)
+    // })
+    //   .then(res => res.text())
+    //   .then(text => true)
+    //   .catch(err => AlertIOS.alert('Error!', 'Track.js... oops'));
   }
   makeHumanReadable(ms) {
     let minutesRaw = ms/1000/60;
@@ -84,30 +93,30 @@ class Single extends React.Component {
     secondsPure = secondsPure.charAt(endOfString) + secondsPure.charAt(endOfString - 1);
     return `${minutesPure}:${secondsPure}`;
   }
+  renderWhichPlaylist() {
+    let wp = <View/>;
+    if (this.state.isWpVisible) {
+      wp = <WhichPlaylist playlists={this.props.playlists} />
+    }
+    return wp;
+  }
   render() {
     let artwork = this.props.artwork_url ? {uri:this.props.artwork_url} : require("../Assets/Pico-O-grey.png");
     return (
-      <TouchableHighlight
-        onPress={this.handlePress.bind(this)}>
-        <View style={styles.singleContainer}>
-          {this.renderPlayingStatus()}
-          <Image source={artwork} style={styles.image} onClick={this.props.whenClicked}/>
-          <View style={styles.infoContainer}>
-            <Text style={styles.title}>{this.props.title}</Text>
-            <Text style={styles.info}>{this.props.user.username}</Text>
-            <Text style={styles.info}>{this.makeHumanReadable(this.props.duration)}</Text>
+      <View>
+        <TouchableHighlight
+          onPress={this.handlePress.bind(this)}>
+          <View style={styles.singleContainer}>
+            {this.renderPlayingStatus()}
+            <Image source={artwork} style={styles.image} onClick={this.props.whenClicked}/>
+            <View style={styles.infoContainer}>
+              <Text style={styles.title}>{this.props.title}</Text>
+              <Text style={styles.info}>{this.props.user.username}</Text>
+              <Text style={styles.info}>{this.makeHumanReadable(this.props.duration)}</Text>
+            </View>
           </View>
-        </View>
-      </TouchableHighlight>
-    );
-  }
-}
-
-class Separator extends React.Component {
-  render() {
-    return (
-      <View style={styles.separatorContainer}>
-        <View style={styles.separator} />
+        </TouchableHighlight>
+        {this.renderWhichPlaylist()}
       </View>
     );
   }
@@ -117,8 +126,18 @@ class Tracks extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      nowPlaying: null
+      nowPlaying: null,
+      playlists: []
     };
+  }
+  componentDidMount() {
+    fetch(`${SERVER_ENDPOINT}/playlists`)
+      .then(res => res.json())
+      .then(json => {
+        this.setState({
+          playlists: [].concat(json)
+        })
+      });
   }
   updateNowPlaying(trackObj) {
     this.setState({
@@ -129,7 +148,10 @@ class Tracks extends React.Component{
     let list = this.props.results.map((trackObj, index) => {
       return (
         <View>
-          <Single key={index} {...trackObj} informParent={this.updateNowPlaying.bind(this)} />
+          <Single
+            key={index} {...trackObj}
+            informParent={this.updateNowPlaying.bind(this)}
+            playlists={this.state.playlists} />
           <Separator />
         </View>
       );
@@ -196,16 +218,6 @@ const styles = StyleSheet.create({
     height: 50,
     width: 50,
     marginRight: 5,
-  },
-  separator: {
-    height: 1,
-    width: 500,
-    backgroundColor: '#1e262c'
-  },
-  separatorContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center'
   },
   playing: {
     backgroundColor: '#99FF00',

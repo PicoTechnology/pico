@@ -29,6 +29,9 @@ class SearchSoundCloud extends React.Component {
   clearInputFields() {
     this._searchInput.setNativeProps({text: ''});
   }
+  componentWillMount() {
+
+  }
   handleSubmit() {
     this.clearInputFields();
     this.setState({isLoading: true});

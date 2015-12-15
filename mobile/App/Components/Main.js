@@ -19,15 +19,19 @@ const {width, height} = Dimensions.get('window');
 
 class Main extends React.Component {
   entranceButton() {
-    fetch(`${SERVER_ENDPOINT}/connect`)
-      .then(res => res.json())
-      .then(json => {
-        this.props.navigator.push({
-          component: Login,
-          title: 'Login'
-        });
-      })
-      .catch(err => AlertIOS.alert('Error', err));
+    this.props.navigator.push({
+      component: Login,
+      title: 'Login'
+    });
+    // fetch(`${SERVER_ENDPOINT}/connect`)
+    //   .then(res => res.json())
+    //   .then(json => {
+    //     this.props.navigator.push({
+    //       component: Login,
+    //       title: 'Login'
+    //     });
+    //   })
+    //   .catch(err => AlertIOS.alert('Error', err));
   }
   render() {
     return (
@@ -35,16 +39,11 @@ class Main extends React.Component {
         <View style={styles.bgImageWrapper}>
           <Image style={styles.bgImage} source={require('../Assets/tealSpeaker.jpg')}/>
         </View>
-        <View style={styles.glyphicon}>
-          <Glyphicon
-            icon="user"
-            size="medium" />
-        </View>
-        {/*<TouchableHighlight
+        <TouchableHighlight
           onPress={this.entranceButton.bind(this)}
           underlayColor="rgba(0,0,0,0)">
           <Image source={require('../Assets/PicoLogo-Medium.png')}/>
-        </TouchableHighlight>*/}
+        </TouchableHighlight>
       </View>
     );
   }
