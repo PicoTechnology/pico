@@ -4,14 +4,29 @@ If you are interested in contributing to this project, check out the CONTRIBUTIN
 
 ### Technology
 
-For Linux devices (i.e. Raspberry Pi) the Speaker module needs ALSA support
-install the following on your Raspberry Pi Device before starting the server:
+For Linux devices (e.g. Raspberry Pi) the Speaker module needs ALSA support.
+Install the following on your Raspberry Pi device before starting the server:
 
 ```
 $ sudo apt-get install libasound2-dev
 ```
+For more information on this, follow this link: https://github.com/TooTallNate/node-speaker
 
-https://github.com/TooTallNate/node-speaker
+###### Bluetooth Scanning
+
+Make sure that you have `bluetoothctl` installed on your device. If so, run:
+
+```
+$ bluetoothctl
+```
+
+From here you can scan and discover bluetooth-enabled devices by their UUIDs. Run `help` from the bluetoothctl prompt for a list of all of the available commands. Once you have discovered your bluetooth speaker's UUID, run the `pair` command followed by its UUID.
+
+```
+[bluetooth]# pair XX:XX:XX:XX:XX:XX
+```
+
+Lastly, to verify whether or not the pairing was successful run `paired-devices` to receive a list of all successfully paired bluetooth devices.
 
 ###### React Router
 https://www.npmjs.com/package/react-router
