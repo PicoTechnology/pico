@@ -33,6 +33,12 @@ class Single extends React.Component {
       isPlaying: !this.state.isPlaying
     });
   }
+  // selectSong() {
+  //   this.setState({
+  //     trackId: this.props.id
+  //   });
+  //   AlertIOS.alert(`trackId is ${this.state.trackId} ` )
+  // }
   toggleWpVisible() {
     this.setState({
       isWpVisible: !this.state.isWpVisible
@@ -47,6 +53,7 @@ class Single extends React.Component {
     return <View />;
   }
   handlePress() {
+    // this.selectSong();
     this.toggleWpVisible();
     // let playlistname = 'test1';
     // let data = {trackID: this.props.id};
@@ -83,6 +90,7 @@ class Single extends React.Component {
     //   .then(res => res.text())
     //   .then(text => true)
     //   .catch(err => AlertIOS.alert('Error!', 'Track.js... oops'));
+
   }
   makeHumanReadable(ms) {
     let minutesRaw = ms/1000/60;
@@ -96,7 +104,9 @@ class Single extends React.Component {
   renderWhichPlaylist() {
     let wp = <View/>;
     if (this.state.isWpVisible) {
-      wp = <WhichPlaylist playlists={this.props.playlists} />
+      wp = <WhichPlaylist
+              playlists={this.props.playlists}
+              trackId={this.props.id}/>
     }
     return wp;
   }
