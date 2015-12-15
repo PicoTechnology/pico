@@ -31,7 +31,7 @@ Lastly, to verify whether or not the pairing was successful run `paired-devices`
 Testing the connection
 
 ```
-$ sudo l2ping XX:XX:XX:XX:XX:XX
+$ sudo l2ping -c 1 XX:XX:XX:XX:XX:XX
 ```
 
 If the connection is good (i.e. no packet loss), play a song like so:
