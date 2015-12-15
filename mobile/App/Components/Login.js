@@ -55,7 +55,7 @@ class Login extends React.Component {
 		return (
 			<View style={styles.mainContainer}>
 				<View style={styles.bgImageWrapper}>
-						<Image style={styles.bgImage} source={require('../Assets/login.jpg')}/>
+					<Image style={styles.bgImage} source={require('../Assets/login.jpg')}/>
 				</View>
 				<Text style={styles.title}></Text>
 				<TextInput
