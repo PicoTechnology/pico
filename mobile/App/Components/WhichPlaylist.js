@@ -58,15 +58,17 @@ class Playlist extends React.Component {
 class Instant extends React.Component {
   render() {
     return (
-      <View>
-        <View>
-          <TouchableHighlight>
+      <View style={styles.instantContainer}>
+        <TouchableHighlight >
+          <View>
             <Text style={styles.instantText}>Play Now</Text>
-          </TouchableHighlight>
-          <TouchableHighlight>
+          </View>
+        </TouchableHighlight>
+        <TouchableHighlight>
+          <View>
             <Text style={styles.instantText}>Add to Queue</Text>
-          </TouchableHighlight>
-        </View>
+          </View>
+        </TouchableHighlight>
       </View>
     );
   }
@@ -76,20 +78,23 @@ class WhichPlaylist extends React.Component {
   render() {
     let list = this.props.playlists.map((playlist, index) => {
       return (
-        <View key={index}
+        <View
+          key={index}
           style={styles.playlistContainer}>
-          <Playlist data={playlist} />
+          <Playlist
+          data={playlist} />
           <Separator />
         </View>
       );
     });
     return (
-      <View
-        style={styles.mainContainer}>
+      <View style={styles.mainContainer}>
         <ScrollView
           onScroll={() => console.log('Playlist OnScroll activated!')}
           showVerticalScrollIndicator={true}>
-          <Instant style={styles.instantContainer}/>
+          <View>
+            <Instant/>
+          </View>
           {list}
           <TextInput />
         </ScrollView>
@@ -104,10 +109,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#161c20',
   },
   playlistContainer: {
-    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
     paddingTop: 3,
-    paddingBottom: 3,
-    justifyContent: 'center'
+    paddingLeft: 3,
+    paddingBottom: 3
   },
   infoContainer: {
     flexDirection: 'column'
@@ -117,11 +124,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   instantContainer: {
+    justifyContent: 'space-around',
     flexDirection: 'row',
-    width: .5,
     paddingTop: 3,
     paddingBottom: 3,
-    backgroundColor: '#f1f3f5',
+    backgroundColor: 'white'
   },
   instantText: {
     color: '#161c20',
