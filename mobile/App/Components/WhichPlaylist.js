@@ -1,6 +1,7 @@
 const React = require('react-native');
 const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
 const Separator = require('./Separator.js');
+const Tracks = require('./Tracks.js');
 
 const {
   AlertIOS,
@@ -28,20 +29,17 @@ class Playlist extends React.Component {
     });
   }
   handlePress() {
-    let playlistname = {};
-    this.toggleSelected;
-    fetch(`${SERVER_ENDPOINT}/playlist/${playlistname}`, {
+    let playlistname = `${Object.keys(this.props.data)[0]}`;
+    let trackId = `${this.props.trackId}`;
+    this.toggleSelected();
+    fetch(`${SERVER_ENDPOINT}/playlists/${playlistname}`, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       method: 'POST',
-      body: JSON.stringify(data)
-    })
-      .then()
-      .then(res => res.json())
-      .then(json => true)
-      .catch(err => AlertIOS.alert('Error', 'Error adding song to playlist...apologies!'));
+      body: JSON.stringify({trackID: `${trackId}`})
+    });
   }
   render() {
     return(
@@ -80,9 +78,10 @@ class WhichPlaylist extends React.Component {
       return (
         <View
           key={index}
-          style={styles.playlistContainer}>
+          style={styles.playlistContainer} >
           <Playlist
-          data={playlist} />
+          data={playlist}
+          trackId={this.props.trackId}/>
           <Separator />
         </View>
       );
