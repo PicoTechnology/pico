@@ -55,6 +55,23 @@ class Playlist extends React.Component {
   }
 }
 
+class Instant extends React.Component {
+  render() {
+    return (
+      <View>
+        <View>
+          <TouchableHighlight>
+            <Text style={styles.instantText}>Play Now</Text>
+          </TouchableHighlight>
+          <TouchableHighlight>
+            <Text style={styles.instantText}>Add to Queue</Text>
+          </TouchableHighlight>
+        </View>
+      </View>
+    );
+  }
+}
+
 class WhichPlaylist extends React.Component {
   render() {
     let list = this.props.playlists.map((playlist, index) => {
@@ -72,7 +89,7 @@ class WhichPlaylist extends React.Component {
         <ScrollView
           onScroll={() => console.log('Playlist OnScroll activated!')}
           showVerticalScrollIndicator={true}>
-
+          <Instant style={styles.instantContainer}/>
           {list}
           <TextInput />
         </ScrollView>
@@ -89,18 +106,25 @@ const styles = StyleSheet.create({
   playlistContainer: {
     flexDirection: 'row',
     paddingTop: 3,
-    paddingBottom: 3
-  },
-  addToQueueContainer: {
-    flexDirection: 'row',
-    paddingTop: 3,
-    paddingBottom: 3
+    paddingBottom: 3,
+    justifyContent: 'center'
   },
   infoContainer: {
     flexDirection: 'column'
   },
   title: {
     color: '#f1f3f5',
+    fontWeight: 'bold'
+  },
+  instantContainer: {
+    flexDirection: 'row',
+    width: .5,
+    paddingTop: 3,
+    paddingBottom: 3,
+    backgroundColor: '#f1f3f5',
+  },
+  instantText: {
+    color: '#161c20',
     fontWeight: 'bold'
   }
 });
