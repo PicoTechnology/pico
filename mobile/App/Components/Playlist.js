@@ -17,21 +17,20 @@ var playlists = [];
 
 class List extends React.Component {
   handlePress() {
-    let playlistname = {this.props.playlistName};
+    let playlistname = {this.props.playlistname};
     fetch(`${SERVER_ENDPOINT}/playlists/:playlistname`, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
       method: 'GET',
-      body: JSON.stringify(playlistname);
     })
       .then(res => playlists.push(res.text()))
-      .catch(err => AlertIOS.alert('Error!', 'Unable to get playlist.'));
+      .catch(err => AlertIOS.alert('Error!', `Unable to get playlist: ${playlistname}`));
   }
   render() {
     return (
-      <TouchableHighlight onPress={this.handlePress.bind(this)}
+      <TouchableHighlight onPress={this.handlePress.bind(this) style={styls.list}}
         <View>
           <Text>{this.props.playlistName}</Text>
         </View>
@@ -62,7 +61,7 @@ class ScrollLists extends React.Component {
     });
     return (
       <View>
-        <ScrollView horizontal={true} informParent={this.updateNowViewing.bind(this)}> {list} </ScrollView>
+        <ScrollView horizontal={true} informParent={this.updateNowViewing.bind(this)} style={styles.scrollListContainer}> {list} </ScrollView>
       </View>
     )
   }
@@ -207,6 +206,14 @@ class PlayList extends React.Component{
 }
 
 const styles = StyleSheet.create({
+  scrollListContainer: {
+    backgroundColor: '',
+    padding: 5,
+
+  },
+  list: {
+
+  },
   mainContainer: {
     padding: 5,
     backgroundColor: '#161c20',
