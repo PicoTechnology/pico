@@ -99,11 +99,14 @@ app.post('/users', dbHelpers.addUser, (req, res, next) => {
   return res.send(`Successfully added: ${res.result}`);
 });
 
-app.post('/playlists/:playlistname', (req, res, next) => {
-  var playlistname = req.params.playlistname;
-  var trackID = req.body.trackID;
-  dbHelpers.addToPlaylist(playlistname, trackID);
-  res.send('It may or may not have been added to the database!');
+app.post('/playlists', dbHelpers.addPlaylist, (req, res, next) => {
+  if(res.err) return res.send(`ERROR Server.js: ${res.err}`);
+  res.send(`Successfully added playlist: ${req.body.playlistname}`);
+});
+
+app.post('/playlists/:playlistname', dbHelpers.addToPlaylist, (req, res, next) => {
+  if(res.err) return res.send(`ERROR Server.js: ${res.err}`);
+  res.send(`Successfully added track: ${req.body.trackID} to playlist: ${req.params.playlistname}`);
 });
 
 app.get('/playlists', dbHelpers.getPlaylists, (req, res, next) => {
@@ -156,5 +159,4 @@ app.get('/authorize', (req, res, next) => {
 app.listen(PORT);
 console.log(`Now listening on localhost:${PORT}...`);
 dbHelpers.connectToDB();
-dbHelpers.addPlaylist({name: 'Casandra', trackIDs: [1230,1231,1232]});
 bluetoothHelpers.startListening();

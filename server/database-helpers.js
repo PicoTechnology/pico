@@ -38,17 +38,35 @@ const checkExistingUser = (userObj, userExistsCb) => {
 		});
 };
 
-const addPlaylist = (playlistObj) => {
-	var playlistName = playlistObj.name;
-	PlaylistsRef
-		.child(playlistObj.name)
-		.set(playlistObj.trackIDs);
-};
-
-const addToPlaylist = (playlistname, trackID) => {
+const addPlaylist = (req, res, next) => {
+	var playlistname = req.body.playlistname;
+	var trackIDs = req.body.trackIDs;
 	PlaylistsRef
 		.child(playlistname)
-		.push(trackID);
+		.set(trackIDs, err => {
+			if(err) {
+				res.err = err;
+				return next();
+			}
+			next();
+		});
+};
+
+const addToPlaylist = (req, res, next) => {
+	var playlistname = req.params.playlistname;
+	var trackID = req.body.trackID;
+	console.log(`adding ${trackID} to ${playlistname}`);
+	PlaylistsRef
+		.child(playlistname)
+		.child(trackID)
+		.set(trackID,
+			err => {
+				if(err) {
+					res.err = err;
+					return next();
+				}
+				next();
+			});
 };
 
 const deletePlaylist = (req, res, next) => {
@@ -120,6 +138,7 @@ const getTracksFromPlaylist = (req, res, next) => {
 const API = {
 	connectToDB,
 	addPlaylist,
+	addToPlaylist,
 	addUser,
 	checkExistingUser,
 	deletePlaylist,
