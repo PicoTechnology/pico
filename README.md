@@ -4,6 +4,15 @@ If you are interested in contributing to this project, check out the CONTRIBUTIN
 
 ### Technology
 
+For Linux devices (i.e. Raspberry Pi) the Speaker module needs ALSA support
+install the following on your Raspberry Pi Device before starting the server:
+
+```
+$ sudo apt-get install libasound2-dev
+```
+
+https://github.com/TooTallNate/node-speaker
+
 ###### React Router
 https://www.npmjs.com/package/react-router
 
