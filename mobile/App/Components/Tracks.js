@@ -174,11 +174,7 @@ class Tracks extends React.Component{
           showVerticalScrollIndicator={true}>
           {list}
         </ScrollView>
-        {/* Keep the following component for debugging! */}
-        <View style={styles.floatingMessage}>
-          <Text style={styles.messageText}>{this.state.nowPlaying}</Text>
-          <Text style={styles.messageText}>{queue.storage}</Text>
-        </View>
+
         <CurrentlyPlaying {...this.state.nowPlaying} />
       </View>
     );
