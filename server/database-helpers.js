@@ -68,8 +68,10 @@ const addToPlaylist = (req, res, next) => {
 				if(err) {
 					res.err = err;
 					return next();
+				} else {
+					// assigns to res.data
+					getPlaylists(req, res, next);
 				}
-				next();
 			});
 };
 

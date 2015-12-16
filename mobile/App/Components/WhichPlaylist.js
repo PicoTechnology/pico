@@ -2,6 +2,7 @@ const React = require('react-native');
 const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
 const Separator = require('./Separator.js');
 const Tracks = require('./Tracks.js');
+const PlaylistViewer = require('./PlaylistViewer.js');
 
 const {
   AlertIOS,
@@ -39,7 +40,15 @@ class Playlist extends React.Component {
       },
       method: 'POST',
       body: JSON.stringify({trackObj: trackObj})
-    });
+    })
+      .then(res => res.json())
+      .then(json => {
+        this.props.navigator.push({
+          title: 'test',
+          passProps: {results: json},
+          component: PlaylistViewer
+        });
+      });
   }
   render() {
     return(

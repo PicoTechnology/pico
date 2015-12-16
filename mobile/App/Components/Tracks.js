@@ -153,7 +153,7 @@ class Tracks extends React.Component{
   updatePlaylists(newPlaylist) {
     var playlistObj = {};
     playlistObj[newPlaylist.playlistname] = [];
-    AlertIOS.alert('xyz', JSON.stringify(playlistObj, null, 2));
+    // AlertIOS.alert('xyz', JSON.stringify(playlistObj, null, 2));
     this.setState({
       playlists: this.state.playlists.concat(playlistObj)
     });

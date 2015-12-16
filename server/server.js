@@ -106,7 +106,8 @@ app.post('/playlists', dbHelpers.addPlaylist, (req, res, next) => {
 
 app.post('/playlists/:playlistname', dbHelpers.addToPlaylist, (req, res, next) => {
   if(res.err) return res.send(`ERROR Server.js: ${res.err}`);
-  res.send(`Successfully added track: ${req.body.trackID} to playlist: ${req.params.playlistname}`);
+  console.log(`After posting song, return:  ${JSON.stringify(res.data)}`);
+  res.send(res.data);
 });
 
 app.get('/playlists', dbHelpers.getPlaylists, (req, res, next) => {

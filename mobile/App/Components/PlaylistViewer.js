@@ -1,7 +1,6 @@
 'use strict';
 const React = require('react-native');
 const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
-const dbHelper = require('../../../server/database-helpers.js');
 
 const {
   AlertIOS,
@@ -15,22 +14,23 @@ const {
 
 var playlists = [];
 
-class List extends React.Component {
+class PlaylistName extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      selected: false
+    };
+  }
   handlePress() {
-    let playlistname = {this.props.playlistname};
-    fetch(`${SERVER_ENDPOINT}/playlists/:playlistname`, {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      method: 'GET',
-    })
-      .then(res => playlists.push(res.text()))
-      .catch(err => AlertIOS.alert('Error!', `Unable to get playlist: ${playlistname}`));
+    this.setState({
+      selected: true
+    });
+    this.props.updateParentState(this.props.name);
+    // render this playlist
   }
   render() {
     return (
-      <TouchableHighlight onPress={this.handlePress.bind(this) style={styls.list}}
+      <TouchableHighlight onPress={this.handlePress.bind(this)} style={styles.list} >
         <View>
           <Text>{this.props.playlistName}</Text>
         </View>
@@ -43,25 +43,27 @@ class ScrollLists extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      nowViewing: null;
+      nowViewing: null
     };
   }
   updateNowViewing(playlistName) {
     this.setState({
-      nowViewing: playlistName;
-    })
+      nowViewing: playlistName
+    });
+    this.props.updateParentState(playlistName);
   }
   render() {
-    let list = this.props.playlists.map((playlistObj, index) => {
+    let playlistNames = this.props.results.map((playlistObj, index) => {
       return (
-          <View>
-            <List key={index} {...playlistObj} />
-          </View>
+        <PlaylistName
+          key={index}
+          name={Object.keys(playlistObj)[0]}
+          updateParentState={this.updateNowViewing.bind(this)} />
       );
     });
     return (
       <View>
-        <ScrollView horizontal={true} informParent={this.updateNowViewing.bind(this)} style={styles.scrollListContainer}> {list} </ScrollView>
+        <ScrollView horizontal={true} informParent={this.updateNowViewing.bind(this)} style={styles.scrollListContainer}> {playlistNames} </ScrollView>
       </View>
     )
   }
@@ -115,8 +117,8 @@ class Single extends React.Component {
           'Content-Type': 'application/json'
         },
         method: 'DELETE',
-        body: JSON.stringify(data);
-      })
+        body: JSON.stringify(data)
+      });
   }
   makeHumanReadable(ms) {
     let minutesRaw = ms/1000/60;
@@ -170,7 +172,7 @@ class Tracks extends React.Component {
     });
   }
   render() {
-    let list = this.props.playlist.playlistTracks.map((trackObj, index) => {
+    let list = this.props.data.map((trackObj, index) => {
       return (
         <View>
           <Single key={index} {...trackObj} informParent={this.updatenowPlaying.bind(this)} />
@@ -196,18 +198,37 @@ class Tracks extends React.Component {
   }
 }
 
-class PlayList extends React.Component{
+class PlayListViewer extends React.Component{
+  constructor(props) {
+    super(props);
+    this.state = {
+      nowViewing: null
+    };
+  }
+  updateNowViewing(playlistName) {
+    this.setState({
+      nowViewing: playlistName
+    });
+  }
   render() {
+    // find nowViewing playlist data
+    var nowViewingList = this.props.results.map((playlistObj, index) => {
+      if(Object.keys(playlistObj)[0] === `${playlistName}`) {
+        return Object.keys(playlistObj);
+      }
+    })
     return (
-      <ScrollList />
-      <Tracks />
+      <View>
+        <ScrollLists updateParentState={this.updateNowViewing.bind(this)} />
+        <Tracks data={nowViewingList}/>
+      </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
   scrollListContainer: {
-    backgroundColor: '',
+    backgroundColor: '#161c20',
     padding: 5,
 
   },
@@ -275,4 +296,4 @@ const styles = StyleSheet.create({
   }
 });
 
-module.exports = PlayList;
+module.exports = PlayListViewer;
