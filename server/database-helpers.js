@@ -39,27 +39,31 @@ const checkExistingUser = (userObj, userExistsCb) => {
 };
 
 const addPlaylist = (req, res, next) => {
+  console.log(`req.body: ${JSON.stringify(req.body, null, 2)}`);
 	var playlistname = req.body.playlistname;
 	var trackIDs = req.body.trackIDs;
 	PlaylistsRef
 		.child(playlistname)
 		.set(trackIDs, err => {
 			if(err) {
+        console.log('err!!');
 				res.err = err;
 				return next();
 			}
-			next();
+      console.log('no err...');
+			return next();
 		});
 };
 
 const addToPlaylist = (req, res, next) => {
+  console.log(`req.body: ${JSON.stringify(req.body, null, 2)}`);
 	var playlistname = req.params.playlistname;
-	var trackID = req.body.trackID;
-	console.log(`adding ${trackID} to ${playlistname}`);
+	var trackObj = req.body.trackObj;
+	console.log(`adding ${trackObj.id} to ${playlistname}`);
 	PlaylistsRef
 		.child(playlistname)
-		.child(trackID)
-		.set(trackID,
+		.child(trackObj.id)
+		.set(trackObj,
 			err => {
 				if(err) {
 					res.err = err;

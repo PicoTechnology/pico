@@ -106,12 +106,13 @@ class Single extends React.Component {
     if (this.state.isWpVisible) {
       wp = <WhichPlaylist
               playlists={this.props.playlists}
-              trackId={this.props.id}/>
+              trackObj={this.props.trackObj}
+              updateParentState={this.props.updateParentState} />
     }
     return wp;
   }
   render() {
-    let artwork = this.props.artwork_url ? {uri:this.props.artwork_url} : require("../Assets/Pico-O-grey.png");
+    let artwork = this.props.trackObj.artwork_url ? {uri:this.props.trackObj.artwork_url} : require("../Assets/Pico-O-grey.png");
     return (
       <View>
         <TouchableHighlight
@@ -120,9 +121,9 @@ class Single extends React.Component {
             {this.renderPlayingStatus()}
             <Image source={artwork} style={styles.image} onClick={this.props.whenClicked}/>
             <View style={styles.infoContainer}>
-              <Text style={styles.title}>{this.props.title}</Text>
-              <Text style={styles.info}>{this.props.user.username}</Text>
-              <Text style={styles.info}>{this.makeHumanReadable(this.props.duration)}</Text>
+              <Text style={styles.title}>{this.props.trackObj.title}</Text>
+              <Text style={styles.info}>{this.props.trackObj.user.username}</Text>
+              <Text style={styles.info}>{this.makeHumanReadable(this.props.trackObj.duration)}</Text>
             </View>
           </View>
         </TouchableHighlight>
@@ -149,6 +150,14 @@ class Tracks extends React.Component{
         })
       });
   }
+  updatePlaylists(newPlaylist) {
+    var playlistObj = {};
+    playlistObj[newPlaylist.playlistname] = [];
+    AlertIOS.alert('xyz', JSON.stringify(playlistObj, null, 2));
+    this.setState({
+      playlists: this.state.playlists.concat(playlistObj)
+    });
+  }
   updateNowPlaying(trackObj) {
     this.setState({
       nowPlaying: trackObj,
@@ -159,9 +168,11 @@ class Tracks extends React.Component{
       return (
         <View>
           <Single
-            key={index} {...trackObj}
+            key={index}
+            trackObj={trackObj}
             informParent={this.updateNowPlaying.bind(this)}
-            playlists={this.state.playlists} />
+            playlists={this.state.playlists}
+            updateParentState={this.updatePlaylists.bind(this)} />
           <Separator />
         </View>
       );
@@ -174,11 +185,7 @@ class Tracks extends React.Component{
           showVerticalScrollIndicator={true}>
           {list}
         </ScrollView>
-        {/* Keep the following component for debugging! */}
-        <View style={styles.floatingMessage}>
-          <Text style={styles.messageText}>{this.state.nowPlaying}</Text>
-          <Text style={styles.messageText}>{queue.storage}</Text>
-        </View>
+
         <CurrentlyPlaying {...this.state.nowPlaying} />
       </View>
     );

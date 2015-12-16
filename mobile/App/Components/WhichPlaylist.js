@@ -29,8 +29,8 @@ class Playlist extends React.Component {
     });
   }
   handlePress() {
-    let playlistname = `${Object.keys(this.props.data)[0]}`;
-    let trackId = `${this.props.trackId}`;
+    let playlistname = Object.keys(this.props.data)[0];
+    let trackObj = this.props.trackObj;
     this.toggleSelected();
     fetch(`${SERVER_ENDPOINT}/playlists/${playlistname}`, {
       headers: {
@@ -38,7 +38,7 @@ class Playlist extends React.Component {
         'Content-Type': 'application/json'
       },
       method: 'POST',
-      body: JSON.stringify({trackID: `${trackId}`})
+      body: JSON.stringify({trackObj: trackObj})
     });
   }
   render() {
@@ -46,7 +46,7 @@ class Playlist extends React.Component {
       <TouchableHighlight
         onPress={this.handlePress.bind(this)}>
         <View style={styles.playlistContainer}>
-          <Text style={styles.title}>{Object.keys(this.props.data)[0]}</Text>
+          <Text style={styles.playlistText}>{Object.keys(this.props.data)[0]}</Text>
         </View>
       </TouchableHighlight>
     );
@@ -57,15 +57,63 @@ class Instant extends React.Component {
   render() {
     return (
       <View style={styles.instantContainer}>
-        <TouchableHighlight >
-          <View>
+        <View style={styles.instantBtn}>
+          <TouchableHighlight >
             <Text style={styles.instantText}>Play Now</Text>
-          </View>
-        </TouchableHighlight>
-        <TouchableHighlight>
-          <View>
+          </TouchableHighlight>
+        </View>
+        <View style={styles.instantBtn}>
+          <TouchableHighlight>
             <Text style={styles.instantText}>Add to Queue</Text>
-          </View>
+          </TouchableHighlight>
+        </View>
+      </View>
+    );
+  }
+}
+
+class PlaylistCreator extends React.Component {
+  constructor(props) {
+  super(props);
+    this.state = {
+      playlistname: ''
+    };
+  }
+  handlePress() {
+    var data = {
+      playlistname: this.state.playlistname,
+      trackIDs: "[]"
+    };
+    fetch(`${SERVER_ENDPOINT}/playlists`, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+      .then(res => {
+        this.props.updateParentState(data);
+      })
+      .catch(err => AlertIOS.alert('Error', err));
+  }
+  handleChange(event) {
+    this.setState({
+      playlistname: event.nativeEvent.text
+    });
+  }
+  render() {
+    return (
+      <View style={styles.playlistContainer}>
+        <TextInput
+          style={styles.playlistInput}
+          placeholder="Create New Playlist"
+          placeholderTextColor="#FFF"
+          onChange={this.handleChange.bind(this)}/>
+        <TouchableHighlight
+          style={styles.button}
+          onPress={this.handlePress.bind(this)}>
+          <Text style={styles.buttonText}> SUBMIT </Text>
         </TouchableHighlight>
       </View>
     );
@@ -80,8 +128,8 @@ class WhichPlaylist extends React.Component {
           key={index}
           style={styles.playlistContainer} >
           <Playlist
-          data={playlist}
-          trackId={this.props.trackId}/>
+            data={playlist}
+            trackObj={this.props.trackObj}/>
           <Separator />
         </View>
       );
@@ -91,11 +139,15 @@ class WhichPlaylist extends React.Component {
         <ScrollView
           onScroll={() => console.log('Playlist OnScroll activated!')}
           showVerticalScrollIndicator={true}>
+          <Instant/>
           <View>
-            <Instant/>
+            <Text style={styles.header}>Add to Playlist</Text>
           </View>
-          {list}
-          <TextInput />
+          <View>
+            {list}
+          </View>
+          <PlaylistCreator
+            updateParentState={this.props.updateParentState} />
         </ScrollView>
       </View>
     );
@@ -104,34 +156,74 @@ class WhichPlaylist extends React.Component {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    padding: 5,
+    padding: 3,
     backgroundColor: '#161c20',
+  },
+  playlistInput: {
+    height: 50,
+    padding: 4,
+    marginRight: 5,
+    marginBottom: 10,
+    fontSize: 23,
+    borderWidth: 1,
+    borderColor: '#99FF00',
+    borderRadius: 8,
+    color: 'white'
+  },
+  button: {
+    height: 45,
+    flexDirection: 'row',
+    backgroundColor: '#99FF00',
+    borderColor: 'black',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 10,
+    marginTop: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  },
+  buttonText: {
+    fontSize: 18,
+    color: 'black',
+    alignSelf: 'center',
+    fontWeight: 'bold'
   },
   playlistContainer: {
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
     paddingTop: 3,
-    paddingLeft: 3,
     paddingBottom: 3
+  },
+  playlistText: {
+    fontSize: 23,
+    color: '#f1f3f5',
+    fontWeight: 'bold'
   },
   infoContainer: {
     flexDirection: 'column'
   },
-  title: {
+  header: {
+    textAlign: 'center',
     color: '#f1f3f5',
-    fontWeight: 'bold'
+    fontSize: 23
+
   },
   instantContainer: {
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     flexDirection: 'row',
     paddingTop: 3,
     paddingBottom: 3,
-    backgroundColor: 'white'
+    backgroundColor: 'grey'
+  },
+  instantBtn: {
+    alignItems: 'center',
+    backgroundColor: 'red'
   },
   instantText: {
     color: '#161c20',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontSize: 15
   }
 });
 
