@@ -57,12 +57,16 @@ class Instant extends React.Component {
   render() {
     return (
       <View style={styles.instantContainer}>
-        <TouchableHighlight >
-          <Text style={styles.instantText}>Play Now</Text>
-        </TouchableHighlight>
-        <TouchableHighlight>
-          <Text style={styles.instantText}>Add to Queue</Text>
-        </TouchableHighlight>
+        <View style={styles.instantBtn}>
+          <TouchableHighlight >
+            <Text style={styles.instantText}>Play Now</Text>
+          </TouchableHighlight>
+        </View>
+        <View style={styles.instantBtn}>
+          <TouchableHighlight>
+            <Text style={styles.instantText}>Add to Queue</Text>
+          </TouchableHighlight>
+        </View>
       </View>
     );
   }
@@ -95,10 +99,13 @@ class WhichPlaylist extends React.Component {
             {list}
           </View>
           <TextInput
-            style={styles.loginInput}
+            style={styles.playlistInput}
             placeholder="Create New Playlist"
             placeholderTextColor="#FFF"/>
-
+          <TouchableHighlight
+            style={styles.button}>
+            <Text style={styles.buttonText}> SUBMIT </Text>>
+          </TouchableHighlight>
         </ScrollView>
       </View>
     );
@@ -110,7 +117,7 @@ const styles = StyleSheet.create({
     padding: 3,
     backgroundColor: '#161c20',
   },
-  loginInput: {
+  playlistInput: {
     height: 50,
     padding: 4,
     marginRight: 5,
@@ -120,6 +127,24 @@ const styles = StyleSheet.create({
     borderColor: '#99FF00',
     borderRadius: 8,
     color: 'white'
+  },
+  button: {
+    height: 45,
+    flexDirection: 'row',
+    backgroundColor: '#99FF00',
+    borderColor: 'black',
+    borderWidth: 1,
+    borderRadius: 8,
+    marginBottom: 10,
+    marginTop: 10,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  },
+  buttonText: {
+    fontSize: 18,
+    color: 'black',
+    alignSelf: 'center',
+    fontWeight: 'bold'
   },
   playlistContainer: {
     alignItems: 'center',
@@ -147,7 +172,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     paddingTop: 3,
     paddingBottom: 3,
-    backgroundColor: 'white'
+    backgroundColor: 'grey'
+  },
+  instantBtn: {
+    alignItems: 'center',
+    backgroundColor: 'red'
   },
   instantText: {
     color: '#161c20',
