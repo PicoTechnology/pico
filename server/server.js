@@ -101,7 +101,7 @@ app.post('/users', dbHelpers.addUser, (req, res, next) => {
 
 app.post('/playlists', dbHelpers.addPlaylist, (req, res, next) => {
   if(res.err) return res.send(`ERROR Server.js: ${res.err}`);
-  res.send(`Successfully added playlist: ${req.body.playlistname}`);
+  res.send(`Successfully created playlist: ${req.body.playlistname}`);
 });
 
 app.post('/playlists/:playlistname', dbHelpers.addToPlaylist, (req, res, next) => {

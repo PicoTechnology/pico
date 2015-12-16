@@ -29,8 +29,8 @@ class Playlist extends React.Component {
     });
   }
   handlePress() {
-    let playlistname = `${Object.keys(this.props.data)[0]}`;
-    let trackId = `${this.props.trackId}`;
+    let playlistname = Object.keys(this.props.data)[0];
+    let trackObj = this.props.trackObj;
     this.toggleSelected();
     fetch(`${SERVER_ENDPOINT}/playlists/${playlistname}`, {
       headers: {
@@ -38,7 +38,7 @@ class Playlist extends React.Component {
         'Content-Type': 'application/json'
       },
       method: 'POST',
-      body: JSON.stringify({trackID: `${trackId}`})
+      body: JSON.stringify({trackObj: trackObj})
     });
   }
   render() {
@@ -72,6 +72,54 @@ class Instant extends React.Component {
   }
 }
 
+class PlaylistCreator extends React.Component {
+  constructor(props) {
+  super(props);
+    this.state = {
+      playlistname: ''
+    };
+  }
+  handlePress() {
+    var data = {
+      playlistname: this.state.playlistname,
+      trackIDs: "[]"
+    };
+    fetch(`${SERVER_ENDPOINT}/playlists`, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+      .then(res => {
+        this.props.updateParentState(data);
+      })
+      .catch(err => AlertIOS.alert('Error', err));
+  }
+  handleChange(event) {
+    this.setState({
+      playlistname: event.nativeEvent.text
+    });
+  }
+  render() {
+    return (
+      <View style={styles.playlistContainer}>
+        <TextInput
+          style={styles.playlistInput}
+          placeholder="Create New Playlist"
+          placeholderTextColor="#FFF"
+          onChange={this.handleChange.bind(this)}/>
+        <TouchableHighlight
+          style={styles.button}
+          onPress={this.handlePress.bind(this)}>
+          <Text style={styles.buttonText}> SUBMIT </Text>
+        </TouchableHighlight>
+      </View>
+    );
+  }
+}
+
 class WhichPlaylist extends React.Component {
   render() {
     let list = this.props.playlists.map((playlist, index) => {
@@ -80,8 +128,8 @@ class WhichPlaylist extends React.Component {
           key={index}
           style={styles.playlistContainer} >
           <Playlist
-          data={playlist}
-          trackId={this.props.trackId}/>
+            data={playlist}
+            trackObj={this.props.trackObj}/>
           <Separator />
         </View>
       );
@@ -98,14 +146,8 @@ class WhichPlaylist extends React.Component {
           <View>
             {list}
           </View>
-          <TextInput
-            style={styles.playlistInput}
-            placeholder="Create New Playlist"
-            placeholderTextColor="#FFF"/>
-          <TouchableHighlight
-            style={styles.button}>
-            <Text style={styles.buttonText}> SUBMIT </Text>>
-          </TouchableHighlight>
+          <PlaylistCreator
+            updateParentState={this.props.updateParentState} />
         </ScrollView>
       </View>
     );
