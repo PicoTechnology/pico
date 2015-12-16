@@ -1,7 +1,26 @@
+'use strict';
+
+const noble = require('noble');
 const btSerial = new (require('bluetooth-serial-port')).BluetoothSerialPort();
 
-module.exports = {
-	startListening: () => {
+const Bluetooth = {
+	initializeBluetooth() {
+
+		noble.on('scanStart', () => console.log('using noble to scan for devices...'));
+		noble.on('scanStop', () => console.log('noble scanning timed out!'));
+
+		noble.on('discover', peripheral => {
+			noble.stopScanning();
+			console.log(`found peripheral: ${peripheral}`);
+		});
+
+		noble.on('connect', () => console.log('connected to a device!'));
+		noble.on('disconnect', () => console.log('disconnected from a device.'));
+
+		noble.state = 'poweredOn';
+		noble.startScanning();
+	},
+	startListening() {
 		console.log('Listening for bluetooth...');
 		btSerial.on('found', function(address, name) {
 		  console.log('Found a device! Now looking for a serial port channel...');
@@ -26,13 +45,15 @@ module.exports = {
 		  });
 		});
 	},
-	beginSearch: () => {
+	beginSearch() {
 		console.log('Inquiring...');
 		btSerial.inquire();
 	},
-	closeConnection: () => {
+	closeConnection() {
 		// close the connection when you're ready
     console.log('Closing bluetooth connection.');
     btSerial.close();
 	}
 };
+
+module.exports = Bluetooth;

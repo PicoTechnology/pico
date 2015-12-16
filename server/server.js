@@ -159,4 +159,5 @@ app.get('/authorize', (req, res, next) => {
 app.listen(PORT);
 console.log(`Now listening on localhost:${PORT}...`);
 dbHelpers.connectToDB();
-bluetoothHelpers.startListening();
+// bluetooth
+bluetoothHelpers.initializeBluetooth();
