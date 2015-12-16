@@ -46,7 +46,7 @@ class Playlist extends React.Component {
       <TouchableHighlight
         onPress={this.handlePress.bind(this)}>
         <View style={styles.playlistContainer}>
-          <Text style={styles.title}>{Object.keys(this.props.data)[0]}</Text>
+          <Text style={styles.playlistText}>{Object.keys(this.props.data)[0]}</Text>
         </View>
       </TouchableHighlight>
     );
@@ -58,14 +58,10 @@ class Instant extends React.Component {
     return (
       <View style={styles.instantContainer}>
         <TouchableHighlight >
-          <View>
-            <Text style={styles.instantText}>Play Now</Text>
-          </View>
+          <Text style={styles.instantText}>Play Now</Text>
         </TouchableHighlight>
         <TouchableHighlight>
-          <View>
-            <Text style={styles.instantText}>Add to Queue</Text>
-          </View>
+          <Text style={styles.instantText}>Add to Queue</Text>
         </TouchableHighlight>
       </View>
     );
@@ -91,11 +87,18 @@ class WhichPlaylist extends React.Component {
         <ScrollView
           onScroll={() => console.log('Playlist OnScroll activated!')}
           showVerticalScrollIndicator={true}>
+          <Instant/>
           <View>
-            <Instant/>
+            <Text style={styles.header}>Add to Playlist</Text>
           </View>
-          {list}
-          <TextInput />
+          <View>
+            {list}
+          </View>
+          <TextInput
+            style={styles.loginInput}
+            placeholder="Create New Playlist"
+            placeholderTextColor="#FFF"/>
+
         </ScrollView>
       </View>
     );
@@ -104,26 +107,43 @@ class WhichPlaylist extends React.Component {
 
 const styles = StyleSheet.create({
   mainContainer: {
-    padding: 5,
+    padding: 3,
     backgroundColor: '#161c20',
+  },
+  loginInput: {
+    height: 50,
+    padding: 4,
+    marginRight: 5,
+    marginBottom: 10,
+    fontSize: 23,
+    borderWidth: 1,
+    borderColor: '#99FF00',
+    borderRadius: 8,
+    color: 'white'
   },
   playlistContainer: {
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
     paddingTop: 3,
-    paddingLeft: 3,
     paddingBottom: 3
+  },
+  playlistText: {
+    fontSize: 23,
+    color: '#f1f3f5',
+    fontWeight: 'bold'
   },
   infoContainer: {
     flexDirection: 'column'
   },
-  title: {
+  header: {
+    textAlign: 'center',
     color: '#f1f3f5',
-    fontWeight: 'bold'
+    fontSize: 23
+
   },
   instantContainer: {
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     flexDirection: 'row',
     paddingTop: 3,
     paddingBottom: 3,
@@ -131,7 +151,8 @@ const styles = StyleSheet.create({
   },
   instantText: {
     color: '#161c20',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    fontSize: 15
   }
 });
 
