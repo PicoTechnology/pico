@@ -105,6 +105,7 @@ class Single extends React.Component {
     let wp = <View/>;
     if (this.state.isWpVisible) {
       wp = <WhichPlaylist
+              navigator={this.props.navigator}
               playlists={this.props.playlists}
               trackObj={this.props.trackObj}
               updateParentState={this.props.updateParentState} />
@@ -153,7 +154,7 @@ class Tracks extends React.Component{
   updatePlaylists(newPlaylist) {
     var playlistObj = {};
     playlistObj[newPlaylist.playlistname] = [];
-    AlertIOS.alert('xyz', JSON.stringify(playlistObj, null, 2));
+    // AlertIOS.alert('xyz', JSON.stringify(playlistObj, null, 2));
     this.setState({
       playlists: this.state.playlists.concat(playlistObj)
     });
@@ -169,6 +170,7 @@ class Tracks extends React.Component{
         <View>
           <Single
             key={index}
+            navigator={this.props.navigator}
             trackObj={trackObj}
             informParent={this.updateNowPlaying.bind(this)}
             playlists={this.state.playlists}
