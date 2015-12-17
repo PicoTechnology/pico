@@ -201,10 +201,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#000',
   },
   playlistInput: {
-    height: 40,
+    height: 35,
+    width: 230,
     padding: 4,
     marginRight: 5,
     marginBottom: 10,
+    marginTop: 10,
     fontSize: 16,
     borderWidth: 1,
     borderColor: '#99FF00',
@@ -212,8 +214,7 @@ const styles = StyleSheet.create({
     color: 'white'
   },
   button: {
-    height: 45,
-    flexDirection: 'row',
+    height: 35,
     backgroundColor: '#99FF00',
     borderColor: 'black',
     borderWidth: 1,
@@ -224,7 +225,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   buttonText: {
-    fontSize: 18,
+    fontSize: 16,
     color: 'black',
     alignSelf: 'center',
     fontWeight: 'bold'
@@ -232,9 +233,9 @@ const styles = StyleSheet.create({
   playlistContainer: {
     alignItems: 'flex-start',
     justifyContent: 'center',
-    flexDirection: 'column',
-    paddingTop: 5,
-    paddingBottom: 10,
+    flexDirection: 'row',
+    paddingTop: 10,
+    paddingBottom: 10
   },
   playlistText: {
     fontSize: 16,
