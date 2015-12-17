@@ -53,8 +53,10 @@ class Single extends React.Component {
     return <View />;
   }
   handlePress() {
-    // this.selectSong();
     this.toggleWpVisible();
+    this.props.informParent(this.props.trackObj); // updates CurrentlyPlaying component
+
+    // this.selectSong();
     // let playlistname = 'test1';
     // let data = {trackID: this.props.id};
     // fetch(`${SERVER_ENDPOINT}/playlist/${playlistname}`, {
@@ -72,7 +74,6 @@ class Single extends React.Component {
     // otherwise, if songs are playing, add the pressed song
     // to the global queue
 
-    // this.props.informParent(this.props);
     // if(queue.isQueued(this.props.id)){
     //   queue.removeItem(this.props.id);
     // } else {
@@ -182,13 +183,17 @@ class Tracks extends React.Component{
     return (
       <View
         style={styles.mainContainer}>
-        <ScrollView
-          onScroll={() => console.log('OnScroll activated!')}
-          showVerticalScrollIndicator={true}>
-          {list}
-        </ScrollView>
-
-        <CurrentlyPlaying {...this.state.nowPlaying} />
+        <View
+          style={styles.scrollContainer}>
+          <ScrollView
+            onScroll={() => console.log('OnScroll activated!')}
+            showVerticalScrollIndicator={true}>
+            {list}
+          </ScrollView>
+        </View>
+        {/*<View style={styles.currentlyPlayingContainer}>
+              <CurrentlyPlaying {...this.state.nowPlaying} />
+            </View>*/}
       </View>
     );
   }
@@ -196,8 +201,15 @@ class Tracks extends React.Component{
 
 const styles = StyleSheet.create({
   mainContainer: {
-    padding: 5,
+    flex: 1,
     backgroundColor: '#161c20',
+  },
+  scrollContainer: {
+    flex: 1
+  },
+  currentlyPlayingContainer: {
+    flex: 1,
+    height: 100,
   },
   singleContainer: {
     flexDirection: 'row',
