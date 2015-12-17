@@ -112,17 +112,16 @@ class Single extends React.Component {
       .catch(err => AlertIOS.alert('Error!', 'Track.js... oops'));
   }
   handleDelete() {
-    let data = {
-      playlistname: this.props.playlistName,
-      trackId: this.props.id
-    };
-      fetch(`${SERVER_ENDPOINT}/Playlists/${playlistname}/${trackId}`, {
-        headers:{
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
-        method: 'DELETE',
-        body: JSON.stringify(data)
+    fetch(`${SERVER_ENDPOINT}/Playlists/${this.props.playlistName}/${this.props.id}`, {
+      headers:{
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'DELETE'
+    })
+      .then(res => res.json())
+      .then(json => {
+        this.props.updatePlaylistViewerState(json);
       });
   }
   makeHumanReadable(ms) {
@@ -182,7 +181,12 @@ class Tracks extends React.Component {
       return (
         <View>
           {/*<Text style={styles.viewable}>playlistMame: {playlistName}</Text>*/}
-          <Single key={index} {...trackObj} informParent={this.updatenowPlaying.bind(this)} />
+          <Single
+            key={index}
+            {...trackObj}
+            playlistName={playlistName}
+            updatePlaylistViewerState={this.props.updateParentState}
+            informParent={this.updatenowPlaying.bind(this)} />
           <Separator />
         </View>
       );
@@ -213,6 +217,9 @@ class PlaylistViewer extends React.Component{
       nowViewing: playlistName
     });
   }
+  updateResults(updatedPlaylist) {
+    this.props.results = updatedPlaylist;
+  }
   render() {
     // find nowViewing playlist data
     var nowViewingList = this.props.results.filter(playlistObj => {
@@ -226,7 +233,7 @@ class PlaylistViewer extends React.Component{
       <View style={styles.playlistViewer}>
         <Text style={styles.viewable}>VIEW now</Text>
         <ScrollLists updateParentState={this.updateNowViewing.bind(this)} playlistNames={playlistNames} initialPlaylist={this.props.initialPlaylist}/>
-        <Tracks data={nowViewingList}/>
+        <Tracks updateParentState={this.updateResults.bind(this)} data={nowViewingList}/>
         <View style={styles.floatingWindow}>
           <Text style={styles.windowText}>{playlistNames}</Text>
         </View>

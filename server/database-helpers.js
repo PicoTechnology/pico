@@ -102,8 +102,11 @@ const deleteSongFromPlaylist = (req, res, next) => {
 			if (snapshot.val() == trackID) {
 				console.log('MATCHED!');
 				snapshot.ref().remove(err => {
-					if (err) res.err = err;
-					return next();
+					if (err) {
+						res.err = err;
+						return next();
+					}
+					getPlaylists(req, res, next);
 				});
 			}
 		});
