@@ -2,6 +2,7 @@
 const React = require('react-native');
 const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
 
+
 const {
   AlertIOS,
   Image,
@@ -30,7 +31,7 @@ class PlaylistName extends React.Component {
   }
   render() {
     return (
-      <TouchableHighlight onPress={this.handlePress.bind(this)} style={styles.list} >
+      <TouchableHighlight onPress={this.handlePress.bind(this)} style={styles.playlistName} >
         <View>
           <Text>{this.props.playlistName}</Text>
         </View>
@@ -53,17 +54,17 @@ class ScrollLists extends React.Component {
     this.props.updateParentState(playlistName);
   }
   render() {
-    let playlistNames = this.props.results.map((playlistObj, index) => {
+    let playlistNames = this.props.playlistNames.map((name, index) => {
       return (
         <PlaylistName
           key={index}
-          name={Object.keys(playlistObj)[0]}
+          name={name}
           updateParentState={this.updateNowViewing.bind(this)} />
       );
     });
     return (
       <View>
-        <ScrollView horizontal={true} informParent={this.updateNowViewing.bind(this)} style={styles.scrollListContainer}> {playlistNames} </ScrollView>
+        <ScrollView horizontal={true} informParent={this.updateNowViewing.bind(this)} style={styles.scrollListsContainer}> {playlistNames} </ScrollView>
       </View>
     )
   }
@@ -188,17 +189,12 @@ class Tracks extends React.Component {
           showVerticalScrollIndicator={true}>
           {list}
         </ScrollView>
-        {/* Keep the following component for debugging! */}
-        <View style={styles.floatingMessage}>
-          <Text style={styles.messageText}>{this.state.nowPlaying}</Text>
-          <Text style={styles.messageText}>{queue.storage}</Text>
-        </View>
       </View>
     );
   }
 }
 
-class PlayListViewer extends React.Component{
+class PlaylistViewer extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
@@ -212,14 +208,15 @@ class PlayListViewer extends React.Component{
   }
   render() {
     // find nowViewing playlist data
-    var nowViewingList = this.props.results.map((playlistObj, index) => {
-      if(Object.keys(playlistObj)[0] === `${playlistName}`) {
-        return Object.keys(playlistObj);
-      }
-    })
+    var nowViewingList = this.props.results.filter(playlistObj => {
+      return Object.keys(playlistObj)[0] === this.state.nowViewing;
+    });
+    var playlistNames = this.props.results.map(playlistObj => {
+      return Object.keys(playlistObj)[0];
+    });
     return (
-      <View>
-        <ScrollLists updateParentState={this.updateNowViewing.bind(this)} />
+      <View style={styles.playlistViewer}>
+        <ScrollLists updateParentState={this.updateNowViewing.bind(this)} playlistNames={playlistNames}/>
         <Tracks data={nowViewingList}/>
       </View>
     )
@@ -227,13 +224,19 @@ class PlayListViewer extends React.Component{
 }
 
 const styles = StyleSheet.create({
-  scrollListContainer: {
+  playlistViewer:{
+    flex: 1,
+    backgroundColor: 'black',
+    flexDirection: 'column'
+  },
+  scrollListsContainer: {
     backgroundColor: '#161c20',
     padding: 5,
-
+    flexDirection: 'row'
   },
-  list: {
-
+  playlistName: {
+    fontSize: 12,
+    color: '#99FF00'
   },
   mainContainer: {
     padding: 5,
@@ -296,4 +299,4 @@ const styles = StyleSheet.create({
   }
 });
 
-module.exports = PlayListViewer;
+module.exports = PlaylistViewer;

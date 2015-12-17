@@ -6,6 +6,7 @@ const PlaylistViewer = require('./PlaylistViewer.js');
 
 const {
   AlertIOS,
+  ActivityIndicatorIOS,
   Image,
   Text,
   View,
@@ -33,6 +34,7 @@ class Playlist extends React.Component {
     let playlistname = Object.keys(this.props.data)[0];
     let trackObj = this.props.trackObj;
     this.toggleSelected();
+    this.props.updateParentState();
     fetch(`${SERVER_ENDPOINT}/playlists/${playlistname}`, {
       headers: {
         'Accept': 'application/json',
@@ -44,10 +46,11 @@ class Playlist extends React.Component {
       .then(res => res.json())
       .then(json => {
         this.props.navigator.push({
-          title: 'test',
+          title: 'Playlists',
           passProps: {results: json},
           component: PlaylistViewer
         });
+        this.props.updateParentState();
       });
   }
   render() {
@@ -130,15 +133,40 @@ class PlaylistCreator extends React.Component {
 }
 
 class WhichPlaylist extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: false
+    };
+  }
+  toggleIsLoading() {
+    this.setState({
+      isLoading: !this.state.isLoading
+    });
+  }
+  renderSpinner() {
+    return (!this.state.isLoading) ? <View /> :
+      (
+        <View style={styles.spinnerContainer}>
+          <ActivityIndicatorIOS
+            animating={this.state.isLoading}
+            color="#99FF00"
+            size="large" />
+        </View>
+      );
+  }
   render() {
-    let list = this.props.playlists.map((playlist, index) => {
+    let list = (this.state.isLoading) ? <View /> :
+      this.props.playlists.map((playlist, index) => {
       return (
         <View
           key={index}
           style={styles.playlistContainer} >
           <Playlist
+            navigator={this.props.navigator}
             data={playlist}
-            trackObj={this.props.trackObj}/>
+            trackObj={this.props.trackObj}
+            updateParentState={this.toggleIsLoading.bind(this)}/>
           <Separator />
         </View>
       );
@@ -152,6 +180,7 @@ class WhichPlaylist extends React.Component {
           <View>
             <Text style={styles.header}>Add to Playlist</Text>
           </View>
+          {this.renderSpinner()}
           <View>
             {list}
           </View>
@@ -233,7 +262,13 @@ const styles = StyleSheet.create({
     color: '#161c20',
     fontWeight: 'bold',
     fontSize: 15
-  }
+  },
+  spinnerContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0,0,0,0)'
+  },
 });
 
 module.exports = WhichPlaylist;
