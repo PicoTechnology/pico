@@ -47,10 +47,13 @@ class Playlist extends React.Component {
       .then(json => {
         this.props.navigator.push({
           title: 'Playlists',
-          passProps: {results: json},
+          passProps: {results: [1,2,3]},
           component: PlaylistViewer
         });
         this.props.updateParentState();
+      })
+      .catch(err => {
+        AlertIOS.alert('Error', err);
       });
   }
   render() {
