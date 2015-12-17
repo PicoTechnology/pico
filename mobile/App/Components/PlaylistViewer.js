@@ -143,9 +143,11 @@ class Single extends React.Component {
           {this.renderPlayingStatus()}
           <Image source={artwork} style={styles.image} />
           <View style={styles.infoContainer}>
-            <Text style={styles.title}>title: {this.props.title}</Text>
-            <Text style={styles.info}>username: {this.props.user.username}</Text>
-            <Text style={styles.info}>duration: {this.makeHumanReadable(this.props.duration)}</Text>
+            <Text style={styles.title}>{this.props.title}</Text>
+            <Text style={styles.info}>{this.props.user.username}</Text>
+            <Text style={styles.info}>{this.makeHumanReadable(this.props.duration)}</Text>
+          </View>
+          <View style={styles.deleteContainer}>
             <Text onPress={this.handleDelete.bind(this)}>Delete</Text>
           </View>
         </View>
@@ -256,6 +258,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#161c20',
   },
   scrollListsContainer: {
+    flex: 1,
     backgroundColor: '#161c20',
     padding: 5,
     flexDirection: 'row'
@@ -282,6 +285,12 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     flexDirection: 'column'
+  },
+  deleteContainer: {
+    flexDirection: 'column',
+    backgroundColor: 'red',
+    color: '#FFF',
+    fontWeight: 'bold'
   },
   image: {
     height: 50,
