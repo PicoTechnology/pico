@@ -13,8 +13,6 @@ const {
   TouchableHighlight
 } = React;
 
-var playlists = [];
-
 class PlaylistName extends React.Component {
   constructor(props) {
     super(props);
@@ -33,7 +31,7 @@ class PlaylistName extends React.Component {
     return (
       <TouchableHighlight onPress={this.handlePress.bind(this)} style={styles.playlistName} >
         <View>
-          <Text>{this.props.playlistName}</Text>
+          <Text style={styles.playlistName}>playlistnameree: {this.props.playlistName}</Text>
         </View>
       </TouchableHighlight>
     )
@@ -63,8 +61,14 @@ class ScrollLists extends React.Component {
       );
     });
     return (
-      <View>
-        <ScrollView horizontal={true} informParent={this.updateNowViewing.bind(this)} style={styles.scrollListsContainer}> {playlistNames} </ScrollView>
+      <View style={styles.scrollListsContainer}>
+        <Text style={styles.viewable}>VIEW ME</Text>
+        {/*<ScrollView
+          horizontal={true}
+          informParent={this.updateNowViewing.bind(this)}
+          >
+          {playlistNames}
+        </ScrollView>*/}
       </View>
     )
   }
@@ -139,9 +143,9 @@ class Single extends React.Component {
           {this.renderPlayingStatus()}
           <Image source={artwork} style={styles.image} />
           <View style={styles.infoContainer}>
-            <Text style={styles.title}>{this.props.title}</Text>
-            <Text style={styles.info}>{this.props.user.username}</Text>
-            <Text style={styles.info}>{this.makeHumanReadable(this.props.duration)}</Text>
+            <Text style={styles.title}>title: {this.props.title}</Text>
+            <Text style={styles.info}>username: {this.props.user.username}</Text>
+            <Text style={styles.info}>duration: {this.makeHumanReadable(this.props.duration)}</Text>
             <Text onPress={this.handleDelete.bind(this)}>Delete</Text>
           </View>
         </View>
@@ -173,22 +177,25 @@ class Tracks extends React.Component {
     });
   }
   render() {
-    let list = this.props.data.map((trackObj, index) => {
+    let playlistName = Object.keys(this.props.data)[0];
+    let list = this.props.data[playlistName].map((trackObj, index) => {
       return (
         <View>
-          <Single key={index} {...trackObj} informParent={this.updatenowPlaying.bind(this)} />
-          <Separator />
+          <Text style={styles.viewable}>playlistMame: {playlistName}</Text>
+          {/*<Single key={index} {...trackObj} informParent={this.updatenowPlaying.bind(this)} />
+          <Separator />*/}
         </View>
       );
     });
     return (
       <View
-        style={styles.mainContainer}>
-        <ScrollView
+        style={styles.tracksContainer}>
+        <Text style={styles.viewable}>playlistMame: {playlistName}</Text>
+        {/*<ScrollView
           onScroll={() => console.log('OnScroll activated!')}
           showVerticalScrollIndicator={true}>
           {list}
-        </ScrollView>
+        </ScrollView>*/}
       </View>
     );
   }
@@ -209,77 +216,77 @@ class PlaylistViewer extends React.Component{
   render() {
     // find nowViewing playlist data
     var nowViewingList = this.props.results.filter(playlistObj => {
-      return Object.keys(playlistObj)[0] === this.state.nowViewing;
-    });
+      return Object.keys(playlistObj)[0] === 'casting spells';
+      // return Object.keys(playlistObj)[0] === this.state.nowViewing;
+    })[0];
     var playlistNames = this.props.results.map(playlistObj => {
       return Object.keys(playlistObj)[0];
     });
     return (
       <View style={styles.playlistViewer}>
-        <ScrollLists updateParentState={this.updateNowViewing.bind(this)} playlistNames={playlistNames}/>
-        <Tracks data={nowViewingList}/>
+        <Text style={styles.viewable}>VIEW now</Text>
+        {/*}<ScrollLists updateParentState={this.updateNowViewing.bind(this)} playlistNames={playlistNames}/>
+        <Tracks data={nowViewingList}/>*/}
+        <View style={styles.floatingWindow}>
+          <Text style={styles.windowText}>{this.props.results}</Text>
+        </View>
       </View>
     )
   }
 }
 
 const styles = StyleSheet.create({
+  viewable: {
+    marginTop: 60,
+    color: '#FFF',
+    fontSize: 16
+  },
+  floatingWindow: {
+    width: 100,
+    height: 100,
+    marginTop: 60,
+    backgroundColor: '#FFF'
+  },
+  windowText: {
+    fontSize: 14,
+    color: '#000'
+  },
   playlistViewer:{
     flex: 1,
-    backgroundColor: 'black',
-    flexDirection: 'column'
+    backgroundColor: '#161c20',
   },
   scrollListsContainer: {
     backgroundColor: '#161c20',
     padding: 5,
     flexDirection: 'row'
   },
+  tracksContainer: {
+    padding: 5,
+    backgroundColor: '#161c20',
+  },
   playlistName: {
     fontSize: 12,
     color: '#99FF00'
-  },
-  mainContainer: {
-    padding: 5,
-    backgroundColor: '#161c20',
   },
   singleContainer: {
     flexDirection: 'row',
     paddingTop: 3,
     paddingBottom: 3
   },
-  floatingMessage: {
-    position: 'absolute',
-    width: 200,
-    height: 100,
-    top: 100,
-    left: 100,
-    backgroundColor: '#FFF'
-  },
-  messageText: {
-    fontSize: 16,
-    color: '#000'
-  },
-  single: {
-    flexDirection: 'row',
-    margin: 2,
-    borderWidth: 2,
-    borderColor: '#4e6472',
-    justifyContent: 'center',
-  },
   title: {
     color: '#f1f3f5',
     fontWeight: 'bold'
   },
   info: {
-    color: '#abbbc6',
+    color: '#abbbc6'
   },
-    infoContainer: {
+  infoContainer: {
     flexDirection: 'column'
   },
   image: {
     height: 50,
     width: 50,
-    marginRight: 5,
+    marginRight: 5
   },
   separator: {
     height: 1,
