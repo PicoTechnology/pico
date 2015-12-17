@@ -31,7 +31,7 @@ class PlaylistName extends React.Component {
     return (
       <TouchableHighlight onPress={this.handlePress.bind(this)} style={styles.playlistName} >
         <View>
-          <Text style={styles.playlistName}>playlistnameree: {this.props.playlistName}</Text>
+          <Text style={styles.playlistName}>playlistname: {this.props.name}</Text>
         </View>
       </TouchableHighlight>
     )
@@ -42,7 +42,7 @@ class ScrollLists extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      nowViewing: null
+      nowViewing: this.props.initialPlaylist
     };
   }
   updateNowViewing(playlistName) {
@@ -62,13 +62,13 @@ class ScrollLists extends React.Component {
     });
     return (
       <View style={styles.scrollListsContainer}>
-        <Text style={styles.viewable}>VIEW ME</Text>
-        {/*<ScrollView
+        {/*<Text style={styles.viewable}>VIEW ME</Text>*/}
+        <ScrollView
           horizontal={true}
           informParent={this.updateNowViewing.bind(this)}
           >
           {playlistNames}
-        </ScrollView>*/}
+        </ScrollView>
       </View>
     )
   }
@@ -181,21 +181,21 @@ class Tracks extends React.Component {
     let list = this.props.data[playlistName].map((trackObj, index) => {
       return (
         <View>
-          <Text style={styles.viewable}>playlistMame: {playlistName}</Text>
-          {/*<Single key={index} {...trackObj} informParent={this.updatenowPlaying.bind(this)} />
-          <Separator />*/}
+          {/*<Text style={styles.viewable}>playlistMame: {playlistName}</Text>*/}
+          <Single key={index} {...trackObj} informParent={this.updatenowPlaying.bind(this)} />
+          <Separator />
         </View>
       );
     });
     return (
       <View
         style={styles.tracksContainer}>
-        <Text style={styles.viewable}>playlistMame: {playlistName}</Text>
-        {/*<ScrollView
+        {/*<Text style={styles.viewable}>playlistMame: {playlistName}</Text>*/}
+        <ScrollView
           onScroll={() => console.log('OnScroll activated!')}
           showVerticalScrollIndicator={true}>
           {list}
-        </ScrollView>*/}
+        </ScrollView>
       </View>
     );
   }
@@ -205,7 +205,7 @@ class PlaylistViewer extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-      nowViewing: null
+      nowViewing: this.props.initialPlaylist
     };
   }
   updateNowViewing(playlistName) {
@@ -216,8 +216,8 @@ class PlaylistViewer extends React.Component{
   render() {
     // find nowViewing playlist data
     var nowViewingList = this.props.results.filter(playlistObj => {
-      return Object.keys(playlistObj)[0] === 'casting spells';
-      // return Object.keys(playlistObj)[0] === this.state.nowViewing;
+      // return Object.keys(playlistObj)[0] === 'Chilling at ROC';
+      return Object.keys(playlistObj)[0] === this.state.nowViewing;
     })[0];
     var playlistNames = this.props.results.map(playlistObj => {
       return Object.keys(playlistObj)[0];
@@ -225,10 +225,10 @@ class PlaylistViewer extends React.Component{
     return (
       <View style={styles.playlistViewer}>
         <Text style={styles.viewable}>VIEW now</Text>
-        {/*}<ScrollLists updateParentState={this.updateNowViewing.bind(this)} playlistNames={playlistNames}/>
-        <Tracks data={nowViewingList}/>*/}
+        <ScrollLists updateParentState={this.updateNowViewing.bind(this)} playlistNames={playlistNames} initialPlaylist={this.props.initialPlaylist}/>
+        <Tracks data={nowViewingList}/>
         <View style={styles.floatingWindow}>
-          <Text style={styles.windowText}>{this.props.results}</Text>
+          <Text style={styles.windowText}>{playlistNames}</Text>
         </View>
       </View>
     )
@@ -242,7 +242,7 @@ const styles = StyleSheet.create({
     fontSize: 16
   },
   floatingWindow: {
-    width: 100,
+    width: 200,
     height: 100,
     marginTop: 60,
     backgroundColor: '#FFF'
