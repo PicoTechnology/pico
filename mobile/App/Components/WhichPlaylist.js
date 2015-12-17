@@ -17,7 +17,25 @@ const {
 } = React;
 
 
-// set up single playlist component
+class InstantControls extends React.Component {
+  render() {
+    return (
+      <View style={styles.instantContainer}>
+        <View style={styles.instantBtn}>
+          <TouchableHighlight >
+            <Text style={styles.instantText}>Play Now</Text>
+          </TouchableHighlight>
+        </View>
+        <View style={styles.instantBtn}>
+          <TouchableHighlight>
+            <Text style={styles.instantText}>Add to Queue</Text>
+          </TouchableHighlight>
+        </View>
+      </View>
+    );
+  }
+}
+
 class Playlist extends React.Component {
   constructor(props) {
     super(props);
@@ -45,12 +63,13 @@ class Playlist extends React.Component {
     })
       .then(res => res.json())
       .then(json => {
-        this.props.navigator.push({
-          title: 'Playlists',
-          passProps: {results: [1,2,3]},
-          component: PlaylistViewer
-        });
-        this.props.updateParentState();
+
+        // this.props.navigator.push({
+        //   title: 'Playlists',
+        //   passProps: {results: [1,2,3]},
+        //   component: PlaylistViewer
+        // });
+        // this.props.updateParentState();
       })
       .catch(err => {
         AlertIOS.alert('Error', err);
@@ -64,25 +83,6 @@ class Playlist extends React.Component {
           <Text style={styles.playlistText}>{Object.keys(this.props.data)[0]}</Text>
         </View>
       </TouchableHighlight>
-    );
-  }
-}
-
-class Instant extends React.Component {
-  render() {
-    return (
-      <View style={styles.instantContainer}>
-        <View style={styles.instantBtn}>
-          <TouchableHighlight >
-            <Text style={styles.instantText}>Play Now</Text>
-          </TouchableHighlight>
-        </View>
-        <View style={styles.instantBtn}>
-          <TouchableHighlight>
-            <Text style={styles.instantText}>Add to Queue</Text>
-          </TouchableHighlight>
-        </View>
-      </View>
     );
   }
 }
@@ -122,7 +122,7 @@ class PlaylistCreator extends React.Component {
       <View style={styles.playlistContainer}>
         <TextInput
           style={styles.playlistInput}
-          placeholder="Create New Playlist"
+          placeholder="Create new playlist..."
           placeholderTextColor="#FFF"
           onChange={this.handleChange.bind(this)}/>
         <TouchableHighlight
@@ -169,7 +169,7 @@ class WhichPlaylist extends React.Component {
             navigator={this.props.navigator}
             data={playlist}
             trackObj={this.props.trackObj}
-            updateParentState={this.toggleIsLoading.bind(this)}/>
+            updateParentState={this.toggleIsLoading.bind(this)} />
           <Separator />
         </View>
       );
@@ -179,9 +179,9 @@ class WhichPlaylist extends React.Component {
         <ScrollView
           onScroll={() => console.log('Playlist OnScroll activated!')}
           showVerticalScrollIndicator={true}>
-          <Instant/>
-          <View>
-            <Text style={styles.header}>Add to Playlist</Text>
+          <InstantControls />
+          <View style={styles.whichPlaylistHeaderContainer}>
+            <Text style={styles.whichPlaylistHeader}>Add to Playlist:</Text>
           </View>
           {this.renderSpinner()}
           <View>
@@ -198,14 +198,14 @@ class WhichPlaylist extends React.Component {
 const styles = StyleSheet.create({
   mainContainer: {
     padding: 3,
-    backgroundColor: '#161c20',
+    backgroundColor: '#000',
   },
   playlistInput: {
-    height: 50,
+    height: 40,
     padding: 4,
     marginRight: 5,
     marginBottom: 10,
-    fontSize: 23,
+    fontSize: 16,
     borderWidth: 1,
     borderColor: '#99FF00',
     borderRadius: 8,
@@ -230,40 +230,49 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   playlistContainer: {
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'center',
     flexDirection: 'column',
-    paddingTop: 3,
-    paddingBottom: 3
+    paddingTop: 5,
+    paddingBottom: 10,
   },
   playlistText: {
-    fontSize: 23,
-    color: '#f1f3f5',
-    fontWeight: 'bold'
+    fontSize: 16,
+    color: '#f1f3f5'
   },
   infoContainer: {
     flexDirection: 'column'
   },
-  header: {
+  whichPlaylistHeaderContainer: {
+    marginTop: 5,
+    paddingTop: 5,
+    paddingBottom: 5
+  },
+  whichPlaylistHeader: {
     textAlign: 'center',
     color: '#f1f3f5',
-    fontSize: 23
-
+    fontSize: 18
   },
   instantContainer: {
-    justifyContent: 'space-between',
     flexDirection: 'row',
+    justifyContent: 'space-around',
     paddingTop: 3,
     paddingBottom: 3,
-    backgroundColor: 'grey'
   },
   instantBtn: {
+    height: 30,
+    paddingTop: 5,
+    paddingRight: 7,
+    paddingBottom: 5,
+    paddingLeft: 7,
+    borderColor: '#99FF00',
+    borderWidth: 1,
+    borderRadius: 5,
     alignItems: 'center',
-    backgroundColor: 'red'
+    justifyContent: 'center'
   },
   instantText: {
-    color: '#161c20',
-    fontWeight: 'bold',
+    color: '#99FF00',
     fontSize: 15
   },
   spinnerContainer: {
