@@ -39,6 +39,15 @@ If the connection is good (i.e. no packet loss), play a song like so:
 $ sudo mpg321 file-name.mp3
 ```
 
+PulseAudio volume control
+```
+$ pavucontrol
+```
+
+```
+$ mpg123 song-name.mp3
+```
+
 ###### React Router
 https://www.npmjs.com/package/react-router
 
