@@ -92,11 +92,9 @@ app.post('/playsong', (req, res, next) => {
     .pipe(decoder)
 });
 
-app.post('/users', dbHelpers.addUser, (req, res, next) => {
-  if (res.result === -1) {
-    return res.send(`Error adding user to database...`);
-  }
-  return res.send(`Successfully added: ${res.result}`);
+app.post('/users', dbHelpers.authenticateUser, (req, res, next) => {
+  console.log('In server, res.result is ', res.result);
+  return res.send(res.result);
 });
 
 app.post('/playlists', dbHelpers.addPlaylist, (req, res, next) => {
@@ -160,5 +158,6 @@ app.get('/authorize', (req, res, next) => {
 app.listen(PORT);
 console.log(`Now listening on localhost:${PORT}...`);
 dbHelpers.connectToDB();
+
 // bluetooth
 bluetoothHelpers.initializeBluetooth();

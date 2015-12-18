@@ -33,11 +33,16 @@ class Login extends React.Component {
 			method: 'POST',
 			body: JSON.stringify(this.state)
 		})
-			.then(res => {
-				this.props.navigator.push({
-					title: 'Search SC',
-					component: SearchSoundCloud
-				});
+			.then(res => res.json())
+			.then(json => {
+				if(json.result){
+					this.props.navigator.push({
+						title: 'Search SC',
+						component: SearchSoundCloud
+					});
+				} else {
+					AlertIOS.alert('Error', 'Authentication unsuccessful...');
+				}
 			})
 			.catch(err => AlertIOS.alert('Error', err));
 	}
