@@ -20,7 +20,7 @@ var Navbar = React.createClass({
                 <span className="icon-bar"></span>
               </button>
               <a className="navbar-brand" href="#">
-                <img style={styles.logo} src="./assets/pico-logo-main.jpg"/>
+                <img style={styles.logo} src="./assets/PicoLogo-Navi.png"/>
               </a>
             </div>
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -38,9 +38,9 @@ var Navbar = React.createClass({
 
 const styles = {
   logo: {
-    width: '75',
-    marginTop: '-8px',
-    marginBottom: '10px'
+    width: '85',
+    marginBottom: '10px',
+    marginTop: '-2'
   },
   aboutAndteam:{
     fontSize: 'large',
