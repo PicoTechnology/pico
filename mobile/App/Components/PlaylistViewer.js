@@ -233,12 +233,11 @@ class PlaylistViewer extends React.Component{
     });
     return (
       <View style={styles.playlistViewer}>
-        <Text style={styles.viewable}>VIEW now</Text>
         <ScrollLists updateParentState={this.updateNowViewing.bind(this)} playlistNames={playlistNames} initialPlaylist={this.props.initialPlaylist}/>
         <Tracks updateParentState={this.updateResults.bind(this)} data={nowViewingList}/>
-        <View style={styles.floatingWindow}>
+        {/*<View style={styles.floatingWindow}>
           <Text style={styles.windowText}>{playlistNames}</Text>
-        </View>
+        </View>*/}
       </View>
     )
   }

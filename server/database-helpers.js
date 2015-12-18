@@ -15,28 +15,43 @@ const connectToDB = () => {
 
 const addUser = (req, res, next) => {
 	var userObj = req.body;
-	var result = checkExistingUser(userObj, username => {
-		console.log(`result: ${result}`);
-		if (!result) {
-			UsersRef.set({ [username]: userObj});
-			res.result = 'Added new user.';
-			return next();
-		}
-		res.result = result;
-		return next();
-	});
-};
-
-const checkExistingUser = (userObj, userExistsCb) => {
-	var UsersRef = new Firebase(USERS_LOCATION);
 	var username = userObj.username;
 	UsersRef
 		.child(username)
-		.once('value', snapshot => {
-			var exists = (snapshot.val() !== null);
-			userExistsCb(username);
-		});
+		.set(userObj);
+		res.result = 'Added new user.';
+		return next();
 };
+
+const authenticateUser = (req, res, next) => {
+	var userObj = req.body;
+	var username = userObj.username;
+	var password = userObj.password;
+	UsersRef
+		.once('value', snapshot => {
+			var userExists = snapshot.hasChild(username);
+			console.log('check if user exists: ', userExists);
+			if(!userExists){
+				res.result = {result: false};
+				return next();
+			}
+			var storedPW =
+				snapshot
+					.child(username + "/password")
+					.val();
+			console.log('stored password is ', storedPW);
+			console.log('checking pw match?', storedPW === password );
+			if(storedPW !== password){
+				console.log('password not match!');
+				res.result = {result: false};
+				return next();
+			}
+			console.log('user and password passed');
+			res.result = {result: true};
+			console.log('Result is', res.result);
+			return next();
+		});
+}
 
 const addPlaylist = (req, res, next) => {
   console.log(`req.body: ${JSON.stringify(req.body, null, 2)}`);
@@ -149,7 +164,7 @@ const API = {
 	addPlaylist,
 	addToPlaylist,
 	addUser,
-	checkExistingUser,
+	authenticateUser,
 	deletePlaylist,
 	deleteSongFromPlaylist,
 	getPlaylists,
