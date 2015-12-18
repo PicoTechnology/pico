@@ -66,19 +66,19 @@ class Login extends React.Component {
 				<TextInput
 					style={styles.loginInput}
 					placeholder="Username"
-					placeholderTextColor="#FFF"
+					placeholderTextColor="#f2f2f2"
 					onChange={this.handleUsername.bind(this)}/>
 	 			<TextInput
 					password={true}
 					style={styles.loginInput}
 					placeholder="Password"
-					placeholderTextColor="#FFF"
+					placeholderTextColor="#f2f2f2"
 					onChange={this.handlePw.bind(this)}/>
 				<TouchableHighlight
 					onPress={this.handlePress.bind(this)}
 					style={styles.button}
-					underlayColor="#aeff00">
-					<Text style={styles.buttonText}> LOGIN </Text>
+					underlayColor="#00E6E6">
+					<Text style={styles.buttonText}> L O G I N </Text>
 				</TouchableHighlight>
 			</View>
 		);
@@ -111,26 +111,29 @@ var styles = StyleSheet.create({
 	},
 	loginInput: {
 		height: 50,
-		padding: 4,
-		marginRight: 5,
+		paddingLeft: 10,
 		marginBottom: 10,
-		fontSize: 23,
+		fontSize: 20,
 		borderWidth: 1,
-		borderColor: '#99FF00',
+		borderColor: '#00E6E6',
+		backgroundColor: 'black',
+		opacity: .85,
 		borderRadius: 8,
-		color: 'white'
+		fontFamily: 'Bosun'
 	},
 	buttonText: {
 		fontSize: 18,
 		color: 'black',
+		fontFamily: 'Bosun',
 		alignSelf: 'center',
 		fontWeight: 'bold'
 	},
 	button: {
 		height: 45,
 		flexDirection: 'row',
-		backgroundColor: '#99FF00',
-		borderColor: 'black',
+		backgroundColor: '#00ffff',
+		opacity: .9,
+		borderColor: '#00E6E6',
 		borderWidth: 1,
 		borderRadius: 8,
 		marginBottom: 10,
