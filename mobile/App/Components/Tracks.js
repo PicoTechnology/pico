@@ -202,7 +202,7 @@ class Tracks extends React.Component{
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    backgroundColor: '#161c20',
+    backgroundColor: '#333333'
   },
   scrollContainer: {
     flex: 1
@@ -232,17 +232,17 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     margin: 2,
     borderWidth: 2,
-    borderColor: '#4e6472',
+    borderColor: '#cccccc',
     justifyContent: 'center',
   },
   title: {
-    color: '#f1f3f5',
+    color: '#f2f2f2',
     fontWeight: 'bold'
   },
   info: {
-    color: '#abbbc6',
+    color: '#cccccc'
   },
-    infoContainer: {
+  infoContainer: {
     flexDirection: 'column'
   },
   image: {

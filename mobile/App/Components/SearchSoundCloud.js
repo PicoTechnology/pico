@@ -91,7 +91,7 @@ class SearchSoundCloud extends React.Component {
         <View style={styles.spinnerContainer}>
           <ActivityIndicatorIOS
             animating={this.state.isLoading}
-            color="#99FF00"
+            color="#acd000"
             size="large" />
         </View>
         <TouchableHighlight

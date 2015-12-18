@@ -23,12 +23,12 @@ class InstantControls extends React.Component {
       <View style={styles.instantContainer}>
         <View style={styles.instantBtn}>
           <TouchableHighlight >
-            <Text style={styles.instantText}>Play Now</Text>
+            <Text style={styles.instantText}>PLAY NOW</Text>
           </TouchableHighlight>
         </View>
         <View style={styles.instantBtn}>
           <TouchableHighlight>
-            <Text style={styles.instantText}>Add to Queue</Text>
+            <Text style={styles.instantText}>ADD TO QUEUE</Text>
           </TouchableHighlight>
         </View>
       </View>
@@ -124,7 +124,7 @@ class PlaylistCreator extends React.Component {
       <View style={styles.playlistContainer}>
         <TextInput
           style={styles.playlistInput}
-          placeholder="Create new playlist..."
+          placeholder="Create a New Playlist..."
           placeholderTextColor="#FFF"
           onChange={this.handleChange.bind(this)}/>
         <TouchableHighlight
@@ -211,13 +211,13 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 16,
     borderWidth: 1,
-    borderColor: '#99FF00',
+    borderColor: '#00ffff',
     borderRadius: 8,
     color: 'white'
   },
   button: {
     height: 35,
-    backgroundColor: '#99FF00',
+    backgroundColor: '#00ffff',
     borderColor: 'black',
     borderWidth: 1,
     borderRadius: 8,
@@ -268,14 +268,14 @@ const styles = StyleSheet.create({
     paddingRight: 7,
     paddingBottom: 5,
     paddingLeft: 7,
-    borderColor: '#99FF00',
+    borderColor: '#00ffff',
     borderWidth: 1,
     borderRadius: 5,
     alignItems: 'center',
     justifyContent: 'center'
   },
   instantText: {
-    color: '#99FF00',
+    color: '#00ffff',
     fontSize: 15
   },
   spinnerContainer: {
