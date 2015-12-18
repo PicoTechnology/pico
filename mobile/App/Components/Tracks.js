@@ -190,7 +190,7 @@ class Tracks extends React.Component{
             showVerticalScrollIndicator={true}>
             {list}
           </ScrollView>
-        </View>
+      </View>
         {/*<View style={styles.currentlyPlayingContainer}>
               <CurrentlyPlaying {...this.state.nowPlaying} />
             </View>*/}

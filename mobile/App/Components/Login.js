@@ -65,14 +65,14 @@ class Login extends React.Component {
 				<Text style={styles.title}></Text>
 				<TextInput
 					style={styles.loginInput}
-					placeholder="Username"
-					placeholderTextColor="#f2f2f2"
+					placeholder="U S E R N A M E"
+					placeholderTextColor="#cccccc"
 					onChange={this.handleUsername.bind(this)}/>
 	 			<TextInput
 					password={true}
 					style={styles.loginInput}
-					placeholder="Password"
-					placeholderTextColor="#f2f2f2"
+					placeholder="P A S S W O R D"
+					placeholderTextColor="#cccccc"
 					onChange={this.handlePw.bind(this)}/>
 				<TouchableHighlight
 					onPress={this.handlePress.bind(this)}
@@ -113,18 +113,19 @@ var styles = StyleSheet.create({
 		height: 50,
 		paddingLeft: 10,
 		marginBottom: 10,
-		fontSize: 20,
+		fontSize: 18,
 		borderWidth: 1,
 		borderColor: '#00E6E6',
 		backgroundColor: 'black',
 		opacity: .85,
 		borderRadius: 8,
-		fontFamily: 'Bosun'
+		fontFamily: 'Apple SD Gothic Neo-Bold',
+		color: '#f2f2f2'
 	},
 	buttonText: {
 		fontSize: 18,
 		color: 'black',
-		fontFamily: 'Bosun',
+		fontFamily: 'Apple SD Gothic Neo-Bold',
 		alignSelf: 'center',
 		fontWeight: 'bold'
 	},

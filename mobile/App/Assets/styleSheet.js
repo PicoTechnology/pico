@@ -7,14 +7,16 @@ const TOBIN = '#f2f2f2'
 
 var styles = StyleSheet.create({
   textInput: {
-    color: TOBIN
+    color: TOBIN,
+    fontFamily: 'Apple SD Gothic Neo',
     borderWidth: 1,
     borderColor: PICO_GREEN,
     borderRadius: borderCurve,
   },
   submitBtnText: {
-    fontSize: 18,
     color: 'black',
+    fontSize: 18,
+    fontFamily: 'Apple SD Gothic Neo',
     alignSelf: 'center',
     fontWeight: 'bold'
   },
