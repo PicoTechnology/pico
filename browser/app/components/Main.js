@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var Navbar = require('./Navbar.js');
+var MainNavbar = require('./Navbar.js');
 var Description = require('./Description.js');
 var Team = require('./Team.js');
 var Company = require('./Company.js');
@@ -83,7 +83,7 @@ var Main = React.createClass({
 		var demo = (this.state.viewDemo) ? retrieveDemoHtml() : <div></div>;
 		return (
 			<div>
-				<Navbar/>
+				<MainNavbar/>
 				<MainCarousel/>
 				<div className="container-fluid">
 					{demo}
