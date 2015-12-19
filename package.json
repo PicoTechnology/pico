@@ -24,6 +24,7 @@
     "player": "^0.6.1",
     "querystring": "^0.2.0",
     "react": "^0.14.3",
+    "react-bootstrap": "^0.28.1",
     "react-dom": "^0.14.3",
     "request": "^2.67.0",
     "soundcloud": "^3.0.1",

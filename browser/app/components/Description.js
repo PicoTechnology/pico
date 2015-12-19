@@ -49,7 +49,7 @@ var Button = React.createClass({
 var Description = React.createClass({
   render: function() {
     return (
-      <div style = {styles.container} >
+      <div style = {styles.container} id='description'>
         <h1 style = {styles.heading} >What is Pico?</h1>
         <p style = {styles.blurb}>Pico is a smart sound system that allows you
         and your friends to create an immersive music

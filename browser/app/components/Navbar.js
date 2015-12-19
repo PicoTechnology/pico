@@ -25,7 +25,7 @@ var Navbar = React.createClass({
             </div>
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul style={styles.aboutAndteam} className="nav navbar-nav navbar-right">
-                <li><a href="#home">WHAT'S PICO?</a></li>
+                <li><a href="#description">WHAT'S PICO?</a></li>
                 <li><a href="#team">TEAM</a></li>
               </ul>
             </div>
@@ -39,7 +39,7 @@ var Navbar = React.createClass({
 const styles = {
   logo: {
     width: '85',
-    marginBottom: '10px',
+    marginBottom: '1px',
     marginTop: '-2'
   },
   aboutAndteam:{

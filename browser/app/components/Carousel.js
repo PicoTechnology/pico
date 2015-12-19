@@ -1,40 +1,43 @@
 var React = require('react');
+var Carousel = require('react-bootstrap').Carousel;
+var CarouselItem = require('react-bootstrap').CarouselItem;
 
-var Carousel = React.createClass({
+
+var MainCarousel = React.createClass({
   render: function() {
     return (
-
-      <div id="carousel" className="carousel slide" data-ride="carousel">
-        <ol className="carousel-indicators">
-          <li data-target="#carousel" data-slide-to="0" className="active"></li>
-          <li data-target="#carousel" data-slide-to="1" className=""></li>
-          <li data-target="#carousel" data-slide-to="2" className=""></li>
-        </ol>
-
-        <div className="carousel-inner">
-          <div className="item active">
-            <img src="http://lorempixel.com/1500/600/abstract/1" alt="Slide 1" />
+      <Carousel>
+        <CarouselItem style={styles.carousel} className="img-responsive center-block">
+          <img width={900} height={500} alt="900x500" src="./app/img/In-Black-34px-R.png"/>
+          <div className="carousel-caption">
+            <h3>Welcome to PICO</h3>
+            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
           </div>
-          <div className="item">
-            <img src="http://lorempixel.com/1500/600/abstract/2" alt="Slide 2" />
+        </CarouselItem>
+        <CarouselItem>
+          <img width={900} height={500} alt="900x500" src="./app/img/vchiu.jpg"/>
+          <div className="carousel-caption">
+            <h3>Discover the music you love</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           </div>
-          <div className="item">
-            <img src="http://lorempixel.com/1500/600/abstract/3" alt="Slide 3" />
+          </CarouselItem>
+        <CarouselItem>
+          <img width={900} height={500} alt="900x500" src="https://www.petfinder.com/wp-content/uploads/2012/11/140272627-grooming-needs-senior-cat-632x475.jpg"/>
+          <div className="carousel-caption">
+            <h3>Enjoy party mode with your friends</h3>
+            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
           </div>
-        </div>
-        <a href="#carousel" className="left carousel-control" data-slide="prev">
-          <span className="glyphicon glyphicon-chevron-left"></span>
-        </a>
-        <a href="#carousel" className="right carousel-control" data-slide="next">
-          <span className="glyphicon glyphicon-chevron-right"></span>
-        </a>
-      </div>
-
+        </CarouselItem>
+      </Carousel>
 		);
   }
 });
 
+const styles = {
+  carousel: {
+    margin:'auto',
+    backgroundColor:'black'
+  }
+}
 
-
-
-module.exports = Carousel;
+module.exports = MainCarousel;

@@ -1,13 +1,13 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var Navbar = require('./Navbar.js');
-var Home = require('./Home.js');
 var Description = require('./Description.js');
 var Team = require('./Team.js');
 var Company = require('./Company.js');
-
+var MainCarousel = require('./Carousel');
 var $ = require('jquery');
-var Carousel = require('./carousel')
+
+
 
 var data = {
 	productInfo: {
@@ -84,14 +84,13 @@ var Main = React.createClass({
 		return (
 			<div>
 				<Navbar/>
-				<Carousel/>
+				<MainCarousel/>
 				<div className="container-fluid">
-					<Home />
 					{demo}
 					<Description {...data} callback={this.toggleState} />
-					<Team {...data}/>
-					<Company {...data}/>
 				</div>
+				<Team {...data}/>
+				<Company {...data}/>
 			</div>
 		);
 	}
