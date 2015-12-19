@@ -17,15 +17,15 @@ class App extends React.Component {
   render() {
     return (
       <NavigatorIOS
-      barTintColor="#333237"
-      titleTextColor="black"
-      tintColor="black"
-      shadowHidden={true}
+        barTintColor="#333237"
+        titleTextColor="black"
+        tintColor="black"
+        shadowHidden={true}
         style={styles.container}
         initialRoute={{
-          title: 'Pico Technology',
-          component: Main,
-          backButtonTitle: "Back"
+        title: 'Pico Technology',
+        component: Main,
+        backButtonTitle: "Back"
       }} />
     );
   }
