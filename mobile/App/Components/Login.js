@@ -1,6 +1,7 @@
 const React = require('react-native');
 const SearchSoundCloud = require('./SearchSoundCloud.js');
 const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
+const PicoStyle = require('../Assets/PicoStyle.js');
 
 const {
 	View,
@@ -62,82 +63,55 @@ class Login extends React.Component {
 				<View style={styles.bgImageWrapper}>
 					<Image style={styles.bgImage} source={require('../Assets/login.jpg')}/>
 				</View>
-				<Text style={styles.title}></Text>
 				<TextInput
-					style={styles.loginInput}
-					placeholder="Username"
-					placeholderTextColor="#FFF"
+					style={Object.assign(styles.loginInput, PicoStyle.textInput)}
+					placeholder="U S E R N A M E"
+					placeholderTextColor="#cccccc"
 					onChange={this.handleUsername.bind(this)}/>
 	 			<TextInput
 					password={true}
-					style={styles.loginInput}
-					placeholder="Password"
-					placeholderTextColor="#FFF"
+					style={Object.assign(styles.loginInput, PicoStyle.textInput)}
+					placeholder="P A S S W O R D"
+					placeholderTextColor="#cccccc"
 					onChange={this.handlePw.bind(this)}/>
 				<TouchableHighlight
 					onPress={this.handlePress.bind(this)}
-					style={styles.button}
-					underlayColor="#aeff00">
-					<Text style={styles.buttonText}> LOGIN </Text>
+					style={Object.assign(styles.loginButton, PicoStyle.submitBtn)}
+					underlayColor={PicoStyle.underlayColor}>
+					<Text style={PicoStyle.submitBtnText}> L O G I N </Text>
 				</TouchableHighlight>
 			</View>
 		);
 	}
 }
 
-var styles = StyleSheet.create({
+var styles = {
 	mainContainer: {
-		flex: 1,
-		padding: 30,
-		marginTop: 65,
-		flexDirection: 'column',
-		justifyContent: 'center',
-		backgroundColor: 'black'
-	},
-	bgImageWrapper: {
-			position: 'absolute',
-			bottom: 0, left: 0
-	},
+    flex: 1,
+    padding: 30,
+    marginTop: 65,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    backgroundColor: 'black'
+  },
+  bgImageWrapper: {
+    position: 'absolute',
+    bottom: 0, left: 0
+  },
 	bgImage: {
 			flex: 1,
 			width, height
 	},
-	title: {
-		marginBottom: 20,
-		fontSize: 25,
-		textAlign: 'center',
-		color: '#1693A5',
-		backgroundColor: 'rgba(0,0,0,0)'
-	},
 	loginInput: {
 		height: 50,
-		padding: 4,
-		marginRight: 5,
-		marginBottom: 10,
-		fontSize: 23,
-		borderWidth: 1,
-		borderColor: '#99FF00',
-		borderRadius: 8,
-		color: 'white'
+		paddingLeft: 10,
+		marginBottom: 10
 	},
-	buttonText: {
-		fontSize: 18,
-		color: 'black',
-		alignSelf: 'center',
-		fontWeight: 'bold'
-	},
-	button: {
+	loginButton: {
 		height: 45,
-		flexDirection: 'row',
-		backgroundColor: '#99FF00',
-		borderColor: 'black',
-		borderWidth: 1,
-		borderRadius: 8,
 		marginBottom: 10,
 		marginTop: 10,
-		alignSelf: 'stretch',
-		justifyContent: 'center'
-	},
-});
+	}
+};
 
 module.exports = Login;
