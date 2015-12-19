@@ -42,7 +42,7 @@ class Login extends React.Component {
 						component: SearchSoundCloud
 					});
 				} else {
-					AlertIOS.alert('Error', 'Authentication unsuccessful...');
+					AlertIOS.alert('Error', 'Authentication unsuccessful... Please try again!');
 				}
 			})
 			.catch(err => AlertIOS.alert('Error', err));

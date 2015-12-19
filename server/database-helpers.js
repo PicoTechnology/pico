@@ -35,7 +35,6 @@ const authenticateUser = (req, res, next) => {
 	UsersRef
 		.once('value', snapshot => {
 			var userExists = snapshot.hasChild(username);
-			console.log('check if user exists: ', userExists);
 			if(!userExists){
 				res.result = {result: false};
 				return next();
@@ -44,16 +43,11 @@ const authenticateUser = (req, res, next) => {
 				snapshot
 					.child(username + "/password")
 					.val();
-			console.log('stored password is ', storedPW);
-			console.log('checking pw match?', storedPW === password );
 			if(storedPW !== password){
-				console.log('password not match!');
 				res.result = {result: false};
 				return next();
 			}
-			console.log('user and password passed');
 			res.result = {result: true};
-			console.log('Result is', res.result);
 			return next();
 		});
 }

@@ -91,7 +91,6 @@ app.post('/playsong', (req, res, next) => {
 });
 
 app.post('/users', dbHelpers.authenticateUser, (req, res, next) => {
-  console.log('In server, res.result is ', res.result);
   return res.send(res.result);
 });
 
@@ -123,7 +122,7 @@ app.get('/playlists', dbHelpers.getPlaylists, (req, res, next) => {
 
 app.get('/playlists/:playlistname', dbHelpers.getTracksFromPlaylist, (req, res, next) => {
   var playlistname = req.params.playlistname;
-  console.log(playlistname);
+  // console.log(playlistname);
   res.send(res.data);
 });
 
@@ -138,15 +137,15 @@ app.delete('/playlists/:playlistname/:trackID', dbHelpers.deleteSongFromPlaylist
 });
 
 app.post('/tracks', (req, res, next) => {
-  console.log(`req.body: ${JSON.stringify(req.body, null, 2)}`)
+  // console.log(`req.body: ${JSON.stringify(req.body, null, 2)}`);
   fetch(`${SOUNDCLOUD_API}/tracks?${qs.stringify(Object.assign({}, req.body, {client_id}))}`)
     .then(response => response.json())
     .then(json => {
       json = json.filter(song => {
         return song.downloadable;
       })
-      console.log(json);
-      console.log(`${SOUNDCLOUD_API}/tracks?${qs.stringify(Object.assign({}, req.body, {client_id}))}`);
+      // console.log(json);
+      // console.log(`${SOUNDCLOUD_API}/tracks?${qs.stringify(Object.assign({}, req.body, {client_id}))}`);
       res.type('application/json');
       res.send(json);
     })
