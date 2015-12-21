@@ -6,6 +6,7 @@ const CurrentlyPlaying = require('./CurrentlyPlaying.js');
 const WhichPlaylist = require('./WhichPlaylist.js');
 const Separator = require('./Separator.js');
 const STYLES = require('../Assets/PicoStyles.js');
+const UI_HELPERS = require('../Utils/UiHelpers.js');
 
 const {
   AlertIOS,
@@ -93,15 +94,6 @@ class Single extends React.Component {
     //   .catch(err => AlertIOS.alert('Error!', 'Track.js... oops'));
 
   }
-  makeHumanReadable(ms) {
-    let minutesRaw = ms/1000/60;
-    let minutesPure = Math.floor(minutesRaw);
-    let secondsRaw = minutesRaw % minutesPure * 60;
-    let secondsPure = '0' + secondsRaw.toFixed(0);
-    var endOfString = secondsPure.length - 1;
-    secondsPure = secondsPure.charAt(endOfString) + secondsPure.charAt(endOfString - 1);
-    return `${minutesPure}:${secondsPure}`;
-  }
   renderWhichPlaylist() {
     let wp = <View />;
     if (this.state.isWpVisible) {
@@ -127,7 +119,7 @@ class Single extends React.Component {
             <View style={styles.infoContainer}>
               <Text style={styles.title}>{this.props.trackObj.title}</Text>
               <Text style={styles.info}>{this.props.trackObj.user.username}</Text>
-              <Text style={styles.info}>{this.makeHumanReadable(this.props.trackObj.duration)}</Text>
+              <Text style={styles.info}>{UI_HELPERS.makeHumanReadable(this.props.trackObj.duration)}</Text>
             </View>
           </View>
         </TouchableHighlight>
