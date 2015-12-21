@@ -1,6 +1,7 @@
 const React = require('react-native');
 const Tracks = require('./Tracks.js');
 const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
+const STYLES = require('../Assets/PicoStyles.js');
 
 const {
   AlertIOS,
@@ -69,7 +70,7 @@ class SearchSoundCloud extends React.Component {
     if (this.state.error) {
       return (
         <Text
-          style={styles.error}>
+          style={STYLES.error}>
           {this.state.error}
         </Text>
       );
@@ -160,10 +161,6 @@ const styles = StyleSheet.create({
   content: {
     fontSize: 14,
     color: '#FFF'
-  },
-  error: {
-    fontSize: 18,
-    color: '#black'
   },
   buttonText: {
     fontSize: 18,

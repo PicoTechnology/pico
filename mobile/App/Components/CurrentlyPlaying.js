@@ -1,8 +1,10 @@
 const React = require('react-native');
+const STYLES = require('../Assets/PicoStyles.js');
 
 const {
 	View,
 	Dimensions,
+	Image,
 	Text,
 	StyleSheet
 } = React;
@@ -11,9 +13,16 @@ const {WIDTH, HEIGHT} = Dimensions.get('window');
 
 class CurrentlyPlaying extends React.Component {
 	render() {
+		if (this.props.trackObj === null) {
+			return <View />;
+		}
+		let artwork = this.props.trackObj.artwork_url ? 
+			{uri: this.props.trackObj.artwork_url} : require("../Assets/Pico-O-grey.png");
 		return (
 			<View style={styles.container}>
-				<Text style={styles.nowPlayingText}>Now playing...</Text>
+				<Image 
+					style={STYLES.singleImage}
+					source={artwork} />
 				<Text 
 					style={styles.text}
 					numberOfLines={1}>
@@ -26,11 +35,13 @@ class CurrentlyPlaying extends React.Component {
 
 const styles = StyleSheet.create({
 	container: {
-		width: WIDTH,
+		position: 'absolute',
 		bottom: 0,
 		left: 0,
+		right: 0,
+		width: WIDTH,
 		flex: 1,
-		flexDirection: 'column',
+		flexDirection: 'row',
 		paddingTop: 5,
 		paddingRight: 7,
 		paddingBottom: 5,

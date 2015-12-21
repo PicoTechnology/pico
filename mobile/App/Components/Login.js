@@ -1,7 +1,7 @@
 const React = require('react-native');
 const SearchSoundCloud = require('./SearchSoundCloud.js');
 const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
-const PicoStyle = require('../Assets/PicoStyle.js');
+const STYLES = require('../Assets/PicoStyles.js');
 
 const {
 	View,
@@ -64,21 +64,22 @@ class Login extends React.Component {
 					<Image style={styles.bgImage} source={require('../Assets/login.jpg')}/>
 				</View>
 				<TextInput
-					style={Object.assign(styles.loginInput, PicoStyle.textInput)}
+					style={Object.assign(styles.loginInput, STYLES.textInput)}
+					autoCorrect={false}
 					placeholder="U S E R N A M E"
 					placeholderTextColor="#cccccc"
 					onChange={this.handleUsername.bind(this)}/>
 	 			<TextInput
 					password={true}
-					style={Object.assign(styles.loginInput, PicoStyle.textInput)}
+					style={Object.assign(styles.loginInput, STYLES.textInput)}
 					placeholder="P A S S W O R D"
 					placeholderTextColor="#cccccc"
 					onChange={this.handlePw.bind(this)}/>
 				<TouchableHighlight
 					onPress={this.handlePress.bind(this)}
-					style={Object.assign(styles.loginButton, PicoStyle.submitBtn)}
-					underlayColor={PicoStyle.underlayColor}>
-					<Text style={PicoStyle.submitBtnText}> L O G I N </Text>
+					style={Object.assign(styles.loginButton, STYLES.submitBtn)}
+					underlayColor={STYLES.underlayColor}>
+					<Text style={STYLES.submitBtnText}> L O G I N </Text>
 				</TouchableHighlight>
 			</View>
 		);
