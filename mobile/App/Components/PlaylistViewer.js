@@ -1,4 +1,4 @@
-'use strict';
+  'use strict';
 const React = require('react-native');
 const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
 

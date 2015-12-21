@@ -11,7 +11,10 @@ const CHARCOAL = '#333333'
 const LIGHT_GREY = '#cccccc'
 const TOBIN = '#f2f2f2'
 
-module.exports = PicoStyle = {
+module.exports = PicoStyles = {
+  colors: {
+    PICO_GREEN,
+  },
   underlayColor: ACCENT_GREEN,
   textInput: {
     color: TOBIN,
@@ -34,6 +37,15 @@ module.exports = PicoStyle = {
     alignSelf: 'stretch',
     justifyContent: 'center'
   },
+  error: {
+    fontSize: 18,
+    color: '#black'
+  },
+  singleImage: {
+    height: 50,
+    width: 50,
+    marginRight: 5,
+  },
   submitBtnText: {
     color: 'black',
     fontSize: 18,
@@ -41,6 +53,17 @@ module.exports = PicoStyle = {
     fontFamily: 'Apple SD Gothic Neo-Bold',
     alignSelf: 'center',
     fontWeight: 'bold'
-  }
+  },
+  playlistContainer: {
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    flexDirection: 'row',
+    paddingTop: 10,
+    paddingBottom: 10
+  },
+  playlistText: {
+    fontSize: 16,
+    color: '#f1f3f5'
+  },
 };
 

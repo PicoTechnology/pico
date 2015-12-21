@@ -5,6 +5,7 @@ const Queue = require('./Queue.js');
 const CurrentlyPlaying = require('./CurrentlyPlaying.js');
 const WhichPlaylist = require('./WhichPlaylist.js');
 const Separator = require('./Separator.js');
+const STYLES = require('../Assets/PicoStyles.js');
 
 const {
   AlertIOS,
@@ -54,7 +55,6 @@ class Single extends React.Component {
   }
   handlePress() {
     this.toggleWpVisible();
-    this.props.informParent(this.props.trackObj); // updates CurrentlyPlaying component
 
     // this.selectSong();
     // let playlistname = 'test1';
@@ -103,25 +103,27 @@ class Single extends React.Component {
     return `${minutesPure}:${secondsPure}`;
   }
   renderWhichPlaylist() {
-    let wp = <View/>;
+    let wp = <View />;
     if (this.state.isWpVisible) {
-      wp = <WhichPlaylist
-              navigator={this.props.navigator}
-              playlists={this.props.playlists}
-              trackObj={this.props.trackObj}
-              updateParentState={this.props.updateParentState} />
+      wp = (
+        <WhichPlaylist
+          navigator={this.props.navigator}
+          playlists={this.props.playlists}
+          trackObj={this.props.trackObj}
+          updateParentNowPlaying={this.props.updateParentNowPlaying} />
+        );
     }
     return wp;
   }
   render() {
-    let artwork = this.props.trackObj.artwork_url ? {uri:this.props.trackObj.artwork_url} : require("../Assets/Pico-O-grey.png");
+    let artwork = this.props.trackObj.artwork_url ? {uri: this.props.trackObj.artwork_url} : require("../Assets/Pico-O-grey.png");
     return (
       <View>
         <TouchableHighlight
           onPress={this.handlePress.bind(this)}>
           <View style={styles.singleContainer}>
             {this.renderPlayingStatus()}
-            <Image source={artwork} style={styles.image} onClick={this.props.whenClicked}/>
+            <Image source={artwork} style={STYLES.singleImage} />
             <View style={styles.infoContainer}>
               <Text style={styles.title}>{this.props.trackObj.title}</Text>
               <Text style={styles.info}>{this.props.trackObj.user.username}</Text>
@@ -155,7 +157,6 @@ class Tracks extends React.Component{
   updatePlaylists(newPlaylist) {
     var playlistObj = {};
     playlistObj[newPlaylist.playlistname] = [];
-    // AlertIOS.alert('xyz', JSON.stringify(playlistObj, null, 2));
     this.setState({
       playlists: this.state.playlists.concat(playlistObj)
     });
@@ -166,15 +167,14 @@ class Tracks extends React.Component{
     });
   }
   render() {
-    let list = this.props.results.map((trackObj, index) => {
+    let songlist = this.props.results.map((trackObj, index) => {
       return (
-        <View>
+        <View key={index}>
           <Single
-            key={index}
             navigator={this.props.navigator}
             trackObj={trackObj}
-            informParent={this.updateNowPlaying.bind(this)}
             playlists={this.state.playlists}
+            updateParentNowPlaying={this.updateNowPlaying.bind(this)}
             updateParentState={this.updatePlaylists.bind(this)} />
           <Separator />
         </View>
@@ -186,14 +186,11 @@ class Tracks extends React.Component{
         <View
           style={styles.scrollContainer}>
           <ScrollView
-            onScroll={() => console.log('OnScroll activated!')}
             showVerticalScrollIndicator={true}>
-            {list}
+            {songlist}
           </ScrollView>
-      </View>
-        {/*<View style={styles.currentlyPlayingContainer}>
-              <CurrentlyPlaying {...this.state.nowPlaying} />
-            </View>*/}
+        </View>
+        <CurrentlyPlaying trackObj={this.state.nowPlaying} />
       </View>
     );
   }
@@ -244,11 +241,6 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     flexDirection: 'column'
-  },
-  image: {
-    height: 50,
-    width: 50,
-    marginRight: 5,
   },
   playing: {
     backgroundColor: '#99FF00',
