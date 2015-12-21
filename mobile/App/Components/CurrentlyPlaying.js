@@ -9,8 +9,6 @@ const {
 	StyleSheet
 } = React;
 
-const {WIDTH, HEIGHT} = Dimensions.get('window');
-
 class CurrentlyPlaying extends React.Component {
 	render() {
 		if (this.props.trackObj === null) {
@@ -23,11 +21,18 @@ class CurrentlyPlaying extends React.Component {
 				<Image 
 					style={STYLES.singleImage}
 					source={artwork} />
-				<Text 
-					style={styles.text}
-					numberOfLines={1}>
-					{this.props.title}
-				</Text>
+				<View style={styles.trackInfo}>
+					<Text 
+						style={styles.nowPlayingText}
+						numberOfLines={1}>
+						{this.props.trackObj.title}
+					</Text>
+					<Text 
+						style={styles.nowPlayingText}
+						numberOfLines={1}>
+						{this.props.trackObj.genre}
+					</Text>
+				</View>
 			</View>
 		);
 	}
@@ -39,14 +44,16 @@ const styles = StyleSheet.create({
 		bottom: 0,
 		left: 0,
 		right: 0,
-		width: WIDTH,
 		flex: 1,
 		flexDirection: 'row',
 		paddingTop: 5,
 		paddingRight: 7,
 		paddingBottom: 5,
 		paddingLeft: 5,
-		backgroundColor: '#99FF00'
+		backgroundColor: STYLES.colors.PICO_GREEN
+	},
+	trackInfo: {
+		flexDirection: 'column'
 	},
 	nowPlayingText: {
 		fontSize: 14,
@@ -54,8 +61,8 @@ const styles = StyleSheet.create({
 		color: '#000'
 	},
 	text: {
-		color: '#000',
 		fontSize: 14,
+		color: '#000'
 	}
 });
 

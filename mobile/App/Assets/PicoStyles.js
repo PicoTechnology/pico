@@ -12,6 +12,9 @@ const LIGHT_GREY = '#cccccc'
 const TOBIN = '#f2f2f2'
 
 module.exports = PicoStyles = {
+  colors: {
+    PICO_GREEN,
+  },
   underlayColor: ACCENT_GREEN,
   textInput: {
     color: TOBIN,
