@@ -17,7 +17,6 @@ const Player = require('player');
 const dbHelpers = require('./database-helpers.js');
 const bluetoothHelpers = require('./bluetooth.js');
 
-
 const SOUNDCLOUD = 'https://soundcloud.com';
 const SOUNDCLOUD_API = 'http://api.soundcloud.com';
 const PORT = process.env.PORT || 8000;
@@ -30,10 +29,9 @@ const client_id = SoundCloudCred.client_id;
 
 app.get('/connect', (req, res, next) => {
   console.log('Searching for bluetooth devices...');
+  // bluetoothHelpers.beginSearch();
 
-  bluetoothHelpers.beginSearch();
-
-  res.send({a: 'pizza'});
+  res.send({numUsers: 3});
 });
 
 app.get('/disconnect', (req, res, next) => {
@@ -154,7 +152,6 @@ app.post('/tracks', (req, res, next) => {
     })
     .catch(err => res.send('Error, please enter a valid search query...'));
 });
-
 
 app.get('/authorize', (req, res, next) => {
   console.log(`user: ${JSON.stringify(user, null, 2)}`);

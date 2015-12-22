@@ -4,12 +4,12 @@ const {
   StyleSheet
 } = React;
 
-const PICO_GREEN = '#00ffff'
-const ACCENT_GREEN = '#00E6E6'
-const BORDER_CURVE = 8
-const CHARCOAL = '#333333'
-const LIGHT_GREY = '#cccccc'
-const TOBIN = '#f2f2f2'
+const PICO_GREEN = '#00ffff';
+const ACCENT_GREEN = '#00E6E6';
+const BORDER_CURVE = 8;
+const CHARCOAL = '#333333';
+const LIGHT_GREY = '#cccccc';
+const TOBIN = '#f2f2f2';
 
 module.exports = PicoStyles = {
   colors: {
@@ -66,4 +66,3 @@ module.exports = PicoStyles = {
     color: '#f1f3f5'
   },
 };
-

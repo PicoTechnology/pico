@@ -3,9 +3,8 @@ const Login = require('./Login.js');
 const Track = require('./Tracks.js');
 const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
 
-const Glyphicon = require('./Glyphicon.js');
-
 const {
+  AlertIOS,
   Text,
   View,
   NavigatorIOS,
@@ -19,19 +18,15 @@ const {width, height} = Dimensions.get('window');
 
 class Main extends React.Component {
   entranceButton() {
-    this.props.navigator.push({
-      component: Login,
-      title: 'Login'
-    });
-    // fetch(`${SERVER_ENDPOINT}/connect`)
-    //   .then(res => res.json())
-    //   .then(json => {
-    //     this.props.navigator.push({
-    //       component: Login,
-    //       title: 'Login'
-    //     });
-    //   })
-    //   .catch(err => AlertIOS.alert('Error', err));
+    fetch(`${SERVER_ENDPOINT}/connect`)
+      .then(res => res.json())
+      .then(json => {
+        this.props.navigator.push({
+          component: Login,
+          title: 'Login'
+        });
+      })
+      .catch(err => AlertIOS.alert('Error', err));
   }
   render() {
     return (
@@ -50,11 +45,6 @@ class Main extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  glyphicon: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
   container: {
       flex: 1,
       padding: 30,
