@@ -44,12 +44,12 @@ body{
 .carousel-inner{
   right: 170px;
   bottom: 28px;
-  left: 142px;
+  left: 164px;
 }
 
 .carousel-inner>.item>a>img, .carousel-inner>.item>img {
   margin-top:7px  ;
-  width: 705px;
+  width: auto;
   height: 589px;
 }
 
