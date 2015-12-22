@@ -1,16 +1,16 @@
 const Firebase = require('firebase');
 const FIREBASE_LOCATION = 'https://picotechnology.firebaseio.com/';
-const USERS_LOCATION = 'https://picotechnology.firebaseio.com/users';
-const PLAYLISTS_LOCATION = 'https://picotechnology.firebaseio.com/playlists';
 
 var FirebaseRef;
 var UsersRef;
 var PlaylistsRef;
+var PartyPlaylistRef;
 
 const connectToDB = () => {
 	FirebaseRef = new Firebase(FIREBASE_LOCATION);
 	UsersRef = FirebaseRef.child('users');
 	PlaylistsRef = FirebaseRef.child('playlists');
+	PartyPlaylistRef = FirebaseRef.child('partyplaylist');
 };
 
 const addUser = (req, res, next) => {
@@ -18,9 +18,14 @@ const addUser = (req, res, next) => {
 	var username = userObj.username;
 	UsersRef
 		.child(username)
-		.set(userObj);
-		res.result = 'Added new user.';
-		return next();
+		.set(userObj, err => {
+			if (err) {
+				res.err = err;
+				return next();
+			}
+			res.result = 'Added new user.';
+			return next();
+		});
 };
 
 const authenticateUser = (req, res, next) => {
@@ -78,16 +83,29 @@ const addToPlaylist = (req, res, next) => {
 	PlaylistsRef
 		.child(playlistname)
 		.child(trackObj.id)
-		.set(trackObj,
-			err => {
+		.set(trackObj,err => {
 				if(err) {
 					res.err = err;
 					return next();
-				} else {
-					// assigns to res.data
-					getPlaylists(req, res, next);
 				}
+				// assigns to res.data
+				getPlaylists(req, res, next);
 			});
+};
+
+const addToPartyPlaylist = (req, res, next) => {
+	console.log(`req.body: ${JSON.stringify(req,body, null, 2)}`);
+	var trackObj = req.body.trackObj;
+	PartyPlaylistRef
+		.child(trackObj.id)	
+		.set(trackObj, err => {
+			if (err) {
+				res.err = err;
+				return next();
+			}
+			// getPartyPlaylist assigns to res.data
+			getPartyPlaylist(req, res, next);
+		});
 };
 
 const deletePlaylist = (req, res, next) => {
@@ -149,6 +167,15 @@ const getPlaylists = (req, res, next) => {
 		});
 };
 
+const getPartyPlaylist = (req, res, next) => {
+	PartyPlaylistRef
+		.orderByKey()
+		.once('value', snapshot => {
+			res.data = snapshot.val();
+			next();
+		});
+};
+
 const getTracksFromPlaylist = (req, res, next) => {
 	var playlistname = req.params.playlistname;
 	PlaylistsRef
@@ -163,11 +190,13 @@ const API = {
 	connectToDB,
 	addPlaylist,
 	addToPlaylist,
+	addToPartyPlaylist,
 	addUser,
 	authenticateUser,
 	deletePlaylist,
 	deleteSongFromPlaylist,
 	getPlaylists,
+	getPartyPlaylist,
 	getTracksFromPlaylist
 };
 

@@ -24,14 +24,11 @@ class SearchSoundCloud extends React.Component {
     this.state = {
       query: '',
       isLoading: false,
-      error: '',
+      error: ''
     };
   }
   clearInputFields() {
     this._searchInput.setNativeProps({text: ''});
-  }
-  componentWillMount() {
-
   }
   handleSubmit() {
     this.clearInputFields();
@@ -92,7 +89,7 @@ class SearchSoundCloud extends React.Component {
         <View style={styles.spinnerContainer}>
           <ActivityIndicatorIOS
             animating={this.state.isLoading}
-            color="#acd000"
+            color={STYLES.colors.PICO_GREEN}
             size="large" />
         </View>
         <TouchableHighlight

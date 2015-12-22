@@ -17,7 +17,6 @@ const Player = require('player');
 const dbHelpers = require('./database-helpers.js');
 const bluetoothHelpers = require('./bluetooth.js');
 
-
 const SOUNDCLOUD = 'https://soundcloud.com';
 const SOUNDCLOUD_API = 'http://api.soundcloud.com';
 const PORT = process.env.PORT || 8000;
@@ -30,10 +29,9 @@ const client_id = SoundCloudCred.client_id;
 
 app.get('/connect', (req, res, next) => {
   console.log('Searching for bluetooth devices...');
+  // bluetoothHelpers.beginSearch();
 
-  bluetoothHelpers.beginSearch();
-
-  res.send({a: 'pizza'});
+  res.send({numUsers: 3});
 });
 
 app.get('/disconnect', (req, res, next) => {
@@ -98,13 +96,24 @@ app.post('/users', dbHelpers.authenticateUser, (req, res, next) => {
 });
 
 app.post('/playlists', dbHelpers.addPlaylist, (req, res, next) => {
-  if(res.err) return res.send(`ERROR Server.js: ${res.err}`);
+  if (res.err) return res.send(`ERROR Server.js: ${res.err}`);
   res.send(`Successfully created playlist: ${req.body.playlistname}`);
 });
 
 app.post('/playlists/:playlistname', dbHelpers.addToPlaylist, (req, res, next) => {
-  if(res.err) return res.send(`ERROR Server.js: ${res.err}`);
+  if (res.err) return res.send(`ERROR Server.js: ${res.err}`);
   console.log(`After posting song, return:  ${JSON.stringify(res.data)}`);
+  res.send(res.data);
+});
+
+// Retrieve the songs from the Party Playlist
+app.get('/partyplaylist', dbHelpers.getPartyPlaylist, (req, res, next) => {
+  res.send(res.data);
+});
+
+// add a song to the Party Playlist
+app.post('/partyplaylist', dbHelpers.addToPartyPlaylist, (req, res, next) => {
+  if (res.err) return res.send(`ERROR Server.js: ${res.err}`);
   res.send(res.data);
 });
 
@@ -143,7 +152,6 @@ app.post('/tracks', (req, res, next) => {
     })
     .catch(err => res.send('Error, please enter a valid search query...'));
 });
-
 
 app.get('/authorize', (req, res, next) => {
   console.log(`user: ${JSON.stringify(user, null, 2)}`);

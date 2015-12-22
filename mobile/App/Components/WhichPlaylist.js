@@ -5,6 +5,8 @@ const Tracks = require('./Tracks.js');
 const PlaylistViewer = require('./PlaylistViewer.js');
 const Playlist = require('./Playlist.js');
 const PlaylistCreator = require('./PlaylistCreator.js');
+const STYLES = require('../Assets/PicoStyles.js');
+const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
 
 const {
   AlertIOS,
@@ -22,6 +24,22 @@ class InstantControls extends React.Component {
   handlePlayNow() {
     this.props.updateParentNowPlaying(this.props.trackObj);
   }
+  handleAddToQueue() {
+    let data = {trackObj: this.props.trackObj};
+    fetch(`${SERVER_ENDPOINT}/partyplaylist`, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'post',
+      body: JSON.stringify(data)
+    })
+      .then(res => res.json())
+      .then(json => {
+        AlertIOS.alert('json', json);
+      })
+      .catch(err => AlertIOS.alert('ERROR', err));
+  }
   render() {
     return (
       <View style={styles.instantContainer}>
@@ -31,7 +49,7 @@ class InstantControls extends React.Component {
           </TouchableHighlight>
         </View>
         <View style={styles.instantBtn}>
-          <TouchableHighlight>
+          <TouchableHighlight onPress={this.handleAddToQueue.bind(this)}>
             <Text style={styles.instantText}>ADD TO QUEUE</Text>
           </TouchableHighlight>
         </View>
@@ -58,7 +76,7 @@ class WhichPlaylist extends React.Component {
         <View style={styles.spinnerContainer}>
           <ActivityIndicatorIOS
             animating={this.state.isLoading}
-            color="#99FF00"
+            color={STYLES.colors.PICO_GREEN}
             size="large" />
         </View>
       );
