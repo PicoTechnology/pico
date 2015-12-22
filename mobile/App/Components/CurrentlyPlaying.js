@@ -10,65 +10,32 @@ const {
 	StyleSheet
 } = React;
 
-class CurrentlyPlaying extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			secondsRemaining: 0,
-			countingDown: false
-		};
-	}
-	renderCountdown() {
-		if (!this.state.countingDown) {
-			let songDuration = this.props.trackObj.duration / 1000;
-			this.setState({
-				countingDown: true,
-				secondsRemaining: songDuration
-			});
-			// countdown seconds and re-render
-			let pid = setInterval(() => {
-				this.setState({
-					secondsRemaining: --this.state.secondsRemaining
-				});
-			}, 1000);
-			// kill setInterval after the song has finished
-			setTimeout(() => {
-				clearInterval(pid);
-			}, this.props.trackObj.duration);
-		}
-		return (
-			<Text style={styles.trackInfo}>
-				{UI_HELPERS.makeHumanReadable(this.state.secondsRemaining * 1000)}
-			</Text>
-		);
-	}
-	render() {
-		if (this.props.trackObj === null) {
-			return <View />;
-		}
-		let artwork = this.props.trackObj.artwork_url ? 
-			{uri: this.props.trackObj.artwork_url} : require("../Assets/Pico-O-grey.png");
-		return (
-			<View style={styles.container}>
-				<Image 
-					style={STYLES.singleImage}
-					source={artwork} />
-				<View style={styles.trackInfoContainer}>
-					<Text 
-						style={styles.trackInfo}
-						numberOfLines={1}>
-						{this.props.trackObj.title}
-					</Text>
-					<Text 
-						style={styles.trackInfo}
-						numberOfLines={1}>
-						{this.props.trackObj.genre}
-					</Text>
-					{this.renderCountdown()}
-				</View>
+module.exports = CurrentlyPlaying = props => {
+	if (!props.trackObj) return <View />;
+	let artwork = props.trackObj.artwork_url ? 
+		{uri: props.trackObj.artwork_url} : require("../Assets/Pico-O-grey.png");
+	return (
+		<View style={styles.container}>
+			<Image 
+				style={STYLES.singleImage}
+				source={artwork} />
+			<View style={styles.trackInfoContainer}>
+				<Text 
+					style={styles.trackInfo}
+					numberOfLines={1}>
+					{props.trackObj.title}
+				</Text>
+				<Text 
+					style={styles.trackInfo}
+					numberOfLines={1}>
+					{props.trackObj.genre}
+				</Text>
+				<Text style={styles.trackInfo}>
+					{UI_HELPERS.makeHumanReadable(props.msRemaining)}
+				</Text>
 			</View>
-		);
-	}
+		</View>
+	);
 }
 
 const styles = StyleSheet.create({
@@ -97,5 +64,3 @@ const styles = StyleSheet.create({
 		color: '#000'
 	},
 });
-
-module.exports = CurrentlyPlaying;

@@ -134,6 +134,9 @@ class Tracks extends React.Component{
     super(props);
     this.state = {
       nowPlaying: null,
+      msRemaining: 0,
+      playbackFinished: false,
+      paused: false,
       playlists: []
     };
   }
@@ -153,10 +156,25 @@ class Tracks extends React.Component{
       playlists: this.state.playlists.concat(playlistObj)
     });
   }
+  startCountdown(trackObj) {
+    this.setState({msRemaining: trackObj.duration});
+    let pid = setInterval(() => {
+      this.setState({msRemaining: this.state.msRemaining - 1000});
+    }, 1000);
+    if (this.state.msRemaining <= 0) {
+      clearInterval(pid);
+      this.setState({
+        msRemaining: 0,
+        playbackFinished: true
+      });
+    }
+  }
   updateNowPlaying(trackObj) {
     this.setState({
       nowPlaying: trackObj,
+      playbackFinished: false
     });
+    this.startCountdown(trackObj);
   }
   render() {
     let songlist = this.props.results.map((trackObj, index) => {
@@ -182,7 +200,9 @@ class Tracks extends React.Component{
             {songlist}
           </ScrollView>
         </View>
-        <CurrentlyPlaying trackObj={this.state.nowPlaying} />
+        <CurrentlyPlaying
+          msRemaining={this.state.msRemaining}
+          trackObj={this.state.nowPlaying} />
       </View>
     );
   }
