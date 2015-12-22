@@ -25,8 +25,7 @@ var MainNavbar = React.createClass({
             <Nav style={styles.mainNav}>
             </Nav>
             <Nav pullRight style={styles.aboutAndteam}>
-              <NavItem eventKey={1} href="#description">ABOUT</NavItem>
-              <NavItem eventKey={2} href="#team">TEAM</NavItem>
+              <NavItem eventKey={1} href="#team">TEAM</NavItem>
             </Nav>
           </Navbar.Collapse>
         </Navbar>

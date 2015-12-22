@@ -9,15 +9,21 @@ body{
 }
 
 .descriptionHeader {
-  margin-left: 8% !important;
+  left: 310px;
+  bottom: 220px;
 }
 
 .descriptionPara {
   margin-left: 8%;
+  left: 220px;
+  bottom: 180px;
+  font-size: 22px;
+  z-index: 10;
 }
 
 .btn-default {
-  margin-left: 8%;
+  margin-left: 345px;
+  margin-top: -180px;
 }
 
 .navbar-inverse .navbar-nav>li>a   {
@@ -42,15 +48,19 @@ body{
 }
 
 .carousel-inner>.item>a>img, .carousel-inner>.item>img {
-  margin:auto;
+  margin-top:7px  ;
   width: 705px;
-  height: 643px;
+  height: 589px;
 }
 
 .carousel-inner>.item {
   text-align: center;
   color: white;
   top: 30px;
+  -webkit-transition: 0.1s ease-in-out left;
+  -moz-transition: 0.1s ease-in-out left;
+  -o-transition: 0.1s ease-in-out left;
+  transition: 0.1s ease-in-out left;
 }
 
 .carousel-control.left {
@@ -62,7 +72,7 @@ body{
 }
 
 .carousel-indicators {
-  left: 70%;
+  left: 69%;
 }
 
 .iPhoneImage {
@@ -70,4 +80,9 @@ body{
     left: 540px;
     position: absolute;
     z-index: 5;
+}
+
+h3 {
+    margin-top: 55px;
+    margin-bottom: 30px;
 }
