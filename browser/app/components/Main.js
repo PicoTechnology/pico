@@ -84,11 +84,12 @@ var Main = React.createClass({
 		return (
 			<div>
 				<MainNavbar/>
-				<MainCarousel/>
-				<div className="container-fluid">
+
+				<div className="description">
 					{demo}
 					<Description {...data} callback={this.toggleState} />
 				</div>
+        <MainCarousel/>
 				<Team {...data}/>
 				<Company {...data}/>
 			</div>

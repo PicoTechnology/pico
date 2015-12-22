@@ -1,12 +1,14 @@
 var React = require('react');
+var MainCarousel = require('./Carousel');
+
 
 const styles = {
   container: {
-    backgroundColor: '#373A40',
+    // backgroundColor: '#373A40',
     color: 'white',
-    borderBottomStyle: 'solid',
-    borderBottomColor: '#6F6F6F',
-    borderBottomWidth: 1,
+    // borderBottomStyle: 'solid',
+    // borderBottomColor: '#6F6F6F',
+    // borderBottomWidth: 1,
     boxShadow: '0 1 0 red'
 
   },
@@ -50,13 +52,14 @@ var Description = React.createClass({
   render: function() {
     return (
       <div style = {styles.container} id='description'>
-        <h1 style = {styles.heading} >What is Pico?</h1>
-        <p style = {styles.blurb}>Pico is a smart sound system that allows you
+        <h1 style = {styles.heading} className = "descriptionHeader">What is Pico?</h1>
+        <p style = {styles.blurb} className = "descriptionPara">Pico is a smart sound system that allows you
         and your friends to create an immersive music
         experience with one simple app.
         Capable of building personal and group
         curated playlists, multi-room sound streaming.</p>
         <Button {...this.props.productInfo} callback={this.props.callback}/>
+
       </div>
         );
     }

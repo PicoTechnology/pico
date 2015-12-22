@@ -1,0 +1,73 @@
+body{
+  background-color: black;
+}
+
+.description{
+  margin-top: 25%;
+  margin-bottom: 25%;
+  top:15%;
+}
+
+.descriptionHeader {
+  margin-left: 8% !important;
+}
+
+.descriptionPara {
+  margin-left: 8%;
+}
+
+.btn-default {
+  margin-left: 8%;
+}
+
+.navbar-inverse .navbar-nav>li>a   {
+  color: white;
+  margin: auto;
+  font-family: Raleway, sans-serif;
+}
+
+.carousel {
+    position: relative;
+    margin: auto;
+    position: absolute;
+    right: 280px;
+    top: 77px;
+    max-height: 680px;
+}
+
+.carousel-inner{
+  right: 170px;
+  bottom: 28px;
+  left: 142px;
+}
+
+.carousel-inner>.item>a>img, .carousel-inner>.item>img {
+  margin:auto;
+  width: 705px;
+  height: 643px;
+}
+
+.carousel-inner>.item {
+  text-align: center;
+  color: white;
+  top: 30px;
+}
+
+.carousel-control.left {
+  display: none;
+}
+
+.carousel-control.right {
+  display: none;
+}
+
+.carousel-indicators {
+  left: 70%;
+}
+
+.iPhoneImage {
+    top: 85px ;
+    left: 540px;
+    position: absolute;
+    z-index: 5;
+}
