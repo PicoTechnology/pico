@@ -31,7 +31,7 @@ class PlaylistName extends React.Component {
     return (
       <TouchableHighlight onPress={this.handlePress.bind(this)} >
         <View>
-          <Text style={styles.playlistName}>playlistname: {this.props.name}</Text>
+          <Text style={styles.playlistName}> {this.props.name}</Text>
         </View>
       </TouchableHighlight>
     )
@@ -54,22 +54,26 @@ class ScrollLists extends React.Component {
   render() {
     let playlistNames = this.props.playlistNames.map((name, index) => {
       return (
-        <PlaylistName
-          key={index}
-          name={name}
-          updateParentState={this.updateNowViewing.bind(this)} />
+        <View>
+          <PlaylistName
+            key={index}
+            name={name}
+            updateParentState={this.updateNowViewing.bind(this)} />
+        </View>
       );
     });
     return (
       <View style={styles.scrollListsContainer}>
-        <Text style={styles.currentPlaylist}>Current Playlist: {this.state.nowViewing}</Text>
-        <ScrollView
-          horizontal={true}
-          informParent={this.updateNowViewing.bind(this)}
-          style={styles.playliss}
-          >
-          {playlistNames}
-        </ScrollView>
+        {/*<Text style={styles.currentPlaylist}>Current Playlist: {this.state.nowViewing}</Text>*/}
+        {/*<View style={styles.scrollContainer}>*/}
+          <ScrollView
+            horizontal={true}
+            informParent={this.updateNowViewing.bind(this)}
+            contentContainerStyle={styles.playlists}
+            >
+            {playlistNames}
+          </ScrollView>
+        {/*</View>*/}
       </View>
     )
   }
@@ -122,6 +126,7 @@ class Single extends React.Component {
     })
       .then(res => res.json())
       .then(json => {
+
         this.props.updatePlaylistViewerState(json);
       });
   }
@@ -232,6 +237,7 @@ class PlaylistViewer extends React.Component{
     });
     return (
       <View style={styles.playlistViewer}>
+      <Text style={styles.currentPlaylist}>Current Playlist: {this.state.nowViewing}</Text>
         <ScrollLists updateParentState={this.updateNowViewing.bind(this)} playlistNames={playlistNames} initialPlaylist={this.props.initialPlaylist}/>
         <Tracks updateParentState={this.updateResults.bind(this)} data={nowViewingList}/>
         {/*<View style={styles.floatingWindow}>
@@ -259,34 +265,38 @@ const styles = StyleSheet.create({
     color: '#000'
   },
   playlistViewer:{
-    paddingTop: 30,
+    marginTop: 30,
     flex: 1,
     backgroundColor: '#161c20',
   },
   currentPlaylist:{
-    marginTop: 10,
-    color: '#7fff00',
+    marginTop: 30,
+    color: 'black',
     backgroundColor: '#ffa700'
   },
   playlistName: {
     marginLeft: 5,
-    fontSize: 20,
+    fontWeight: 'bold',
     color: 'white',
     backgroundColor: 'blue',
-    borderWidth: 1,
-    borderRadius: 10,
-    borderColor: 'red'
+    borderRadius: 5
   },
   scrollListsContainer: {
-    paddingTop: 20,
-    maxHeight: 50,
+
     flexDirection: 'column',
-    backgroundColor: 'white',
+    backgroundColor: 'white'
   },
   playlists:{
-    justifyContent: 'space-around'
+    flex: 1,
+    backgroundColor: 'red'
+  },
+  scrollContainer: {
+
+    height: 30,
+    padding: 0
   },
   tracksContainer: {
+    flex: 1,
     paddingTop: 10,
     padding: 5,
     backgroundColor: '#161c20',
@@ -310,7 +320,9 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     backgroundColor: 'red',
     color: '#FFF',
-    fontWeight: 'bold'
+    fontWeight: 'bold',
+    borderRadius: 2,
+    justifyContent: 'flex-end'
   },
   image: {
     height: 50,

@@ -125,8 +125,8 @@ const deleteSongFromPlaylist = (req, res, next) => {
 		.orderByValue()
 		.on('child_added', snapshot => {
 			console.log('inside of here!');
-			console.log(`snapshot.val(): ${snapshot.val()}`);
-			if (snapshot.val() == trackID) {
+			console.log(`snapshot.key(): ${snapshot.key()}`);
+			if (snapshot.key() == trackID) {
 				console.log('MATCHED!');
 				snapshot.ref().remove(err => {
 					if (err) {
