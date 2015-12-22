@@ -5,6 +5,7 @@ const Tracks = require('./Tracks.js');
 const PlaylistViewer = require('./PlaylistViewer.js');
 const Playlist = require('./Playlist.js');
 const PlaylistCreator = require('./PlaylistCreator.js');
+const STYLES = require('../Assets/PicoStyles.js');
 
 const {
   AlertIOS,
@@ -58,7 +59,7 @@ class WhichPlaylist extends React.Component {
         <View style={styles.spinnerContainer}>
           <ActivityIndicatorIOS
             animating={this.state.isLoading}
-            color="#99FF00"
+            color={STYLES.colors.PICO_GREEN}
             size="large" />
         </View>
       );

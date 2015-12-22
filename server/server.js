@@ -98,13 +98,24 @@ app.post('/users', dbHelpers.authenticateUser, (req, res, next) => {
 });
 
 app.post('/playlists', dbHelpers.addPlaylist, (req, res, next) => {
-  if(res.err) return res.send(`ERROR Server.js: ${res.err}`);
+  if (res.err) return res.send(`ERROR Server.js: ${res.err}`);
   res.send(`Successfully created playlist: ${req.body.playlistname}`);
 });
 
 app.post('/playlists/:playlistname', dbHelpers.addToPlaylist, (req, res, next) => {
-  if(res.err) return res.send(`ERROR Server.js: ${res.err}`);
+  if (res.err) return res.send(`ERROR Server.js: ${res.err}`);
   console.log(`After posting song, return:  ${JSON.stringify(res.data)}`);
+  res.send(res.data);
+});
+
+// Retrieve the songs from the Party Playlist
+app.get('/partyplaylist', dbHelpers.getPartyPlaylist, (req, res, next) => {
+  res.send(res.data);
+});
+
+// add a song to the Party Playlist
+app.post('/partyplaylist', dbHelpers.addToPartyPlaylist, (req, res, next) => {
+  if (res.err) return res.send(`ERROR Server.js: ${res.err}`);
   res.send(res.data);
 });
 
