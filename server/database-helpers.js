@@ -1,11 +1,10 @@
 const Firebase = require('firebase');
 const FIREBASE_LOCATION = 'https://picotechnology.firebaseio.com/';
-const USERS_LOCATION = 'https://picotechnology.firebaseio.com/users';
-const PLAYLISTS_LOCATION = 'https://picotechnology.firebaseio.com/playlists';
 
 var FirebaseRef;
 var UsersRef;
 var PlaylistsRef;
+var PartyPlaylistRef;
 
 const connectToDB = () => {
 	FirebaseRef = new Firebase(FIREBASE_LOCATION);
@@ -19,9 +18,14 @@ const addUser = (req, res, next) => {
 	var username = userObj.username;
 	UsersRef
 		.child(username)
-		.set(userObj);
-		res.result = 'Added new user.';
-		return next();
+		.set(userObj, err => {
+			if (err) {
+				res.err = err;
+				return next();
+			}
+			res.result = 'Added new user.';
+			return next();
+		});
 };
 
 const authenticateUser = (req, res, next) => {
