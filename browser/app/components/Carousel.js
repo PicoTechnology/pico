@@ -10,21 +10,21 @@ var MainCarousel = React.createClass({
           <img src="./assets/iPhoneTransparent.png"/>
         </div>
         <Carousel interval={2000}>
-          <CarouselItem >
+          <CarouselItem>
             <img className="displayImages" src="./assets/iPhoneDisplay1.png"/>
-              <h3>Welcome to PICO</h3>
+              <h3 className="carouselText">Welcome to PICO</h3>
           </CarouselItem>
           <CarouselItem>
             <img className="displayImages" src="./assets/iPhoneDisplay2.png"/>
-              <h3>Connect to your speakers</h3>
+              <h3 className="carouselText">Connect to your speakers</h3>
             </CarouselItem>
-          <CarouselItem className="displayImages">
+          <CarouselItem>
             <img className="displayImages" src="./assets/iPhoneDisplay3.png"/>
-              <h3>Discover the music you love</h3>
+              <h3 className="carouselText">Discover the music you love</h3>
           </CarouselItem>
-          <CarouselItem className="displayImages">
+          <CarouselItem>
             <img className="displayImages" src="./assets/iPhoneDisplay4.png"/>
-              <h3>Enjoy party mode with your friends</h3>
+              <h3 className="carouselText">Enjoy party mode with your friends</h3>
           </CarouselItem>
         </Carousel>
       </div>

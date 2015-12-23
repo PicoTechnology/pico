@@ -2,8 +2,8 @@ var React = require('react');
 var ReactDOM = require('react-dom');
 var MainNavbar = require('./Navbar.js');
 var Description = require('./Description.js');
-var Team = require('./Team.js');
-var Company = require('./Company.js');
+var Team2 = require('./Team2.js');
+
 var MainCarousel = require('./Carousel');
 var $ = require('jquery');
 
@@ -84,14 +84,15 @@ var Main = React.createClass({
 		return (
 			<div>
 				<MainNavbar/>
-
 				<div className="description">
 					{demo}
 					<Description {...data} callback={this.toggleState} />
 				</div>
         <MainCarousel/>
-				<Team {...data}/>
-				<Company {...data}/>
+				<Team2 {...data}/>
+				<div className="wtfisthis">
+
+				</div>
 			</div>
 		);
 	}

@@ -76,7 +76,7 @@ var Member = React.createClass({
   }
 });
 
-var Team = React.createClass({
+var Team2 = React.createClass({
   render: function() {
     var list = this.props.membersData.map(function(membersProps, index) {
       return (
@@ -88,7 +88,7 @@ var Team = React.createClass({
         <h3
           styles={styles.sectionHeading}
           className="text-center">
-          Pico Tech Team Members
+          Pico Tech Team2 Members
         </h3>
         <div
           style={styles.teamMemberContainer}
@@ -178,4 +178,4 @@ const styles = {
 };
 
 
-module.exports = Team;
+module.exports = Team2;
