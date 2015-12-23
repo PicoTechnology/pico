@@ -126,8 +126,7 @@ class Single extends React.Component {
     })
       .then(res => res.json())
       .then(json => {
-
-        this.props.updatePlaylistViewerState(json);
+        this.props.updatePlaylistState(json);
       });
   }
   makeHumanReadable(ms) {
@@ -192,7 +191,7 @@ class Tracks extends React.Component {
             key={index}
             {...trackObj}
             playlistName={playlistName}
-            updatePlaylistViewerState={this.props.updateParentState}
+            updatePlaylistState={this.props.updatePlaylistViewerState}
             informParent={this.updatenowPlaying.bind(this)} />
           <Separator />
         </View>
@@ -226,6 +225,7 @@ class PlaylistViewer extends React.Component{
   updateResults(updatedPlaylist) {
     this.props.results = updatedPlaylist;
   }
+
   render() {
     // find nowViewing playlist data
     var nowViewingList = this.props.results.filter(playlistObj => {
@@ -239,7 +239,7 @@ class PlaylistViewer extends React.Component{
       <View style={styles.playlistViewer}>
       <Text style={styles.currentPlaylist}>Current Playlist: {this.state.nowViewing}</Text>
         <ScrollLists updateParentState={this.updateNowViewing.bind(this)} playlistNames={playlistNames} initialPlaylist={this.props.initialPlaylist}/>
-        <Tracks updateParentState={this.updateResults.bind(this)} data={nowViewingList}/>
+        <Tracks updateParentState={this.updateResults.bind(this)} data={nowViewingList} updatePlaylistViewerState={this.updateNowViewing(this.props.)}/>
         {/*<View style={styles.floatingWindow}>
           <Text style={styles.windowText}>{JSON.stringify(playlistNames)}</Text>
         </View>*/}
