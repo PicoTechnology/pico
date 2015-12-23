@@ -84,7 +84,7 @@ var Team = React.createClass({
       );
     }.bind(this));
     return (
-      <div className="col-md-12" style={styles.container}>
+      <div className="teamFont col-md-12" style={styles.container}>
         <h3
           styles={styles.sectionHeading}
           className="text-center">

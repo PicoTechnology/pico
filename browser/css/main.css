@@ -1,11 +1,52 @@
-body{
-  background-color: black;
+@font-face {
+ font-family: Raleway-SemiBold;
+ src: url(./fonts/raleway/Raleway-SemiBold.ttf);
 }
 
-.description{
-  margin-top: 25%;
-  margin-bottom: 25%;
-  top:15%;
+@font-face {
+ font-family: Raleway-Regular;
+ src: url(./fonts/raleway/Raleway-Regular.ttf);
+}
+
+@font-face {
+ font-family: Raleway-Light;
+ src: url(./fonts/raleway/Raleway-Light.ttf);
+}
+
+@font-face {
+ font-family: Quicksand-Light;
+ src: url(./fonts/quicksand/Quicksand-Light.otf);
+}
+
+@font-face {
+ font-family: Quicksand-Regular;
+ src: url(./fonts/quicksand/Quicksand-Regular.otf);
+}
+
+body{
+  background-color: black;
+  font-family: Quicksand-Light;
+}
+
+.navbar-inverse .navbar-nav>li>a   {
+  color: white;
+  margin: auto;
+  font-family: Raleway-SemiBold, sans-serif;
+}
+
+.btn-default {
+  margin-left: 345px;
+  margin-top: -180px;
+  font-family: Raleway-Light;
+}
+
+.teamFont{
+  font-family: Quicksand-Regular;
+}
+
+.description {
+  margin-top: 360px;
+  margin-bottom: 360px;
 }
 
 .descriptionHeader {
@@ -14,22 +55,11 @@ body{
 }
 
 .descriptionPara {
-  margin-left: 8%;
+  margin-left: 117px;
   left: 220px;
   bottom: 180px;
   font-size: 22px;
   z-index: 10;
-}
-
-.btn-default {
-  margin-left: 345px;
-  margin-top: -180px;
-}
-
-.navbar-inverse .navbar-nav>li>a   {
-  color: white;
-  margin: auto;
-  font-family: Raleway, sans-serif;
 }
 
 .carousel {
@@ -57,10 +87,6 @@ body{
   text-align: center;
   color: white;
   top: 30px;
-  -webkit-transition: 0.1s ease-in-out left;
-  -moz-transition: 0.1s ease-in-out left;
-  -o-transition: 0.1s ease-in-out left;
-  transition: 0.1s ease-in-out left;
 }
 
 .carousel-control.left {
@@ -72,7 +98,7 @@ body{
 }
 
 .carousel-indicators {
-  left: 69%;
+  left: 555px;
 }
 
 .iPhoneImage {
@@ -84,5 +110,14 @@ body{
 
 h3 {
     margin-top: 55px;
-    margin-bottom: 30px;
+    margin-bottom: 35px;
 }
+
+.carousel-inner>.item {
+ -webkit-transition: 0.0000001s ease-in-out left;
+ transition: 0.0000001s ease-in-out left;
+ -webkit-transition: 0.0000001s, ease-in-out, left;
+ -moz-transition: .0000001s, ease-in-out, left;
+ -o-transition: .0000001s, ease-in-out, left;
+ transition: .0000001s, ease-in-out, left;
+ }
