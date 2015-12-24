@@ -4,6 +4,7 @@ const GRAPHITE = "#4D4D4D";
 const GRAPHITE_HIGHLIGHT = "#6F6F6F";
 const GRAPHITE_LOWLIGHT = "#3B3B3B";
 const WHITE = "#FFFFFF";
+
 var CompanyStyle = {
   MainStyle: {
     backgroundColor: BLACK,
