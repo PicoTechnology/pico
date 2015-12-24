@@ -7,7 +7,6 @@ const Playlist = require('./Playlist.js');
 const PlaylistCreator = require('./PlaylistCreator.js');
 const STYLES = require('../Assets/PicoStyles.js');
 
-
 const {
   AlertIOS,
   ActivityIndicatorIOS,
