@@ -91,7 +91,7 @@ const addToPartyPlaylist = (req, res, next) => {
 	console.log(`req.body: ${JSON.stringify(req,body, null, 2)}`);
 	var trackObj = req.body.trackObj;
 	PartyPlaylistRef
-		.child(trackObj.id)	
+		.child(trackObj.id)
 		.set(trackObj, err => {
 			if (err) {
 				res.err = err;
@@ -133,7 +133,8 @@ const deleteSongFromPlaylist = (req, res, next) => {
 						res.err = err;
 						return next();
 					}
-					getPlaylists(req, res, next);
+					res.data = playlistname;
+					next();
 				});
 			}
 		});
