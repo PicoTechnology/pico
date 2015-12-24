@@ -6,7 +6,7 @@ const PlaylistViewer = require('./PlaylistViewer.js');
 const Playlist = require('./Playlist.js');
 const PlaylistCreator = require('./PlaylistCreator.js');
 const STYLES = require('../Assets/PicoStyles.js');
-const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
+
 
 const {
   AlertIOS,
@@ -31,7 +31,7 @@ class InstantControls extends React.Component {
         'Accept': 'application/json',
         'Content-Type': 'application/json'
       },
-      method: 'post',
+      method: 'POST',
       body: JSON.stringify(data)
     })
       .then(res => res.json())
