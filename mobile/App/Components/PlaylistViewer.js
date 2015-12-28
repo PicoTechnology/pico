@@ -62,7 +62,6 @@ render() {
           updateParentState={this.updateNowViewing.bind(this)} />
       </View>
     );
-<<<<<<< 0c5deb62305cb90648e2c45a185fc45b6c229fe1
   });
   return (
     <View style={styles.scrollListsContainer}>
@@ -79,29 +78,10 @@ render() {
     </View>
   );
 }
-=======
-  }
->>>>>>> fixes playlistViewer delete states
-}
+
 
 
 class Single extends React.Component {
-<<<<<<< 24fe423db637a02d59ab7ddc666334e4475aadf9
-constructor(props) {
-  super(props);
-  this.state = {
-    isLoading: false,
-    isPlaying: false
-  };
-}
-togglePlaying() {
-  this.setState({
-    isPlaying: !this.state.isPlaying
-  });
-}
-renderPlayingStatus() {
-  if (this.state.isPlaying) {
-=======
   constructor(props) {
     super(props);
     this.state = {
@@ -162,7 +142,6 @@ renderPlayingStatus() {
   }
   render() {
     let artwork = this.props.artwork_url ? {uri:this.props.artwork_url} : require("../Assets/Pico-O-grey.png");
->>>>>>> fixing deletion updates
     return (
       <View style={styles.playing}></View>
     );
@@ -230,53 +209,53 @@ render() {
 }
 
 class Separator extends React.Component {
-render() {
-  return (
-    <View style={styles.separatorContainer}>
-      <View style={styles.separator} />
-    </View>
-  );
-}
+  render() {
+    return (
+      <View style={styles.separatorContainer}>
+        <View style={styles.separator} />
+      </View>
+    );
+  }
 }
 
 class Tracks extends React.Component {
-constructor(props) {
-  super(props);
-  this.state = {
-    nowPlaying: null
-  };
-}
-updatenowPlaying(trackId) {
-  this.setState({
-    nowPlaying: trackId,
-  });
-}
-render() {
-  let playlistName = Object.keys(this.props.data)[0];
-  let list = this.props.data[playlistName].map((trackObj, index) => {
+  constructor(props) {
+    super(props);
+    this.state = {
+      nowPlaying: null
+    };
+  }
+  updatenowPlaying(trackId) {
+    this.setState({
+      nowPlaying: trackId,
+    });
+  }
+  render() {
+    let playlistName = Object.keys(this.props.data)[0];
+    let list = this.props.data[playlistName].map((trackObj, index) => {
+      return (
+        <View>
+          <Single
+            key={index}
+            {...trackObj}
+            playlistName={playlistName}
+            updatePlaylistState={this.props.updatePlaylistViewerState}
+            informParent={this.updatenowPlaying.bind(this)} />
+          <Separator />
+        </View>
+      );
+    });
     return (
-      <View>
-        <Single
-          key={index}
-          {...trackObj}
-          playlistName={playlistName}
-          updatePlaylistState={this.props.updatePlaylistViewerState}
-          informParent={this.updatenowPlaying.bind(this)} />
-        <Separator />
+      <View
+        style={styles.tracksContainer}>
+        <ScrollView
+          onScroll={() => console.log('OnScroll activated!')}
+          showVerticalScrollIndicator={true}>
+          {list}
+        </ScrollView>
       </View>
     );
-  });
-  return (
-    <View
-      style={styles.tracksContainer}>
-      <ScrollView
-        onScroll={() => console.log('OnScroll activated!')}
-        showVerticalScrollIndicator={true}>
-        {list}
-      </ScrollView>
-    </View>
-  );
-}
+  }
 }
 
 class PlaylistViewer extends React.Component{
