@@ -145,7 +145,7 @@ app.post('/tracks', (req, res, next) => {
         return song.downloadable;
       })
       // console.log(json);
-      // console.log(`${SOUNDCLOUD_API}/tracks?${qs.stringify(Object.assign({}, req.body, {client_id}))}`);
+      console.log(`${SOUNDCLOUD_API}/tracks?${qs.stringify(Object.assign({}, req.body, {client_id}))}`);
       res.type('application/json');
       res.send(json);
     })
