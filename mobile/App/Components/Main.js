@@ -1,6 +1,6 @@
 const React = require('react-native');
 const Login = require('./Login.js');
-const Track = require('./Tracks.js');
+
 const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
 
 const {
