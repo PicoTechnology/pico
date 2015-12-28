@@ -174,7 +174,20 @@ class Tracks extends React.Component{
       nowPlaying: trackObj,
       playbackFinished: false
     });
-    this.startCountdown(trackObj);
+    let data = trackObj;
+    fetch(`${SERVER_ENDPOINT}/playsong`, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+      .then(res => res.text())
+      .then(text => {
+        this.startCountdown(trackObj);
+      })
+      .catch(err => AlertIOS.alert('Error!', 'Track.js... oops'));
   }
   render() {
     let songlist = this.props.results.map((trackObj, index) => {

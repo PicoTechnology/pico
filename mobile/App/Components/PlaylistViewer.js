@@ -62,6 +62,7 @@ render() {
           updateParentState={this.updateNowViewing.bind(this)} />
       </View>
     );
+<<<<<<< 0c5deb62305cb90648e2c45a185fc45b6c229fe1
   });
   return (
     <View style={styles.scrollListsContainer}>
@@ -78,10 +79,14 @@ render() {
     </View>
   );
 }
+=======
+  }
+>>>>>>> fixes playlistViewer delete states
 }
 
 
 class Single extends React.Component {
+<<<<<<< 24fe423db637a02d59ab7ddc666334e4475aadf9
 constructor(props) {
   super(props);
   this.state = {
@@ -96,6 +101,68 @@ togglePlaying() {
 }
 renderPlayingStatus() {
   if (this.state.isPlaying) {
+=======
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: false,
+      isPlaying: false
+    };
+  }
+  togglePlaying() {
+    this.setState({
+      isPlaying: !this.state.isPlaying
+    });
+  }
+  renderPlayingStatus() {
+    if (this.state.isPlaying) {
+      return (
+        <View style={styles.playing}></View>
+      );
+    }
+    return <View />;
+  }
+  handlePress() {
+    this.togglePlaying();
+    let data = {trackId: this.props.id};
+    fetch(`${SERVER_ENDPOINT}/playsong`, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify(data)
+    })
+      .then(res => res.text())
+      .then(text => true)
+      .catch(err => AlertIOS.alert('Error!', 'Track.js... oops'));
+  }
+  handleDelete() {
+    fetch(`${SERVER_ENDPOINT}/Playlists/${this.props.playlistName}/${this.props.id}`, {
+      headers:{
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'DELETE'
+    })
+      .then(res => res.json())
+      .then(json => {
+        console.log('The res.json from deleteSongFromPlaylist is ', json);
+        this.props.updatePlaylistState(json);
+      });
+  }
+  makeHumanReadable(ms) {
+    let minutesRaw = ms/1000/60;
+    let minutesPure = Math.floor(minutesRaw);
+    let secondsRaw = minutesRaw % minutesPure * 60;
+    let secondsPure = '0' + secondsRaw.toFixed(0);
+    var endOfString = secondsPure.length - 1;
+    secondsPure = secondsPure.charAt(endOfString) + secondsPure.charAt(endOfString - 1);
+    return `${minutesPure}:${secondsPure}`;
+  }
+  render() {
+    let artwork = this.props.artwork_url ? {uri:this.props.artwork_url} : require("../Assets/Pico-O-grey.png");
+>>>>>>> fixing deletion updates
     return (
       <View style={styles.playing}></View>
     );
@@ -213,41 +280,41 @@ render() {
 }
 
 class PlaylistViewer extends React.Component{
-constructor(props) {
-  super(props);
-  this.state = {
-    nowViewing: this.props.initialPlaylist
-  };
-}
-updateNowViewing(playlistName) {
-  this.setState({
-    nowViewing: playlistName
-  });
-}
-updateResults(updatedPlaylist) {
-  this.props.results = updatedPlaylist;
-}
+  constructor(props) {
+    super(props);
+    this.state = {
+      nowViewing: this.props.initialPlaylist
+    };
+  }
+  updateNowViewing(playlistName) {
+    this.setState({
+      nowViewing: playlistName
+    });
+  }
+  updateResults(updatedPlaylist) {
+    this.props.results = updatedPlaylist;
+  }
 
-render() {
-  // find nowViewing playlist data
-  var nowViewingList = this.props.results.filter(playlistObj => {
-    // return Object.keys(playlistObj)[0] === 'Chilling at ROC';
-    return Object.keys(playlistObj)[0] === this.state.nowViewing;
-  })[0];
-  var playlistNames = this.props.results.map(playlistObj => {
-    return Object.keys(playlistObj)[0];
-  });
-  return (
-    <View style={styles.playlistViewer}>
-    <Text style={styles.currentPlaylist}>Current Playlist: {this.state.nowViewing}</Text>
-      <ScrollLists updateParentState={this.updateNowViewing.bind(this)} playlistNames={playlistNames} initialPlaylist={this.props.initialPlaylist}/>
-      <Tracks updateParentState={this.updateResults.bind(this)} data={nowViewingList} updatePlaylistViewerState={this.updateNowViewing.bind(this)}/>
-      {/*<View style={styles.floatingWindow}>
-        <Text style={styles.windowText}>{JSON.stringify(playlistNames)}</Text>
-      </View>*/}
-    </View>
-  )
-}
+  render() {
+    // find nowViewing playlist data
+    var nowViewingList = this.props.results.filter(playlistObj => {
+      // return Object.keys(playlistObj)[0] === 'Chilling at ROC';
+      return Object.keys(playlistObj)[0] === this.state.nowViewing;
+    })[0];
+    var playlistNames = this.props.results.map(playlistObj => {
+      return Object.keys(playlistObj)[0];
+    });
+    return (
+      <View style={styles.playlistViewer}>
+      <Text style={styles.currentPlaylist}>Current Playlist: {this.state.nowViewing}</Text>
+        <ScrollLists updateParentState={this.updateNowViewing.bind(this)} playlistNames={playlistNames} initialPlaylist={this.props.initialPlaylist}/>
+        <Tracks updateParentState={this.updateResults.bind(this)} data={nowViewingList} updatePlaylistViewerState={this.updateNowViewing.bind(this)}/>
+        {/*<View style={styles.floatingWindow}>
+          <Text style={styles.windowText}>{JSON.stringify(playlistNames)}</Text>
+        </View>*/}
+      </View>
+    )
+  }
 }
 
 const styles = StyleSheet.create({
