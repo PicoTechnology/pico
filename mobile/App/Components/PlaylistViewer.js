@@ -231,7 +231,6 @@ class PlaylistViewer extends React.Component{
   render() {
     // find nowViewing playlist data
     var nowViewingList = this.props.results.filter(playlistObj => {
-      // return Object.keys(playlistObj)[0] === 'Chilling at ROC';
       return Object.keys(playlistObj)[0] === this.state.nowViewing;
     })[0];
     var playlistNames = this.props.results.map(playlistObj => {
@@ -241,10 +240,10 @@ class PlaylistViewer extends React.Component{
       <View style={styles.playlistViewer}>
       <Text style={styles.currentPlaylist}>Current Playlist: {this.state.nowViewing}</Text>
         <ScrollLists updateParentState={this.updateNowViewing.bind(this)} playlistNames={playlistNames} initialPlaylist={this.props.initialPlaylist}/>
-        <Tracks updateParentState={this.updateResults.bind(this)} data={nowViewingList} updatePlaylistViewerState={this.updateNowViewing.bind(this)}/>
-        {/*<View style={styles.floatingWindow}>
-          <Text style={styles.windowText}>{JSON.stringify(playlistNames)}</Text>
-        </View>*/}
+        <Tracks 
+          updateParentState={this.updateResults.bind(this)} 
+          data={nowViewingList} 
+          updatePlaylistViewerState={this.updateNowViewing.bind(this)}/>
       </View>
     )
   }
