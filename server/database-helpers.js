@@ -187,6 +187,18 @@ const getTracksFromPlaylist = (req, res, next) => {
 		});
 };
 
+const upvoteTrack = (req, res, next) => {
+	var trackID = req.params.trackID;
+	PartyPlaylistRef
+		.orderByValue()
+		.on('value', snapshot => {
+			if(snapshot.key() == trackID) {
+				snapshot.ref()
+			}
+		});
+
+}
+
 const API = {
 	connectToDB,
 	addPlaylist,

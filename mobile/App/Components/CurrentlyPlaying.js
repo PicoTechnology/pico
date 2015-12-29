@@ -14,37 +14,39 @@ const {
 	TouchableHighlight
 } = React;
 
-const handlePress = function() {
-	fetch(`${SERVER_ENDPOINT}/partyplaylist`)
-    .then(res => res.json())
-    .then(json => {
-      this.props.navigator.push({
-        title: 'Party',
-        passProps: {queue: json},
-        component: SongQueue
-      });
-    })
-    .catch(err => AlertIOS.alert('Error', 'Error retrieving Party Playlist...'));
-};
 
 module.exports = CurrentlyPlaying = props => {
+	// helper functions
+	const handlePress = function() {
+		fetch(`${SERVER_ENDPOINT}/partyplaylist`)
+	    .then(res => res.json())
+	    .then(json => {
+	      props.navigator.push({
+	        title: 'Party',
+	        passProps: {queue: json},
+	        component: SongQueue
+	      });
+	    })
+	    .catch(err => AlertIOS.alert('Error', `Error retrieving Party Playlist: ${err}`));
+	};
+
 	if (!props.trackObj) return <View />;
-	let artwork = props.trackObj.artwork_url ? 
+	let artwork = props.trackObj.artwork_url ?
 		{uri: props.trackObj.artwork_url} : require("../Assets/Pico-O-grey.png");
 	return (
 		<TouchableHighlight
-			onPress={handlePress.bind(this)}>
+			onPress={handlePress}>
 			<View style={styles.container}>
-				<Image 
+				<Image
 					style={STYLES.singleImage}
 					source={artwork} />
 				<View style={styles.trackInfoContainer}>
-					<Text 
+					<Text
 						style={styles.trackInfo}
 						numberOfLines={1}>
 						{props.trackObj.title}
 					</Text>
-					<Text 
+					<Text
 						style={styles.trackInfo}
 						numberOfLines={1}>
 						{props.trackObj.genre}

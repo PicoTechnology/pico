@@ -44,7 +44,7 @@ class InstantControls extends React.Component {
           component: SongQueue
         });
       })
-      .catch(err => AlertIOS.alert('ERROR', err));
+      .catch(err => AlertIOS.alert('ERROR - handleAddToQueue', err));
   }
   render() {
     return (
