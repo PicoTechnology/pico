@@ -16,12 +16,18 @@ const handlePress = function() {
 };
 
 let SongEntry = props => {
+	let upvote = require('../Assets/icons/Up.png');
+	let downvote = require('../Assets/icons/Down.png');
 	return (
 		<TouchableHighlight onPress={handlePress.bind(this)}>
 			<View style={styles.songEntry}>
 				<Text>props.title</Text>
 				<Text>props.artist</Text>
 				<Text>props.album</Text>
+			</View>
+			<View>
+				<Image source={upvote} />
+				<Image source={downvote} />
 			</View>
 		</TouchableHighlight>
 	);
@@ -41,7 +47,7 @@ module.exports = SongQueue = props => {
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1	
+		flex: 1
 	},
 	songEntry: {
 		paddingTop: 10,
