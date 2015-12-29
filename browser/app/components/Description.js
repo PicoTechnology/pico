@@ -1,8 +1,6 @@
 var React = require('react');
 var MainCarousel = require('./Carousel');
 
-
-
 var Button = React.createClass({
   handleClick: function() {
     this.props.callback();
@@ -10,7 +8,7 @@ var Button = React.createClass({
   render: function() {
     return (
       <div style = {styles.demoBtn} >
-        <button type="button" className = "btn btn-default" onClick={this.handleClick}>
+        <button type="button" className="btn btn-default" onClick={this.handleClick}>
           {this.props.btnCommand}
           <span className="glyphicon glyphicon-chevron-right"></span>
         </button>
@@ -22,7 +20,7 @@ var Button = React.createClass({
 var Description = React.createClass({
   render: function() {
     return (
-      <div className="col-md-6" style={styles.container} id='description'>
+      <div className="col-md-6 descriptionWrapper" style={styles.container}>
         <h1 style={styles.heading} className="descriptionHeader">What is Pico?</h1>
         <p style={styles.blurb} className="descriptionPara">Pico is a smart sound system that allows you
         and your friends to create an immersive music
@@ -31,37 +29,32 @@ var Description = React.createClass({
         curated playlists, multi-room sound streaming.</p>
         <Button {...this.props.productInfo} callback={this.props.callback}/>
       </div>
-        );
+      );
     }
 });
 
 const styles = {
   container: {
-    // backgroundColor: '#373A40',
     color: 'white',
-    // borderBottomStyle: 'solid',
-    // borderBottomColor: '#6F6F6F',
-    // borderBottomWidth: 1,
-    boxShadow: '0 1 0 red'
-
+    boxShadow: '0 1 0 red',
+    left:'15%',
+    top:'5%'
   },
   demoBtn: {
     position: 'relative'
   },
   heading: {
     position: 'relative',
-    marginLeft: 25
-  },
-  content: {
-
+    marginBottom: 20
   },
   blurb: {
     position: 'relative',
     maxWidth: 300,
     paddingTop: 10,
     paddingRight: 10,
-    paddingBottom: 10,
+    paddingBottom: 50,
     paddingLeft: 5,
+    fontSize:24
   }
 };
 

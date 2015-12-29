@@ -177,5 +177,4 @@ const styles = {
   }
 };
 
-
 module.exports = Team;

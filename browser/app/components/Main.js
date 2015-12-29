@@ -8,13 +8,10 @@ var Company = require('./Company.js');
 var MainCarousel = require('./Carousel');
 var $ = require('jquery');
 
-
-
 var data = {
 	productInfo: {
 		btnCommand: "View Demo",
 		btnLink: "http://www.google.com" // CHANGE route to video component
-
 	},
 	membersData: [{
 		name: "William Carroll",
@@ -83,13 +80,13 @@ var Main = React.createClass({
 	render: function() {
 		var demo = (this.state.viewDemo) ? retrieveDemoHtml() : <div></div>;
 		return (
-			<div className="container">
+			<div>
 				<MainNavbar/>
-				<div className="description">
+				<div className="container wrapper">
 					{demo}
-				<Description {...data} callback={this.toggleState} />
+					<Description {...data} callback={this.toggleState} />
+					<MainCarousel/>
 				</div>
-        <MainCarousel/>
 				<Team {...data}/>
 				<Company {...data}/>
 			</div>
