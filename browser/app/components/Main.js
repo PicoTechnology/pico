@@ -4,7 +4,7 @@ var MainNavbar = require('./Navbar.js');
 var Description = require('./Description.js');
 var Team = require('./Team.js');
 var Company = require('./Company.js');
-
+var Diagram = require('./Diagram.js');
 var MainCarousel = require('./Carousel');
 var $ = require('jquery');
 
@@ -72,7 +72,7 @@ var Main = React.createClass({
 			});
 		});
 	},
-	toggleState: function() {
+	toggleState: function(a) {
 		this.setState({
 			viewDemo: !this.state.viewDemo
 		});
@@ -87,6 +87,7 @@ var Main = React.createClass({
 					<Description {...data} callback={this.toggleState} />
 					<MainCarousel/>
 				</div>
+				<Diagram/>
 				<Team {...data}/>
 				<Company {...data}/>
 			</div>

@@ -9,10 +9,9 @@ var MenuItem = require('react-bootstrap').MenuItem;
 var MainNavbar = React.createClass({
   componentDidMount: function() {
     $(function() {
-      $('a[href*=#]:not([href=#])').click(function(e) {
+      $('a[href*=#]:not([href=#]), button').click(function(e) {
         e.preventDefault();
         if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
-
           var target = $(this.hash);
           target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
           if (target.length) {
@@ -21,7 +20,7 @@ var MainNavbar = React.createClass({
             }, 1500);
           }
         }
-      });
+      }); 
     });
   },
   render: function() {
@@ -33,7 +32,7 @@ var MainNavbar = React.createClass({
       <Navbar inverse fixedTop style={styles.mainNav}>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="#Home"><img style={styles.logo} src="./assets/PicoLogo-Navi.png"></img></a>
+              <a href="#home"><img style={styles.logo} src="./assets/PicoLogo-Navi.png"></img></a>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>

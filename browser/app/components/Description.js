@@ -27,7 +27,7 @@ var Description = React.createClass({
         experience with one simple app.
         Capable of building personal and group
         curated playlists, multi-room sound streaming.</p>
-        <Button {...this.props.productInfo} callback={this.props.callback}/>
+        <Button href="#diagram" {...this.props.productInfo} callback={this.props.callback}/>
       </div>
       );
     }
