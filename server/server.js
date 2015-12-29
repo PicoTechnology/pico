@@ -8,13 +8,14 @@ const app = require('express')();
 const fetch = require('node-fetch');
 const bodyparser = require('body-parser');
 const request = require('request');
+const path = require('path');
 
-const Speaker = require('speaker');
 const lame = require('lame');
 const wav = require('wav');
 const Player = require('player');
 
 const dbHelpers = require('./database-helpers.js');
+const playbackHelpers = require('./playback-helpers.js');
 const bluetoothHelpers = require('./bluetooth.js');
 
 const SOUNDCLOUD = 'https://soundcloud.com';
@@ -38,56 +39,23 @@ app.get('/disconnect', (req, res, next) => {
   bluetoothHelpers.closeConnection();
 });
 
-app.get('/testplay', (req, res, next) => {
-  var file = fs.createReadStream(`${__dirname}/assets/piano2.wav`);
-  var reader = new wav.Reader();
-
-  reader.on('format', format => {
-    reader.pipe(new Speaker(format));
-  });
-
-  file.pipe(reader);
-});
-
 app.post('/playsong', (req, res, next) => {
-  var uri = req.body.id;
+  var trackObj = req.body;
+  var uri = trackObj.id;
   var queryString = qs.stringify(Object.assign({}, {client_id}));
-  console.log(`${SOUNDCLOUD_API}/tracks/${uri}/download?${queryString}`);
+  console.log(`download link: ${SOUNDCLOUD_API}/tracks/${uri}/download?${queryString}`);
 
-  var mp3File = fs.createWriteStream(`${__dirname}/assets/a.mp3`);
-  var wavFile = fs.createWriteStream(`${__dirname}/assets/b.wav`);
-
-  var decoder = new lame.Decoder();
-
-  decoder.on('format', format => {
-    var writer = new wav.Writer(format);
-
-    decoder
-      .pipe(writer)
-      .pipe(wavFile);
-    console.log('inside decoder...');
-
-    // when file closes, play to speakers
-    wavFile.on('close', () => {
-      console.log('wavFile closed!');
-      var file2 = fs.createReadStream(`${__dirname}/assets/b.wav`);
-
-      // send data to speakers
-      var reader = new wav.Reader();
-
-      reader.on('format', format => {
-        reader.pipe(new Speaker(format));
-      });
-
-      file2.pipe(reader);
-    });
-
+  var songpath = `${__dirname}/assets/${trackObj.id}.${trackObj.original_format}`;
+  var mp3File = fs.createWriteStream(songpath);
+  mp3File.on('finish', () => {
+    console.log(`finished downloading ${trackObj.title}`);
+    playbackHelpers.play(songpath);
   });
 
   request
     .get(`${SOUNDCLOUD_API}/tracks/${uri}/download?${queryString}`)
     .on('error', err => console.error(err))
-    .pipe(decoder)
+    .pipe(mp3File)
 });
 
 app.post('/users', dbHelpers.authenticateUser, (req, res, next) => {
@@ -106,7 +74,7 @@ app.post('/playlists/:playlistname', dbHelpers.addToPlaylist, (req, res, next) =
 });
 
 // Retrieve the songs from the Party Playlist
-app.get('/partyplaylist', dbHelpers.getPartyPlaylist, (req, res, next) => {
+app.get('/rtyplaylist', dbHelpers.getPartyPlaylist, (req, res, next) => {
   res.send(res.data);
 });
 
