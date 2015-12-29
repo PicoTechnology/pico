@@ -27,10 +27,10 @@ let SongEntry = props => {
 	return (
 		<View style={styles.songEntry}>
 			<View>
-				<Text>props.soundcloud.title</Text>
-				<Text>props.soundcloud.artist</Text>
-				<Text>props.soundcloud.album</Text>
-				<Text>props.rating</Text>
+				<Text>{props.soundcloud.title}</Text>
+				<Text>{props.soundcloud.artist}</Text>
+				<Text>{props.soundcloud.album}</Text>
+				<Text>{props.rating}</Text>
 			</View>
 			<View>
 				<TouchableHighlight onPress={handleUpvote.bind(this)}>
@@ -39,7 +39,6 @@ let SongEntry = props => {
 				<TouchableHighlight onPress={handleDownvote.bind(this)}>
 					<Image source={downvote} />
 				</TouchableHighlight>
-
 			</View>
 		</View>
 	);
@@ -49,10 +48,9 @@ module.exports = SongQueue = props => {
 	let songs = props.queue.map(song => <SongEntry {...song}/>);
 	return (
 		<View style={styles.container}>
-			<Text>{`This is the data: ${JSON.stringify(props.queue, null, 2)}`}</Text>
-			{/*<ScrollView>
-							{songs}
-						</ScrollView>*/}
+			<ScrollView>
+				{songs}
+			</ScrollView>
 		</View>
 	);
 };

@@ -49,6 +49,7 @@ app.post('/playsong', (req, res, next) => {
   mp3File.on('finish', () => {
     console.log(`finished downloading ${trackObj.title}`);
     playbackHelpers.play(songpath);
+    res.send('finished downloading');
   });
 
   request
