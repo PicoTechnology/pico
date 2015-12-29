@@ -2,7 +2,7 @@ const exec = require('child_process').exec;
 const path = require('path');
 
 module.exports = {
-	playsong: function(songpath) {
+	play: function(songpath) {
 		console.log(`Now playing ${path.basename(songpath)}...`)
 		var ext = path.extname(songpath);
 		switch (ext) {

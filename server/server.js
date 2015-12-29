@@ -16,7 +16,6 @@ const wav = require('wav');
 
 const dbHelpers = require('./database-helpers.js');
 const playbackHelpers = require('./playback-helpers.js');
-const bluetoothHelpers = require('./bluetooth.js');
 
 const SOUNDCLOUD = 'https://soundcloud.com';
 const SOUNDCLOUD_API = 'http://api.soundcloud.com';
