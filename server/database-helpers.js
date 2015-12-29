@@ -166,6 +166,7 @@ const getPartyPlaylist = (req, res, next) => {
 	PartyPlaylistRef
 		.orderByKey()
 		.once('value', snapshot => {
+			console.log(`party playlist: ${snapshot.val()}`);
 			res.data = snapshot.val();
 			next();
 		});

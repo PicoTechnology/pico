@@ -2,6 +2,7 @@ const React = require('react-native');
 const STYLES = require('../Assets/PicoStyles.js');
 const UI_HELPERS = require('../Utils/UiHelpers.js');
 const SongQueue = require('./SongQueue.js');
+const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
 
 const {
 	View,
@@ -14,29 +15,17 @@ const {
 } = React;
 
 const handlePress = function() {
-	fetch(`${SERVER_ENDPOINT}/partyplaylist`, {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      method: 'post',
-      body: JSON.stringify(data)
+	fetch(`${SERVER_ENDPOINT}/partyplaylist`)
+    .then(res => res.json())
+    .then(json => {
+    	AlertIOS.alert('Results', json);
+      // this.props.navigator.push({
+      //   title: 'Results',
+      //   passProps: {results: json},
+      //   component: Tracks
+      // });
     })
-      .then(res => res.json())
-      .then(json => {
-        this.setState({
-          isLoading: false,
-          error: ''
-        });
-        this.props.navigator.push({
-          title: 'Results',
-          passProps: {results: json},
-          component: Tracks
-        });
-      })
-      .catch(err => {
-        this.setState({isLoading: false, error: err})
-      });
+    .catch(err => AlertIOS.alert('Error', 'Error retrieving Party Playlist...'));
 };
 
 module.exports = CurrentlyPlaying = props => {
