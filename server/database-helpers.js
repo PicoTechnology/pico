@@ -87,7 +87,7 @@ const addToPlaylist = (req, res, next) => {
 };
 
 const addToPartyPlaylist = (req, res, next) => {
-	console.log(`req.body.trackObj: ${JSON.stringify(req.body.trackObj, null, 2)}`);
+	console.log(`Adding "${req.body.trackObj.title}" to the Party Playlist...`);
 	var trackObj = Object.assign({rating: 0}, {soundcloud: req.body.trackObj});
 	PartyPlaylistRef
 		.child(trackObj.soundcloud.id)
@@ -173,7 +173,6 @@ const getPartyPlaylist = (req, res, next) => {
 				exportArr.push(snapshot.exportVal());
 			});
 			res.data = exportArr;
-			console.log(`exportArr: ${JSON.stringify(exportArr, null, 2)}`);
 			next();
 		});
 };
