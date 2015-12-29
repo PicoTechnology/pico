@@ -30,6 +30,15 @@ body{
   height: 100%;
 }
 
+/*DESCRIPTION*/
+.wrapper {
+  margin-top: 150px;
+  height: 750px;
+}
+.descriptionWrapper {
+  font-family: Quicksand-Light;
+}
+
 /*NAVI*/
 .navbar-inverse .navbar-nav>li>a   {
   color: white;
@@ -38,88 +47,16 @@ body{
 }
 
 .btn-default {
-  /*margin-left: 345px;
-  margin-top: -180px;*/
   font-family: Raleway-Light;
 }
 
-.teamFont{
-  font-family: Quicksand-Regular;
-  color: white;
-}
-
-.description {
-  margin-top: 360px;
-  margin-bottom: 360px;
-}
-
-/*DESCRIPTION*/
-/*.descriptionHeader {
-  left: 310px;
-  bottom: 220px;
-}
-
-.descriptionPara {
-  margin-left: 117px;
-  left: 220px;
-  bottom: 180px;
-  font-size: 22px;
-  z-index: 10;
-}*/
-
 /*CAROUSEL*/
-/*.carousel {
-  margin: auto;
-  position: absolute;
-  left: 384px;
-  top: 78px;
-  max-height: 680px;
-  width: 100%;
-}
-
-.carousel-inner{
-  right: 170px;
-  bottom: 28px;
-  left: 164px;
-}
-
-.carousel-inner>.item>a>img, .carousel-inner>.item>img {
-  margin-top:7px  ;
-  height: 589px;
-}
-
-.carousel-inner>.item {
-  text-align: center;
-  color: white;
-  top: 30px;
-}
-
 .carousel-control.left {
   display: none;
 }
 
 .carousel-control.right {
   display: none;
-}
-
-.carousel-indicators {
-  left: 555px;
-}
-
-.carouselText {
-  width: 775px;
-}
-
-.iPhoneImage {
-    top: 85px ;
-    left: 540px;
-    position: absolute;
-    z-index: 5;
-}
-
-h3 {
-    margin-top: 55px;
-    margin-bottom: 35px;
 }
 
 .carousel-inner>.item {
@@ -129,7 +66,11 @@ h3 {
  -moz-transition: .0000001s, ease-in-out, left;
  -o-transition: .0000001s, ease-in-out, left;
  transition: .0000001s, ease-in-out, left;
- }*/
+ }
+
+.carousel-indicators {
+  bottom: 30px !important;
+}
 
 /*TEAM SECTION*/
 .teamText {
@@ -140,16 +81,16 @@ h3 {
  }
 
 .teamContainer {
-  height: 700px;
+  height: 800px;
 }
 
 /*FOOTER*/
-
 .footerWarper {
    background-color: #222222 !important;
-
- }
- .footerText {
    text-align: center;
+   vertical-align: middle !important;
+}
 
- }
+.footerText {
+  top: 50%;
+}

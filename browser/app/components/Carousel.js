@@ -8,26 +8,26 @@ var MainCarousel = React.createClass({
       <div className="col-md-6">
         <div style={styles.iphoneImg} className="iPhoneImage" id="Home">
           <img src="./assets/iPhoneTransparent.png"/>
-        </div>
-        <div style={styles.carouselContainer}>
-          <Carousel interval={2000}>
-            <CarouselItem>
-              <img className="displayImages" src="./assets/iPhoneDisplay1.png"/>
-                <h3 className="carouselText">Welcome to PICO</h3>
-            </CarouselItem>
-            <CarouselItem>
-              <img className="displayImages" src="./assets/iPhoneDisplay2.png"/>
-                <h3 className="carouselText">Connect to your speakers</h3>
+          <div style={styles.carouselContainer}>
+            <Carousel interval={2000}>
+              <CarouselItem>
+                <img src="./assets/iPhoneDisplay1.png"/>
+                  <h3 style={styles.display}>Welcome to PICO</h3>
               </CarouselItem>
-            <CarouselItem>
-              <img className="displayImages" src="./assets/iPhoneDisplay3.png"/>
-                <h3 className="carouselText">Discover the music you love</h3>
-            </CarouselItem>
-            <CarouselItem>
-              <img className="displayImages" src="./assets/iPhoneDisplay4.png"/>
-                <h3 className="carouselText">Enjoy party mode with your friends</h3>
-            </CarouselItem>
-          </Carousel>
+              <CarouselItem>
+                <img src="./assets/iPhoneDisplay2.png"/>
+                  <h3 style={styles.display}>Connect to your speakers</h3>
+                </CarouselItem>
+              <CarouselItem>
+                <img src="./assets/iPhoneDisplay3.png"/>
+                  <h3 style={styles.display}>Discover the music you love</h3>
+              </CarouselItem>
+              <CarouselItem>
+                <img src="./assets/iPhoneDisplay4.png"/>
+                  <h3 style={styles.display}>Enjoy party mode with your friends</h3>
+              </CarouselItem>
+            </Carousel>
+          </div>
         </div>
       </div>
     );
@@ -36,14 +36,19 @@ var MainCarousel = React.createClass({
 
 styles = {
   iphoneImg: {
-    position: "relative"
+    position: 'absolute',
+    right: '-10%'
   },
   carouselContainer: {
     position: "absolute",
     top: 0,
     left: 0
+  },
+  display: {
+    textAlign: 'center',
+    color: 'white',
+    paddingTop: '15px'
   }
 }
-
 
 module.exports = MainCarousel;

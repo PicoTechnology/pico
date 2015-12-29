@@ -8,7 +8,6 @@ var MenuItem = require('react-bootstrap').MenuItem;
 
 var MainNavbar = React.createClass({
   componentDidMount: function() {
-    //console.log('scrollTop: ' + $(document).scrollTop());
     $(function() {
       $('a[href*=#]:not([href=#])').click(function(e) {
         e.preventDefault();
