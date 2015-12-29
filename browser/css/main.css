@@ -94,3 +94,14 @@ body{
 .footerText {
   top: 50%;
 }
+
+.diagramWrapper {
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.diagram {
+  max-width: 100%;
+  align-content: center;
+}

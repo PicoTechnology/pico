@@ -6,10 +6,10 @@ var MainCarousel = React.createClass({
   render: function() {
     return (
       <div className="col-md-6">
-        <div style={styles.iphoneImg} className="iPhoneImage" id="Home">
+        <div style={styles.iphoneImg} className="iPhoneImage" id="home">
           <img src="./assets/iPhoneTransparent.png"/>
           <div style={styles.carouselContainer}>
-            <Carousel interval={2000}>
+            <Carousel interval={1500}>
               <CarouselItem>
                 <img src="./assets/iPhoneDisplay1.png"/>
                   <h3 style={styles.display}>Welcome to PICO</h3>
