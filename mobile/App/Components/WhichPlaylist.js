@@ -6,6 +6,7 @@ const PlaylistViewer = require('./PlaylistViewer.js');
 const Playlist = require('./Playlist.js');
 const PlaylistCreator = require('./PlaylistCreator.js');
 const STYLES = require('../Assets/PicoStyles.js');
+const SongQueue = require('./SongQueue.js');
 
 const {
   AlertIOS,
@@ -24,7 +25,8 @@ class InstantControls extends React.Component {
     this.props.updateParentNowPlaying(this.props.trackObj);
   }
   handleAddToQueue() {
-    let data = {trackObj: this.props.trackObj};
+    let trackObj = this.props.trackObj;
+    let data = {trackObj};
     fetch(`${SERVER_ENDPOINT}/partyplaylist`, {
       headers: {
         'Accept': 'application/json',
@@ -35,7 +37,12 @@ class InstantControls extends React.Component {
     })
       .then(res => res.json())
       .then(json => {
-        AlertIOS.alert('json', json);
+        AlertIOS.alert('Success!', `Successfully added "${trackObj.title}" to the party playlist. The party playlist now has ${json.length} songs!`);
+        this.props.navigator.push({
+          title: 'Party',
+          passProps: {queue: json},
+          component: SongQueue
+        });
       })
       .catch(err => AlertIOS.alert('ERROR', err));
   }
@@ -99,6 +106,7 @@ class WhichPlaylist extends React.Component {
     return (
       <View style={styles.mainContainer}>
         <InstantControls
+          navigator={this.props.navigator}
           trackObj={this.props.trackObj}
           updateParentNowPlaying={this.props.updateParentNowPlaying} />
         <View style={styles.whichPlaylistHeaderContainer}>

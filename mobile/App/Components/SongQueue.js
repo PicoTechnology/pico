@@ -1,4 +1,5 @@
 const React = require('react-native');
+const STYLES = require('../Assets/PicoStyles.js');
 
 const {
 	AlertIOS,
@@ -10,39 +11,37 @@ const {
 	TouchableHighlight
 } = React;
 
-class SongEntry extends React.Component {
-	handlePress() {
-		AlertIOS.alert('Pressed!', 'Just testing. Do not be alarmed');
-	}
-	render() {
-		return (
-			<TouchableHighlight onPres={this.handlePress}>
-				<View style={styles.songEntry}>
-					<Text>this.props.title</Text>
-					<Text>this.props.artist</Text>
-					<Text>this.props.album</Text>
-				</View>
-			</TouchableHighlight>
-		);
-	}
+const handlePress = function() {
+	AlertIOS.alert('Pressed!', 'Just testing. Do not be alarmed');
+};
+
+let SongEntry = props => {
+	return (
+		<TouchableHighlight onPress={handlePress.bind(this)}>
+			<View style={styles.songEntry}>
+				<Text>props.title</Text>
+				<Text>props.artist</Text>
+				<Text>props.album</Text>
+			</View>
+		</TouchableHighlight>
+	);
 }
 
-class SongQueue extends React.Component {
-	render() {
-		let songs = this.props.songData.map(song => <SongEntry {...song}/>);
-		return (
-			<View style={styles.container}>
-				<ScrollView>
-					{songs}
-				</ScrollView>
-			</View>
-		);
-	}
-}
+module.exports = SongQueue = props => {
+	// let songs = props.queue.map(song => <SongEntry {...song}/>);
+	return (
+		<View style={styles.container}>
+			<Text>{`This is the data: ${JSON.stringify(props.queue, null, 2)}`}</Text>
+			{/*<ScrollView>
+							{songs}
+						</ScrollView>*/}
+		</View>
+	);
+};
 
 const styles = StyleSheet.create({
 	container: {
-
+		flex: 1	
 	},
 	songEntry: {
 		paddingTop: 10,
