@@ -19,27 +19,34 @@ let SongEntry = props => {
 	let upvote = require('../Assets/icons/Up.png');
 	let downvote = require('../Assets/icons/Down.png');
 	let handleUpvote = () => {
-		
+		AlertIOS.alert('handle voted', 'upvote pressed');
+	}
+	let handleDownvote = () => {
+		AlertIOS.alert('handle voted', 'downvote pressed');
 	}
 	return (
-		<TouchableHighlight onPress={handlePress.bind(this)}>
-			<View style={styles.songEntry}>
-				<Text>props.title</Text>
-				<Text>props.artist</Text>
-				<Text>props.album</Text>
+		<View style={styles.songEntry}>
+			<View>
+				<Text>props.soundcloud.title</Text>
+				<Text>props.soundcloud.artist</Text>
+				<Text>props.soundcloud.album</Text>
+				<Text>props.rating</Text>
 			</View>
 			<View>
-				<Image source={upvote}
-					onPress={handleUpvote.bind(this)}
-				/>
-				<Image source={downvote} />
+				<TouchableHighlight onPress={handleUpvote.bind(this)}>
+					<Image source={upvote} />
+				</TouchableHighlight>
+				<TouchableHighlight onPress={handleDownvote.bind(this)}>
+					<Image source={downvote} />
+				</TouchableHighlight>
+
 			</View>
-		</TouchableHighlight>
+		</View>
 	);
 }
 
 module.exports = SongQueue = props => {
-	// let songs = props.queue.map(song => <SongEntry {...song}/>);
+	let songs = props.queue.map(song => <SongEntry {...song}/>);
 	return (
 		<View style={styles.container}>
 			<Text>{`This is the data: ${JSON.stringify(props.queue, null, 2)}`}</Text>

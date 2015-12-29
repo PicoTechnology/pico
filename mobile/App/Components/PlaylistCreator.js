@@ -1,5 +1,6 @@
 const React = require('react-native');
 const STYLES = require('../Assets/PicoStyles.js');
+const SERVER_ENDPOINT = require('../Auth/endpoints.js');
 
 const {
 	AlertIOS,

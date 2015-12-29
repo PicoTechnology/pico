@@ -71,11 +71,11 @@ const addPlaylist = (req, res, next) => {
 
 const addToPlaylist = (req, res, next) => {
 	var playlistname = req.params.playlistname;
-	var trackObj = Object.assign({rating: 0}, {soundcloud: req.body.trackObj});
-	console.log(`adding ${trackObj.soundcloud.id} to ${playlistname}...`);
+	var trackObj = req.body.trackObj;
+	console.log(`adding ${trackObj.id} to ${playlistname}...`);
 	PlaylistsRef
 		.child(playlistname)
-		.child(trackObj.soundcloud.id)
+		.child(trackObj.id)
 		.set(trackObj, err => {
 				if(err) {
 					res.err = err;
