@@ -11,13 +11,16 @@ const {
 	TouchableHighlight
 } = React;
 
-const handlePress = function() {
+const handlePress = () => {
 	AlertIOS.alert('Pressed!', 'Just testing. Do not be alarmed');
 };
 
 let SongEntry = props => {
 	let upvote = require('../Assets/icons/Up.png');
 	let downvote = require('../Assets/icons/Down.png');
+	let handleUpvote = () => {
+		
+	}
 	return (
 		<TouchableHighlight onPress={handlePress.bind(this)}>
 			<View style={styles.songEntry}>
@@ -26,7 +29,9 @@ let SongEntry = props => {
 				<Text>props.album</Text>
 			</View>
 			<View>
-				<Image source={upvote} />
+				<Image source={upvote}
+					onPress={handleUpvote.bind(this)}
+				/>
 				<Image source={downvote} />
 			</View>
 		</TouchableHighlight>
