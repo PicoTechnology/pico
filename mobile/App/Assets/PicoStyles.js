@@ -12,6 +12,7 @@ const LIGHT_GREY = '#cccccc';
 const TOBIN = '#f2f2f2';
 const TEXT_INPUT_HEIGHT = 50;
 const TEXT_INPUT_FONTSIZE = 20;
+const FONT_FAMILY = 'Apple SD Gothic Neo';
 
 module.exports = PicoStyles = {
   colors: {
@@ -42,21 +43,25 @@ module.exports = PicoStyles = {
   },
   underlayColor: ACCENT_GREEN,
   searchInput: {
+    color: TOBIN,
+    fontSize: TEXT_INPUT_FONTSIZE,
+    fontFamily: FONT_FAMILY,
+    fontWeight: 'bold',
+    backgroundColor: 'black',
+    opacity: .85,
+    borderWidth: 1,
+    borderColor: PICO_GREEN,
+    borderRadius: BORDER_CURVE,
     height: TEXT_INPUT_HEIGHT,
     padding: 4,
     marginRight: 5,
     marginBottom: 10,
-    alignSelf: 'stretch',
-    fontSize: TEXT_INPUT_FONTSIZE,
-    borderWidth: 1,
-    borderColor: '#99FF00',
-    borderRadius: 8,
-    color: 'white'
+    alignSelf: 'stretch'
   },
   textInput: {
     color: TOBIN,
     fontSize: 18,
-    fontFamily: 'Apple SD Gothic Neo',
+    fontFamily: FONT_FAMILY,
     fontWeight: 'bold',
     backgroundColor: 'black',
     opacity: .85,

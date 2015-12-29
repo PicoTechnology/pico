@@ -82,7 +82,7 @@ class SearchSoundCloud extends React.Component {
         </View>
         <TextInput
           ref={component => this._searchInput = component}
-          style={STYLES.searchInput}
+          style={Object.assign(styles.searchInput, STYLES.textInput)}
           onChange={this.handleChange.bind(this)}
           placeholder="search soundcloud.com" />
         <View style={styles.spinnerContainer}>
@@ -107,14 +107,6 @@ class SearchSoundCloud extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-    padding: 30,
-    marginTop: 65,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    backgroundColor: 'black'
-  },
   loginIcon: {
     marginBottom: -40,
     height: 50,
@@ -123,6 +115,14 @@ const styles = StyleSheet.create({
     top: -21,
     width: 16
   },
+  mainContainer: {
+    flex: 1,
+    padding: 30,
+    marginTop: 65,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    backgroundColor: 'black'
+  },
   bgImageWrapper: {
       position: 'absolute',
       bottom: 0, left: 0
@@ -130,6 +130,17 @@ const styles = StyleSheet.create({
   bgImage: {
       flex: 1,
       width, height
+  },
+  searchInput: {
+    height: 50,
+    padding: 4,
+    marginRight: 5,
+    marginBottom: 10,
+    fontSize: 20,
+    borderWidth: 1,
+    borderColor: '#99FF00',
+    borderRadius: 8,
+    color: 'white'
   },
   title: {
     marginBottom: 20,
