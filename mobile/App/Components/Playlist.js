@@ -1,12 +1,16 @@
 const React = require('react-native');
 const STYLES = require('../Assets/PicoStyles.js');
+const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
+const PlaylistViewer = require('./PlaylistViewer.js');
 
 const {
   AlertIOS,
   View,
   Text,
-  TouchableHighlight
+  TouchableHighlight,
+  NavigatorIOS
 } = React;
+
 
 class Playlist extends React.Component {
   constructor(props) {
