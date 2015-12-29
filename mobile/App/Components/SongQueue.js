@@ -11,24 +11,42 @@ const {
 	TouchableHighlight
 } = React;
 
-const handlePress = function() {
+const handlePress = () => {
 	AlertIOS.alert('Pressed!', 'Just testing. Do not be alarmed');
 };
 
 let SongEntry = props => {
+	let upvote = require('../Assets/icons/Up.png');
+	let downvote = require('../Assets/icons/Down.png');
+	let handleUpvote = () => {
+		AlertIOS.alert('handle voted', 'upvote pressed');
+	}
+	let handleDownvote = () => {
+		AlertIOS.alert('handle voted', 'downvote pressed');
+	}
 	return (
-		<TouchableHighlight onPress={handlePress.bind(this)}>
-			<View style={styles.songEntry}>
-				<Text>props.title</Text>
-				<Text>props.artist</Text>
-				<Text>props.album</Text>
+		<View style={styles.songEntry}>
+			<View>
+				<Text>props.soundcloud.title</Text>
+				<Text>props.soundcloud.artist</Text>
+				<Text>props.soundcloud.album</Text>
+				<Text>props.rating</Text>
 			</View>
-		</TouchableHighlight>
+			<View>
+				<TouchableHighlight onPress={handleUpvote.bind(this)}>
+					<Image source={upvote} />
+				</TouchableHighlight>
+				<TouchableHighlight onPress={handleDownvote.bind(this)}>
+					<Image source={downvote} />
+				</TouchableHighlight>
+
+			</View>
+		</View>
 	);
 }
 
 module.exports = SongQueue = props => {
-	// let songs = props.queue.map(song => <SongEntry {...song}/>);
+	let songs = props.queue.map(song => <SongEntry {...song}/>);
 	return (
 		<View style={styles.container}>
 			<Text>{`This is the data: ${JSON.stringify(props.queue, null, 2)}`}</Text>
@@ -41,7 +59,7 @@ module.exports = SongQueue = props => {
 
 const styles = StyleSheet.create({
 	container: {
-		flex: 1	
+		flex: 1
 	},
 	songEntry: {
 		paddingTop: 10,

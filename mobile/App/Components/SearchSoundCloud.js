@@ -10,7 +10,6 @@ const {
   Text,
   TextInput,
   TouchableHighlight,
-  NavigatorIOS,
   Dimensions,
   StyleSheet,
   Image
