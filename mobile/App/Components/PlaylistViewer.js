@@ -86,7 +86,8 @@ class Single extends React.Component {
     super(props);
     this.state = {
       isLoading: false,
-      isPlaying: false
+      isPlaying: false,
+
     };
   }
   togglePlaying() {
@@ -115,7 +116,7 @@ class Single extends React.Component {
     })
       .then(res => res.text())
       .then(text => true)
-      .catch(err => AlertIOS.alert('Error!', 'Track.js... oops'));
+      .catch(err => AlertIOS.alert('Error!', 'Tracks in PlaylistViewer.js... oops'));
   }
   handleDelete() {
     fetch(`${SERVER_ENDPOINT}/Playlists/${this.props.playlistName}/${this.props.id}`, {
@@ -124,12 +125,17 @@ class Single extends React.Component {
         'Content-Type': 'application/json'
       },
       method: 'DELETE'
-    })
-      .then(res => res.json())
-      .then(json => {
-        console.log('The res.json from deleteSongFromPlaylist is ', json);
-        this.props.updatePlaylistState(json);
-      });
+    });
+
+        this.props.updateParentState(this.props.playlistName);
+        AlertIOS.alert('FINISHED DELETING from ', this.props.playlistName);
+      // .then(res => res.json())
+      // .then(json => {
+      //   console.log('The res.json from deleteSongFromPlaylist is ', json);
+      //   this.props.updatePlaylistState(json);
+      // });
+      // AlertIOS.alert("this is after deleted");
+      // this.props.updatePlaylistState(playlistname);
   }
   makeHumanReadable(ms) {
     let minutesRaw = ms/1000/60;
@@ -184,6 +190,9 @@ class Tracks extends React.Component {
       nowPlaying: trackId,
     });
   }
+  updatePlaylistViewerState(playlistName){
+    this.props.updatePlaylistViewerState(playlistName);
+  }
   render() {
     let playlistName = Object.keys(this.props.data)[0];
     let list = this.props.data[playlistName].map((trackObj, index) => {
@@ -193,7 +202,7 @@ class Tracks extends React.Component {
             key={index}
             {...trackObj}
             playlistName={playlistName}
-            updatePlaylistState={this.props.updatePlaylistViewerState}
+            updateParentState={this.updatePlaylistViewerState.bind(this)}
             informParent={this.updatenowPlaying.bind(this)} />
           <Separator />
         </View>
@@ -204,7 +213,8 @@ class Tracks extends React.Component {
         style={styles.tracksContainer}>
         <ScrollView
           onScroll={() => console.log('OnScroll activated!')}
-          showVerticalScrollIndicator={true}>
+          showVerticalScrollIndicator={true}
+          informParent={this.updatePlaylistViewerState.bind(this)}>
           {list}
         </ScrollView>
       </View>

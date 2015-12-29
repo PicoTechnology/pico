@@ -68,7 +68,7 @@ app.post('/playlists', dbHelpers.addPlaylist, (req, res, next) => {
 
 app.post('/playlists/:playlistname', dbHelpers.addToPlaylist, (req, res, next) => {
   if (res.err) return res.send(`ERROR Server.js: ${res.err}`);
-  console.log(`After posting song, return:  ${JSON.stringify(res.data)}`);
+  // console.log(`After posting song, return:  ${JSON.stringify(res.data)}`);
   res.send(res.data);
 });
 
@@ -84,6 +84,7 @@ app.post('/partyplaylist', dbHelpers.addToPartyPlaylist, (req, res, next) => {
 });
 
 app.get('/playlists', dbHelpers.getPlaylists, (req, res, next) => {
+  console.log('getting playlists');
   res.send(res.data);
 });
 
@@ -100,7 +101,8 @@ app.delete('/playlists/:playlistname', dbHelpers.deletePlaylist, (req,res, next)
 
 app.delete('/playlists/:playlistname/:trackID', dbHelpers.deleteSongFromPlaylist, (req, res, next) => {
   if (res.err) return res.send(`ERROR Server.js: ${res.err}`);
-  res.send(`Successfully deleted trackID: ${req.params.trackID} from playlist: ${req.params.playlistname}`);
+  console.log(`Successfully deleted trackID: ${req.params.trackID} from playlist: ${req.params.playlistname}`);
+  res.send(res.data);
 });
 
 app.post('/tracks', (req, res, next) => {
