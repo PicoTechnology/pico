@@ -9,14 +9,13 @@ const fetch = require('node-fetch');
 const bodyparser = require('body-parser');
 const request = require('request');
 const path = require('path');
+const execSync = require('child_process').execSync;
 
 const lame = require('lame');
 const wav = require('wav');
-const Player = require('player');
 
 const dbHelpers = require('./database-helpers.js');
 const playbackHelpers = require('./playback-helpers.js');
-const bluetoothHelpers = require('./bluetooth.js');
 
 const SOUNDCLOUD = 'https://soundcloud.com';
 const SOUNDCLOUD_API = 'http://api.soundcloud.com';
@@ -36,7 +35,7 @@ app.get('/connect', (req, res, next) => {
 });
 
 app.get('/disconnect', (req, res, next) => {
-  bluetoothHelpers.closeConnection();
+  //bluetoothHelpers.closeConnection();
 });
 
 app.post('/playsong', (req, res, next) => {
@@ -135,4 +134,4 @@ console.log(`Now listening on localhost:${PORT}...`);
 dbHelpers.connectToDB();
 
 // bluetooth
-bluetoothHelpers.initializeBluetooth();
+//bluetoothHelpers.initializeBluetooth();
