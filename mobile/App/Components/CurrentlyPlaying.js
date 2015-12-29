@@ -18,12 +18,11 @@ const handlePress = function() {
 	fetch(`${SERVER_ENDPOINT}/partyplaylist`)
     .then(res => res.json())
     .then(json => {
-    	AlertIOS.alert('Results', json);
-      // this.props.navigator.push({
-      //   title: 'Results',
-      //   passProps: {results: json},
-      //   component: Tracks
-      // });
+      this.props.navigator.push({
+        title: 'Party',
+        passProps: {queue: json},
+        component: SongQueue
+      });
     })
     .catch(err => AlertIOS.alert('Error', 'Error retrieving Party Playlist...'));
 };
@@ -57,7 +56,7 @@ module.exports = CurrentlyPlaying = props => {
 			</View>
 		</TouchableHighlight>
 	);
-}
+};
 
 const styles = StyleSheet.create({
 	container: {
