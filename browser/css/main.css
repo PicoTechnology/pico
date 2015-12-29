@@ -23,11 +23,14 @@
  src: url(./fonts/quicksand/Quicksand-Regular.otf);
 }
 
+/*BODY*/
 body{
   background-color: black;
-  font-family: Quicksand-Light;
+  font-family: Quicksand-Regular;
+  height: 100%;
 }
 
+/*NAVI*/
 .navbar-inverse .navbar-nav>li>a   {
   color: white;
   margin: auto;
@@ -35,8 +38,8 @@ body{
 }
 
 .btn-default {
-  margin-left: 345px;
-  margin-top: -180px;
+  /*margin-left: 345px;
+  margin-top: -180px;*/
   font-family: Raleway-Light;
 }
 
@@ -50,7 +53,8 @@ body{
   margin-bottom: 360px;
 }
 
-.descriptionHeader {
+/*DESCRIPTION*/
+/*.descriptionHeader {
   left: 310px;
   bottom: 220px;
 }
@@ -61,9 +65,10 @@ body{
   bottom: 180px;
   font-size: 22px;
   z-index: 10;
-}
+}*/
 
-.carousel {
+/*CAROUSEL*/
+/*.carousel {
   margin: auto;
   position: absolute;
   left: 384px;
@@ -124,14 +129,27 @@ h3 {
  -moz-transition: .0000001s, ease-in-out, left;
  -o-transition: .0000001s, ease-in-out, left;
  transition: .0000001s, ease-in-out, left;
+ }*/
+
+/*TEAM SECTION*/
+.teamText {
+   font-size: 45px;
+   margin-top: 120px;
+   margin-bottom: 80px;
+   font-family: Quicksand-Regular;
  }
 
-.footer {
-   margin-bottom: 0px;
-   background-color: #222;
-
- }
-
-.wtfisthis {
-  background-color: red;
+.teamContainer {
+  height: 700px;
 }
+
+/*FOOTER*/
+
+.footerWarper {
+   background-color: #222222 !important;
+
+ }
+ .footerText {
+   text-align: center;
+
+ }

@@ -84,10 +84,10 @@ var Team = React.createClass({
       );
     }.bind(this));
     return (
-      <div className="col-md-12" style={styles.container}>
+      <div className="teamContainer col-md-12" style={styles.container}>
         <h3
           styles={styles.sectionHeading}
-          className="text-center">
+          className="teamText text-center">
           Pico Tech Team Members
         </h3>
         <div
@@ -103,7 +103,7 @@ var Team = React.createClass({
 // custom colors
 const BLACK = "#000000";
 const GRAPHITE = "#3D3D3D";
-const GRAPHITE_HIGHLIGHT = "#6F6F6F";
+//const GRAPHITE_HIGHLIGHT = "#6F6F6F";
 const GRAPHITE_LOWLIGHT = "#3B3B3B";
 const GRAPHITE_LOWEST_LIGHT = "#2C2C2C";
 const GRAY = "#D9D9D9";
@@ -111,7 +111,7 @@ const WHITE = "#FFFFFF";
 
 const styles = {
   container: {
-    backgroundColor: GRAPHITE,
+    backgroundColor: WHITE,
     color: BLACK
   },
   sectionHeading: {
@@ -122,11 +122,11 @@ const styles = {
     height: 160
   },
   glyphicon: {
-    color: GRAPHITE_LOWEST_LIGHT,
+    color: 'black',
     fontSize: 22,
     marginLeft: 5,
     marginTop: 5,
-    textShadow: GRAPHITE_HIGHLIGHT + ' 1px 1px 0px'
+    // textShadow: GRAPHITE_HIGHLIGHT + ' 1px 1px 0px'
   },
   infoBtn: {
     cursor: 'pointer',
@@ -153,14 +153,14 @@ const styles = {
   },
   teamMember: {
     position: 'relative',
-    backgroundColor: GRAPHITE,
+    backgroundColor: WHITE,
     borderStyle: 'solid',
-    borderTopColor: GRAPHITE_HIGHLIGHT,
-    borderRightColor: GRAPHITE_LOWEST_LIGHT,
+    // borderTopColor: GRAPHITE_HIGHLIGHT,
+    // borderRightColor: GRAPHITE_LOWEST_LIGHT,
     borderBottomColor: BLACK,
-    borderLeftColor: GRAPHITE_HIGHLIGHT,
-    borderWidth: 1,
-    borderRadius: 5,
+    // borderLeftColor: GRAPHITE_HIGHLIGHT,
+    borderWidth: 2,
+    borderRadius: 10,
     borderTopWidth: 1,
     borderBottomWidth: 1,
     paddingTop: 10,
@@ -168,12 +168,12 @@ const styles = {
     paddingBottom: 10,
     paddingLeft: 5,
     maxWidth: 250,
-    boxShadow: GRAPHITE_LOWEST_LIGHT + ' 0px 0px 5px'
+    boxShadow: GRAPHITE_LOWEST_LIGHT + ' 0px 0px 25px'
   },
   teamMemberName: {
     maxWidth: 250,
     color: BLACK,
-    textShadow: GRAPHITE_HIGHLIGHT + ' 0px 1px 0px'
+    // textShadow: GRAPHITE_HIGHLIGHT + ' 0px 1px 0px'
   }
 };
 

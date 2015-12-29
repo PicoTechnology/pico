@@ -2,6 +2,39 @@ var React = require('react');
 var MainCarousel = require('./Carousel');
 
 
+
+var Button = React.createClass({
+  handleClick: function() {
+    this.props.callback();
+  },
+  render: function() {
+    return (
+      <div style = {styles.demoBtn} >
+        <button type="button" className = "btn btn-default" onClick={this.handleClick}>
+          {this.props.btnCommand}
+          <span className="glyphicon glyphicon-chevron-right"></span>
+        </button>
+      </div>
+    );
+  }
+});
+
+var Description = React.createClass({
+  render: function() {
+    return (
+      <div className="col-md-6" style={styles.container} id='description'>
+        <h1 style={styles.heading} className="descriptionHeader">What is Pico?</h1>
+        <p style={styles.blurb} className="descriptionPara">Pico is a smart sound system that allows you
+        and your friends to create an immersive music
+        experience with one simple app.
+        Capable of building personal and group
+        curated playlists, multi-room sound streaming.</p>
+        <Button {...this.props.productInfo} callback={this.props.callback}/>
+      </div>
+        );
+    }
+});
+
 const styles = {
   container: {
     // backgroundColor: '#373A40',
@@ -31,38 +64,5 @@ const styles = {
     paddingLeft: 5,
   }
 };
-
-var Button = React.createClass({
-  handleClick: function() {
-    this.props.callback();
-  },
-  render: function() {
-    return (
-      <div style = {styles.demoBtn} >
-        <button type="button" className = "btn btn-default" onClick={this.handleClick}>
-          {this.props.btnCommand}
-          <span className="glyphicon glyphicon-chevron-right"></span>
-        </button>
-      </div>
-    );
-  }
-});
-
-var Description = React.createClass({
-  render: function() {
-    return (
-      <div style = {styles.container} id='description'>
-        <h1 style = {styles.heading} className = "descriptionHeader">What is Pico?</h1>
-        <p style = {styles.blurb} className = "descriptionPara">Pico is a smart sound system that allows you
-        and your friends to create an immersive music
-        experience with one simple app.
-        Capable of building personal and group
-        curated playlists, multi-room sound streaming.</p>
-        <Button {...this.props.productInfo} callback={this.props.callback}/>
-
-      </div>
-        );
-    }
-});
 
 module.exports = Description;
