@@ -165,9 +165,13 @@ const getPlaylists = (req, res, next) => {
 const getPartyPlaylist = (req, res, next) => {
 	PartyPlaylistRef
 		.orderByKey()
-		.once('value', snapshot => {
-			console.log(`party playlist: ${JSON.stringify(snapshot.val(), null, 2)}`);
-			res.data = snapshot.val();
+		.once('value', dataSnapshot => {
+			var exportArr = [];
+			dataSnapshot.forEach(snapshot => {
+				exportArr.push(snapshot.exportVal());
+			});
+			res.data = exportArr;
+			console.log(`exportArr: ${exportArr}`);
 			next();
 		});
 };
