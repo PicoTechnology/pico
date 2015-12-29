@@ -83,7 +83,7 @@ class SearchSoundCloud extends React.Component {
         </View>
         <TextInput
           ref={component => this._searchInput = component}
-          style={styles.searchInput}
+          style={STYLES.searchInput}
           onChange={this.handleChange.bind(this)}
           placeholder="search soundcloud.com" />
         <View style={styles.spinnerContainer}>
@@ -131,17 +131,6 @@ const styles = StyleSheet.create({
   bgImage: {
       flex: 1,
       width, height
-  },
-  searchInput: {
-    height: 50,
-    padding: 4,
-    marginRight: 5,
-    marginBottom: 10,
-    fontSize: 20,
-    borderWidth: 1,
-    borderColor: '#99FF00',
-    borderRadius: 8,
-    color: 'white'
   },
   title: {
     marginBottom: 20,

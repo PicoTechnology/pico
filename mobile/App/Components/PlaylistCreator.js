@@ -41,16 +41,16 @@ class PlaylistCreator extends React.Component {
   }
   render() {
     return (
-      <View style={STYLES.playlistContainer}>
+      <View style={STYLES.sideBySideContainer}>
         <TextInput
           style={STYLES.playlistInput}
           placeholder="Create a New Playlist..."
           placeholderTextColor="#FFF"
-          onChange={this.handleChange.bind(this)}/>
+          onChange={this.handleChange.bind(this)} />
         <TouchableHighlight
-          style={STYLES.button}
+          style={STYLES.submitBtn}
           onPress={this.handlePress.bind(this)}>
-          <Text style={STYLES.buttonText}> SUBMIT </Text>
+          <Text style={STYLES.submitBtnText}>SUBMIT</Text>
         </TouchableHighlight>
       </View>
     );

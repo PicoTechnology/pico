@@ -70,14 +70,13 @@ const addPlaylist = (req, res, next) => {
 };
 
 const addToPlaylist = (req, res, next) => {
-  console.log(`req.body: ${JSON.stringify(req.body, null, 2)}`);
 	var playlistname = req.params.playlistname;
-	var trackObj = req.body.trackObj;
-	console.log(`adding ${trackObj.id} to ${playlistname}`);
+	var trackObj = Object.assign({rating: 0}, {soundcloud: req.body.trackObj});
+	console.log(`adding ${trackObj.id} to ${playlistname}...`);
 	PlaylistsRef
 		.child(playlistname)
 		.child(trackObj.id)
-		.set(trackObj,err => {
+		.set(trackObj, err => {
 				if(err) {
 					res.err = err;
 					return next();
@@ -89,7 +88,7 @@ const addToPlaylist = (req, res, next) => {
 
 const addToPartyPlaylist = (req, res, next) => {
 	console.log(`req.body.trackObj: ${JSON.stringify(req.body.trackObj, null, 2)}`);
-	var trackObj = req.body.trackObj;
+	var trackObj = Object.assign({rating: 0}, {soundcloud: req.body.trackObj});
 	PartyPlaylistRef
 		.child(trackObj.id)
 		.set(trackObj, err => {

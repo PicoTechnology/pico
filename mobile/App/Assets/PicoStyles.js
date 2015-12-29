@@ -10,12 +10,26 @@ const BORDER_CURVE = 8;
 const CHARCOAL = '#333333';
 const LIGHT_GREY = '#cccccc';
 const TOBIN = '#f2f2f2';
+const TEXT_INPUT_HEIGHT = 50;
+const TEXT_INPUT_FONTSIZE = 20;
 
 module.exports = PicoStyles = {
   colors: {
     PICO_GREEN,
   },
   underlayColor: ACCENT_GREEN,
+  searchInput: {
+    height: TEXT_INPUT_HEIGHT,
+    padding: 4,
+    marginRight: 5,
+    marginBottom: 10,
+    alignSelf: 'stretch',
+    fontSize: TEXT_INPUT_FONTSIZE,
+    borderWidth: 1,
+    borderColor: '#99FF00',
+    borderRadius: 8,
+    color: 'white'
+  },
   textInput: {
     color: TOBIN,
     fontSize: 18,
@@ -54,15 +68,34 @@ module.exports = PicoStyles = {
     alignSelf: 'center',
     fontWeight: 'bold'
   },
-  playlistContainer: {
+  sideBySideContainer: {
+    flexDirection: 'row',
     alignItems: 'flex-start',
     justifyContent: 'center',
-    flexDirection: 'row',
     paddingTop: 10,
     paddingBottom: 10
+  },
+  playlistContainer: {
+    flexDirection: 'row',
+    alignItems: 'flex-start',
+    justifyContent: 'center',
+    paddingTop: 10,
+    paddingBottom: 10
+  },
+  playlistInput: {
+    flex: 1,
+    height: TEXT_INPUT_HEIGHT,
+    marginRight: 5,
+    marginBottom: 10,
+    alignSelf: 'stretch',
+    fontSize: TEXT_INPUT_FONTSIZE,
+    borderWidth: 1,
+    borderColor: '#99FF00',
+    borderRadius: 8,
+    color: 'white'
   },
   playlistText: {
     fontSize: 16,
     color: '#f1f3f5'
-  },
+  }
 };
