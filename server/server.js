@@ -74,7 +74,7 @@ app.post('/playlists/:playlistname', dbHelpers.addToPlaylist, (req, res, next) =
 });
 
 // Retrieve the songs from the Party Playlist
-app.get('/rtyplaylist', dbHelpers.getPartyPlaylist, (req, res, next) => {
+app.get('/partyplaylist', dbHelpers.getPartyPlaylist, (req, res, next) => {
   res.send(res.data);
 });
 
@@ -83,6 +83,16 @@ app.post('/partyplaylist', dbHelpers.addToPartyPlaylist, (req, res, next) => {
   if (res.err) return res.send(`ERROR Server.js: ${res.err}`);
   res.send(res.data);
 });
+
+// upvote a song in Party Playlist
+app.post('/partyplaylist/:trackID', (req, res, next) => {
+
+});
+
+// downvote a song in Party
+app.post('/partyplaylist/:trackID', (req, res, next) => {
+  
+})
 
 app.get('/playlists', dbHelpers.getPlaylists, (req, res, next) => {
   console.log('getting playlists');
