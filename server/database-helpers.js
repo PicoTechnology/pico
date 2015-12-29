@@ -170,7 +170,7 @@ const getPartyPlaylist = (req, res, next) => {
 				exportArr.push(snapshot.exportVal());
 			});
 			res.data = exportArr;
-			console.log(`exportArr: ${exportArr}`);
+			console.log(`exportArr: ${JSON.stringify(exportArr, null, 2)}`);
 			next();
 		});
 };
