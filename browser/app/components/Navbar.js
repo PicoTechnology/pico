@@ -7,8 +7,25 @@ var NavDropdown = require('react-bootstrap').NavDropdown;
 var MenuItem = require('react-bootstrap').MenuItem;
 
 var MainNavbar = React.createClass({
-  render: function() {
+  componentDidMount: function() {
     //console.log('scrollTop: ' + $(document).scrollTop());
+    $(function() {
+      $('a[href*=#]:not([href=#])').click(function(e) {
+        e.preventDefault();
+        if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+
+          var target = $(this.hash);
+          target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+          if (target.length) {
+            $('body').animate({
+              scrollTop: target.offset().top
+            }, 1500);
+          }
+        }
+      });
+    });
+  },
+  render: function() {
     var navStyle = styles.mainNav;
     if ($(document).scrollTop() > 0) {
       navStyle = Object.assign({}, styles.mainNav, styles.dropShadow);
@@ -17,7 +34,7 @@ var MainNavbar = React.createClass({
       <Navbar inverse fixedTop style={styles.mainNav}>
           <Navbar.Header>
             <Navbar.Brand>
-              <a href="#"><img style={styles.logo} src="./assets/PicoLogo-Navi.png"></img></a>
+              <a href="#Home"><img style={styles.logo} src="./assets/PicoLogo-Navi.png"></img></a>
             </Navbar.Brand>
             <Navbar.Toggle />
           </Navbar.Header>

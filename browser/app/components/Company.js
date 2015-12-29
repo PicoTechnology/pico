@@ -14,7 +14,8 @@ var CompanyStyle = {
     borderBottomWidth: 1,
     borderBottomStyle: "groove",
     borderBottomColor: GRAPHITE_LOWLIGHT,
-    color: GRAPHITE_HIGHLIGHT
+    color: GRAPHITE_HIGHLIGHT,
+    height: 80
   },
   ContactsStyle: {
     marginTop: 30
@@ -31,10 +32,9 @@ var CompanyStyle = {
 module.exports = Company = React.createClass({
   render: function() {
     return (
-      <div style={CompanyStyle.MainStyle} className="col-md-12 container-fluid">
+      <div style={CompanyStyle.MainStyle} className="footerWarper col-md-12 container-fluid">
         <Contacts {...this.props.companyData}/>
-        <Tagline {...this.props.companyData}/>
-        <Copyright />
+
       </div>
     );
   }
@@ -43,9 +43,10 @@ module.exports = Company = React.createClass({
 Contacts = React.createClass({
   render: function() {
     return (
-      <div style={CompanyStyle.ContactsStyle}>
-        <span className="col-md-4 col-xs-6"><span className="glyphicon glyphicon-envelope"></span>{" " + this.props.email + "  "}</span>
-        <span className="col-md-2 col-xs-4 col-md-offset-6"><span className="glyphicon glyphicon-flag"></span> {" "+this.props.location}</span>
+      <div className="footerText" style={CompanyStyle.ContactsStyle}>
+        <span className="col-md-4"><span className="glyphicon glyphicon-envelope"></span>{" " + this.props.email + "  "}</span>
+        <span className="col-md-4"><span className="glyphicon glyphicon-copyright-mark"></span>{" Copyright Pico Technology 2015"}</span>
+         <span className="col-md-4"><span className="glyphicon glyphicon-flag"></span> {" "+this.props.location}</span>
       </div>
     );
   }
