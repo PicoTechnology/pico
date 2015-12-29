@@ -136,11 +136,7 @@ const styles = StyleSheet.create({
     padding: 4,
     marginRight: 5,
     marginBottom: 10,
-    fontSize: 20,
-    borderWidth: 1,
-    borderColor: '#99FF00',
-    borderRadius: 8,
-    color: 'white'
+    alignSelf: 'stretch'
   },
   title: {
     marginBottom: 20,

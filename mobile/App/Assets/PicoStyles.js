@@ -29,11 +29,6 @@ module.exports = PicoStyles = {
     borderWidth: 1,
     borderColor: PICO_GREEN,
     borderRadius: BORDER_CURVE,
-    height: TEXT_INPUT_HEIGHT,
-    padding: 4,
-    marginRight: 5,
-    marginBottom: 10,
-    alignSelf: 'stretch'
   },
   textInput: {
     color: TOBIN,
