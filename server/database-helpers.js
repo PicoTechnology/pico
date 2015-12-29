@@ -110,7 +110,7 @@ const deletePlaylist = (req, res, next) => {
 				res.err = err;
 				return next();
 			}
-			next();
+			return next();
 		});
 };
 
@@ -123,23 +123,25 @@ const deleteSongFromPlaylist = (req, res, next) => {
 		.child(playlistname)
 		.orderByValue()
 		.on('child_added', snapshot => {
-			console.log('inside of here!');
-			console.log(`snapshot.key(): ${snapshot.key()}`);
+			// console.log('inside of here!');
+			// console.log(`snapshot.key(): ${snapshot.key()}`);
 			if (snapshot.key() == trackID) {
 				console.log('MATCHED!');
-				snapshot.ref().remove(err => {
+				snapshot.ref().set(null, err => {
 					if (err) {
 						res.err = err;
 						return next();
 					}
+					console.log(trackID, ' removed from ', playlistname);
 					res.data = playlistname;
-					next();
+					console.log('res.data is ', res.data);
+					return next();
 				});
 			}
 		});
 		// no match found
 		res.err = 'No match found!';
-		next();
+		return next();
 };
 
 const getPlaylists = (req, res, next) => {
@@ -157,6 +159,7 @@ const getPlaylists = (req, res, next) => {
 				exportArr.push(obj);
 			});
 			res.data = exportArr;
+			console.log("insdie get playlists dbhelper");
 			next();
 		});
 };
