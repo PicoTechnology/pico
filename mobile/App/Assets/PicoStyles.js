@@ -120,19 +120,21 @@ module.exports = PicoStyles = {
   deleteContainer: {
     position: 'absolute',
     right: 0,
-    top: 10,
+    bottom: 5,
     padding: 5,
-    width: 40,
-    height: 40,
+    width: 30,
+    height: 30,
     flexDirection: 'column',
     fontWeight: 'bold',
     backgroundColor: 'red',
-    borderRadius: 20,
+    borderRadius: 15,
     alignItems: 'center',
     justifyContent: 'center'
   },
   delete: {
     color: TOBIN,
-    fontSize: 'bold'
+    fontSize: 'bold',
+    height: 15,
+    width: 15
   },
 };
