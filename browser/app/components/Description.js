@@ -1,21 +1,23 @@
 var React = require('react');
 var MainCarousel = require('./Carousel');
+var ButtonToolbar = require('react-bootstrap').ButtonToolbar;
+var Button = require('react-bootstrap').Button;
 
-var Button = React.createClass({
-  handleClick: function() {
-    this.props.callback();
-  },
-  render: function() {
-    return (
-      <div style = {styles.demoBtn} >
-        <button type="button" className="btn btn-default" onClick={this.handleClick}>
-          {this.props.btnCommand}
-          <span className="glyphicon glyphicon-chevron-right"></span>
-        </button>
-      </div>
-    );
-  }
-});
+// var Button = React.createClass({
+//   handleClick: function() {
+//     this.props.callback();
+//   },
+//   render: function() {
+//     return (
+//       <div style = {styles.demoBtn} >
+//         <button type="button" className="btn btn-default" onClick={this.handleClick}>
+//           {this.props.btnCommand}
+//           <span className="glyphicon glyphicon-chevron-right"></span>
+//         </button>
+//       </div>
+//     );
+//   }
+// });
 
 var Description = React.createClass({
   render: function() {
@@ -27,7 +29,11 @@ var Description = React.createClass({
         experience with one simple app.
         Capable of building personal and group
         curated playlists, multi-room sound streaming.</p>
-        <Button href="#diagram" {...this.props.productInfo} callback={this.props.callback}/>
+
+        <ButtonToolbar>
+              <Button href="#diagram" className="pull">View Diagram</Button>
+        </ButtonToolbar>
+
       </div>
       );
     }

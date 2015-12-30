@@ -5,8 +5,8 @@ var CarouselItem = require('react-bootstrap').CarouselItem;
 var MainCarousel = React.createClass({
   render: function() {
     return (
-      <div className="col-md-6">
-        <div style={styles.iphoneImg} className="iPhoneImage" id="home">
+      <div className="col-md-6" id="home">
+        <div style={styles.iphoneImg} className="iPhoneImage">
           <img src="./assets/iPhoneTransparent.png"/>
           <div style={styles.carouselContainer}>
             <Carousel interval={1500}>
@@ -37,7 +37,8 @@ var MainCarousel = React.createClass({
 styles = {
   iphoneImg: {
     position: 'absolute',
-    right: '-10%'
+    right: '-10%',
+    top: '120px'
   },
   carouselContainer: {
     position: "absolute",
