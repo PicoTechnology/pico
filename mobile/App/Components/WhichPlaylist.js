@@ -37,7 +37,7 @@ class InstantControls extends React.Component {
     })
       .then(res => res.json())
       .then(json => {
-        AlertIOS.alert('Success!', `Successfully added "${trackObj.title}" to the party playlist. The party playlist now has ${json.length} songs!`);
+        // AlertIOS.alert('Success!', `Successfully added "${trackObj.title}" to the party playlist. The party playlist now has ${json.length} songs!`);
         this.props.navigator.push({
           title: 'Party',
           passProps: {queue: json},

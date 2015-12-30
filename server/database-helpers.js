@@ -159,7 +159,6 @@ const getPlaylists = (req, res, next) => {
 				exportArr.push(obj);
 			});
 			res.data = exportArr;
-			console.log("insdie get playlists dbhelper");
 			next();
 		});
 };
