@@ -44,18 +44,17 @@ app.post('/playsong', (req, res, next) => {
   console.log(`download link: ${downloadLink}`);
 
   playbackHelpers.streamSong(downloadLink);
-  // var songpath = `${__dirname}/assets/${trackObj.id}.${trackObj.original_format}`;
-  // var mp3File = fs.createWriteStream(songpath);
-  // mp3File.on('finish', () => {
-  //   console.log(`finished downloading ${trackObj.title}`);
-  //   playbackHelpers.play(songpath);
-  //   res.send('finished downloading');
-  // });
+  res.send({status: 'playing'});
+});
 
-  // request
-  //   .get(`${SOUNDCLOUD_API}/tracks/${uri}/download?${queryString}`)
-  //   .on('error', err => console.error(err))
-  //   .pipe(mp3File)
+app.get('/pausesong', (req, res, next) => {
+  playbackHelpers.pauseSong();
+  res.send({status: 'paused'});
+});
+
+app.get('/stopsong', (req, res, next) => {
+  playbackHelpers.stopSong();
+  res.send({status: 'stop'});
 });
 
 app.post('/users', dbHelpers.authenticateUser, (req, res, next) => {
@@ -152,6 +151,8 @@ app.get('/authorize', (req, res, next) => {
 app.listen(PORT);
 console.log(`Now listening on localhost:${PORT}...`);
 dbHelpers.connectToDB();
+console.log(`Connected to Firebase...`);
 playbackHelpers.initPlayer();
+console.log(`Initialized MPlayer...`);
 // bluetooth
 //bluetoothHelpers.initializeBluetooth();
