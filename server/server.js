@@ -59,10 +59,10 @@ app.get('/playsong', (req, res, next) => {
 });
 
 app.get('/nextsong', dbHelpers.getNextSong, (req, res, next) => {
-  res.data = res.data[0];
-  res.send(res.data);
-  console.log(`trackID: ${res.data.soundcloud.id}`);
-  req.params.trackID = res.data.soundcloud.id;
+  var trackObj = res.data[0].soundcloud;
+  res.send(res.data[0]);
+  console.log(`trackID: ${trackObj.id}`);
+  req.params.trackID = trackObj.id;
   dbHelpers.deleteSongFromPartyPlaylist(req, res, next);
 });
 

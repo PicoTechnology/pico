@@ -147,8 +147,7 @@ const deleteSongFromPartyPlaylist = (req, res, next) => {
 						res.err = err;
 						return next();
 					}
-					res.data = playlistname;
-					return next();
+					getPartyPlaylist(req, res, next);
 				});
 			}
 		});
