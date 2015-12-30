@@ -102,15 +102,15 @@ module.exports = PicoStyles = {
   },
   playlistInput: {
     flex: 1,
-    height: TEXT_INPUT_HEIGHT,
+    height: 30,
     marginRight: 5,
     marginBottom: 10,
     alignSelf: 'stretch',
-    fontSize: TEXT_INPUT_FONTSIZE,
+    fontSize: 15,
     borderWidth: 1,
-    borderColor: '#99FF00',
-    borderRadius: 8,
-    color: 'white'
+    borderColor: ACCENT_GREEN,
+    borderRadius: BORDER_CURVE,
+    color: PICO_GREEN
   },
   playlistText: {
     fontSize: 16,
