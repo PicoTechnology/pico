@@ -140,25 +140,5 @@ module.exports = PicoStyles = {
   playlistText: {
     fontSize: 16,
     color: '#f1f3f5'
-  },
-  deleteContainer: {
-    position: 'absolute',
-    right: 0,
-    bottom: 5,
-    padding: 5,
-    width: 30,
-    height: 30,
-    flexDirection: 'column',
-    fontWeight: 'bold',
-    backgroundColor: 'red',
-    borderRadius: 15,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  delete: {
-    color: TOBIN,
-    fontSize: 'bold',
-    height: 15,
-    width: 15
-  },
+  }
 };
