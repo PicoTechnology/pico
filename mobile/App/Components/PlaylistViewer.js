@@ -159,8 +159,10 @@ class Single extends React.Component {
             <Text style={styles.info}>{this.props.user.username}</Text>
             <Text style={styles.info}>{this.makeHumanReadable(this.props.duration)}</Text>
           </View>
-          <View style={styles.deleteContainer}>
-            <Text onPress={this.handleDelete.bind(this)}>Delete</Text>
+          <View style={STYLES.deleteContainer}>
+          <TouchableHighlight onPress={this.handleDelete.bind(this)}>
+            <Text style={STYLES.delete}>X</Text>
+            </TouchableHighlight>
           </View>
         </View>
       </TouchableHighlight>
@@ -250,9 +252,9 @@ class PlaylistViewer extends React.Component{
       <View style={styles.playlistViewer}>
       <Text style={styles.currentPlaylist}>Current Playlist: {this.state.nowViewing}</Text>
         <ScrollLists updateParentState={this.updateNowViewing.bind(this)} playlistNames={playlistNames} initialPlaylist={this.props.initialPlaylist}/>
-        <Tracks 
-          updateParentState={this.updateResults.bind(this)} 
-          data={nowViewingList} 
+        <Tracks
+          updateParentState={this.updateResults.bind(this)}
+          data={nowViewingList}
           updatePlaylistViewerState={this.updateNowViewing.bind(this)}/>
       </View>
     )
@@ -293,7 +295,6 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
   scrollListsContainer: {
-
     flexDirection: 'column',
     backgroundColor: 'white'
   },
@@ -325,15 +326,7 @@ const styles = StyleSheet.create({
     color: '#abbbc6'
   },
   infoContainer: {
-    flexDirection: 'column'
-  },
-  deleteContainer: {
     flexDirection: 'column',
-    backgroundColor: 'red',
-    color: '#FFF',
-    fontWeight: 'bold',
-    borderRadius: 2,
-    justifyContent: 'flex-end'
   },
   image: {
     height: 50,
