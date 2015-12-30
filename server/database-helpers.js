@@ -20,10 +20,11 @@ const addUser = (req, res, next) => {
 		.child(username)
 		.set(userObj, err => {
 			if (err) {
+				res.result = {result: false};
 				res.err = err;
 				return next();
 			}
-			res.result = 'Added new user.';
+			res.result = {result: true};
 			return next();
 		});
 };
@@ -123,17 +124,25 @@ const deleteSongFromPlaylist = (req, res, next) => {
 		.child(playlistname)
 		.orderByValue()
 		.on('child_added', snapshot => {
+			// console.log('inside of here!');
+			// console.log(`snapshot.key(): ${snapshot.key()}`);
 			if (snapshot.key() == trackID) {
+				console.log('MATCHED!');
 				snapshot.ref().set(null, err => {
 					if (err) {
 						res.err = err;
 						return next();
 					}
-					console.log(`removed ${trackID} from "${playlistname}"`);
-					return getPlaylists(req, res, next);
+					console.log(trackID, ' removed from ', playlistname);
+					res.data = playlistname;
+					console.log('res.data is ', res.data);
+					return next();
 				});
 			}
 		});
+		// no match found
+		res.err = 'No match found!';
+		return next();
 };
 
 const getPlaylists = (req, res, next) => {
@@ -151,7 +160,7 @@ const getPlaylists = (req, res, next) => {
 				exportArr.push(obj);
 			});
 			res.data = exportArr;
-			console.log("inside get playlists dbhelper");
+			console.log("insdie get playlists dbhelper");
 			next();
 		});
 };
@@ -176,15 +185,9 @@ const getTracksFromPlaylist = (req, res, next) => {
 	var playlistname = req.params.playlistname;
 	PlaylistsRef
 		.child(playlistname)
-		.once('value', dataSnapshot => {
-			var exportArr = [];
-			dataSnapshot.forEach(song => {
-				exportArr.push(song.exportVal());
-			});
-			console.log(JSON.stringify(exportArr, null, 2));
-			console.log('exportArr is above');
-			res.data = exportArr;
-			return next();
+		.once('value', snapshot => {
+			res.data = snapshot.val();
+			next();
 		});
 };
 
