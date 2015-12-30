@@ -18,8 +18,8 @@ const ControlButton = props => {
 	return (
 		<TouchableHighlight
 			onPress={props.pressHandler}>
-			<View>
-				<Text>{props.content}</Text>
+			<View style={STYLES.instantBtn}>
+				<Text style={STYLES.instantText}>{props.content}</Text>
 			</View>
 		</TouchableHighlight>
 	);
@@ -51,7 +51,7 @@ class CurrentlyPlaying extends React.Component {
 		fetch(`${SERVER_ENDPOINT}/${control}song`)
 	    .then(res => res.json())
 	    .then(json => {
-	      AlertIOS.alert('response', 'controlled the song');
+	    	/// handle response...
 	    })
 	    .catch(err => AlertIOS.alert('Error', `Error retrieving Party Playlist: ${err}`));
 	}
@@ -59,14 +59,12 @@ class CurrentlyPlaying extends React.Component {
 		if (!this.state.showingControls) return <View />;
 		return (
 			<View>
-				<View>
+				<View style={STYLES.instantContainer}>
 					<ControlButton content="PLAY" pressHandler={this.handleControlPress.bind(this, 'play')} />
 					<ControlButton content="PAUSE" pressHandler={this.handleControlPress.bind(this, 'pause')} />
 					<ControlButton content="STOP" pressHandler={this.handleControlPress.bind(this, 'stop')} />
+					<ControlButton content="VIEW QUEUE" pressHandler={this.handleViewQueue.bind(this)} />
 				</View>
-				<TouchableHighlight onPress={this.handleViewQueue.bind(this)}>
-					<Text>View Queue</Text>
-				</TouchableHighlight>
 			</View>
 		);
 	}
@@ -124,6 +122,15 @@ const styles = StyleSheet.create({
 	},
 	trackInfo: {
 		fontSize: 14,
+	},
+	controlBtn: {
+		paddingTop: 3,
+		paddingRight: 5,
+		paddingBottom: 3,
+		paddingLeft: 5
+	},
+	controlBtnText: {
+		color: STYLES.colors.PICO_GREEN
 	},
 	nowPlayingText: {
 		fontSize: 14,

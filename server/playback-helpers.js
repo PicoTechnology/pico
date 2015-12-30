@@ -14,17 +14,8 @@ module.exports = {
 		//player.on('status', () => console.log('Something happened. Refreshing subscribed devices'));
 		// player.on('time', time => console.log(`"time": ${time}`));
 	},
-	play: function(songpath) {
-		console.log(`Now playing ${path.basename(songpath)}...`)
-		// var ext = path.extname(songpath);
-		// switch (ext) {
-		// 	case '.wav':
-		// 		exec(`aplay ${songpath}`);
-		// 		break;
-		// 	default:
-		// 		exec(`mpg123 ${songpath}`);
-		// 		break;
-		// }
+	playSong: function(songpath) {
+		player.play();
 	},
 	pauseSong: function() {
 		player.pause();

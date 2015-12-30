@@ -47,6 +47,11 @@ app.post('/playsong', (req, res, next) => {
   res.send({status: 'playing'});
 });
 
+app.get('/playsong', (req, res, next) => {
+  playbackHelpers.playSong();
+  res.send({status: 'playing'});
+});
+
 app.get('/pausesong', (req, res, next) => {
   playbackHelpers.pauseSong();
   res.send({status: 'paused'});

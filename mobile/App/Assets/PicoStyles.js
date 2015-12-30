@@ -64,6 +64,7 @@ module.exports = PicoStyles = {
     borderColor: PICO_GREEN,
     borderRadius: BORDER_CURVE,
   },
+  // BEGIN BUTTONS
   submitBtn: {
     flexDirection: 'row',
     backgroundColor: PICO_GREEN,
@@ -74,10 +75,6 @@ module.exports = PicoStyles = {
     alignSelf: 'stretch',
     justifyContent: 'center'
   },
-  error: {
-    fontSize: 18,
-    color: '#black'
-  },
   submitBtnText: {
     color: 'black',
     fontSize: 18,
@@ -85,6 +82,33 @@ module.exports = PicoStyles = {
     fontFamily: 'Apple SD Gothic Neo-Bold',
     alignSelf: 'center',
     fontWeight: 'bold'
+  },
+  instantContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    paddingTop: 3,
+    paddingBottom: 3,
+  },
+  instantBtn: {
+    height: 30,
+    paddingTop: 5,
+    paddingRight: 7,
+    paddingBottom: 5,
+    paddingLeft: 7,
+    borderColor: PICO_GREEN,
+    borderWidth: 1,
+    borderRadius: 5,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  instantText: {
+    color: PICO_GREEN,
+    fontSize: 15
+  },
+  // END BUTTONS
+  error: {
+    fontSize: 18,
+    color: '#black'
   },
   sideBySideContainer: {
     flexDirection: 'row',

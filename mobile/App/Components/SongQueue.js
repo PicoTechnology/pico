@@ -1,5 +1,6 @@
 const React = require('react-native');
 const UI_HELPERS = require('../Utils/UiHelpers.js');
+const UX_HELPERS = require('../Utils/UxHelpers.js');
 const STYLES = require('../Assets/PicoStyles.js');
 const Separator = require('./Separator.js');
 const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
