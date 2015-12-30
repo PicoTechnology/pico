@@ -49,12 +49,22 @@ class PlaylistCreator extends React.Component {
           placeholderTextColor="#FFF"
           onChange={this.handleChange.bind(this)} />
         <TouchableHighlight
-          style={STYLES.submitBtn}
+          style={Object.assign({}, styles.button, STYLES.submitBtn)}
           onPress={this.handlePress.bind(this)}>
-          <Text style={STYLES.submitBtnText}>SUBMIT</Text>
+          <Text style={Object.assign({}, STYLES.submitBtnText, styles.btnText)}>SUBMIT</Text>
         </TouchableHighlight>
       </View>
     );
+  }
+}
+
+const styles = {
+  button : {
+    height: 30,
+    padding: 5
+  },
+  btnText: {
+    fontSize: 10
   }
 }
 

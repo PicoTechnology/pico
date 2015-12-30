@@ -64,20 +64,20 @@ class Login extends React.Component {
 					<Image style={styles.bgImage} source={require('../Assets/login.jpg')}/>
 				</View>
 				<TextInput
-					style={Object.assign(styles.loginInput, STYLES.textInput)}
+					style={Object.assign({}, styles.loginInput, STYLES.textInput)}
 					autoCorrect={false}
-					placeholder="U S E R N A M E"
+					placeholder="USERNAME"
 					placeholderTextColor="#cccccc"
 					onChange={this.handleUsername.bind(this)}/>
 	 			<TextInput
 					password={true}
-					style={Object.assign(styles.loginInput, STYLES.textInput)}
-					placeholder="P A S S W O R D"
+					style={Object.assign({}, styles.loginInput, STYLES.textInput)}
+					placeholder="PASSWORD"
 					placeholderTextColor="#cccccc"
 					onChange={this.handlePw.bind(this)}/>
 				<TouchableHighlight
 					onPress={this.handlePress.bind(this)}
-					style={Object.assign(styles.loginButton, STYLES.submitBtn)}
+					style={Object.assign({}, styles.loginButton, STYLES.submitBtn)}
 					underlayColor={STYLES.underlayColor}>
 					<Text style={STYLES.submitBtnText}> L O G I N </Text>
 				</TouchableHighlight>
@@ -96,13 +96,13 @@ var styles = {
     backgroundColor: 'black'
   },
   bgImageWrapper: {
-    position: 'absolute',
-    bottom: 0, left: 0
+      position: 'absolute',
+      bottom: 0, left: 0
   },
-	bgImage: {
-			flex: 1,
-			width, height
-	},
+  bgImage: {
+      flex: 1,
+      width, height
+  },
 	loginInput: {
 		height: 50,
 		paddingLeft: 10,

@@ -12,6 +12,7 @@ const LIGHT_GREY = '#cccccc';
 const TOBIN = '#f2f2f2';
 const TEXT_INPUT_HEIGHT = 50;
 const TEXT_INPUT_FONTSIZE = 20;
+const FONT_FAMILY = 'Apple SD Gothic Neo';
 
 module.exports = PicoStyles = {
   colors: {
@@ -42,21 +43,20 @@ module.exports = PicoStyles = {
   },
   underlayColor: ACCENT_GREEN,
   searchInput: {
-    height: TEXT_INPUT_HEIGHT,
-    padding: 4,
-    marginRight: 5,
-    marginBottom: 10,
-    alignSelf: 'stretch',
+    color: TOBIN,
     fontSize: TEXT_INPUT_FONTSIZE,
+    fontFamily: FONT_FAMILY,
+    fontWeight: 'bold',
+    backgroundColor: 'black',
+    opacity: .85,
     borderWidth: 1,
-    borderColor: '#99FF00',
-    borderRadius: 8,
-    color: 'white'
+    borderColor: PICO_GREEN,
+    borderRadius: BORDER_CURVE,
   },
   textInput: {
     color: TOBIN,
     fontSize: 18,
-    fontFamily: 'Apple SD Gothic Neo',
+    fontFamily: FONT_FAMILY,
     fontWeight: 'bold',
     backgroundColor: 'black',
     opacity: .85,
@@ -91,7 +91,8 @@ module.exports = PicoStyles = {
     alignItems: 'flex-start',
     justifyContent: 'center',
     paddingTop: 10,
-    paddingBottom: 10
+    paddingLeft: 10,
+    paddingRight: 10
   },
   playlistContainer: {
     flexDirection: 'row',
@@ -102,15 +103,15 @@ module.exports = PicoStyles = {
   },
   playlistInput: {
     flex: 1,
-    height: TEXT_INPUT_HEIGHT,
+    height: 30,
     marginRight: 5,
     marginBottom: 10,
     alignSelf: 'stretch',
-    fontSize: TEXT_INPUT_FONTSIZE,
+    fontSize: 15,
     borderWidth: 1,
-    borderColor: '#99FF00',
-    borderRadius: 8,
-    color: 'white'
+    borderColor: ACCENT_GREEN,
+    borderRadius: BORDER_CURVE,
+    color: PICO_GREEN
   },
   playlistText: {
     fontSize: 16,

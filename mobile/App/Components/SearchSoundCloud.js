@@ -82,7 +82,7 @@ class SearchSoundCloud extends React.Component {
         </View>
         <TextInput
           ref={component => this._searchInput = component}
-          style={STYLES.searchInput}
+          style={Object.assign({}, styles.searchInput, STYLES.textInput)}
           onChange={this.handleChange.bind(this)}
           placeholder="search soundcloud.com" />
         <View style={styles.spinnerContainer}>
@@ -92,7 +92,7 @@ class SearchSoundCloud extends React.Component {
             size="large" />
         </View>
         <TouchableHighlight
-          style={styles.button}
+          style={Object.assign({}, styles.button, STYLES.submitBtn)}
           onPress={this.handleSubmit.bind(this)}
           underlayColor='#aeff00'>
           <Text
@@ -106,15 +106,7 @@ class SearchSoundCloud extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1,
-    padding: 30,
-    marginTop: 65,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    backgroundColor: 'black'
-  },
+const styles = {
   loginIcon: {
     marginBottom: -40,
     height: 50,
@@ -123,6 +115,14 @@ const styles = StyleSheet.create({
     top: -21,
     width: 16
   },
+  mainContainer: {
+    flex: 1,
+    padding: 30,
+    marginTop: 65,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    backgroundColor: 'black'
+  },
   bgImageWrapper: {
       position: 'absolute',
       bottom: 0, left: 0
@@ -130,6 +130,13 @@ const styles = StyleSheet.create({
   bgImage: {
       flex: 1,
       width, height
+  },
+  searchInput: {
+    height: 50,
+    padding: 4,
+    marginRight: 5,
+    marginBottom: 10,
+    alignSelf: 'stretch'
   },
   title: {
     marginBottom: 20,
@@ -155,16 +162,10 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 45,
-    flexDirection: 'row',
-    backgroundColor: '99FF00',
-    borderColor: 'black',
     borderWidth: 1,
-    borderRadius: 8,
     marginBottom: 10,
-    marginTop: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
+    marginTop: 10
   },
-});
+};
 
 module.exports = SearchSoundCloud;
