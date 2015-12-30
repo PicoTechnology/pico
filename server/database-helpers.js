@@ -130,7 +130,7 @@ const deleteSongFromPlaylist = (req, res, next) => {
 						return next();
 					}
 					console.log(`removed ${trackID} from "${playlistname}"`);
-					return getTracksFromPlaylist(req, res, next);
+					return getPlaylists(req, res, next);
 				});
 			}
 		});
@@ -178,15 +178,11 @@ const getTracksFromPlaylist = (req, res, next) => {
 		.child(playlistname)
 		.once('value', dataSnapshot => {
 			var exportArr = [];
-			dataSnapshot.forEach(snapshot => {
-				var obj = {};
-				var playlist = [];
-				for (var key in snapshot.exportVal()) {
-					playlist.push(snapshot.exportVal()[key]);
-				}
-				obj[snapshot.key()] = playlist;
-				exportArr.push(obj);
+			dataSnapshot.forEach(song => {
+				exportArr.push(song.exportVal());
 			});
+			console.log(JSON.stringify(exportArr, null, 2));
+			console.log('exportArr is above');
 			res.data = exportArr;
 			return next();
 		});

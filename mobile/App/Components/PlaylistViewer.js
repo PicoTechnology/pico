@@ -119,7 +119,7 @@ class Single extends React.Component {
   }
   handleDelete() {
     function onYes() {
-      fetch(`${SERVER_ENDPOINT}/Playlists/${this.props.playlistName}/${this.props.id}`, {
+      fetch(`${SERVER_ENDPOINT}/playlists/${this.props.playlistName}/${this.props.id}`, {
         headers:{
           'Accept': 'application/json',
           'Content-Type': 'application/json'
@@ -128,7 +128,8 @@ class Single extends React.Component {
       })
         .then(res => res.json())
         .then(json => {
-          this.props.updateParentState(json);
+          AlertIOS.alert('playlists', String(JSON.stringify(json, null, 2)));
+          // this.props.updateParentState(json);
         })
         .catch(err => AlertIOS.alert('ERROR -- PlaylistViewer.js', err));
     }
@@ -228,8 +229,8 @@ class PlaylistViewer extends React.Component{
       nowViewing: playlistName
     });
   }
-  updateResults(updatedPlaylist) {
-    this.props.results = updatedPlaylist;
+  updateResults(updatedPlaylists) {
+    this.props.results = updatedPlaylists;
   }
   render() {
     // find nowViewing playlist data

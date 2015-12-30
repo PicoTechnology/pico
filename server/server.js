@@ -118,6 +118,8 @@ app.delete('/playlists/:playlistname/:trackID', dbHelpers.deleteSongFromPlaylist
     return res.send(`ERROR Server.js: ${res.err}`)
   };
   console.log(`Successfully deleted trackID: ${req.params.trackID} from playlist: ${req.params.playlistname}`);
+  console.log(JSON.stringify(res.data, null, 2));
+  console.log('sending back above');
   res.send(res.data);
 });
 
