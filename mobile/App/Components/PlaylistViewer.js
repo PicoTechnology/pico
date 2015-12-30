@@ -1,4 +1,4 @@
-  'use strict';
+'use strict';
 const React = require('react-native');
 const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
 const STYLES = require('../Assets/PicoStyles.js');
@@ -87,7 +87,6 @@ class Single extends React.Component {
     this.state = {
       isLoading: false,
       isPlaying: false,
-
     };
   }
   togglePlaying() {
