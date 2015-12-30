@@ -87,7 +87,7 @@ const addToPlaylist = (req, res, next) => {
 };
 
 const addToPartyPlaylist = (req, res, next) => {
-	console.log(`Adding "${req.body.trackObj.title}" to the Party Playlist...`);
+	console.log(`req.body.trackObj: ${JSON.stringify(req.body.trackObj, null, 2)}`);
 	var trackObj = Object.assign({rating: 0}, {soundcloud: req.body.trackObj});
 	PartyPlaylistRef
 		.child(trackObj.soundcloud.id)
@@ -159,6 +159,7 @@ const getPlaylists = (req, res, next) => {
 				exportArr.push(obj);
 			});
 			res.data = exportArr;
+			console.log("insdie get playlists dbhelper");
 			next();
 		});
 };
@@ -170,6 +171,9 @@ const getPartyPlaylist = (req, res, next) => {
 			var exportArr = [];
 			dataSnapshot.forEach(snapshot => {
 				exportArr.push(snapshot.exportVal());
+			});
+			exportArr.sort((a, b) => {
+				return b.rating - a.rating;
 			});
 			res.data = exportArr;
 			next();
@@ -190,12 +194,39 @@ const upvoteTrack = (req, res, next) => {
 	var trackID = req.params.trackID;
 	PartyPlaylistRef
 		.orderByValue()
-		.on('value', snapshot => {
+		.on('child_added', snapshot => {
 			if(snapshot.key() == trackID) {
-				snapshot.ref()
+				var val = snapshot.child('rating').val();
+				var newVal = val + 1;
+				var onComplete = err => {
+					if(err) {
+						res.err = err;
+						next();
+					}
+					getPartyPlaylist(req, res, next);
+				}
+				snapshot.ref().update({rating: newVal}, onComplete);
 			}
 		});
-
+}
+const downvoteTrack = (req, res, next) => {
+	var trackID = req.params.trackID;
+	PartyPlaylistRef
+		.orderByValue()
+		.on('child_added', snapshot => {
+			if(snapshot.key() == trackID) {
+				var val = snapshot.child('rating').val();
+				var newVal = val - 1;
+				var onComplete = err => {
+					if(err) {
+						res.err = err;
+						next();
+					}
+					getPartyPlaylist(req, res, next);
+				}
+				snapshot.ref().update({rating: newVal}, onComplete);
+			}
+		});
 }
 
 const API = {
@@ -209,7 +240,9 @@ const API = {
 	deleteSongFromPlaylist,
 	getPlaylists,
 	getPartyPlaylist,
-	getTracksFromPlaylist
+	getTracksFromPlaylist,
+	upvoteTrack,
+	downvoteTrack
 };
 
 module.exports = API;

@@ -85,13 +85,15 @@ app.post('/partyplaylist', dbHelpers.addToPartyPlaylist, (req, res, next) => {
 });
 
 // upvote a song in Party Playlist
-app.post('/partyplaylist/:trackID', (req, res, next) => {
-
+app.post('/partyplaylist/upvote/:trackID', dbHelpers.upvoteTrack, (req, res, next) => {
+  if (res.err) return res.send(`ERROR Server.js: ${res.err}`);
+  res.send(res.data);
 });
 
 // downvote a song in Party
-app.post('/partyplaylist/:trackID', (req, res, next) => {
-  
+app.post('/partyplaylist/downvote/:trackID', dbHelpers.downvoteTrack, (req, res, next) => {
+  if (res.err) return res.send(`ERROR Server.js: ${res.err}`);
+  res.send(res.data);
 })
 
 app.get('/playlists', dbHelpers.getPlaylists, (req, res, next) => {
