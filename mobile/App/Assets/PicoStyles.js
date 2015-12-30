@@ -13,10 +13,12 @@ const TOBIN = '#f2f2f2';
 const TEXT_INPUT_HEIGHT = 50;
 const TEXT_INPUT_FONTSIZE = 20;
 const FONT_FAMILY = 'Apple SD Gothic Neo';
+const OPACITY_LIGHT = .85;
 
 module.exports = PicoStyles = {
   colors: {
     PICO_GREEN,
+    ACCENT_GREEN
   },
   //BEGIN - SINGLE STYLING
   singleContainer: {
@@ -59,7 +61,7 @@ module.exports = PicoStyles = {
     fontFamily: FONT_FAMILY,
     fontWeight: 'bold',
     backgroundColor: 'black',
-    opacity: .85,
+    opacity: OPACITY_LIGHT,
     borderWidth: 1,
     borderColor: PICO_GREEN,
     borderRadius: BORDER_CURVE,
@@ -68,7 +70,7 @@ module.exports = PicoStyles = {
   submitBtn: {
     flexDirection: 'row',
     backgroundColor: PICO_GREEN,
-    opacity: .9,
+    opacity: OPACITY_LIGHT,
     borderColor: ACCENT_GREEN,
     borderWidth: 1,
     borderRadius: BORDER_CURVE,
@@ -78,7 +80,7 @@ module.exports = PicoStyles = {
   submitBtnText: {
     color: 'black',
     fontSize: 18,
-    opacity: .9,
+    opacity: OPACITY_LIGHT,
     fontFamily: 'Apple SD Gothic Neo-Bold',
     alignSelf: 'center',
     fontWeight: 'bold'
