@@ -30,9 +30,12 @@ let SongEntry = props => {
 			},
 			method: 'POST'
 		})
-			.then(
-
-			)
+			.then(res => res.json())
+			.then(json => {
+				AlertIOS.alert('Alert', 'upvoted!');
+				props.updateParentQueue(json);
+			})
+			.catch(err => AlertIOS.alert('ERROR', err));
 	}
 	let handleDownvote = () => {
 		fetch(`${SERVER_ENDPOINT}/partyplaylist/downvote/${trackID}`, {
@@ -42,9 +45,12 @@ let SongEntry = props => {
 			},
 			method: 'POST'
 		})
-			.then(
-
-			)
+			.then(res => res.json())
+			.then(json => {
+				AlertIOS.alert('Alert', 'downvoted!');
+				props.updateParentQueue(json);
+			})
+			.catch(err => AlertIOS.alert('ERROR', err));
 	}
 	let artwork = props.soundcloud.artwork_url ? {uri: props.soundcloud.artwork_url} : require("../Assets/Pico-O-grey.png");
 	return (
@@ -68,23 +74,38 @@ let SongEntry = props => {
 	);
 }
 
-module.exports = SongQueue = props => {
-	let songs = props.queue.map((song, index) => {
+class SongQueue extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			queue: props.queue
+		};
+	}
+	updateQueue(newQueue) {
+		this.setState({
+			queue: newQueue
+		});
+	}
+	render() {
+		let songs = this.state.queue.map((song, index) => {
+			return (
+				<View key={index}>
+					<SongEntry
+						updateParentQueue={updateQueue.bind(this)}
+						{...song}/>
+					<Separator/>
+				</View>
+			);
+		});
 		return (
-			<View key={index}>
-				<SongEntry {...song}/>
-				<Separator/>
+			<View style={STYLES.mainScrollContainer}>
+				<ScrollView>
+					{songs}
+				</ScrollView>
 			</View>
 		);
-	});
-	return (
-		<View style={STYLES.mainScrollContainer}>
-			<ScrollView>
-				{songs}
-			</ScrollView>
-		</View>
-	);
-};
+	}
+}
 
 const styles = StyleSheet.create({
 	votingContainer: {

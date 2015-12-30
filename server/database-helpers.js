@@ -159,6 +159,7 @@ const getPlaylists = (req, res, next) => {
 				exportArr.push(obj);
 			});
 			res.data = exportArr;
+			console.log("insdie get playlists dbhelper");
 			next();
 		});
 };
@@ -170,6 +171,9 @@ const getPartyPlaylist = (req, res, next) => {
 			var exportArr = [];
 			dataSnapshot.forEach(snapshot => {
 				exportArr.push(snapshot.exportVal());
+			});
+			exportArr.sort((a, b) => {
+				return b.rating - a.rating;
 			});
 			res.data = exportArr;
 			next();
