@@ -47,6 +47,17 @@ class CurrentlyPlaying extends React.Component {
 	    })
 	    .catch(err => AlertIOS.alert('Error', `Error retrieving Party Playlist: ${err}`));
 	}
+	playsong(trackObj) {
+		this.props.updateParentNowPlaying(trackObj);
+	}
+	handleNextSong() {
+		fetch(`${SERVER_ENDPOINT}/nextsong`)
+	    .then(res => res.json())
+	    .then(json => {
+	    	this.playsong(json.soundcloud);
+	    })
+	    .catch(err => AlertIOS.alert('Error', `Error retrieving Party Playlist: ${err}`));
+	}
 	handleControlPress(control) {
 		fetch(`${SERVER_ENDPOINT}/${control}song`)
 	    .then(res => res.json())
@@ -62,7 +73,7 @@ class CurrentlyPlaying extends React.Component {
 				<View style={STYLES.instantContainer}>
 					<ControlButton content="PLAY" pressHandler={this.handleControlPress.bind(this, 'play')} />
 					<ControlButton content="PAUSE" pressHandler={this.handleControlPress.bind(this, 'pause')} />
-					<ControlButton content="STOP" pressHandler={this.handleControlPress.bind(this, 'stop')} />
+					<ControlButton content="NEXT" pressHandler={this.handleNextSong.bind(this)} />
 					<ControlButton content="VIEW QUEUE" pressHandler={this.handleViewQueue.bind(this)} />
 				</View>
 			</View>

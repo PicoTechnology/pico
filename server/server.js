@@ -61,6 +61,9 @@ app.get('/playsong', (req, res, next) => {
 app.get('/nextsong', dbHelpers.getNextSong, (req, res, next) => {
   res.data = res.data[0];
   res.send(res.data);
+  console.log(`trackID: ${res.data.soundcloud.id}`);
+  req.params.trackID = res.data.soundcloud.id;
+  dbHelpers.deleteSongFromPartyPlaylist(req, res, next);
 });
 
 app.get('/pausesong', (req, res, next) => {

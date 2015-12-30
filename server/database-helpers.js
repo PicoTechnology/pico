@@ -134,9 +134,24 @@ const deleteSongFromPlaylist = (req, res, next) => {
 				});
 			}
 		});
-		// no match found
-		res.err = 'No match found!';
-		return next();
+};
+
+const deleteSongFromPartyPlaylist = (req, res, next) => {
+	var trackID = req.params.trackID;
+	PartyPlaylistRef
+		.orderByValue()
+		.on('child_added', snapshot => {
+			if (snapshot.key() == trackID) {
+				snapshot.ref().set(null, err => {
+					if (err) {
+						res.err = err;
+						return next();
+					}
+					res.data = playlistname;
+					return next();
+				});
+			}
+		});
 };
 
 const getPlaylists = (req, res, next) => {
@@ -236,6 +251,7 @@ const API = {
 	authenticateUser,
 	deletePlaylist,
 	deleteSongFromPlaylist,
+	deleteSongFromPartyPlaylist,
 	getPlaylists,
 	getNextSong,
 	getPartyPlaylist,
