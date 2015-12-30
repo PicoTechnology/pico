@@ -205,7 +205,7 @@ const upvoteTrack = (req, res, next) => {
 					}
 					getPartyPlaylist(req, res, next);
 				}
-				snapshot.ref().update({rating: newVal});
+				snapshot.ref().update({rating: newVal}, onComplete);
 			}
 		});
 }
@@ -224,7 +224,7 @@ const downvoteTrack = (req, res, next) => {
 					}
 					getPartyPlaylist(req, res, next);
 				}
-				snapshot.ref().update({rating: newVal});
+				snapshot.ref().update({rating: newVal}, onComplete);
 			}
 		});
 }

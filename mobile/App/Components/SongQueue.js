@@ -32,7 +32,6 @@ let SongEntry = props => {
 		})
 			.then(res => res.json())
 			.then(json => {
-				AlertIOS.alert('Alert', 'upvoted!');
 				props.updateParentQueue(json);
 			})
 			.catch(err => AlertIOS.alert('ERROR', err));
@@ -47,7 +46,6 @@ let SongEntry = props => {
 		})
 			.then(res => res.json())
 			.then(json => {
-				AlertIOS.alert('Alert', 'downvoted!');
 				props.updateParentQueue(json);
 			})
 			.catch(err => AlertIOS.alert('ERROR', err));
@@ -91,7 +89,7 @@ class SongQueue extends React.Component {
 			return (
 				<View key={index}>
 					<SongEntry
-						updateParentQueue={updateQueue.bind(this)}
+						updateParentQueue={this.updateQueue.bind(this)}
 						{...song}/>
 					<Separator/>
 				</View>
