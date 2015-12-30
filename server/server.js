@@ -28,9 +28,7 @@ app.use(bodyparser.json());
 const client_id = SoundCloudCred.client_id;
 
 app.get('/connect', (req, res, next) => {
-  console.log('Searching for bluetooth devices...');
-  // bluetoothHelpers.beginSearch();
-
+  console.log('Successfully connected to Pico. Welcome!');
   res.send({numUsers: 3});
 });
 
@@ -42,20 +40,22 @@ app.post('/playsong', (req, res, next) => {
   var trackObj = req.body;
   var uri = trackObj.id;
   var queryString = qs.stringify(Object.assign({}, {client_id}));
-  console.log(`download link: ${SOUNDCLOUD_API}/tracks/${uri}/download?${queryString}`);
+  var downloadLink = `${SOUNDCLOUD_API}/tracks/${uri}/download?${queryString}`
+  console.log(`download link: ${downloadLink}`);
 
-  var songpath = `${__dirname}/assets/${trackObj.id}.${trackObj.original_format}`;
-  var mp3File = fs.createWriteStream(songpath);
-  mp3File.on('finish', () => {
-    console.log(`finished downloading ${trackObj.title}`);
-    playbackHelpers.play(songpath);
-    res.send('finished downloading');
-  });
+  playbackHelpers.streamSong(downloadLink);
+  // var songpath = `${__dirname}/assets/${trackObj.id}.${trackObj.original_format}`;
+  // var mp3File = fs.createWriteStream(songpath);
+  // mp3File.on('finish', () => {
+  //   console.log(`finished downloading ${trackObj.title}`);
+  //   playbackHelpers.play(songpath);
+  //   res.send('finished downloading');
+  // });
 
-  request
-    .get(`${SOUNDCLOUD_API}/tracks/${uri}/download?${queryString}`)
-    .on('error', err => console.error(err))
-    .pipe(mp3File)
+  // request
+  //   .get(`${SOUNDCLOUD_API}/tracks/${uri}/download?${queryString}`)
+  //   .on('error', err => console.error(err))
+  //   .pipe(mp3File)
 });
 
 app.post('/users', dbHelpers.authenticateUser, (req, res, next) => {
@@ -113,8 +113,13 @@ app.delete('/playlists/:playlistname', dbHelpers.deletePlaylist, (req,res, next)
 });
 
 app.delete('/playlists/:playlistname/:trackID', dbHelpers.deleteSongFromPlaylist, (req, res, next) => {
-  if (res.err) return res.send(`ERROR Server.js: ${res.err}`);
+  if (res.err) {
+    console.log('ERROR!');
+    return res.send(`ERROR Server.js: ${res.err}`)
+  };
   console.log(`Successfully deleted trackID: ${req.params.trackID} from playlist: ${req.params.playlistname}`);
+  console.log(JSON.stringify(res.data, null, 2));
+  console.log('sending back above');
   res.send(res.data);
 });
 
@@ -147,6 +152,6 @@ app.get('/authorize', (req, res, next) => {
 app.listen(PORT);
 console.log(`Now listening on localhost:${PORT}...`);
 dbHelpers.connectToDB();
-
+playbackHelpers.initPlayer();
 // bluetooth
 //bluetoothHelpers.initializeBluetooth();

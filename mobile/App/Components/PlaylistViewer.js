@@ -1,8 +1,8 @@
-  'use strict';
+'use strict';
 const React = require('react-native');
 const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
 const STYLES = require('../Assets/PicoStyles.js');
-
+const UI_HELPERS = require('../Utils/UiHelpers.js');
 
 const {
   AlertIOS,
@@ -35,7 +35,7 @@ class PlaylistName extends React.Component {
           <Text style={styles.playlistName}> {this.props.name}</Text>
         </View>
       </TouchableHighlight>
-    )
+    );
   }
 }
 
@@ -87,7 +87,6 @@ class Single extends React.Component {
     this.state = {
       isLoading: false,
       isPlaying: false,
-
     };
   }
   togglePlaying() {
@@ -119,32 +118,26 @@ class Single extends React.Component {
       .catch(err => AlertIOS.alert('Error!', 'Tracks in PlaylistViewer.js... oops'));
   }
   handleDelete() {
-    fetch(`${SERVER_ENDPOINT}/Playlists/${this.props.playlistName}/${this.props.id}`, {
-      headers:{
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
-      method: 'DELETE'
-    });
-
-        this.props.updateParentState(this.props.playlistName);
-        AlertIOS.alert('FINISHED DELETING from ', this.props.playlistName);
-      // .then(res => res.json())
-      // .then(json => {
-      //   console.log('The res.json from deleteSongFromPlaylist is ', json);
-      //   this.props.updatePlaylistState(json);
-      // });
-      // AlertIOS.alert("this is after deleted");
-      // this.props.updatePlaylistState(playlistname);
-  }
-  makeHumanReadable(ms) {
-    let minutesRaw = ms/1000/60;
-    let minutesPure = Math.floor(minutesRaw);
-    let secondsRaw = minutesRaw % minutesPure * 60;
-    let secondsPure = '0' + secondsRaw.toFixed(0);
-    var endOfString = secondsPure.length - 1;
-    secondsPure = secondsPure.charAt(endOfString) + secondsPure.charAt(endOfString - 1);
-    return `${minutesPure}:${secondsPure}`;
+    function onYes() {
+      fetch(`${SERVER_ENDPOINT}/playlists/${this.props.playlistName}/${this.props.id}`, {
+        headers:{
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: 'DELETE'
+      })
+        .then(res => res.json())
+        .then(json => {
+          AlertIOS.alert('playlists', String(JSON.stringify(json, null, 2)));
+          // this.props.updateParentState(json);
+        })
+        .catch(err => AlertIOS.alert('ERROR -- PlaylistViewer.js', err));
+    }
+    function onNo() {
+      return;
+    }
+    AlertIOS.alert('Are you sure?', `Do you really want to delete "${this.props.title}" from "${this.props.playlistName}"?`, 
+      [{text: 'Yes', onPress: onYes.bind(this)}, {text: 'No', onPress: onNo}]);
   }
   render() {
     let artwork = this.props.artwork_url ? {uri:this.props.artwork_url} : require("../Assets/Pico-O-grey.png");
@@ -157,7 +150,7 @@ class Single extends React.Component {
           <View style={styles.infoContainer}>
             <Text style={styles.title}>{this.props.title}</Text>
             <Text style={styles.info}>{this.props.user.username}</Text>
-            <Text style={styles.info}>{this.makeHumanReadable(this.props.duration)}</Text>
+            <Text style={styles.info}>{UI_HELPERS.makeHumanReadable(this.props.duration)}</Text>
           </View>
           <View style={STYLES.deleteContainer}>
           <TouchableHighlight onPress={this.handleDelete.bind(this)}>
@@ -192,8 +185,8 @@ class Tracks extends React.Component {
       nowPlaying: trackId,
     });
   }
-  updatePlaylistViewerState(playlistName){
-    this.props.updatePlaylistViewerState(playlistName);
+  updatePlaylistViewerState(updatedPlaylist){
+    this.props.updateParentState(updatedPlaylist);
   }
   render() {
     let playlistName = Object.keys(this.props.data)[0];
@@ -236,10 +229,9 @@ class PlaylistViewer extends React.Component{
       nowViewing: playlistName
     });
   }
-  updateResults(updatedPlaylist) {
-    this.props.results = updatedPlaylist;
+  updateResults(updatedPlaylists) {
+    this.props.results = updatedPlaylists;
   }
-
   render() {
     // find nowViewing playlist data
     var nowViewingList = this.props.results.filter(playlistObj => {
