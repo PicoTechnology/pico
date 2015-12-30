@@ -30,15 +30,6 @@ body{
   height: 100%;
 }
 
-/*DESCRIPTION*/
-.wrapper {
-  margin-top: 150px;
-  height: 750px;
-}
-.descriptionWrapper {
-  font-family: Quicksand-Light;
-}
-
 /*NAVI*/
 .navbar-inverse .navbar-nav>li>a   {
   color: white;
@@ -72,6 +63,28 @@ body{
   bottom: 30px !important;
 }
 
+/*DESCRIPTION*/
+.wrapper {
+  margin-bottom: -1700px;
+  height: 2500px;
+}
+
+.descriptionWrapper {
+  font-family: Quicksand-Light;
+}
+
+/*DIAGRAM*/
+.diagramWrapper {
+  text-align: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+.diagram {
+  max-width: 100%;
+  align-content: center;
+}
+
 /*TEAM SECTION*/
 .teamText {
    font-size: 45px;
@@ -93,15 +106,4 @@ body{
 
 .footerText {
   top: 50%;
-}
-
-.diagramWrapper {
-  text-align: center;
-  margin-top: 100px;
-  margin-bottom: 100px;
-}
-
-.diagram {
-  max-width: 100%;
-  align-content: center;
 }
