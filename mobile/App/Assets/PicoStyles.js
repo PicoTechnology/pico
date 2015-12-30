@@ -91,7 +91,8 @@ module.exports = PicoStyles = {
     alignItems: 'flex-start',
     justifyContent: 'center',
     paddingTop: 10,
-    paddingBottom: 10
+    paddingLeft: 10,
+    paddingRight: 10
   },
   playlistContainer: {
     flexDirection: 'row',
