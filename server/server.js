@@ -62,6 +62,10 @@ app.post('/users', dbHelpers.authenticateUser, (req, res, next) => {
   return res.send(res.result);
 });
 
+app.post('/signup', dbHelpers.addUser, (req, res, next) => {
+  return res.send(res.result);
+});
+
 app.post('/playlists', dbHelpers.addPlaylist, (req, res, next) => {
   if (res.err) return res.send(`ERROR Server.js: ${res.err}`);
   res.send(`Successfully created playlist: ${req.body.playlistname}`);

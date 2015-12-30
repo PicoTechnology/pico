@@ -47,6 +47,27 @@ class Login extends React.Component {
 			})
 			.catch(err => AlertIOS.alert('Error', err));
 	}
+	handleSignup() {
+		fetch(`${SERVER_ENDPOINT}/signup`, {
+			headers: {
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			method: 'POST',
+			body: JSON.stringify(this.state)
+		})
+			.then(res => res.json())
+			.then(json => {
+				if(json.result){
+					this.props.navigator.push({
+						title: 'Search SC',
+						component: SearchSoundCloud
+					});
+				} else {
+					AlertIOS.alert('Error', 'Sign Up unsuccessful... Please try again later!');
+				}
+			})
+	}
 	handleUsername(event) {
 		this.setState({
 			username: event.nativeEvent.text
@@ -80,6 +101,12 @@ class Login extends React.Component {
 					style={Object.assign({}, styles.loginButton, STYLES.submitBtn)}
 					underlayColor={STYLES.underlayColor}>
 					<Text style={STYLES.submitBtnText}> L O G I N </Text>
+				</TouchableHighlight>
+				<TouchableHighlight
+					onPress={this.handleSignup.bind(this)}
+					style={Object.assign({}, styles.loginButton, STYLES.submitBtn)}
+					underlayColor={STYLES.underlayColor}>
+					<Text style={STYLES.submitBtnText}> S I G N  U P </Text>
 				</TouchableHighlight>
 			</View>
 		);
