@@ -35,12 +35,6 @@ class Single extends React.Component {
       isPlaying: !this.state.isPlaying
     });
   }
-  // selectSong() {
-  //   this.setState({
-  //     trackId: this.props.id
-  //   });
-  //   AlertIOS.alert(`trackId is ${this.state.trackId} ` )
-  // }
   toggleWpVisible() {
     this.setState({
       isWpVisible: !this.state.isWpVisible
@@ -56,43 +50,6 @@ class Single extends React.Component {
   }
   handlePress() {
     this.toggleWpVisible();
-
-    // this.selectSong();
-    // let playlistname = 'test1';
-    // let data = {trackID: this.props.id};
-    // fetch(`${SERVER_ENDPOINT}/playlist/${playlistname}`, {
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json'
-    //   },
-    //   method: 'POST',
-    //   body: JSON.stringify(data)
-    // })
-    //   .then(res => res.json())
-    //   .then(json => true)
-    //   .catch(err => AlertIOS.alert('Error', 'Error adding song to playlist...apologies!'));
-    // if no other songs are playing, play the current song
-    // otherwise, if songs are playing, add the pressed song
-    // to the global queue
-
-    // if(queue.isQueued(this.props.id)){
-    //   queue.removeItem(this.props.id);
-    // } else {
-    //   queue.enqueue(this.props.id);
-    // }
-    // this.togglePlaying();
-    // fetch(`${SERVER_ENDPOINT}/playsong`, {
-    //   headers: {
-    //     'Accept': 'application/json',
-    //     'Content-Type': 'application/json'
-    //   },
-    //   method: 'POST',
-    //   body: JSON.stringify(data)
-    // })
-    //   .then(res => res.text())
-    //   .then(text => true)
-    //   .catch(err => AlertIOS.alert('Error!', 'Track.js... oops'));
-
   }
   renderWhichPlaylist() {
     let wp = <View />;
@@ -113,13 +70,13 @@ class Single extends React.Component {
       <View>
         <TouchableHighlight
           onPress={this.handlePress.bind(this)}>
-          <View style={styles.singleContainer}>
+          <View style={STYLES.singleContainer}>
             {this.renderPlayingStatus()}
             <Image source={artwork} style={STYLES.singleImage} />
-            <View style={styles.infoContainer}>
-              <Text style={styles.title}>{this.props.trackObj.title}</Text>
-              <Text style={styles.info}>{this.props.trackObj.user.username}</Text>
-              <Text style={styles.info}>{UI_HELPERS.makeHumanReadable(this.props.trackObj.duration)}</Text>
+            <View style={STYLES.infoContainer}>
+              <Text style={STYLES.singleTitle}>{this.props.trackObj.title}</Text>
+              <Text style={STYLES.singleInfo}>{this.props.trackObj.user.username}</Text>
+              <Text style={STYLES.singleInfo}>{UI_HELPERS.makeHumanReadable(this.props.trackObj.duration)}</Text>
             </View>
           </View>
         </TouchableHighlight>
@@ -205,7 +162,7 @@ class Tracks extends React.Component{
     });
     return (
       <View
-        style={styles.mainContainer}>
+        style={STYLES.mainScrollContainer}>
         <View
           style={styles.scrollContainer}>
           <ScrollView
@@ -223,7 +180,7 @@ class Tracks extends React.Component{
 }
 
 const styles = StyleSheet.create({
-  mainContainer: {
+  mainScrollContainer: {
     flex: 1,
     backgroundColor: '#333333'
   },
@@ -233,11 +190,6 @@ const styles = StyleSheet.create({
   currentlyPlayingContainer: {
     flex: 1,
     height: 100,
-  },
-  singleContainer: {
-    flexDirection: 'row',
-    paddingTop: 3,
-    paddingBottom: 3
   },
   floatingMessage: {
     position: 'absolute',
@@ -257,13 +209,6 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: '#cccccc',
     justifyContent: 'center',
-  },
-  title: {
-    color: '#f2f2f2',
-    fontWeight: 'bold'
-  },
-  info: {
-    color: '#cccccc'
   },
   infoContainer: {
     flexDirection: 'column'

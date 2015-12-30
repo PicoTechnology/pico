@@ -17,6 +17,29 @@ module.exports = PicoStyles = {
   colors: {
     PICO_GREEN,
   },
+  //BEGIN - SINGLE STYLING
+  singleContainer: {
+    flexDirection: 'row',
+    paddingTop: 3,
+    paddingBottom: 3
+  },
+  singleImage: {
+    height: 50,
+    width: 50,
+    marginRight: 5,
+  },
+  singleTitle: {
+    color: '#f2f2f2',
+    fontWeight: 'bold'
+  },
+  singleInfo: {
+    color: '#cccccc'
+  },
+  // END - SINGLE STYLING
+  mainScrollContainer: {
+    flex: 1,
+    backgroundColor: '#333333'
+  },
   underlayColor: ACCENT_GREEN,
   searchInput: {
     height: TEXT_INPUT_HEIGHT,
@@ -54,11 +77,6 @@ module.exports = PicoStyles = {
   error: {
     fontSize: 18,
     color: '#black'
-  },
-  singleImage: {
-    height: 50,
-    width: 50,
-    marginRight: 5,
   },
   submitBtnText: {
     color: 'black',
