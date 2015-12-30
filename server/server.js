@@ -36,6 +36,12 @@ app.get('/disconnect', (req, res, next) => {
   //bluetoothHelpers.closeConnection();
 });
 
+
+app.get('/partyplaylist', (req, res, next) => {
+  res.data = res.data[0];
+  res.send(res.data);
+});
+
 app.post('/playsong', (req, res, next) => {
   var trackObj = req.body;
   var uri = trackObj.id;
@@ -50,6 +56,14 @@ app.post('/playsong', (req, res, next) => {
 app.get('/playsong', (req, res, next) => {
   playbackHelpers.playSong();
   res.send({status: 'playing'});
+});
+
+app.get('/nextsong', dbHelpers.getNextSong, (req, res, next) => {
+  var trackObj = res.data[0].soundcloud;
+  res.send(res.data[0]);
+  console.log(`trackID: ${trackObj.id}`);
+  req.params.trackID = trackObj.id;
+  dbHelpers.deleteSongFromPartyPlaylist(req, res, next);
 });
 
 app.get('/pausesong', (req, res, next) => {

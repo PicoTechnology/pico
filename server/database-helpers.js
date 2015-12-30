@@ -55,18 +55,15 @@ const authenticateUser = (req, res, next) => {
 }
 
 const addPlaylist = (req, res, next) => {
-  console.log(`req.body: ${JSON.stringify(req.body, null, 2)}`);
 	var playlistname = req.body.playlistname;
 	var trackIDs = req.body.trackIDs;
 	PlaylistsRef
 		.child(playlistname)
 		.set(trackIDs, err => {
 			if(err) {
-        console.log('err!!');
 				res.err = err;
 				return next();
 			}
-      console.log('no err...');
 			return next();
 		});
 };
@@ -74,7 +71,6 @@ const addPlaylist = (req, res, next) => {
 const addToPlaylist = (req, res, next) => {
 	var playlistname = req.params.playlistname;
 	var trackObj = req.body.trackObj;
-	console.log(`adding ${trackObj.id} to ${playlistname}...`);
 	PlaylistsRef
 		.child(playlistname)
 		.child(trackObj.id)
@@ -89,7 +85,6 @@ const addToPlaylist = (req, res, next) => {
 };
 
 const addToPartyPlaylist = (req, res, next) => {
-	console.log(`req.body.trackObj: ${JSON.stringify(req.body.trackObj, null, 2)}`);
 	var trackObj = Object.assign({rating: 0}, {soundcloud: req.body.trackObj});
 	PartyPlaylistRef
 		.child(trackObj.soundcloud.id)
@@ -101,6 +96,11 @@ const addToPartyPlaylist = (req, res, next) => {
 			// getPartyPlaylist assigns to res.data
 			getPartyPlaylist(req, res, next);
 		});
+};
+
+// returns the song at the top of the Party Queue
+const getNextSong = (req, res, next) => {
+	getPartyPlaylist(req, res, next);
 };
 
 const deletePlaylist = (req, res, next) => {
@@ -119,31 +119,38 @@ const deletePlaylist = (req, res, next) => {
 const deleteSongFromPlaylist = (req, res, next) => {
 	var playlistname = req.params.playlistname;
 	var trackID = req.params.trackID;
-	console.log(`playlistname: ${playlistname}`);
-	console.log(`trackID: ${trackID}`);
 	PlaylistsRef
 		.child(playlistname)
 		.orderByValue()
 		.on('child_added', snapshot => {
-			// console.log('inside of here!');
-			// console.log(`snapshot.key(): ${snapshot.key()}`);
 			if (snapshot.key() == trackID) {
-				console.log('MATCHED!');
 				snapshot.ref().set(null, err => {
 					if (err) {
 						res.err = err;
 						return next();
 					}
-					console.log(trackID, ' removed from ', playlistname);
 					res.data = playlistname;
-					console.log('res.data is ', res.data);
 					return next();
 				});
 			}
 		});
-		// no match found
-		res.err = 'No match found!';
-		return next();
+};
+
+const deleteSongFromPartyPlaylist = (req, res, next) => {
+	var trackID = req.params.trackID;
+	PartyPlaylistRef
+		.orderByValue()
+		.on('child_added', snapshot => {
+			if (snapshot.key() == trackID) {
+				snapshot.ref().set(null, err => {
+					if (err) {
+						res.err = err;
+						return next();
+					}
+					getPartyPlaylist(req, res, next);
+				});
+			}
+		});
 };
 
 const getPlaylists = (req, res, next) => {
@@ -161,7 +168,6 @@ const getPlaylists = (req, res, next) => {
 				exportArr.push(obj);
 			});
 			res.data = exportArr;
-			console.log("insdie get playlists dbhelper");
 			next();
 		});
 };
@@ -219,10 +225,10 @@ const downvoteTrack = (req, res, next) => {
 			if(snapshot.key() == trackID) {
 				var val = snapshot.child('rating').val();
 				var newVal = val - 1;
-				if (Math.abs(newVal) >= UX_HELPERS.DOWNVOTE_THRESHOLD) {
-					req.params.playlistname = 'partyplaylist';
-					return deleteSongFromPlaylist(req, res, next);
-				}
+				// if (Math.abs(newVal) >= UX_HELPERS.DOWNVOTE_THRESHOLD) {
+				// 	req.params.playlistname = 'partyplaylist';
+				// 	return deleteSongFromPlaylist(req, res, next);
+				// }
 				var onComplete = err => {
 					if(err) {
 						res.err = err;
@@ -244,7 +250,9 @@ const API = {
 	authenticateUser,
 	deletePlaylist,
 	deleteSongFromPlaylist,
+	deleteSongFromPartyPlaylist,
 	getPlaylists,
+	getNextSong,
 	getPartyPlaylist,
 	getTracksFromPlaylist,
 	upvoteTrack,

@@ -171,6 +171,7 @@ class Tracks extends React.Component{
           </ScrollView>
         </View>
         <CurrentlyPlaying
+          updateParentNowPlaying={this.updateNowPlaying.bind(this)}
           navigator={this.props.navigator}
           msRemaining={this.state.msRemaining}
           trackObj={this.state.nowPlaying} />
