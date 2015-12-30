@@ -60,7 +60,8 @@ class PlaylistCreator extends React.Component {
 
 const styles = {
   button : {
-    height: 30
+    height: 30,
+    padding: 5
   },
   btnText: {
     fontSize: 10
