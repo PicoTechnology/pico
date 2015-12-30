@@ -82,7 +82,7 @@ class SearchSoundCloud extends React.Component {
         </View>
         <TextInput
           ref={component => this._searchInput = component}
-          style={Object.assign(styles.searchInput, STYLES.textInput)}
+          style={Object.assign({}, styles.searchInput, STYLES.textInput)}
           onChange={this.handleChange.bind(this)}
           placeholder="search soundcloud.com" />
         <View style={styles.spinnerContainer}>
@@ -92,7 +92,7 @@ class SearchSoundCloud extends React.Component {
             size="large" />
         </View>
         <TouchableHighlight
-          style={styles.button}
+          style={Object.assign({}, styles.button, STYLES.submitBtn)}
           onPress={this.handleSubmit.bind(this)}
           underlayColor='#aeff00'>
           <Text
@@ -106,7 +106,7 @@ class SearchSoundCloud extends React.Component {
   }
 }
 
-const styles = StyleSheet.create({
+const styles = {
   loginIcon: {
     marginBottom: -40,
     height: 50,
@@ -162,16 +162,10 @@ const styles = StyleSheet.create({
   },
   button: {
     height: 45,
-    flexDirection: 'row',
-    backgroundColor: '99FF00',
-    borderColor: 'black',
     borderWidth: 1,
-    borderRadius: 8,
     marginBottom: 10,
-    marginTop: 10,
-    alignSelf: 'stretch',
-    justifyContent: 'center'
+    marginTop: 10
   },
-});
+};
 
 module.exports = SearchSoundCloud;
