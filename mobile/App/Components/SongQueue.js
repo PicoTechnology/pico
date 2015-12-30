@@ -1,8 +1,12 @@
 const React = require('react-native');
 const UI_HELPERS = require('../Utils/UiHelpers.js');
+const UX_HELPERS = require('../Utils/UxHelpers.js');
 const STYLES = require('../Assets/PicoStyles.js');
 const Separator = require('./Separator.js');
 const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
+
+const UPVOTE = require('../Assets/icons/Up.png'); 
+const DOWNVOTE = require('../Assets/icons/Down.png');
 
 const {
 	AlertIOS,
@@ -19,8 +23,6 @@ const handlePress = () => {
 };
 
 let SongEntry = props => {
-	let upvote = require('../Assets/icons/Up.png');
-	let downvote = require('../Assets/icons/Down.png');
 	let trackID = props.soundcloud.id;
 	let handleUpvote = () => {
 		fetch(`${SERVER_ENDPOINT}/partyplaylist/upvote/${trackID}`, {
@@ -62,10 +64,10 @@ let SongEntry = props => {
 			<View style={styles.votingContainer}>
 				<Text style={STYLES.singleInfo}>{props.rating}</Text>
 				<TouchableHighlight onPress={handleUpvote.bind(this)}>
-					<Image style={STYLES.singleImage} source={upvote} />
+					<Image style={STYLES.singleImage} source={UPVOTE} />
 				</TouchableHighlight>
 				<TouchableHighlight onPress={handleDownvote.bind(this)}>
-					<Image style={STYLES.singleImage} source={downvote} />
+					<Image style={STYLES.singleImage} source={DOWNVOTE} />
 				</TouchableHighlight>
 			</View>
 		</View>
@@ -78,6 +80,9 @@ class SongQueue extends React.Component {
 		this.state = {
 			queue: props.queue
 		};
+	}
+	componentDidMount() {
+
 	}
 	updateQueue(newQueue) {
 		this.setState({

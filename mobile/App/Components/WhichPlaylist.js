@@ -48,15 +48,15 @@ class InstantControls extends React.Component {
   }
   render() {
     return (
-      <View style={styles.instantContainer}>
-        <View style={styles.instantBtn}>
+      <View style={STYLES.instantContainer}>
+        <View style={STYLES.instantBtn}>
           <TouchableHighlight onPress={this.handlePlayNow.bind(this)}>
-            <Text style={styles.instantText}>PLAY NOW</Text>
+            <Text style={STYLES.instantText}>PLAY NOW</Text>
           </TouchableHighlight>
         </View>
-        <View style={styles.instantBtn}>
+        <View style={STYLES.instantBtn}>
           <TouchableHighlight onPress={this.handleAddToQueue.bind(this)}>
-            <Text style={styles.instantText}>ADD TO QUEUE</Text>
+            <Text style={STYLES.instantText}>ADD TO QUEUE</Text>
           </TouchableHighlight>
         </View>
       </View>
@@ -168,28 +168,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: '#f1f3f5',
     fontSize: 18
-  },
-  instantContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-    paddingTop: 3,
-    paddingBottom: 3,
-  },
-  instantBtn: {
-    height: 30,
-    paddingTop: 5,
-    paddingRight: 7,
-    paddingBottom: 5,
-    paddingLeft: 7,
-    borderColor: '#00ffff',
-    borderWidth: 1,
-    borderRadius: 5,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  instantText: {
-    color: '#00ffff',
-    fontSize: 15
   },
   spinnerContainer: {
     flexDirection: 'row',

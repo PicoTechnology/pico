@@ -1,4 +1,5 @@
 const Firebase = require('firebase');
+const UX_HELPERS = require('../mobile/App/Utils/UxHelpers.js');
 const FIREBASE_LOCATION = 'https://picotechnology.firebaseio.com/';
 
 var FirebaseRef;
@@ -218,6 +219,10 @@ const downvoteTrack = (req, res, next) => {
 			if(snapshot.key() == trackID) {
 				var val = snapshot.child('rating').val();
 				var newVal = val - 1;
+				if (Math.abs(newVal) >= UX_HELPERS.DOWNVOTE_THRESHOLD) {
+					req.params.playlistname = 'partyplaylist';
+					return deleteSongFromPlaylist(req, res, next);
+				}
 				var onComplete = err => {
 					if(err) {
 						res.err = err;
