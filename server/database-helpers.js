@@ -123,25 +123,17 @@ const deleteSongFromPlaylist = (req, res, next) => {
 		.child(playlistname)
 		.orderByValue()
 		.on('child_added', snapshot => {
-			// console.log('inside of here!');
-			// console.log(`snapshot.key(): ${snapshot.key()}`);
 			if (snapshot.key() == trackID) {
-				console.log('MATCHED!');
 				snapshot.ref().set(null, err => {
 					if (err) {
 						res.err = err;
 						return next();
 					}
-					console.log(trackID, ' removed from ', playlistname);
-					res.data = playlistname;
-					console.log('res.data is ', res.data);
-					return next();
+					console.log(`removed ${trackID} from "${playlistname}"`);
+					return getTracksFromPlaylist(req, res, next);
 				});
 			}
 		});
-		// no match found
-		res.err = 'No match found!';
-		return next();
 };
 
 const getPlaylists = (req, res, next) => {
@@ -159,7 +151,7 @@ const getPlaylists = (req, res, next) => {
 				exportArr.push(obj);
 			});
 			res.data = exportArr;
-			console.log("insdie get playlists dbhelper");
+			console.log("inside get playlists dbhelper");
 			next();
 		});
 };
@@ -184,9 +176,19 @@ const getTracksFromPlaylist = (req, res, next) => {
 	var playlistname = req.params.playlistname;
 	PlaylistsRef
 		.child(playlistname)
-		.once('value', snapshot => {
-			res.data = snapshot.val();
-			next();
+		.once('value', dataSnapshot => {
+			var exportArr = [];
+			dataSnapshot.forEach(snapshot => {
+				var obj = {};
+				var playlist = [];
+				for (var key in snapshot.exportVal()) {
+					playlist.push(snapshot.exportVal()[key]);
+				}
+				obj[snapshot.key()] = playlist;
+				exportArr.push(obj);
+			});
+			res.data = exportArr;
+			return next();
 		});
 };
 

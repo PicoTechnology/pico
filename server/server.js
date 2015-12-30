@@ -113,7 +113,10 @@ app.delete('/playlists/:playlistname', dbHelpers.deletePlaylist, (req,res, next)
 });
 
 app.delete('/playlists/:playlistname/:trackID', dbHelpers.deleteSongFromPlaylist, (req, res, next) => {
-  if (res.err) return res.send(`ERROR Server.js: ${res.err}`);
+  if (res.err) {
+    console.log('ERROR!');
+    return res.send(`ERROR Server.js: ${res.err}`)
+  };
   console.log(`Successfully deleted trackID: ${req.params.trackID} from playlist: ${req.params.playlistname}`);
   res.send(res.data);
 });
