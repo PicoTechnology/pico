@@ -2,6 +2,7 @@ const React = require('react-native');
 const UI_HELPERS = require('../Utils/UiHelpers.js');
 const STYLES = require('../Assets/PicoStyles.js');
 const Separator = require('./Separator.js');
+const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
 
 const {
 	AlertIOS,
@@ -20,11 +21,30 @@ const handlePress = () => {
 let SongEntry = props => {
 	let upvote = require('../Assets/icons/Up.png');
 	let downvote = require('../Assets/icons/Down.png');
+	let trackID = props.soundcloud.id;
 	let handleUpvote = () => {
-		AlertIOS.alert('handle voted', 'upvote pressed');
+		fetch(`${SERVER_ENDPOINT}/partyplaylist/upvote/${trackID}`, {
+			headers:{
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			method: 'POST'
+		})
+			.then(
+
+			)
 	}
 	let handleDownvote = () => {
-		AlertIOS.alert('handle voted', 'downvote pressed');
+		fetch(`${SERVER_ENDPOINT}/partyplaylist/downvote/${trackID}`, {
+			headers:{
+				'Accept': 'application/json',
+				'Content-Type': 'application/json'
+			},
+			method: 'POST'
+		})
+			.then(
+
+			)
 	}
 	let artwork = props.soundcloud.artwork_url ? {uri: props.soundcloud.artwork_url} : require("../Assets/Pico-O-grey.png");
 	return (
