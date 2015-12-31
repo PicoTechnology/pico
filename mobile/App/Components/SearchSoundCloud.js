@@ -163,7 +163,7 @@ class SearchSoundCloud extends React.Component {
             underlayColor={STYLES.colors.ACCENT_GREEN}>
             <Text
               style={Object.assign({}, STYLES.signUpBtnText, STYLES.dashBtnText)}>
-              PARTY PLAYLIST
+              PARTY QUEUE
             </Text>
           </TouchableHighlight>
           <TouchableHighlight

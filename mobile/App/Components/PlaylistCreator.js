@@ -46,12 +46,13 @@ class PlaylistCreator extends React.Component {
         <TextInput
           style={STYLES.playlistInput}
           placeholder="Create a New Playlist..."
-          placeholderTextColor="#FFF"
+          placeholderTextColor={STYLES.colors.LIGHT_GREY}
           onChange={this.handleChange.bind(this)} />
         <TouchableHighlight
-          style={Object.assign({}, styles.button, STYLES.submitBtn)}
-          onPress={this.handlePress.bind(this)}>
-          <Text style={Object.assign({}, STYLES.submitBtnText, styles.btnText)}>SUBMIT</Text>
+          style={Object.assign({}, STYLES.submitBtn, styles.button)}
+          onPress={this.handlePress.bind(this)}
+          underlayColor={STYLES.colors.ACCENT_GREEN}>
+          <Text style={Object.assign({}, STYLES.submitBtnText, styles.btnText)}>+</Text>
         </TouchableHighlight>
       </View>
     );
@@ -60,11 +61,16 @@ class PlaylistCreator extends React.Component {
 
 const styles = {
   button : {
-    height: 30,
-    padding: 5
+    height: 35,
+    width: 35,
+    padding: 5,
+    marginTop: 10,
+    justifyContent: 'center'
   },
   btnText: {
-    fontSize: 10
+    fontSize: 20,
+    fontWeight: 'bold',
+    textAlign: 'center'
   }
 }
 

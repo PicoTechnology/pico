@@ -110,7 +110,7 @@ class WhichPlaylist extends React.Component {
           trackObj={this.props.trackObj}
           updateParentNowPlaying={this.props.updateParentNowPlaying} />
         <View style={styles.whichPlaylistHeaderContainer}>
-          <Text style={styles.whichPlaylistHeader}>Add to Playlist:</Text>
+          <Text style={STYLES.whichPlaylistHeader}>ADD TO PLAYLIST</Text>
         </View>
         {this.renderSpinner()}
         {playlistList}
@@ -125,19 +125,6 @@ const styles = StyleSheet.create({
   mainContainer: {
     padding: 3,
     backgroundColor: '#000',
-  },
-  playlistInput: {
-    height: 35,
-    width: 230,
-    padding: 4,
-    marginRight: 5,
-    marginBottom: 10,
-    marginTop: 10,
-    fontSize: 16,
-    borderWidth: 1,
-    borderColor: '#00ffff',
-    borderRadius: 8,
-    color: 'white'
   },
   button: {
     height: 35,
@@ -164,11 +151,7 @@ const styles = StyleSheet.create({
     paddingTop: 5,
     paddingBottom: 5
   },
-  whichPlaylistHeader: {
-    textAlign: 'center',
-    color: '#f1f3f5',
-    fontSize: 18
-  },
+
   spinnerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
