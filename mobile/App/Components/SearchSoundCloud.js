@@ -92,7 +92,7 @@ class SearchSoundCloud extends React.Component {
     });
   }
   handleToQueue() {
-    fetch(`${SERVER_ENDPOINT}/activeusers`)
+    fetch(`${SERVER_ENDPOINT}/partyplaylist`)
       .then(res => res.json())
       .then(json => {
         this.props.navigator.push({
