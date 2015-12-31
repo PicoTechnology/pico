@@ -138,45 +138,46 @@ class SearchSoundCloud extends React.Component {
           style={Object.assign({}, styles.searchInput, STYLES.textInput)}
           onChange={this.handleChange.bind(this)}
           placeholder="search soundcloud.com" />
+        <TouchableHighlight
+          style={Object.assign({}, styles.button, STYLES.submitBtn)}
+          onPress={this.handleSubmit.bind(this)}
+          underlayColor={STYLES.colors.ACCENT_GREEN}>
+          <Text
+            style={STYLES.submitBtnText}>
+            S E A R C H
+          </Text>
+        </TouchableHighlight>
         <View style={styles.spinnerContainer}>
           <ActivityIndicatorIOS
             animating={this.state.isLoading}
             color={STYLES.colors.PICO_GREEN}
             size="large" />
         </View>
-        <TouchableHighlight
-          style={Object.assign({}, styles.button, STYLES.submitBtn)}
-          onPress={this.handleSubmit.bind(this)}
-          underlayColor={STYLES.colors.ACCENT_GREEN}>
-          <Text
-            style={styles.buttonText}>
-            S E A R C H
-          </Text>
-        </TouchableHighlight>
         {this.renderError()}
         <TouchableHighlight
           onPress={this.handleToQueue.bind(this)}
-          style={Object.assign({}, styles.button, STYLES.submitBtn)}
-          underlayColor='#aeff00'>
+          style={Object.assign({}, styles.button, STYLES.signUpBtn)}
+          underlayColor={STYLES.colors.ACCENT_GREEN}>
           <Text
-            style={styles.buttonText}>
+            style={Object.assign({}, STYLES.signUpBtnText, styles.buttonText)}>
             View Party Playlist
           </Text>
         </TouchableHighlight>
         <TouchableHighlight
           onPress={this.handleViewUsers.bind(this)}
-          style={Object.assign({}, styles.button, STYLES.submitBtn)}
-          underlayColor='#aeff00'>
+          style={Object.assign({}, styles.button, STYLES.signUpBtn)}
+          underlayColor={STYLES.colors.ACCENT_GREEN}>
           <Text
-            style={styles.buttonText}>
+            style={Object.assign({}, STYLES.signUpBtnText, styles.buttonText)}>
             View Active Users
           </Text>
         </TouchableHighlight>
         <TouchableHighlight
-          style={Object.assign({}, styles.button, STYLES.submitBtn)}
+          style={Object.assign({}, styles.button, STYLES.signUpBtn)}
           onPress={this.handleLogout.bind(this)}
-          underlayColor='#aeff00'>
-          <Text style={styles.buttonText}>
+          underlayColor={STYLES.colors.ACCENT_GREEN}>
+          <Text
+            style={Object.assign({}, STYLES.signUpBtnText, styles.buttonText)}>
             Logout
           </Text>
         </TouchableHighlight>
@@ -186,14 +187,6 @@ class SearchSoundCloud extends React.Component {
 }
 
 const styles = {
-  loginIcon: {
-    marginBottom: -40,
-    height: 50,
-    left: 90,
-    position: 'relative',
-    top: -21,
-    width: 16
-  },
   mainContainer: {
     flex: 1,
     padding: 30,
@@ -212,10 +205,8 @@ const styles = {
   },
   searchInput: {
     height: 50,
-    padding: 4,
-    marginRight: 5,
-    marginBottom: 10,
-    alignSelf: 'stretch'
+    paddingLeft: 10,
+    marginBottom: 10
   },
   title: {
     marginBottom: 20,
@@ -234,10 +225,7 @@ const styles = {
     color: '#FFF'
   },
   buttonText: {
-    fontSize: 18,
-    color: '#111',
-    alignSelf: 'center',
-    fontWeight: 'bold'
+    fontWeight: 'normal'
   },
   button: {
     opacity: .9,

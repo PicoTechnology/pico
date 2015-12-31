@@ -5,7 +5,7 @@ const {
 } = React;
 
 const PICO_GREEN = '#00ffff';
-const ACCENT_GREEN = '#00E6E6';
+const ACCENT_GREEN = '#89ffff';
 const BORDER_CURVE = 8;
 const CHARCOAL = '#333333';
 const LIGHT_GREY = '#cccccc';
@@ -71,7 +71,7 @@ module.exports = PicoStyles = {
   submitBtn: {
     flexDirection: 'row',
     backgroundColor: PICO_GREEN,
-    opacity: OPACITY_LIGHT,
+    opacity: .9,
     borderColor: ACCENT_GREEN,
     borderWidth: 1,
     borderRadius: BORDER_CURVE,
@@ -79,7 +79,7 @@ module.exports = PicoStyles = {
     justifyContent: 'center'
   },
   submitBtnText: {
-    color: TOBIN,
+    color: 'black',
     fontSize: 18,
     fontFamily: 'Apple SD Gothic Neo-Bold',
     alignSelf: 'center',

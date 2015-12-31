@@ -123,7 +123,7 @@ var styles = {
     padding: 30,
     marginTop: 65,
     flexDirection: 'column',
-    justifyContent: 'flex-end',
+    justifyContent: 'center',
     backgroundColor: 'black'
   },
   bgImageWrapper: {
@@ -146,8 +146,7 @@ var styles = {
 	},
 	signUpButton: {
 		height: 45,
-		marginBottom: 110,
-		marginTop: 100
+		marginTop: 10
 	}
 };
 
