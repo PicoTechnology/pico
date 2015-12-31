@@ -96,9 +96,9 @@ class Signup extends React.Component {
 					onChange={this.handleRetypePw.bind(this)}/>
 				<TouchableHighlight
 					onPress={this.handleSignup.bind(this)}
-					style={Object.assign({}, styles.loginButton, STYLES.submitBtn)}
+					style={Object.assign({}, styles.signUpButton, STYLES.signUpBtn)}
 					underlayColor={STYLES.underlayColor}>
-					<Text style={STYLES.submitBtnText}> S I G N  U P  N O W</Text>
+					<Text style={STYLES.signUpBtnText}> S I G N  U P  N O W</Text>
 				</TouchableHighlight>
 			</View>
 		);
