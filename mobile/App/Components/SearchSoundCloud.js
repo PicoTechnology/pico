@@ -133,6 +133,11 @@ class SearchSoundCloud extends React.Component {
         <View style={styles.bgImageWrapper}>
             <Image style={styles.bgImage} source={require('../Assets/search-bg.jpg')}/>
         </View>
+        <View style={styles.greetingContainer}>
+          <Text style={styles.greetingText}>Welcome back,
+            <Text style={styles.username}>{this.props.userObj.username}!</Text>
+          </Text>
+        </View>
         <TextInput
           ref={component => this._searchInput = component}
           style={Object.assign({}, styles.searchInput, STYLES.textInput)}
@@ -224,6 +229,20 @@ const styles = {
     backgroundColor: 'transparent',
     justifyContent: 'space-between'
   },
+  greetingContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'rgba(0,0,0,0)',
+    paddingBottom: 15
+  },
+  greetingText: {
+    color: STYLES.colors.TOBIN,
+    fontSize: 22,
+    paddingRight: 8
+  },
+  username: {
+    fontWeight: 'bold'
+  }
 };
 
 module.exports = SearchSoundCloud;
