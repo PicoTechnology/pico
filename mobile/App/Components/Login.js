@@ -40,7 +40,7 @@ class Login extends React.Component {
 				// this.props.updateParentLoggedIn(Boolean(json));
 				if(json.result){
 					this.props.navigator.push({
-						title: 'Search SC',
+						title: 'Dashboard',
 						passProps: {
 							userObj: {username: this.state.username, password: this.state.password}
 						},

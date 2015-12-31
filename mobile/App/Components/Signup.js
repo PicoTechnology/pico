@@ -1,7 +1,7 @@
 const React = require('react-native');
 const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
 const STYLES = require('../Assets/PicoStyles.js');
-const Login = require('./Login.js');
+const SearchSoundCloud = require('./SearchSoundCloud.js');
 
 const {
 	View,
@@ -44,8 +44,8 @@ class Signup extends React.Component {
 				.then(json => {
 					if(json.result){
 						this.props.navigator.push({
-							title: 'Login',
-							component: Login
+							title: 'Dashboard',
+							component: SearchSoundCloud
 						});
 					} else {
 						AlertIOS.alert('Error', 'Sign Up unsuccessful... Please try again later!');
