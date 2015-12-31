@@ -1,8 +1,7 @@
 const React = require('react-native');
-const SearchSoundCloud = require('./SearchSoundCloud.js');
 const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
 const STYLES = require('../Assets/PicoStyles.js');
-const Signup = require('./Signup.js');
+const Login = require('./Login.js');
 
 const {
 	View,
@@ -18,45 +17,43 @@ const {
 
 const {width, height} = Dimensions.get('window');
 
-class Login extends React.Component {
+class Signup extends React.Component {
 	constructor(props) {
-	super(props);
+		super(props);
 		this.state = {
 			username: '',
-			password: ''
+			password: '',
+			retypePassword: ''
 		};
 	}
-	handlePress() {
-		fetch(`${SERVER_ENDPOINT}/users`, {
-			headers: {
-				'Accept': 'application/json',
-      	'Content-Type': 'application/json'
-			},
-			method: 'POST',
-			body: JSON.stringify(this.state)
-		})
-			.then(res => res.json())
-			.then(json => {
-				// this.props.updateParentLoggedIn(Boolean(json));
-				if(json.result){
-					this.props.navigator.push({
-						title: 'Search SC',
-						passProps: {
-							userObj: {username: this.state.username, password: this.state.password}
-						},
-						component: SearchSoundCloud
-					});
-				} else {
-					AlertIOS.alert('Error', 'Authentication unsuccessful... Please try again!');
-				}
-			})
-			.catch(err => AlertIOS.alert('Error', err));
-	}
 	handleSignup() {
-		this.props.navigator.push({
-			title: 'Sign Up',
-			component: Signup
-		})
+		if(this.state.password === this.state.retypePassword) {
+			let data = {
+					username: this.state.username,
+					password: this.state.password
+			};
+			fetch(`${SERVER_ENDPOINT}/signup`, {
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json'
+				},
+				method: 'POST',
+				body: JSON.stringify(data)
+			})
+				.then(res => res.json())
+				.then(json => {
+					if(json.result){
+						this.props.navigator.push({
+							title: 'Login',
+							component: Login
+						});
+					} else {
+						AlertIOS.alert('Error', 'Sign Up unsuccessful... Please try again later!');
+					}
+				})
+		} else {
+			AlertIOS.alert('Error', 'Please make sure your passwords match!');
+		}
 	}
 	handleUsername(event) {
 		this.setState({
@@ -68,8 +65,13 @@ class Login extends React.Component {
 			password: event.nativeEvent.text
 		});
 	}
-	render() {
-		return (
+	handleRetypePw(event) {
+		this.setState({
+			retypePassword: event.nativeEvent.text
+		});
+	}
+  render() {
+    return (
 			<View style={styles.mainContainer}>
 				<View style={styles.bgImageWrapper}>
 					<Image style={styles.bgImage} source={require('../Assets/login.jpg')}/>
@@ -86,21 +88,21 @@ class Login extends React.Component {
 					placeholder="PASSWORD"
 					placeholderTextColor="#cccccc"
 					onChange={this.handlePw.bind(this)}/>
-				<TouchableHighlight
-					onPress={this.handlePress.bind(this)}
-					style={Object.assign({}, styles.loginButton, STYLES.submitBtn)}
-					underlayColor={STYLES.underlayColor}>
-					<Text style={STYLES.submitBtnText}> L O G I N </Text>
-				</TouchableHighlight>
+	 			<TextInput
+					password={true}
+					style={Object.assign({}, styles.loginInput, STYLES.textInput)}
+					placeholder="RETYPE PASSWORD"
+					placeholderTextColor="#cccccc"
+					onChange={this.handleRetypePw.bind(this)}/>
 				<TouchableHighlight
 					onPress={this.handleSignup.bind(this)}
-					style={Object.assign({}, styles.signUpButton, STYLES.signUpBtn)}
-					underlayColor={STYLES.colors.ACCENT_GREEN}>
-					<Text style={STYLES.signUpBtnText}> S I G N  U P </Text>
+					style={Object.assign({}, styles.loginButton, STYLES.submitBtn)}
+					underlayColor={STYLES.underlayColor}>
+					<Text style={STYLES.submitBtnText}> S I G N  U P  N O W</Text>
 				</TouchableHighlight>
 			</View>
 		);
-	}
+  }
 }
 
 var styles = {
@@ -125,15 +127,10 @@ var styles = {
 		paddingLeft: 10,
 		marginBottom: 10
 	},
-	loginButton: {
-		height: 45,
-		marginBottom: 10,
-		marginTop: 10,
-	},
 	signUpButton: {
 		height: 45,
 		marginTop: 10
 	}
 };
 
-module.exports = Login;
+module.exports = Signup;
