@@ -30,16 +30,26 @@ class PlaylistName extends React.Component {
     this.props.updateParentState(this.props.name);
     // render this playlist
   }
+  generateBtnStyle() {
+    if (this.state.selected) {
+      return styles.playlistNameBtnSelected;
+    }
+    return styles.playlistNameBtn;
+  }
   render() {
+    let btnStyle = (this.props.selected) ? 
+      styles.playlistNameBtnSelected : styles.playlistNameBtn;
+    let textColor = (this.props.selected) ?
+      styles.playlistNameTextSelected : styles.playlistNameText;
     return (
-      <View style={styles.playlistNameBtn}>
-        <TouchableHighlight
-          onPress={this.handlePress.bind(this)}
-        >
-        <Text
-          style={STYLES.instantText}>{this.props.name}</Text>
-        </TouchableHighlight>
-      </View>
+      <TouchableHighlight
+        onPress={this.handlePress.bind(this)}>
+        <View style={btnStyle}>
+          <Text style={textColor}>
+            {this.props.name}
+          </Text>
+        </View>
+      </TouchableHighlight>
     );
   }
 }
@@ -61,30 +71,24 @@ class ScrollLists extends React.Component {
     let playlistNames = this.props.playlistNames.map((name, index) => {
       return (
         <View>
-          <PlaylistName
-            key={index}
-            name={name}
+          <PlaylistName key={index} name={name}
+            selected={name === this.state.nowViewing}
             updateParentState={this.updateNowViewing.bind(this)} />
         </View>
       );
     });
     return (
       <View style={styles.scrollListsContainer}>
-      <View style={styles.nowViewingContainer}>
-        <Text style={styles.nowViewingBtnText}>Current Playlist: {this.state.nowViewing}</Text>
-      </View>
         <ScrollView
           horizontal={true}
           centerContent={true}
-          informParent={this.updateNowViewing.bind(this)}
-          >
+          informParent={this.updateNowViewing.bind(this)}>
           {playlistNames}
         </ScrollView>
       </View>
     );
   }
 }
-
 
 class Single extends React.Component {
   constructor(props) {
@@ -286,17 +290,36 @@ const styles = StyleSheet.create({
     backgroundColor: '#ffa700'
   },
   playlistNameBtn: {
-    height: 50,
-    marginLeft: 5,
+    height: 45,
+    // marginLeft: 5,
     paddingTop: 5,
-    paddingRight: 7,
+    paddingRight: 12,
     paddingBottom: 5,
-    paddingLeft: 7,
-    borderColor: STYLES.colors.PICO_GREEN,
-    borderWidth: 1,
-    borderRadius: 5,
+    paddingLeft: 12,
+    borderRightColor: STYLES.colors.PICO_GREEN,
+    borderRightWidth: 1,
+    // borderRadius: 5,
     alignItems: 'center',
     justifyContent: 'center'
+  },
+  playlistNameBtnSelected: {
+    height: 45,
+    // marginLeft: 5,
+    paddingTop: 5,
+    paddingRight: 12,
+    paddingBottom: 5,
+    paddingLeft: 12,
+    borderRightColor: STYLES.colors.PICO_GREEN,
+    borderRightWidth: 1,
+    backgroundColor: STYLES.colors.PICO_GREEN,
+    // borderRadius: 5,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  playlistNameText: STYLES.instantText,
+  playlistNameTextSelected: {
+    color: 'black',
+    fontSize: 15
   },
   playlistText: {
     fontSize: 20
@@ -304,8 +327,7 @@ const styles = StyleSheet.create({
   scrollListsContainer: {
     flex: 1,
     backgroundColor: '#161c20',
-    marginTop: 21,
-    paddingTop: 15
+    marginTop: 30,
   },
   nowViewingContainer: {
     backgroundColor: STYLES.colors.PICO_GREEN,
@@ -324,7 +346,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold'
   },
   tracksContainer: {
-    flex: 6,
+    flex: 8,
     paddingTop: 10,
     padding: 5,
     backgroundColor: '#333333',
@@ -347,7 +369,7 @@ const styles = StyleSheet.create({
   deleteContainer: {
     position: 'absolute',
     right: 0,
-    bottom: 5,
+    bottom: 13,
     padding: 5,
     width: 30,
     height: 30,
