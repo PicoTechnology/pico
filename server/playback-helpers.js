@@ -1,6 +1,9 @@
 const exec = require('child_process').exec;
 const path = require('path');
 const MPlayer = require('mplayer');
+
+const SOUND_ASSETS = `${__dirname}/assets`;
+
 var player;
 
 module.exports = {
@@ -13,6 +16,11 @@ module.exports = {
 		player.on('stop', () => console.log('Playback stopped.'));
 		//player.on('status', () => console.log('Something happened. Refreshing subscribed devices'));
 		// player.on('time', time => console.log(`"time": ${time}`));
+	},
+	playBloop: function(req, res, next) {
+		var player2 = new MPlayer();
+		player2.on('stop', () => next());
+		player2.openFile(`${SOUND_ASSETS}/bloop.mp3`);
 	},
 	playSong: function(songpath) {
 		player.play();
