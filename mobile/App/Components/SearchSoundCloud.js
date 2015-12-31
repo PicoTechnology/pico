@@ -92,7 +92,7 @@ class SearchSoundCloud extends React.Component {
     });
   }
   handleToQueue() {
-    fetch(`${SERVER_ENDPOINT}/activeusers`)
+    fetch(`${SERVER_ENDPOINT}/partyplaylist`)
       .then(res => res.json())
       .then(json => {
         this.props.navigator.push({
@@ -131,69 +131,66 @@ class SearchSoundCloud extends React.Component {
       <View
         style={styles.mainContainer}>
         <View style={styles.bgImageWrapper}>
-            <Image style={styles.bgImage} source={require('../Assets/searchBarBlackBG.png')}/>
+            <Image style={styles.bgImage} source={require('../Assets/search-bg.jpg')}/>
         </View>
         <TextInput
           ref={component => this._searchInput = component}
           style={Object.assign({}, styles.searchInput, STYLES.textInput)}
           onChange={this.handleChange.bind(this)}
           placeholder="search soundcloud.com" />
+        <TouchableHighlight
+          style={Object.assign({}, STYLES.searchBtn, STYLES.submitBtn)}
+          onPress={this.handleSubmit.bind(this)}
+          underlayColor={STYLES.colors.ACCENT_GREEN}>
+          <Text
+            style={STYLES.submitBtnText}>
+            S E A R C H
+          </Text>
+        </TouchableHighlight>
         <View style={styles.spinnerContainer}>
           <ActivityIndicatorIOS
             animating={this.state.isLoading}
             color={STYLES.colors.PICO_GREEN}
             size="large" />
         </View>
-        <TouchableHighlight
-          style={Object.assign({}, styles.button, STYLES.submitBtn)}
-          onPress={this.handleSubmit.bind(this)}
-          underlayColor={STYLES.colors.ACCENT_GREEN}>
-          <Text
-            style={styles.buttonText}>
-            S E A R C H
-          </Text>
-        </TouchableHighlight>
         {this.renderError()}
-        <TouchableHighlight
-          onPress={this.handleToQueue.bind(this)}
-          style={Object.assign({}, styles.button, STYLES.submitBtn)}
-          underlayColor='#aeff00'>
-          <Text
-            style={styles.buttonText}>
-            View Party Playlist
-          </Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          onPress={this.handleViewUsers.bind(this)}
-          style={Object.assign({}, styles.button, STYLES.submitBtn)}
-          underlayColor='#aeff00'>
-          <Text
-            style={styles.buttonText}>
-            View Active Users
-          </Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          style={Object.assign({}, styles.button, STYLES.submitBtn)}
-          onPress={this.handleLogout.bind(this)}
-          underlayColor='#aeff00'>
-          <Text style={styles.buttonText}>
-            Logout
-          </Text>
-        </TouchableHighlight>
+
+        <View
+          style={styles.dashboardContainer}>
+          <TouchableHighlight
+            onPress={this.handleToQueue.bind(this)}
+            style={Object.assign({}, STYLES.signUpBtn, STYLES.dashBtn)}
+            underlayColor={STYLES.colors.ACCENT_GREEN}>
+            <Text
+              style={Object.assign({}, STYLES.signUpBtnText, STYLES.dashBtnText)}>
+              PARTY PLAYLIST
+            </Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            onPress={this.handleViewUsers.bind(this)}
+            style={Object.assign({}, STYLES.signUpBtn, STYLES.dashBtn)}
+            underlayColor={STYLES.colors.ACCENT_GREEN}>
+            <Text
+              style={Object.assign({}, STYLES.signUpBtnText, STYLES.dashBtnText)}>
+              ACTIVE USERS
+            </Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={Object.assign({}, STYLES.signUpBtn, STYLES.dashBtn)}
+            onPress={this.handleLogout.bind(this)}
+            underlayColor={STYLES.colors.ACCENT_GREEN}>
+            <Text
+              style={Object.assign({}, STYLES.signUpBtnText, STYLES.dashBtnText)}>
+              LOGOUT
+            </Text>
+          </TouchableHighlight>
+        </View>
       </View>
     );
   }
 }
 
 const styles = {
-  loginIcon: {
-    marginBottom: -40,
-    height: 50,
-    left: 90,
-    position: 'relative',
-    top: -21,
-    width: 16
-  },
   mainContainer: {
     flex: 1,
     padding: 30,
@@ -212,16 +209,8 @@ const styles = {
   },
   searchInput: {
     height: 50,
-    padding: 4,
-    marginRight: 5,
-    marginBottom: 10,
-    alignSelf: 'stretch'
-  },
-  title: {
-    marginBottom: 20,
-    fontSize: 25,
-    textAlign: 'center',
-    color: '#fff'
+    paddingLeft: 10,
+    marginBottom: 10
   },
   spinnerContainer: {
     flexDirection: 'row',
@@ -229,22 +218,11 @@ const styles = {
     justifyContent: 'center',
     backgroundColor: 'rgba(0,0,0,0)'
   },
-  content: {
-    fontSize: 14,
-    color: '#FFF'
-  },
-  buttonText: {
-    fontSize: 18,
-    color: '#111',
-    alignSelf: 'center',
-    fontWeight: 'bold'
-  },
-  button: {
-    opacity: .9,
-    height: 45,
-    borderWidth: 1,
-    marginBottom: 10,
-    marginTop: 10
+  dashboardContainer: {
+    flex: 'auto',
+    flexDirection: 'row',
+    backgroundColor: 'transparent',
+    justifyContent: 'space-between'
   },
 };
 

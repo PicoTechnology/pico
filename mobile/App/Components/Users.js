@@ -23,13 +23,13 @@ var queue = new Queue;
 /* set up single tracks component*/
 const Single = props => {
   return (
-      <View style={STYLES.singleContainer}>
-        <View style={STYLES.infoContainer}>
-          <Text style={STYLES.singleTitle}>username: {props.username}</Text>
-          <Text style={STYLES.singleTitle}>online: {String(props.online)}</Text>
-        </View>
-        <Separator />
+    <View style={STYLES.singleContainer}>
+      <View style={STYLES.infoContainer}>
+        <Text style={STYLES.singleTitle}>username: {props.username}</Text>
+        <Text style={STYLES.singleTitle}>online: {String(props.online)}</Text>
       </View>
+      <Separator />
+    </View>
   );
 };
 
