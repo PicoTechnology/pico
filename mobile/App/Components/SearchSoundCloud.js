@@ -131,7 +131,7 @@ class SearchSoundCloud extends React.Component {
       <View
         style={styles.mainContainer}>
         <View style={styles.bgImageWrapper}>
-            <Image style={styles.bgImage} source={require('../Assets/searchBarBlackBG.png')}/>
+            <Image style={styles.bgImage} source={require('../Assets/search-bg.jpg')}/>
         </View>
         <TextInput
           ref={component => this._searchInput = component}
@@ -139,7 +139,7 @@ class SearchSoundCloud extends React.Component {
           onChange={this.handleChange.bind(this)}
           placeholder="search soundcloud.com" />
         <TouchableHighlight
-          style={Object.assign({}, styles.button, STYLES.submitBtn)}
+          style={Object.assign({}, STYLES.searchBtn, STYLES.submitBtn)}
           onPress={this.handleSubmit.bind(this)}
           underlayColor={STYLES.colors.ACCENT_GREEN}>
           <Text
@@ -154,33 +154,37 @@ class SearchSoundCloud extends React.Component {
             size="large" />
         </View>
         {this.renderError()}
-        <TouchableHighlight
-          onPress={this.handleToQueue.bind(this)}
-          style={Object.assign({}, styles.button, STYLES.signUpBtn)}
-          underlayColor={STYLES.colors.ACCENT_GREEN}>
-          <Text
-            style={Object.assign({}, STYLES.signUpBtnText, styles.buttonText)}>
-            View Party Playlist
-          </Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          onPress={this.handleViewUsers.bind(this)}
-          style={Object.assign({}, styles.button, STYLES.signUpBtn)}
-          underlayColor={STYLES.colors.ACCENT_GREEN}>
-          <Text
-            style={Object.assign({}, STYLES.signUpBtnText, styles.buttonText)}>
-            View Active Users
-          </Text>
-        </TouchableHighlight>
-        <TouchableHighlight
-          style={Object.assign({}, styles.button, STYLES.signUpBtn)}
-          onPress={this.handleLogout.bind(this)}
-          underlayColor={STYLES.colors.ACCENT_GREEN}>
-          <Text
-            style={Object.assign({}, STYLES.signUpBtnText, styles.buttonText)}>
-            Logout
-          </Text>
-        </TouchableHighlight>
+
+        <View
+          style={styles.dashboardContainer}>
+          <TouchableHighlight
+            onPress={this.handleToQueue.bind(this)}
+            style={Object.assign({}, STYLES.signUpBtn, STYLES.dashBtn)}
+            underlayColor={STYLES.colors.ACCENT_GREEN}>
+            <Text
+              style={Object.assign({}, STYLES.signUpBtnText, STYLES.dashBtnText)}>
+              PARTY PLAYLIST
+            </Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            onPress={this.handleViewUsers.bind(this)}
+            style={Object.assign({}, STYLES.signUpBtn, STYLES.dashBtn)}
+            underlayColor={STYLES.colors.ACCENT_GREEN}>
+            <Text
+              style={Object.assign({}, STYLES.signUpBtnText, STYLES.dashBtnText)}>
+              ACTIVE USERS
+            </Text>
+          </TouchableHighlight>
+          <TouchableHighlight
+            style={Object.assign({}, STYLES.signUpBtn, STYLES.dashBtn)}
+            onPress={this.handleLogout.bind(this)}
+            underlayColor={STYLES.colors.ACCENT_GREEN}>
+            <Text
+              style={Object.assign({}, STYLES.signUpBtnText, STYLES.dashBtnText)}>
+              LOGOUT
+            </Text>
+          </TouchableHighlight>
+        </View>
       </View>
     );
   }
@@ -208,31 +212,17 @@ const styles = {
     paddingLeft: 10,
     marginBottom: 10
   },
-  title: {
-    marginBottom: 20,
-    fontSize: 25,
-    textAlign: 'center',
-    color: '#fff'
-  },
   spinnerContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: 'rgba(0,0,0,0)'
   },
-  content: {
-    fontSize: 14,
-    color: '#FFF'
-  },
-  buttonText: {
-    fontWeight: 'normal'
-  },
-  button: {
-    opacity: .9,
-    height: 45,
-    borderWidth: 1,
-    marginBottom: 10,
-    marginTop: 10
+  dashboardContainer: {
+    flex: 'auto',
+    flexDirection: 'row',
+    backgroundColor: 'transparent',
+    justifyContent: 'space-between'
   },
 };
 

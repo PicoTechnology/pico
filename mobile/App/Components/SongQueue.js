@@ -5,8 +5,8 @@ const STYLES = require('../Assets/PicoStyles.js');
 const Separator = require('./Separator.js');
 const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
 
-const UPVOTE = require('../Assets/icons/Up.png'); 
-const DOWNVOTE = require('../Assets/icons/Down.png');
+const UPVOTE = require('../Assets/icons/up_solid.png'); 
+const DOWNVOTE = require('../Assets/icons/down_solid.png');
 
 const {
 	AlertIOS,
@@ -64,10 +64,10 @@ let SongEntry = props => {
 			<View style={styles.votingContainer}>
 				<Text style={STYLES.singleInfo}>{props.rating}</Text>
 				<TouchableHighlight onPress={handleUpvote.bind(this)}>
-					<Image style={STYLES.singleImage} source={UPVOTE} />
+					<Image style={STYLES.voteImage} source={UPVOTE} />
 				</TouchableHighlight>
 				<TouchableHighlight onPress={handleDownvote.bind(this)}>
-					<Image style={STYLES.singleImage} source={DOWNVOTE} />
+					<Image style={STYLES.voteImage} source={DOWNVOTE} />
 				</TouchableHighlight>
 			</View>
 		</View>
@@ -113,9 +113,13 @@ class SongQueue extends React.Component {
 const styles = StyleSheet.create({
 	votingContainer: {
 		position: 'absolute',
+		flexDirection: 'row',
+		flex: 1,
+		marginTop: 15,
+		justifyContent: 'center',
+		alignItems: 'center',
 		right: 0,
 		top: 0,
-		flexDirection: 'row'
 	},
 	songEntry: {
 		paddingTop: 10,

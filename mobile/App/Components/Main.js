@@ -61,12 +61,13 @@ class Main extends React.Component {
     return (
       <View style={styles.container}>
         <View style={styles.bgImageWrapper}>
-          <Image style={styles.bgImage} source={require('../Assets/Speaker-Gold.png')}/>
+          <Image style={styles.bgImage} source={require('../Assets/main-bg.jpg')}/>
         </View>
         {this.renderEntranceButton()}
         <ActivityIndicatorIOS
+          style={STYLES.spinner}
           animating={this.state.isLoading}
-          color={STYLES.colors.PICO_GREEN}
+          color={STYLES.colors.TOBIN}
           size="large" />
       </View>
     );
@@ -91,26 +92,6 @@ const styles = StyleSheet.create({
       flex: 1,
       width, height
   },
-  // buttonText: {
-  //   fontSize: 18,
-  //   color: '#black',
-  //   alignSelf: 'center',
-  //   fontFamily: 'helvetica'
-  // },
-  // button: {
-  //   height: 45,
-  //   flexDirection: 'row',
-  //   backgroundColor: '#99FF00',
-  //   borderColor: 'black',
-  //   borderWidth: 2,
-  //   borderRadius: 8,
-  //   marginBottom: 10,
-  //   marginTop: 10,
-  //   marginLeft: 10,
-  //   marginRight: 10,
-  //   alignSelf: 'stretch',
-  //   justifyContent: 'center'
-  // }
 });
 
 module.exports = Main;
