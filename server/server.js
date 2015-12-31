@@ -37,11 +37,6 @@ app.post('/disconnect', dbHelpers.logoutUser, (req, res, next) => {
   res.send(res.data);
 });
 
-app.get('/partyplaylist', (req, res, next) => {
-  res.data = res.data[0];
-  res.send(res.data);
-});
-
 app.post('/playsong', (req, res, next) => {
   var trackObj = req.body;
   var uri = trackObj.id;
