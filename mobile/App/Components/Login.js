@@ -36,9 +36,13 @@ class Login extends React.Component {
 		})
 			.then(res => res.json())
 			.then(json => {
+				// this.props.updateParentLoggedIn(Boolean(json));
 				if(json.result){
 					this.props.navigator.push({
 						title: 'Search SC',
+						passProps: {
+							userObj: {username: this.state.username, password: this.state.password}
+						},
 						component: SearchSoundCloud
 					});
 				} else {

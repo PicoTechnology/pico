@@ -15,7 +15,7 @@ const connectToDB = () => {
 };
 
 const addUser = (req, res, next) => {
-	var userObj = req.body;
+	var userObj = Object.assign({}, {online: true}, req.body);
 	var username = userObj.username;
 	UsersRef
 		.child(username)
@@ -28,6 +28,21 @@ const addUser = (req, res, next) => {
 			res.result = {result: true};
 			return next();
 		});
+};
+
+const changeOnlineStatus = (username, newStatus) => {
+	var status;
+	UsersRef
+		.child(`${username}/online`)
+		.set(newStatus);
+};
+
+const logoutUser = (req, res, next) => {
+	var userObj = req.body;
+	var username = userObj.username;
+	changeOnlineStatus(username, false);
+	res.data = {status: false};
+	next();
 };
 
 const authenticateUser = (req, res, next) => {
@@ -49,6 +64,7 @@ const authenticateUser = (req, res, next) => {
 				res.result = {result: false};
 				return next();
 			}
+			changeOnlineStatus(username, true);
 			res.result = {result: true};
 			return next();
 		});
@@ -247,6 +263,7 @@ const API = {
 	addToPlaylist,
 	addToPartyPlaylist,
 	addUser,
+	logoutUser,
 	authenticateUser,
 	deletePlaylist,
 	deleteSongFromPlaylist,
