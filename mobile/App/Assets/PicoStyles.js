@@ -19,7 +19,8 @@ module.exports = PicoStyles = {
   colors: {
     PICO_GREEN,
     ACCENT_GREEN,
-    TOBIN
+    TOBIN,
+    
   },
   underlayColor: ACCENT_GREEN,
   //BEGIN - SINGLE STYLING
