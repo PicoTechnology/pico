@@ -138,21 +138,21 @@ class SearchSoundCloud extends React.Component {
           style={Object.assign({}, styles.searchInput, STYLES.textInput)}
           onChange={this.handleChange.bind(this)}
           placeholder="search soundcloud.com" />
+        <TouchableHighlight
+          style={Object.assign({}, styles.button, STYLES.submitBtn)}
+          onPress={this.handleSubmit.bind(this)}
+          underlayColor={STYLES.colors.ACCENT_GREEN}>
+          <Text
+            style={STYLES.submitBtnText}>
+            S E A R C H
+          </Text>
+        </TouchableHighlight>
         <View style={styles.spinnerContainer}>
           <ActivityIndicatorIOS
             animating={this.state.isLoading}
             color={STYLES.colors.PICO_GREEN}
             size="large" />
         </View>
-        <TouchableHighlight
-          style={Object.assign({}, styles.button, STYLES.submitBtn)}
-          onPress={this.handleSubmit.bind(this)}
-          underlayColor={STYLES.colors.ACCENT_GREEN}>
-          <Text
-            style={styles.buttonText}>
-            S E A R C H
-          </Text>
-        </TouchableHighlight>
         {this.renderError()}
         <TouchableHighlight
           onPress={this.handleToQueue.bind(this)}
@@ -186,14 +186,6 @@ class SearchSoundCloud extends React.Component {
 }
 
 const styles = {
-  loginIcon: {
-    marginBottom: -40,
-    height: 50,
-    left: 90,
-    position: 'relative',
-    top: -21,
-    width: 16
-  },
   mainContainer: {
     flex: 1,
     padding: 30,
