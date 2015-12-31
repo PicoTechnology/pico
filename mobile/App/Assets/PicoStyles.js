@@ -21,7 +21,8 @@ module.exports = PicoStyles = {
     PICO_GREEN,
     ACCENT_GREEN,
     LIGHT_GREY,
-    TOBIN
+    TOBIN,
+    CHARCOAL
   },
   underlayColor: ACCENT_GREEN,
 
@@ -34,6 +35,10 @@ module.exports = PicoStyles = {
     height: 50,
     width: 50,
     marginRight: 8,
+  },
+  voteImage: {
+    width: 30,
+    height: 30,
   },
   singleTitle: {
     color: '#f2f2f2',
@@ -132,6 +137,9 @@ module.exports = PicoStyles = {
     color: PICO_GREEN,
     textAlign: 'center'
   },
+  spinner: {
+    backgroundColor: 'none'
+  },
   instantContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
@@ -140,6 +148,7 @@ module.exports = PicoStyles = {
   },
   instantBtn: {
     height: 30,
+    marginTop: 10,
     paddingTop: 5,
     paddingRight: 7,
     paddingBottom: 5,
@@ -155,6 +164,14 @@ module.exports = PicoStyles = {
     fontSize: 15
   },
   // END BUTTONS
+  whichPlaylistHeader: {
+    textAlign: 'center',
+    marginTop: 5,
+    marginBottom: 5,
+    color: LIGHT_GREY,
+    fontSize: 18,
+    fontWeight: 'bold'
+  },
   error: {
     fontSize: 18,
     color: '#black'
@@ -172,22 +189,23 @@ module.exports = PicoStyles = {
     alignItems: 'flex-start',
     justifyContent: 'center',
     paddingTop: 10,
-    paddingBottom: 10
+    paddingBottom: 10,
   },
   playlistInput: {
-    flex: 1,
-    height: 30,
-    marginRight: 5,
-    marginBottom: 10,
-    alignSelf: 'stretch',
+    height: 35,
+    width: 275,
+    paddingLeft: 10,
+    marginRight: 10,
+    marginBottom: 15,
+    marginTop: 10,
     fontSize: 15,
     borderWidth: 1,
-    borderColor: ACCENT_GREEN,
+    borderColor: TOBIN,
     borderRadius: BORDER_CURVE,
-    color: PICO_GREEN
+    color: LIGHT_GREY
   },
   playlistText: {
     fontSize: 16,
-    color: '#f1f3f5'
+    color: PICO_GREEN
   }
 };

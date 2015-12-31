@@ -131,7 +131,7 @@ class SearchSoundCloud extends React.Component {
       <View
         style={styles.mainContainer}>
         <View style={styles.bgImageWrapper}>
-            <Image style={styles.bgImage} source={require('../Assets/searchBarBlackBG.png')}/>
+            <Image style={styles.bgImage} source={require('../Assets/search-bg.jpg')}/>
         </View>
         <TextInput
           ref={component => this._searchInput = component}
@@ -163,7 +163,7 @@ class SearchSoundCloud extends React.Component {
             underlayColor={STYLES.colors.ACCENT_GREEN}>
             <Text
               style={Object.assign({}, STYLES.signUpBtnText, STYLES.dashBtnText)}>
-              PARTY PLAYLIST
+              PARTY QUEUE
             </Text>
           </TouchableHighlight>
           <TouchableHighlight
