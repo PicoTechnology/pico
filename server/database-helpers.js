@@ -20,11 +20,11 @@ const addUser = (req, res, next) => {
 	UsersRef
 		.child(username)
 		.set(userObj, err => {
-			if (err) {
+			if (err)
 				res.result = {result: false};
 				res.err = err;
 				return next();
-			}
+			
 			res.result = {result: true};
 			return next();
 		});

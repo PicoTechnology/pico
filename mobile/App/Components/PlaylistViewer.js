@@ -32,11 +32,14 @@ class PlaylistName extends React.Component {
   }
   render() {
     return (
-      <TouchableHighlight onPress={this.handlePress.bind(this)} >
-        <View>
-          <Text style={styles.playlistName}> {this.props.name}</Text>
-        </View>
-      </TouchableHighlight>
+      <View style={styles.playlistNameBtn}>
+        <TouchableHighlight
+          onPress={this.handlePress.bind(this)}
+        >
+        <Text
+          style={STYLES.instantText}>{this.props.name}</Text>
+        </TouchableHighlight>
+      </View>
     );
   }
 }
@@ -67,16 +70,16 @@ class ScrollLists extends React.Component {
     });
     return (
       <View style={styles.scrollListsContainer}>
-        {/*<Text style={styles.currentPlaylist}>Current Playlist: {this.state.nowViewing}</Text>*/}
-        {/*<View style={styles.scrollContainer}>*/}
-          <ScrollView
-            horizontal={true}
-            informParent={this.updateNowViewing.bind(this)}
-            contentContainerStyle={styles.playlists}
-            >
-            {playlistNames}
-          </ScrollView>
-        {/*</View>*/}
+      <View style={styles.nowViewingContainer}>
+        <Text style={styles.nowViewingBtnText}>Current Playlist: {this.state.nowViewing}</Text>
+      </View>
+        <ScrollView
+          horizontal={true}
+          centerContent={true}
+          informParent={this.updateNowViewing.bind(this)}
+          >
+          {playlistNames}
+        </ScrollView>
       </View>
     );
   }
@@ -243,8 +246,10 @@ class PlaylistViewer extends React.Component{
     });
     return (
       <View style={styles.playlistViewer}>
-      <Text style={styles.currentPlaylist}>Current Playlist: {this.state.nowViewing}</Text>
-        <ScrollLists updateParentState={this.updateNowViewing.bind(this)} playlistNames={playlistNames} initialPlaylist={this.props.initialPlaylist}/>
+        <ScrollLists
+          updateParentState={this.updateNowViewing.bind(this)}
+          playlistNames={playlistNames}
+          initialPlaylist={this.props.initialPlaylist}/>
         <Tracks
           updateParentState={this.updateResults.bind(this)}
           data={nowViewingList}
@@ -256,7 +261,7 @@ class PlaylistViewer extends React.Component{
 
 const styles = StyleSheet.create({
   viewable: {
-    marginTop: 30,
+    marginTop: 20,
     color: '#FFF',
     fontSize: 16
   },
@@ -273,35 +278,51 @@ const styles = StyleSheet.create({
   playlistViewer:{
     marginTop: 30,
     flex: 1,
-    backgroundColor: '#161c20',
+    backgroundColor: '#161c20'
   },
   currentPlaylist:{
     marginTop: 30,
     color: 'black',
     backgroundColor: '#ffa700'
   },
-  playlistName: {
+  playlistNameBtn: {
+    height: 50,
     marginLeft: 5,
-    fontWeight: 'bold',
-    color: 'white',
-    backgroundColor: 'blue',
-    borderRadius: 5
+    paddingTop: 5,
+    paddingRight: 7,
+    paddingBottom: 5,
+    paddingLeft: 7,
+    borderColor: STYLES.colors.PICO_GREEN,
+    borderWidth: 1,
+    borderRadius: 5,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  playlistText: {
+    fontSize: 20
   },
   scrollListsContainer: {
-    flexDirection: 'column',
-    backgroundColor: 'white'
-  },
-  playlists:{
     flex: 1,
-    backgroundColor: 'red'
+    backgroundColor: '#161c20',
+    marginTop: 20,
+    paddingTop: 15
   },
-  scrollContainer: {
-
-    height: 30,
-    padding: 0
+  nowViewingContainer: {
+    backgroundColor: STYLES.colors.PICO_GREEN,
+    borderColor: STYLES.colors.ACCENT_GREEN,
+    borderWidth: 1,
+    borderRadius: 5,
+    alignSelf: 'stretch',
+    justifyContent: 'center',
+    padding: 5
+  },
+  nowViewingBtnText: {
+    color: '#333333',
+    alignSelf: 'center',
+    fontWeight: 'bold'
   },
   tracksContainer: {
-    flex: 1,
+    flex: 6,
     paddingTop: 10,
     padding: 5,
     backgroundColor: '#333333',
