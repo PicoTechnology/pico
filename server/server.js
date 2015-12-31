@@ -27,7 +27,7 @@ app.use(bodyparser.json());
 
 const client_id = SoundCloudCred.client_id;
 
-app.get('/connect', (req, res, next) => {
+app.get('/connect', playbackHelpers.playBloop, (req, res, next) => {
   console.log('Successfully connected to Pico. Welcome!');
   res.send({numUsers: 3});
 });

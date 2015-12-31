@@ -1,10 +1,12 @@
 const React = require('react-native');
 const Login = require('./Login.js');
+const STYLES = require('../Assets/PicoStyles.js');
 
 const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
 
 const {
   AlertIOS,
+  ActivityIndicatorIOS,
   Text,
   View,
   NavigatorIOS,
@@ -17,10 +19,18 @@ const {
 const {width, height} = Dimensions.get('window');
 
 class Main extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: false
+    };
+  }
   entranceButton() {
+    this.setState({isLoading: true});
     fetch(`${SERVER_ENDPOINT}/connect`)
       .then(res => res.json())
       .then(json => {
+        this.setState({isLoading: false});
         this.props.navigator.push({
           component: Login,
           title: 'Login'
@@ -28,17 +38,29 @@ class Main extends React.Component {
       })
       .catch(err => AlertIOS.alert('Error', err));
   }
+  renderEntranceButton() {
+    if (this.state.isLoading) {
+      return <View />
+    }
+    return (
+      <TouchableHighlight
+        onPress={this.entranceButton.bind(this)}
+        underlayColor="rgba(0,0,0,0)">
+        <Image source={require('../Assets/PicoLogo-Medium.png')}/>
+      </TouchableHighlight>
+    );
+  }
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.bgImageWrapper}>
           <Image style={styles.bgImage} source={require('../Assets/Speaker-Gold.png')}/>
         </View>
-        <TouchableHighlight
-          onPress={this.entranceButton.bind(this)}
-          underlayColor="rgba(0,0,0,0)">
-          <Image source={require('../Assets/PicoLogo-Medium.png')}/>
-        </TouchableHighlight>
+        {this.renderEntranceButton()}
+        <ActivityIndicatorIOS
+          animating={this.state.isLoading}
+          color={STYLES.colors.PICO_GREEN}
+          size="large" />
       </View>
     );
   }
