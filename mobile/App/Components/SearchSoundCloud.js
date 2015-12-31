@@ -2,6 +2,7 @@ const React = require('react-native');
 const Tracks = require('./Tracks.js');
 const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
 const STYLES = require('../Assets/PicoStyles.js');
+const Users = require('./Users.js');
 const SongQueue = require('./SongQueue.js');
 
 const {
@@ -91,13 +92,25 @@ class SearchSoundCloud extends React.Component {
     });
   }
   handleToQueue() {
-    fetch(`${SERVER_ENDPOINT}/partyplaylist`)
+    fetch(`${SERVER_ENDPOINT}/activeusers`)
       .then(res => res.json())
       .then(json => {
         this.props.navigator.push({
           title: 'Party',
           passProps: {queue: json},
           component: SongQueue
+        });
+      })
+      .catch(err => AlertIOS.alert('Error', err));
+  }
+  handleViewUsers() {
+    fetch(`${SERVER_ENDPOINT}/users`)
+      .then(res => res.json())
+      .then(json => {
+        this.props.navigator.push({
+          title: 'Users',
+          passProps: {users: json},
+          component: Users
         });
       })
       .catch(err => AlertIOS.alert('Error', err));
@@ -140,14 +153,6 @@ class SearchSoundCloud extends React.Component {
             S E A R C H
           </Text>
         </TouchableHighlight>
-        <TouchableHighlight
-          style={Object.assign({}, styles.button, STYLES.submitBtn)}
-          onPress={this.handleLogout.bind(this)}
-          underlayColor='#aeff00'>
-          <Text style={styles.buttonText}>
-            Logout
-          </Text>
-        </TouchableHighlight>
         {this.renderError()}
         <TouchableHighlight
           onPress={this.handleToQueue.bind(this)}
@@ -155,7 +160,24 @@ class SearchSoundCloud extends React.Component {
           underlayColor='#aeff00'>
           <Text
             style={styles.buttonText}>
-            Go to Party Playlist!
+            View Party Playlist
+          </Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          onPress={this.handleViewUsers.bind(this)}
+          style={Object.assign({}, styles.button, STYLES.submitBtn)}
+          underlayColor='#aeff00'>
+          <Text
+            style={styles.buttonText}>
+            View Active Users
+          </Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          style={Object.assign({}, styles.button, STYLES.submitBtn)}
+          onPress={this.handleLogout.bind(this)}
+          underlayColor='#aeff00'>
+          <Text style={styles.buttonText}>
+            Logout
           </Text>
         </TouchableHighlight>
       </View>

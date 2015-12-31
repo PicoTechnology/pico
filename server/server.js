@@ -71,6 +71,10 @@ app.get('/stopsong', (req, res, next) => {
   res.send({status: 'stop'});
 });
 
+app.get('/users', dbHelpers.getUsers, (req, res, next) => {
+  res.send(res.data);
+});
+
 app.post('/users', dbHelpers.authenticateUser, (req, res, next) => {
   return res.send(res.result);
 });
