@@ -69,7 +69,8 @@ class Single extends React.Component {
     return (
       <View>
         <TouchableHighlight
-          onPress={this.handlePress.bind(this)}>
+          onPress={this.handlePress.bind(this)}
+          underlayColor={STYLES.colors.LIGHT_GREY}>
           <View style={STYLES.singleContainer}>
             {this.renderPlayingStatus()}
             <Image source={artwork} style={STYLES.singleImage} />
