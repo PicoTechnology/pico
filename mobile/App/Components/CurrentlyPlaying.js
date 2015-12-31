@@ -102,9 +102,9 @@ class CurrentlyPlaying extends React.Component {
 								numberOfLines={1}>
 								{this.props.trackObj.genre}
 							</Text>
-							<Text style={styles.trackInfo}>
-								{UI_HELPERS.makeHumanReadable(this.props.msRemaining)}
-							</Text>
+							{/*<Text style={styles.trackInfo}>
+															{UI_HELPERS.makeHumanReadable(this.props.msRemaining)}
+														</Text>*/}
 						</View>
 					</View>
 				</TouchableHighlight>

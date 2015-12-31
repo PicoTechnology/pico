@@ -144,6 +144,7 @@ module.exports = PicoStyles = {
     flexDirection: 'row',
     justifyContent: 'space-around',
     paddingTop: 3,
+    backgroundColor: 'black',
     paddingBottom: 3,
   },
   instantBtn: {
