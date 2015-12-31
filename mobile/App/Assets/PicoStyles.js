@@ -35,6 +35,10 @@ module.exports = PicoStyles = {
     width: 50,
     marginRight: 8,
   },
+  voteImage: {
+    width: 30,
+    height: 30,
+  },
   singleTitle: {
     color: '#f2f2f2',
     fontWeight: 'bold'
@@ -131,6 +135,8 @@ module.exports = PicoStyles = {
     fontSize: 15,
     color: PICO_GREEN,
     textAlign: 'center'
+  spinner: {
+    backgroundColor: 'none'
   },
   instantContainer: {
     flexDirection: 'row',
