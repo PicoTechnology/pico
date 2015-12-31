@@ -152,11 +152,13 @@ class Single extends React.Component {
           <Text style={styles.info}>{this.props.user.username}</Text>
           <Text style={styles.info}>{UI_HELPERS.makeHumanReadable(this.props.duration)}</Text>
         </View>
-        <View style={styles.deleteContainer}>
-          <TouchableHighlight onPress={this.handleDelete.bind(this)}>
-            <Image source={bin} style={styles.delete} />
-          </TouchableHighlight>
-        </View>
+        <TouchableHighlight
+          style={styles.deleteContainer}
+          onPress={this.handleDelete.bind(this)}>
+          <View>
+            <Image source={BIN} style={styles.delete} />
+          </View>
+        </TouchableHighlight>
       </View>
     );
   }
