@@ -57,6 +57,33 @@ class SearchSoundCloud extends React.Component {
         this.setState({isLoading: false, error: err})
       });
   }
+  handleLogout() {
+    let data = this.props.userObj;
+    this.setState({isLoading: true});
+    fetch(`${SERVER_ENDPOINT}/disconnect`, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'post',
+      body: JSON.stringify(data)
+    })
+      .then(res => res.json())
+      .then(json => {
+        const Main = require('./Main.js');
+        this.setState({
+          isLoading: false,
+          error: ''
+        });
+        this.props.navigator.push({
+          title: 'Pico Technology',
+          component: Main
+        });
+      })
+      .catch(err => {
+        this.setState({isLoading: false, error: err})
+      });
+  }
   handleChange(event) {
     this.setState({
       query: event.nativeEvent.text
@@ -71,7 +98,7 @@ class SearchSoundCloud extends React.Component {
         </Text>
       );
     }
-    return <View></View>;
+    return <View />;
   }
   render() {
     return (
@@ -95,9 +122,16 @@ class SearchSoundCloud extends React.Component {
           style={Object.assign({}, styles.button, STYLES.submitBtn)}
           onPress={this.handleSubmit.bind(this)}
           underlayColor='#aeff00'>
-          <Text
-            style={styles.buttonText}>
+          <Text style={styles.buttonText}>
             Search
+          </Text>
+        </TouchableHighlight>
+        <TouchableHighlight
+          style={Object.assign({}, styles.button, STYLES.submitBtn)}
+          onPress={this.handleLogout.bind(this)}
+          underlayColor='#aeff00'>
+          <Text style={styles.buttonText}>
+            Logout
           </Text>
         </TouchableHighlight>
         {this.renderError()}

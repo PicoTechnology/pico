@@ -22,8 +22,12 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: false
+      isLoading: false,
+      loggedIn: false
     };
+  }
+  updateLoggedIn(status) {
+    this.setState({loggedIn: status});
   }
   entranceButton() {
     this.setState({isLoading: true});
@@ -33,6 +37,9 @@ class Main extends React.Component {
         this.setState({isLoading: false});
         this.props.navigator.push({
           component: Login,
+          passProps: {
+            updateParentLoggedIn: this.updateLoggedIn.bind(this)
+          },
           title: 'Login'
         });
       })

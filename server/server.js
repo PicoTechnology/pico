@@ -32,10 +32,10 @@ app.get('/connect', playbackHelpers.playBloop, (req, res, next) => {
   res.send({numUsers: 3});
 });
 
-app.get('/disconnect', (req, res, next) => {
-  //bluetoothHelpers.closeConnection();
+app.post('/disconnect', dbHelpers.logoutUser, (req, res, next) => {
+  if (res.err) return res.send(res.err);
+  res.send(res.data);
 });
-
 
 app.get('/partyplaylist', (req, res, next) => {
   res.data = res.data[0];
