@@ -304,17 +304,19 @@ const styles = StyleSheet.create({
   scrollListsContainer: {
     flex: 1,
     backgroundColor: '#161c20',
-    marginTop: 20,
+    marginTop: 21,
     paddingTop: 15
   },
   nowViewingContainer: {
     backgroundColor: STYLES.colors.PICO_GREEN,
     borderColor: STYLES.colors.ACCENT_GREEN,
     borderWidth: 1,
-    borderRadius: 5,
+    borderRadius: 3,
     alignSelf: 'stretch',
     justifyContent: 'center',
-    padding: 5
+    padding: 5,
+    marginLeft: 2,
+    marginRight: 2,
   },
   nowViewingBtnText: {
     color: '#333333',
