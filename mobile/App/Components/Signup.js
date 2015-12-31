@@ -45,6 +45,9 @@ class Signup extends React.Component {
 					if(json.result){
 						this.props.navigator.push({
 							title: 'Dashboard',
+							passProps: {
+								userObj: {username: this.state.username, password: this.state.password}
+							},
 							component: SearchSoundCloud
 						});
 					} else {
@@ -96,9 +99,9 @@ class Signup extends React.Component {
 					onChange={this.handleRetypePw.bind(this)}/>
 				<TouchableHighlight
 					onPress={this.handleSignup.bind(this)}
-					style={Object.assign({}, styles.signUpButton, STYLES.signUpBtn)}
+					style={Object.assign({}, styles.singUpBtn, STYLES.submitBtn)}
 					underlayColor={STYLES.underlayColor}>
-					<Text style={STYLES.signUpBtnText}> S I G N  U P  N O W</Text>
+					<Text style={STYLES.submitBtnText}> S I G N  U P  N O W</Text>
 				</TouchableHighlight>
 			</View>
 		);
@@ -127,7 +130,7 @@ var styles = {
 		paddingLeft: 10,
 		marginBottom: 10
 	},
-	signUpButton: {
+	singUpBtn: {
 		height: 45,
 		marginTop: 10
 	}
