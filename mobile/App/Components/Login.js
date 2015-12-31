@@ -104,9 +104,9 @@ class Login extends React.Component {
 				</TouchableHighlight>
 				<TouchableHighlight
 					onPress={this.handleSignup.bind(this)}
-					style={Object.assign({}, styles.loginButton, STYLES.submitBtn)}
-					underlayColor={STYLES.underlayColor}>
-					<Text style={STYLES.submitBtnText}> S I G N  U P </Text>
+					style={Object.assign({}, styles.signUpButton, STYLES.signUpBtn)}
+					underlayColor={STYLES.colors.ACCENT_GREEN}>
+					<Text style={STYLES.signUpBtnText}> S I G N  U P </Text>
 				</TouchableHighlight>
 			</View>
 		);
@@ -119,7 +119,7 @@ var styles = {
     padding: 30,
     marginTop: 65,
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     backgroundColor: 'black'
   },
   bgImageWrapper: {
@@ -139,6 +139,11 @@ var styles = {
 		height: 45,
 		marginBottom: 10,
 		marginTop: 10,
+	},
+	signUpButton: {
+		height: 45,
+		marginBottom: 110,
+		marginTop: 100
 	}
 };
 
