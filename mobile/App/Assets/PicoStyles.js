@@ -7,6 +7,7 @@ const {
 const PICO_GREEN = '#00ffff';
 const ACCENT_GREEN = '#89ffff';
 const BORDER_CURVE = 8;
+const BORDER_ROUND = 50;
 const CHARCOAL = '#333333';
 const LIGHT_GREY = '#cccccc';
 const TOBIN = '#f2f2f2';
@@ -57,6 +58,13 @@ module.exports = PicoStyles = {
     borderColor: PICO_GREEN,
     borderRadius: BORDER_CURVE,
   },
+  searchBtn: {
+    opacity: .9,
+    height: 45,
+    borderWidth: 1,
+    marginBottom: 20,
+    marginTop: 10
+  },
   textInput: {
     color: TOBIN,
     fontSize: 18,
@@ -103,6 +111,24 @@ module.exports = PicoStyles = {
     fontFamily: 'Apple SD Gothic Neo-Bold',
     alignSelf: 'center',
     fontWeight: 'bold'
+  },
+  dashBtn: {
+    flex: 'auto',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    marginTop: 20,
+    marginLeft: 15,
+    marginRight: 15,
+    height: 75,
+    width: 75,
+    borderRadius: BORDER_CURVE,
+    borderColor: PICO_GREEN
+  },
+  dashBtnText: {
+    fontWeight: 'normal',
+    fontSize: 15,
+    color: PICO_GREEN,
+    textAlign: 'center'
   },
   instantContainer: {
     flexDirection: 'row',
