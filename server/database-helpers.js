@@ -30,6 +30,21 @@ const addUser = (req, res, next) => {
 		});
 };
 
+const getUsers = (req, res, next) => {
+	UsersRef
+		.orderByKey()
+		.once('value', dataSnapshot => {
+			var exportArr = [];
+			dataSnapshot.forEach(user => {
+				if (user.val().online) {
+					exportArr.push(user.exportVal());
+				}
+			})
+			res.data = exportArr;
+			return next();
+		});
+};
+
 const changeOnlineStatus = (username, newStatus) => {
 	var status;
 	UsersRef
@@ -263,6 +278,7 @@ const API = {
 	addToPlaylist,
 	addToPartyPlaylist,
 	addUser,
+	getUsers,
 	logoutUser,
 	authenticateUser,
 	deletePlaylist,
