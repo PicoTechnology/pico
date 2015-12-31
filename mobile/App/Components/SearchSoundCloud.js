@@ -2,6 +2,7 @@ const React = require('react-native');
 const Tracks = require('./Tracks.js');
 const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
 const STYLES = require('../Assets/PicoStyles.js');
+const SongQueue = require('./SongQueue.js');
 
 const {
   AlertIOS,
@@ -89,6 +90,24 @@ class SearchSoundCloud extends React.Component {
       query: event.nativeEvent.text
     });
   }
+  handleToQueue() {
+    fetch(`${SERVER_ENDPOINT}/partyplaylist`, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      method: 'get'
+    })
+      .then(res => res.json())
+      .then(json => {
+        this.props.navigator.push({
+          title: 'Party',
+          passProps: {queue: json},
+          component: SongQueue
+        });
+      })
+      .catch(err => AlertIOS.alert('Error', err));
+  }
   renderError() {
     if (this.state.error) {
       return (
@@ -135,6 +154,15 @@ class SearchSoundCloud extends React.Component {
           </Text>
         </TouchableHighlight>
         {this.renderError()}
+        <TouchableHighlight
+          onPress={this.handleToQueue.bind(this)}
+          style={Object.assign({}, styles.button, STYLES.submitBtn)}
+          underlayColor='#aeff00'>
+          <Text
+            style={styles.buttonText}>
+            Go to Party Playlist!
+          </Text>
+        </TouchableHighlight>
       </View>
     );
   }

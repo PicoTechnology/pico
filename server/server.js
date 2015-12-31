@@ -97,6 +97,7 @@ app.post('/playlists/:playlistname', dbHelpers.addToPlaylist, (req, res, next) =
 
 // Retrieve the songs from the Party Playlist
 app.get('/partyplaylist', dbHelpers.getPartyPlaylist, (req, res, next) => {
+  if(res.err) return res.send(`ERROR Server.js: ${res.err}`);
   res.send(res.data);
 });
 
