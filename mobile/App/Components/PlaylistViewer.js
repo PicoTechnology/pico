@@ -152,11 +152,11 @@ class Single extends React.Component {
           <Text style={styles.info}>{this.props.user.username}</Text>
           <Text style={styles.info}>{UI_HELPERS.makeHumanReadable(this.props.duration)}</Text>
         </View>
-        <TouchableHighlight onPress={this.handleDelete.bind(this)}>
-          <View style={STYLES.deleteContainer}>
-            <Image source={BIN} style={STYLES.delete} />
-          </View>
-        </TouchableHighlight>
+        <View style={styles.deleteContainer}>
+          <TouchableHighlight onPress={this.handleDelete.bind(this)}>
+            <Image source={bin} style={styles.delete} />
+          </TouchableHighlight>
+        </View>
       </View>
     );
   }
@@ -319,6 +319,24 @@ const styles = StyleSheet.create({
   infoContainer: {
     flexDirection: 'column',
   },
+  deleteContainer: {
+    position: 'absolute',
+    right: 0,
+    bottom: 5,
+    padding: 5,
+    width: 30,
+    height: 30,
+    flexDirection: 'column',
+    fontWeight: 'bold',
+    backgroundColor: 'red',
+    borderRadius: 15,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  delete: {
+    height: 18,
+    width: 18
+  },
   image: {
     height: 50,
     width: 50,
@@ -339,7 +357,7 @@ const styles = StyleSheet.create({
     width: 5,
     height: 50,
     marginRight: 1
-  }
+  },
 });
 
 module.exports = PlaylistViewer;

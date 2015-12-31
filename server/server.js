@@ -37,11 +37,6 @@ app.post('/disconnect', dbHelpers.logoutUser, (req, res, next) => {
   res.send(res.data);
 });
 
-app.get('/partyplaylist', (req, res, next) => {
-  res.data = res.data[0];
-  res.send(res.data);
-});
-
 app.post('/playsong', (req, res, next) => {
   var trackObj = req.body;
   var uri = trackObj.id;
@@ -97,6 +92,7 @@ app.post('/playlists/:playlistname', dbHelpers.addToPlaylist, (req, res, next) =
 
 // Retrieve the songs from the Party Playlist
 app.get('/partyplaylist', dbHelpers.getPartyPlaylist, (req, res, next) => {
+  if(res.err) return res.send(`ERROR Server.js: ${res.err}`);
   res.send(res.data);
 });
 
