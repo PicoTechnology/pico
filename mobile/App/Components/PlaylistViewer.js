@@ -4,6 +4,8 @@ const SERVER_ENDPOINT = require('../Auth/endpoints.js').serverEndpoint;
 const STYLES = require('../Assets/PicoStyles.js');
 const UI_HELPERS = require('../Utils/UiHelpers.js');
 
+const BIN = require('../Assets/icons/recycle_bin.png');
+
 const {
   AlertIOS,
   Image,
@@ -141,7 +143,6 @@ class Single extends React.Component {
   }
   render() {
     let artwork = this.props.artwork_url ? {uri:this.props.artwork_url} : require('../Assets/Pico-O-grey.png');
-    let bin = require('../Assets/icons/recycle_bin.png');
     return (
       <View style={styles.singleContainer}>
         {this.renderPlayingStatus()}
@@ -149,11 +150,11 @@ class Single extends React.Component {
         <View style={styles.infoContainer}>
           <Text style={styles.title}>{this.props.title}</Text>
           <Text style={styles.info}>{this.props.user.username}</Text>
-          <Text style={styles.info}>{this.makeHumanReadable(this.props.duration)}</Text>
+          <Text style={styles.info}>{UI_HELPERS.makeHumanReadable(this.props.duration)}</Text>
         </View>
         <TouchableHighlight onPress={this.handleDelete.bind(this)}>
           <View style={STYLES.deleteContainer}>
-            <Image source={bin} style={STYLES.delete} />
+            <Image source={BIN} style={STYLES.delete} />
           </View>
         </TouchableHighlight>
       </View>

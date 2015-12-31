@@ -13,21 +13,9 @@ const {
 
 
 class Playlist extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isSelected: false
-    };
-  }
-  toggleSelected() {
-    this.setState({
-      isSelected: !this.state.isSelected
-    });
-  }
   handlePress() {
     let playlistname = Object.keys(this.props.data)[0];
     let trackObj = this.props.trackObj;
-    this.toggleSelected();
     this.props.updateParentState();
     fetch(`${SERVER_ENDPOINT}/playlists/${playlistname}`, {
       headers: {
@@ -39,6 +27,7 @@ class Playlist extends React.Component {
     })
       .then(res => res.json())
       .then(json => {
+        this.props.updateParentState();
         this.props.navigator.push({
           title: 'Playlists',
           passProps: {
@@ -47,7 +36,6 @@ class Playlist extends React.Component {
           },
           component: PlaylistViewer
         });
-        this.props.updateParentState();
       })
       .catch(err => {
         AlertIOS.alert('Error', err);
