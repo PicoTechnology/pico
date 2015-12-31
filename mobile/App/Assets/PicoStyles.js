@@ -18,8 +18,10 @@ const OPACITY_LIGHT = .85;
 module.exports = PicoStyles = {
   colors: {
     PICO_GREEN,
-    ACCENT_GREEN
+    ACCENT_GREEN,
+    TOBIN
   },
+  underlayColor: ACCENT_GREEN,
   //BEGIN - SINGLE STYLING
   singleContainer: {
     flexDirection: 'row',
@@ -43,7 +45,6 @@ module.exports = PicoStyles = {
     flex: 1,
     backgroundColor: '#333333'
   },
-  underlayColor: ACCENT_GREEN,
   searchInput: {
     color: TOBIN,
     fontSize: TEXT_INPUT_FONTSIZE,
@@ -63,7 +64,7 @@ module.exports = PicoStyles = {
     backgroundColor: 'black',
     opacity: OPACITY_LIGHT,
     borderWidth: 1,
-    borderColor: PICO_GREEN,
+    borderColor: TOBIN,
     borderRadius: BORDER_CURVE,
   },
   // BEGIN BUTTONS
@@ -78,7 +79,24 @@ module.exports = PicoStyles = {
     justifyContent: 'center'
   },
   submitBtnText: {
-    color: 'black',
+    color: TOBIN,
+    fontSize: 18,
+    fontFamily: 'Apple SD Gothic Neo-Bold',
+    alignSelf: 'center',
+    fontWeight: 'bold'
+  },
+  signUpBtn: {
+    flexDirection: 'row',
+    backgroundColor: 'black',
+    opacity: OPACITY_LIGHT,
+    borderColor: PICO_GREEN,
+    borderWidth: 1,
+    borderRadius: BORDER_CURVE,
+    alignSelf: 'stretch',
+    justifyContent: 'center'
+  },
+  signUpBtnText: {
+    color: PICO_GREEN,
     fontSize: 18,
     opacity: OPACITY_LIGHT,
     fontFamily: 'Apple SD Gothic Neo-Bold',
