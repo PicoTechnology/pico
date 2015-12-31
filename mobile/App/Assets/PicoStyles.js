@@ -20,20 +20,20 @@ module.exports = PicoStyles = {
   colors: {
     PICO_GREEN,
     ACCENT_GREEN,
-    TOBIN,
-    
+    LIGHT_GREY,
+    TOBIN
   },
   underlayColor: ACCENT_GREEN,
+
   //BEGIN - SINGLE STYLING
   singleContainer: {
     flexDirection: 'row',
-    paddingTop: 3,
-    paddingBottom: 3
+    padding: 8
   },
   singleImage: {
     height: 50,
     width: 50,
-    marginRight: 5,
+    marginRight: 8,
   },
   singleTitle: {
     color: '#f2f2f2',
@@ -43,6 +43,7 @@ module.exports = PicoStyles = {
     color: '#cccccc'
   },
   // END - SINGLE STYLING
+
   mainScrollContainer: {
     flex: 1,
     backgroundColor: '#333333'
@@ -76,6 +77,7 @@ module.exports = PicoStyles = {
     borderColor: TOBIN,
     borderRadius: BORDER_CURVE,
   },
+
   // BEGIN BUTTONS
   submitBtn: {
     flexDirection: 'row',
