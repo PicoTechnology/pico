@@ -135,6 +135,7 @@ module.exports = PicoStyles = {
     fontSize: 15,
     color: PICO_GREEN,
     textAlign: 'center'
+  },
   spinner: {
     backgroundColor: 'none'
   },
