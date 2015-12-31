@@ -15,28 +15,28 @@ var data = {
 	},
 	membersData: [{
 		name: "William Carroll",
-		photo: "./app/img/william-carroll.jpg",
+		photo: "./img/william-carroll.jpg",
 		github: "https://github.com/wpcarro",
 		linkedin: "https://www.linkedin.com/in/williampatrickcarroll",
 		info:"William is a full stack web developer currently residing in Los Angeles. He is open to relocating elsewhere if the opportunity is right. He specializes in JavaScript development."
 	},
 	{
 		name: "Vidiu Chiu",
-		photo:"./app/img/vchiu.jpg",
+		photo:"./img/vchiu.jpg",
 		github: "https://github.com/VDUCHEW",
 		linkedin: "https://www.linkedin.com/in/vidiuchiu",
 		info: "Vidiu is a full stack web developer currently residing in Los Angeles. He is open to relocating elsewhere if the opportunity is right. He specializes in JavaScript development."
 	},
 	{
 		name: "Tina Lai",
-		photo:"./app/img/tclai.jpg",
+		photo:"./img/tclai.jpg",
 		github: "https://github.com/tinalai",
 		linkedin: "https://www.linkedin.com/in/thisistinalai",
 		info: "Tina is a full stack web developer currently residing in Los Angeles. She is open to relocating elsewhere if the opportunity is right. She specializes in JavaScript development."
 	},
 	{
 		name: "Casandra Silva",
-		photo:"./app/img/csilva.jpg",
+		photo:"./img/csilva.jpg",
 		github: "https://github.com/casandrawith1s",
 		linkedin: "https://www.linkedin.com/in/casandrasilva",
 		info: "Casandra is a full stack web developer currently residing in Los Angeles. She is open to relocating elsewhere if the opportunity is right. She specializes in JavaScript development."

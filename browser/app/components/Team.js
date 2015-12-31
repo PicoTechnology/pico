@@ -36,12 +36,12 @@ var Member = React.createClass({
           <a href={this.props.github}
             style={styles.btnContainer}
             role="button">
-            <img style={styles.btnMedia} src="./app/img/GitHub-Mark-32px.png"/>
+            <img style={styles.btnMedia} src="./img/GitHub-Mark-32px.png"/>
           </a>
           <a href={this.props.linkedin}
             style={styles.btnContainer}
             role="button">
-            <img style={styles.btnMedia} src="./app/img/In-Black-34px-R.png" />
+            <img style={styles.btnMedia} src="./img/In-Black-34px-R.png" />
           </a>
         </p>
       </div>

@@ -20,7 +20,7 @@ var MainNavbar = React.createClass({
             }, 1500);
           }
         }
-      }); 
+      });
     });
   },
   render: function() {
