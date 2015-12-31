@@ -2,14 +2,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 
-
 app.use(express.static(path.join(__dirname, '../public')));
-
-app.use(function(req, res, next) {
-  console.log(`Received a ${req.method} for ${req.path}`);
-  console.log(`full path: ${path.join(__dirname, '../public', req.path)}`);
-  next();
-});
 
 app.get('/', function (req, res, next) {
   console.log('sending index.html...');
