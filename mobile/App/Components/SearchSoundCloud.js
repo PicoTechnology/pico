@@ -134,7 +134,7 @@ class SearchSoundCloud extends React.Component {
             <Image style={styles.bgImage} source={require('../Assets/search-bg.jpg')}/>
         </View>
         <View style={styles.greetingContainer}>
-          <Text style={styles.greetingText}>Welcome back,
+          <Text style={styles.greetingText}>Welcome back, 
             <Text style={styles.username}>{this.props.userObj.username}!</Text>
           </Text>
         </View>
