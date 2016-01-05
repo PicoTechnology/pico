@@ -15,7 +15,7 @@ const connectToDB = () => {
 };
 
 const addUser = (req, res, next) => {
-	var userObj = Object.assign({}, {online: true}, req.body);
+	var userObj = Object.assign({}, {online: true, signInAt: Firebase.ServerValue.TIMESTAMP}, req.body);
 	var username = userObj.username;
 	UsersRef
 		.child(username)

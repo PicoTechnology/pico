@@ -7,6 +7,7 @@ const WhichPlaylist = require('./WhichPlaylist.js');
 const Separator = require('./Separator.js');
 const STYLES = require('../Assets/PicoStyles.js');
 const UI_HELPERS = require('../Utils/UiHelpers.js');
+const onlineIcon = require('../Assets/icons/onlineIcon.png');
 
 const {
   AlertIOS,
@@ -23,11 +24,9 @@ var queue = new Queue;
 /* set up single tracks component*/
 const Single = props => {
   return (
-    <View style={STYLES.singleContainer}>
-      <View style={STYLES.infoContainer}>
-        <Text style={STYLES.singleTitle}>username: {props.username}</Text>
-        <Text style={STYLES.singleTitle}>online: {String(props.online)}</Text>
-      </View>
+    <View style={styles.single}>
+      <Image source={onlineIcon} style={styles.onlineIcon}/>
+      <Text style={Object.assign({}, STYLES.singleTitle, styles.username)}>{props.username}</Text>
       <Separator />
     </View>
   );
@@ -47,13 +46,13 @@ const Users = props => {
   );
 };
 
-const styles = StyleSheet.create({
+var styles = {
   mainScrollContainer: {
     flex: 1,
     backgroundColor: '#333333'
   },
   scrollContainer: {
-    flex: 1
+    flex: 7
   },
   currentlyPlayingContainer: {
     flex: 1,
@@ -69,12 +68,19 @@ const styles = StyleSheet.create({
   infoContainer: {
     flexDirection: 'column'
   },
+  username: {
+    paddingTop: 1
+  },
+  onlineIcon: {
+    height: 20,
+    width: 20
+  },
   playing: {
     backgroundColor: '#99FF00',
     width: 5,
     height: 50,
     marginRight: 1
   }
-});
+};
 
 module.exports = Users;
