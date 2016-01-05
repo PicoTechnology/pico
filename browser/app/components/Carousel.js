@@ -11,19 +11,31 @@ var MainCarousel = React.createClass({
           <div style={styles.carouselContainer}>
             <Carousel interval={1500}>
               <CarouselItem>
-                <img src="./assets/iPhoneDisplay1.png"/>
+                <img src="./assets/New-iPhoneDisplay0.png"/>
                   <h3 style={styles.display}>Welcome to PICO</h3>
               </CarouselItem>
               <CarouselItem>
-                <img src="./assets/iPhoneDisplay2.png"/>
+                <img src="./assets/New-iPhoneDisplay1.png"/>
                   <h3 style={styles.display}>Connect to your speakers</h3>
                 </CarouselItem>
               <CarouselItem>
-                <img src="./assets/iPhoneDisplay3.png"/>
+                <img src="./assets/New-iPhoneDisplay2.png"/>
                   <h3 style={styles.display}>Discover the music you love</h3>
               </CarouselItem>
               <CarouselItem>
-                <img src="./assets/iPhoneDisplay4.png"/>
+                <img src="./assets/New-iPhoneDisplay3.png"/>
+                  <h3 style={styles.display}>Enjoy party mode with your friends</h3>
+              </CarouselItem>
+              <CarouselItem>
+                <img src="./assets/New-iPhoneDisplay4.png"/>
+                  <h3 style={styles.display}>Enjoy party mode with your friends</h3>
+              </CarouselItem>
+              <CarouselItem>
+                <img src="./assets/New-iPhoneDisplay5.png"/>
+                  <h3 style={styles.display}>Enjoy party mode with your friends</h3>
+              </CarouselItem>
+              <CarouselItem>
+                <img src="./assets/New-iPhoneDisplay6.png"/>
                   <h3 style={styles.display}>Enjoy party mode with your friends</h3>
               </CarouselItem>
             </Carousel>
