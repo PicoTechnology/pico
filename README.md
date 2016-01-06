@@ -35,18 +35,16 @@ $ sudo l2ping -c 1 XX:XX:XX:XX:XX:XX
 ```
 
 If the connection is good (i.e. no packet loss), play a song like so:
+
 ```
 $ sudo mpg321 file-name.mp3
 ```
 
-PulseAudio volume control
+or
 ```
-$ pavucontrol
+$ mplayer file-name.mp3
 ```
 
-```
-$ mpg123 song-name.mp3
-```
 
 ###### React Router
 https://www.npmjs.com/package/react-router
